@@ -1,0 +1,300 @@
+{
+  "source": {
+    "name": "SoilGrids 2.0 (ISRIC — World Soil Information)",
+    "url": "https://files.isric.org/soilgrids/latest/data/",
+    "access": "WebDAV (VRT global en Interrupted Goode Homolosine)",
+    "license": "CC BY 4.0",
+    "native_resolution_m": 250,
+    "depth": "0–30 cm (media ponderada 5/30, 10/30, 15/30)"
+  },
+  "grid": {
+    "crs": "EPSG:32616",
+    "resolution_m": 250.0,
+    "width": 1107,
+    "height": 662
+  },
+  "variables": {
+    "phh2o": {
+      "unit": "pH",
+      "scale": 0.1,
+      "range": [
+        3.0,
+        10.0
+      ]
+    },
+    "soc": {
+      "unit": "g/kg",
+      "scale": 0.1,
+      "range": [
+        0.0,
+        300.0
+      ]
+    },
+    "nitrogen": {
+      "unit": "g/kg",
+      "scale": 0.01,
+      "range": [
+        0.0,
+        30.0
+      ]
+    },
+    "clay": {
+      "unit": "%",
+      "scale": 0.1,
+      "range": [
+        0.0,
+        100.0
+      ]
+    },
+    "sand": {
+      "unit": "%",
+      "scale": 0.1,
+      "range": [
+        0.0,
+        100.0
+      ]
+    },
+    "silt": {
+      "unit": "%",
+      "scale": 0.1,
+      "range": [
+        0.0,
+        100.0
+      ]
+    }
+  },
+  "country_means": {
+    "phh2o": 6.12,
+    "soc": 28.37,
+    "nitrogen": 2.3,
+    "clay": 37.16,
+    "sand": 28.54,
+    "silt": 34.31
+  },
+  "depth_coverage": {
+    "phh2o": 0.974,
+    "soc": 0.974,
+    "nitrogen": 0.974,
+    "clay": 0.974,
+    "sand": 0.974,
+    "silt": 0.974
+  },
+  "coverage_note": "Cobertura medida sobre tierra firme: se excluyen los polígonos de cuerpos de agua de OpenStreetMap porque SoilGrids solo modela tierra. Las celdas de 250 m que cruzan la costa o un cuerpo de agua no mapeado pueden seguir siendo nodata.",
+  "departments": {
+    "SV-CU": {
+      "name": "Cuscatlán",
+      "pixels": 11931,
+      "phh2o": 5.98,
+      "soc": 28.28,
+      "clay": 38.91,
+      "nitrogen": 2.09
+    },
+    "SV-US": {
+      "name": "Usulután",
+      "pixels": 33692,
+      "phh2o": 6.16,
+      "soc": 34.21,
+      "clay": 35.37,
+      "nitrogen": 2.44
+    },
+    "SV-LI": {
+      "name": "La Libertad",
+      "pixels": 26380,
+      "phh2o": 6.0,
+      "soc": 26.6,
+      "clay": 37.86,
+      "nitrogen": 2.16
+    },
+    "SV-AH": {
+      "name": "Ahuachapán",
+      "pixels": 19347,
+      "phh2o": 6.09,
+      "soc": 26.94,
+      "clay": 36.84,
+      "nitrogen": 2.26
+    },
+    "SV-SO": {
+      "name": "Sonsonate",
+      "pixels": 20107,
+      "phh2o": 6.05,
+      "soc": 25.8,
+      "clay": 36.71,
+      "nitrogen": 2.17
+    },
+    "SV-SV": {
+      "name": "San Vicente",
+      "pixels": 19202,
+      "phh2o": 6.08,
+      "soc": 26.48,
+      "clay": 36.67,
+      "nitrogen": 2.16
+    },
+    "SV-SM": {
+      "name": "San Miguel",
+      "pixels": 34271,
+      "phh2o": 6.2,
+      "soc": 28.71,
+      "clay": 35.89,
+      "nitrogen": 2.36
+    },
+    "SV-UN": {
+      "name": "La Unión",
+      "pixels": 32448,
+      "phh2o": 6.28,
+      "soc": 30.28,
+      "clay": 36.04,
+      "nitrogen": 2.39
+    },
+    "SV-MO": {
+      "name": "Morazán",
+      "pixels": 21135,
+      "phh2o": 6.19,
+      "soc": 32.08,
+      "clay": 37.98,
+      "nitrogen": 2.56
+    },
+    "SV-PA": {
+      "name": "La Paz",
+      "pixels": 19682,
+      "phh2o": 6.09,
+      "soc": 28.04,
+      "clay": 34.09,
+      "nitrogen": 1.98
+    },
+    "SV-SA": {
+      "name": "Santa Ana",
+      "pixels": 32453,
+      "phh2o": 6.22,
+      "soc": 26.84,
+      "clay": 38.72,
+      "nitrogen": 2.36
+    },
+    "SV-CH": {
+      "name": "Chalatenango",
+      "pixels": 32937,
+      "phh2o": 6.1,
+      "soc": 25.82,
+      "clay": 39.41,
+      "nitrogen": 2.49
+    },
+    "SV-SS": {
+      "name": "San Salvador",
+      "pixels": 14406,
+      "phh2o": 5.96,
+      "soc": 27.32,
+      "clay": 37.98,
+      "nitrogen": 2.13
+    },
+    "SV-CA": {
+      "name": "Cabañas",
+      "pixels": 17559,
+      "phh2o": 6.03,
+      "soc": 27.19,
+      "clay": 38.7,
+      "nitrogen": 2.23
+    }
+  },
+  "national_sources": [
+    {
+      "name": "Mapa Digital de Suelos de El Salvador (CENTA/MAG/CRS)",
+      "url": "https://www.centa.gob.sv/mapa-digital-de-suelos/",
+      "status": "identificado, no integrado",
+      "reason": "plataforma ArcGIS Hub sin endpoint estable de descarga ni licencia explícita de reutilización; requiere contacto institucional"
+    },
+    {
+      "name": "Soil in El Salvador (World Bank Data Catalog, 2017)",
+      "url": "https://datacatalog.worldbank.org/search/dataset/0039929",
+      "license": "CC BY 4.0",
+      "status": "identificado, no integrado en esta fase",
+      "reason": "clasificación de suelos (polígonos) descargable; se integrará como capa de clases separada de las predicciones continuas de SoilGrids"
+    }
+  ],
+  "caveats": [
+    "SoilGrids son PREDICCIONES de un modelo global a 250 m; no son mediciones de laboratorio ni representan variabilidad intra-parcela.",
+    "La textura se deriva de las mismas predicciones: su suma ≈100 % es una comprobación de coherencia interna, no una validación externa.",
+    "El Mapa Digital de Suelos del CENTA (resolución de parcela, ~11.000 muestras) es la referencia nacional y debe preferirse cuando se obtenga acceso."
+  ],
+  "validation": [
+    {
+      "check": "phh2o sin nodata sobre tierra firme",
+      "passed": true,
+      "detail": "cobertura=97.40% (agua excluida)"
+    },
+    {
+      "check": "phh2o dentro de rango físico (3.0–10.0 pH)",
+      "passed": true,
+      "detail": "min=5.63 max=6.82"
+    },
+    {
+      "check": "soc sin nodata sobre tierra firme",
+      "passed": true,
+      "detail": "cobertura=97.40% (agua excluida)"
+    },
+    {
+      "check": "soc dentro de rango físico (0.0–300.0 g/kg)",
+      "passed": true,
+      "detail": "min=13.88 max=132.97"
+    },
+    {
+      "check": "nitrogen sin nodata sobre tierra firme",
+      "passed": true,
+      "detail": "cobertura=97.40% (agua excluida)"
+    },
+    {
+      "check": "nitrogen dentro de rango físico (0.0–30.0 g/kg)",
+      "passed": true,
+      "detail": "min=1.34 max=10.10"
+    },
+    {
+      "check": "clay sin nodata sobre tierra firme",
+      "passed": true,
+      "detail": "cobertura=97.40% (agua excluida)"
+    },
+    {
+      "check": "clay dentro de rango físico (0.0–100.0 %)",
+      "passed": true,
+      "detail": "min=24.63 max=50.87"
+    },
+    {
+      "check": "sand sin nodata sobre tierra firme",
+      "passed": true,
+      "detail": "cobertura=97.40% (agua excluida)"
+    },
+    {
+      "check": "sand dentro de rango físico (0.0–100.0 %)",
+      "passed": true,
+      "detail": "min=17.97 max=40.15"
+    },
+    {
+      "check": "silt sin nodata sobre tierra firme",
+      "passed": true,
+      "detail": "cobertura=97.40% (agua excluida)"
+    },
+    {
+      "check": "silt dentro de rango físico (0.0–100.0 %)",
+      "passed": true,
+      "detail": "min=25.33 max=45.34"
+    },
+    {
+      "check": "textura arcilla+arena+limo ≈ 100 % (desvío medio < 3)",
+      "passed": true,
+      "detail": "media=100.0% desvío medio=0.02"
+    },
+    {
+      "check": "las 6 capas comparten rejilla 250 m EPSG:32616",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "carbono orgánico medio plausible para suelos volcánicos (5–80 g/kg)",
+      "passed": true,
+      "detail": "28.4 g/kg"
+    },
+    {
+      "check": "medias de suelo para los 14 departamentos",
+      "passed": true,
+      "detail": ""
+    }
+  ],
+  "attribution": "Propiedades del suelo: SoilGrids 2.0, ISRIC — World Soil Information, CC BY 4.0. Predicciones a 250 m; no son mediciones de laboratorio."
+}

@@ -1,0 +1,27 @@
+{
+  "provenance_id": "territory@2026-11-21T18:31:11Z",
+  "layer": "territory",
+  "artifact": "workspace/chats/e312fa1803110fff9a050959/data/processed/territory/territory.gpkg",
+  "source_id": "geoboundaries",
+  "source_url": "https://www.geoboundaries.org/",
+  "license": "CC-BY-SA-2.0",
+  "attribution": "Límites administrativos: geoBoundaries (gbOpen), CC BY-SA 2.0, derivados de OpenStreetMap vía osm-boundaries.com.",
+  "native_resolution": "vectorial (escala no declarada)",
+  "effective_resolution": "departamental (ADM1) / municipal histórica (ADM2)",
+  "transform": "normalize names -> assign ISO 3166-2:SV -> dissolve ADM1 -> spatial join ADM2 -> validate",
+  "generated_at": "2026-11-21T18:31:11Z",
+  "software": {
+    "python": "3.12.3",
+    "gdal": "3.12.2",
+    "rasterio": "1.5.2",
+    "geopandas": "1.2.0",
+    "shapely": "2.2.0",
+    "pyproj": "3.8.0"
+  },
+  "extra": {
+    "adm1": 14,
+    "adm2": 272,
+    "area_km2": 20966.4
+  },
+  "artifact_sha256": "22a96832d7576fd26e5a86e8995ff5bd9b63d9c56b55152216da09f9318a0359"
+}

@@ -1,0 +1,44 @@
+{
+  "provenance_id": "hillshade@2026-11-21T18:58:23Z",
+  "layer": "hillshade",
+  "artifact": "workspace/chats/e312fa1803110fff9a050959/data/processed/topography/hillshade.tif",
+  "source_id": "copdem30",
+  "source_url": "https://copernicus-dem-30m.s3.amazonaws.com",
+  "license": "Copernicus-DEM-GLO-30",
+  "attribution": "Modelo digital de elevación: © DLR e.V. 2010-2014 y © Airbus Defence and Space GmbH 2014-2018, proporcionado bajo COPERNICUS por la Unión Europea y la ESA; todos los derechos reservados. Producto derivado (pendiente, aspecto, hillshade) calculado por AGROSV.",
+  "native_resolution": "1 arcsec (~30 m)",
+  "effective_resolution": "30 m (DSM: incluye vegetación y edificios)",
+  "transform": "warp EPSG:4326->EPSG:32616 @30m + gradiente Horn-libre",
+  "generated_at": "2026-11-21T18:58:23Z",
+  "software": {
+    "python": "3.12.3",
+    "gdal": "3.12.2",
+    "rasterio": "1.5.2",
+    "geopandas": "1.2.0",
+    "shapely": "2.2.0",
+    "pyproj": "3.8.0"
+  },
+  "raster": {
+    "crs": "EPSG:32616",
+    "width": 9217,
+    "height": 5516,
+    "count": 1,
+    "dtype": "uint8",
+    "nodata": 0.0,
+    "res": [
+      30.0,
+      30.0
+    ],
+    "bounds": [
+      155053.25176952017,
+      1434513.0095924507,
+      431563.25176952017,
+      1599993.0095924507
+    ]
+  },
+  "extra": {
+    "quantity": "sombreado (visualización)",
+    "nodata_ratio": 0.5428
+  },
+  "artifact_sha256": "1cdc4d031eeb64c9e82f3740f7fa5cc977d63544440c8767657618e7e984cfe1"
+}

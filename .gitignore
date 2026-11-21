@@ -1,0 +1,24 @@
+# Entorno y dependencias
+.venv/
+node_modules/
+frontend/dist/
+
+# Datos crudos: se regeneran con scripts/download_data.sh (~420 MB)
+data/raw/
+data/interim/
+
+# Temporales de ejecución
+.run/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Credenciales
+.env
+.env.*
+!.env.example

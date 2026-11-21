@@ -1,0 +1,34 @@
+{
+  "provenance_id": "infrastructure@2026-11-21T20:19:58Z",
+  "layer": "infrastructure",
+  "artifact": "workspace/chats/e312fa1803110fff9a050959/data/processed/infrastructure/infrastructure.gpkg",
+  "source_id": "osm-geofabrik",
+  "source_url": "https://download.geofabrik.de/central-america/el-salvador-latest.osm.pbf",
+  "license": "ODbL-1.0",
+  "attribution": "Datos de infraestructura: © OpenStreetMap contributors, ODbL 1.0. Base de datos derivada sujeta a ODbL.",
+  "native_resolution": "vectorial (posición de nodos OSM)",
+  "effective_resolution": "vectorial; precisión heterogénea según colaborador",
+  "transform": "lectura PBF vía OGR OSM + recorte al territorio ADM1",
+  "generated_at": "2026-11-21T20:19:58Z",
+  "software": {
+    "python": "3.12.3",
+    "gdal": "3.12.2",
+    "rasterio": "1.5.2",
+    "geopandas": "1.2.0",
+    "shapely": "2.2.0",
+    "pyproj": "3.8.0"
+  },
+  "extra": {
+    "layers": {
+      "roads": 120807,
+      "waterways": 4886,
+      "water_bodies": 1205,
+      "settlements": 4783,
+      "infrastructure": 1013,
+      "power_lines": 189
+    },
+    "osm_timestamp": "2026-11-20T21:21:21Z",
+    "pbf_sha256": "7ce9affabeda9e221ef66ab17eb20a4d1d728e3963872eb82c484067fa7b37db"
+  },
+  "artifact_sha256": "44bdc4caaac7eca665bc58d85ebbeb92ba169a5da51c1903f2caa274339cbae1"
+}

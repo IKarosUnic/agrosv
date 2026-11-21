@@ -1,0 +1,252 @@
+{
+  "source": {
+    "name": "Geofabrik — El Salvador extract",
+    "url": "https://download.geofabrik.de/central-america/el-salvador-latest.osm.pbf",
+    "osm_timestamp": "2026-11-20T21:21:21Z",
+    "file_bytes": 35238372,
+    "sha256": "7ce9affabeda9e221ef66ab17eb20a4d1d728e3963872eb82c484067fa7b37db"
+  },
+  "layers": {
+    "roads": {
+      "features": 120807,
+      "crs": "EPSG:4326",
+      "length_km": 40215.4,
+      "area_km2": null
+    },
+    "waterways": {
+      "features": 4886,
+      "crs": "EPSG:4326",
+      "length_km": 7880.0,
+      "area_km2": null
+    },
+    "water_bodies": {
+      "features": 1205,
+      "crs": "EPSG:4326",
+      "length_km": null,
+      "area_km2": 522.64
+    },
+    "settlements": {
+      "features": 4783,
+      "crs": "EPSG:4326",
+      "length_km": null,
+      "area_km2": null
+    },
+    "infrastructure": {
+      "features": 1013,
+      "crs": "EPSG:4326",
+      "length_km": null,
+      "area_km2": null
+    },
+    "power_lines": {
+      "features": 189,
+      "crs": "EPSG:4326",
+      "length_km": 1426.2,
+      "area_km2": null
+    }
+  },
+  "road_classes": {
+    "local": 79482,
+    "servicio": 13541,
+    "senda": 8778,
+    "colectora": 7629,
+    "pista": 4944,
+    "arterial": 3707,
+    "otra": 2726
+  },
+  "road_km_by_class": {
+    "arterial": 2123.5,
+    "colectora": 6630.2,
+    "local": 25121.7,
+    "otra": 312.6,
+    "pista": 3431.1,
+    "senda": 1111.9,
+    "servicio": 1484.3
+  },
+  "road_km_total": 40215.4,
+  "road_km_motorized": 35359.7,
+  "road_km_main_network": 8753.7,
+  "waterway_classes": {
+    "stream": 2492,
+    "river": 1401,
+    "ditch": 516,
+    "drain": 402,
+    "canal": 40,
+    "otro": 35
+  },
+  "water_types": {
+    "otro": 626,
+    "pond": 262,
+    "river": 193,
+    "basin": 55,
+    "reservoir": 30,
+    "lake": 25,
+    "lagoon": 7,
+    "stream": 6,
+    "canal": 1
+  },
+  "settlement_types": {
+    "neighbourhood": 1992,
+    "hamlet": 1330,
+    "village": 470,
+    "town": 258,
+    "locality": 239,
+    "farm": 148,
+    "plot": 142,
+    "suburb": 129,
+    "isolated_dwelling": 42,
+    "city": 16,
+    "quarter": 11,
+    "yes": 2,
+    "country": 1,
+    "municipality": 1,
+    "island": 1,
+    "city_block": 1
+  },
+  "infrastructure_categories": {
+    "educación": 398,
+    "salud": 295,
+    "seguridad": 144,
+    "energía": 112,
+    "mercado": 39,
+    "transporte": 18,
+    "industria": 7
+  },
+  "coverage_notes": [
+    "OSM es datos colaborativos: la cobertura rural y de caminos secundarios es heterogénea y no debe interpretarse como censo.",
+    "Las longitudes se miden en EPSG:32616 tras recortar al territorio; los tramos que cruzan la frontera quedan truncados.",
+    "Solo se publican elementos con etiquetas verificables en el extracto; no se infiere ningún dato faltante."
+  ],
+  "validation": [
+    {
+      "check": "capa roads no vacía",
+      "passed": true,
+      "detail": "120,807 entidades"
+    },
+    {
+      "check": "capa roads en EPSG:4326",
+      "passed": true,
+      "detail": "EPSG:4326"
+    },
+    {
+      "check": "capa roads sin id OSM duplicado",
+      "passed": true,
+      "detail": "dup=0"
+    },
+    {
+      "check": "capa waterways no vacía",
+      "passed": true,
+      "detail": "4,886 entidades"
+    },
+    {
+      "check": "capa waterways en EPSG:4326",
+      "passed": true,
+      "detail": "EPSG:4326"
+    },
+    {
+      "check": "capa waterways sin id OSM duplicado",
+      "passed": true,
+      "detail": "dup=0"
+    },
+    {
+      "check": "capa water_bodies no vacía",
+      "passed": true,
+      "detail": "1,205 entidades"
+    },
+    {
+      "check": "capa water_bodies en EPSG:4326",
+      "passed": true,
+      "detail": "EPSG:4326"
+    },
+    {
+      "check": "capa water_bodies sin id OSM duplicado",
+      "passed": true,
+      "detail": "dup=0"
+    },
+    {
+      "check": "capa settlements no vacía",
+      "passed": true,
+      "detail": "4,783 entidades"
+    },
+    {
+      "check": "capa settlements en EPSG:4326",
+      "passed": true,
+      "detail": "EPSG:4326"
+    },
+    {
+      "check": "capa settlements sin id OSM duplicado",
+      "passed": true,
+      "detail": "dup=0"
+    },
+    {
+      "check": "capa infrastructure no vacía",
+      "passed": true,
+      "detail": "1,013 entidades"
+    },
+    {
+      "check": "capa infrastructure en EPSG:4326",
+      "passed": true,
+      "detail": "EPSG:4326"
+    },
+    {
+      "check": "capa infrastructure sin id OSM duplicado",
+      "passed": true,
+      "detail": "dup=0"
+    },
+    {
+      "check": "capa power_lines no vacía",
+      "passed": true,
+      "detail": "189 entidades"
+    },
+    {
+      "check": "capa power_lines en EPSG:4326",
+      "passed": true,
+      "detail": "EPSG:4326"
+    },
+    {
+      "check": "capa power_lines sin id OSM duplicado",
+      "passed": true,
+      "detail": "dup=0"
+    },
+    {
+      "check": "capa roads dentro del territorio nacional",
+      "passed": true,
+      "detail": "fuera=0"
+    },
+    {
+      "check": "capa waterways dentro del territorio nacional",
+      "passed": true,
+      "detail": "fuera=0"
+    },
+    {
+      "check": "capa water_bodies dentro del territorio nacional",
+      "passed": true,
+      "detail": "fuera=0"
+    },
+    {
+      "check": "red vial principal plausible (5.000–15.000 km)",
+      "passed": true,
+      "detail": "arterial+colectora 8,754 km; motorizada total 35,360 km"
+    },
+    {
+      "check": "longitud de cursos de agua plausible (2.000–40.000 km)",
+      "passed": true,
+      "detail": "7,880 km"
+    },
+    {
+      "check": "superficie de cuerpos de agua plausible (100–2.000 km²)",
+      "passed": true,
+      "detail": "522.6 km²"
+    },
+    {
+      "check": "red de asentamientos suficiente (>= 200 puntos)",
+      "passed": true,
+      "detail": "4,783"
+    },
+    {
+      "check": "densidad vial plausible (0,2–4,0 km/km²)",
+      "passed": true,
+      "detail": "total 1.92 km/km² (red motorizada 1.69)"
+    }
+  ],
+  "attribution": "Datos de infraestructura: © OpenStreetMap contributors, ODbL 1.0. Base de datos derivada sujeta a ODbL."
+}

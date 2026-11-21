@@ -1,0 +1,44 @@
+{
+  "provenance_id": "dem30_wgs84@2026-11-21T18:58:23Z",
+  "layer": "dem30_wgs84",
+  "artifact": "workspace/chats/e312fa1803110fff9a050959/data/processed/topography/dem30_wgs84.tif",
+  "source_id": "copdem30",
+  "source_url": "https://copernicus-dem-30m.s3.amazonaws.com",
+  "license": "Copernicus-DEM-GLO-30",
+  "attribution": "Modelo digital de elevación: © DLR e.V. 2010-2014 y © Airbus Defence and Space GmbH 2014-2018, proporcionado bajo COPERNICUS por la Unión Europea y la ESA; todos los derechos reservados. Producto derivado (pendiente, aspecto, hillshade) calculado por AGROSV.",
+  "native_resolution": "1 arcsec (~30 m)",
+  "effective_resolution": "30 m (DSM)",
+  "transform": "ventana /vsicurl + mosaico + máscara nacional",
+  "generated_at": "2026-11-21T18:58:23Z",
+  "software": {
+    "python": "3.12.3",
+    "gdal": "3.12.2",
+    "rasterio": "1.5.2",
+    "geopandas": "1.2.0",
+    "shapely": "2.2.0",
+    "pyproj": "3.8.0"
+  },
+  "raster": {
+    "crs": "EPSG:4326",
+    "width": 9159,
+    "height": 5311,
+    "count": 1,
+    "dtype": "float32",
+    "nodata": -32768.0,
+    "res": [
+      0.0002777777777777778,
+      0.0002777777777777778
+    ],
+    "bounds": [
+      -90.17916666666666,
+      12.975833333333332,
+      -87.63499999999999,
+      14.45111111111111
+    ]
+  },
+  "extra": {
+    "quantity": "elevación",
+    "nodata_ratio": 0.00026
+  },
+  "artifact_sha256": "1d41870a4ae4365a511554d37deead0ad181f1305e7d12a96847d03bf293db20"
+}

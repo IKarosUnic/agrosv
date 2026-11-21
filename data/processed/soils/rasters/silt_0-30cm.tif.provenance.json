@@ -1,0 +1,46 @@
+{
+  "provenance_id": "soil_silt@2026-11-21T20:02:42Z",
+  "layer": "soil_silt",
+  "artifact": "workspace/chats/e312fa1803110fff9a050959/data/processed/soils/rasters/silt_0-30cm.tif",
+  "source_id": "soilgrids2",
+  "source_url": "https://files.isric.org/soilgrids/latest/data/",
+  "license": "CC-BY-4.0",
+  "attribution": "Propiedades del suelo: SoilGrids 2.0, ISRIC — World Soil Information, CC BY 4.0. Predicciones a 250 m; no son mediciones de laboratorio.",
+  "native_resolution": "250 m (Goode Homolosine)",
+  "effective_resolution": "250 m, remuestreado bilineal a EPSG:32616",
+  "transform": "teselas VRT WebDAV -> ventana SV -> reproyección -> media ponderada 0–30 cm -> COG",
+  "generated_at": "2026-11-21T20:02:42Z",
+  "software": {
+    "python": "3.12.3",
+    "gdal": "3.12.2",
+    "rasterio": "1.5.2",
+    "geopandas": "1.2.0",
+    "shapely": "2.2.0",
+    "pyproj": "3.8.0"
+  },
+  "raster": {
+    "crs": "EPSG:32616",
+    "width": 1107,
+    "height": 662,
+    "count": 1,
+    "dtype": "int16",
+    "nodata": -32768.0,
+    "res": [
+      250.0,
+      250.0
+    ],
+    "bounds": [
+      155000.0,
+      1434500.0,
+      431750.0,
+      1600000.0
+    ]
+  },
+  "extra": {
+    "unit": "%",
+    "stored_scale": 0.1,
+    "depth": "0-30cm",
+    "prediction_not_measurement": true
+  },
+  "artifact_sha256": "9c66f8d75251ece94cca7072b77f914fffde4fde637a4c15686024ea710439ef"
+}

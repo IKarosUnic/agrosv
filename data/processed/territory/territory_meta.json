@@ -1,0 +1,141 @@
+{
+  "generated_at": null,
+  "crs": "EPSG:4326",
+  "area_crs": "EPSG:6933",
+  "crs_note": "EPSG:32616 aplicado a todo el territorio. En el extremo oeste (lon -90.2) el factor de escala es ~1.0015 (error de pendiente ~0.15%), considerado despreciable frente a la incertidumbre vertical del DEM.",
+  "levels": {
+    "adm0": {
+      "count": 1,
+      "official": true,
+      "note": "derivado por dissolve de ADM1; ADM0 de origen incluye aguas territoriales (+4.372,6 km²)"
+    },
+    "adm1": {
+      "count": 14,
+      "official": true,
+      "id_scheme": "ISO 3166-2:SV",
+      "area_km2_total": 20966.4
+    },
+    "adm2": {
+      "count": 272,
+      "official": false,
+      "id_scheme": "adm1_code + secuencia por área + slug",
+      "note": "municipios pre-reforma 2023; NO son los 44 municipios vigentes",
+      "name_missing": 10,
+      "coverage_of_national": 0.9722,
+      "uncovered_km2": 583.3,
+      "uncovered_note": "cuerpos de agua y franja costera excluidos de los polígonos municipales",
+      "uncovered_largest": [
+        {
+          "area_km2": 227.4,
+          "lon": -88.5504,
+          "lat": 13.2349
+        },
+        {
+          "area_km2": 128.5,
+          "lon": -89.0323,
+          "lat": 14.002
+        },
+        {
+          "area_km2": 81.8,
+          "lon": -89.0516,
+          "lat": 13.6786
+        },
+        {
+          "area_km2": 50.4,
+          "lon": -88.9013,
+          "lat": 13.3223
+        },
+        {
+          "area_km2": 28.7,
+          "lon": -87.8628,
+          "lat": 13.3968
+        },
+        {
+          "area_km2": 25.2,
+          "lon": -89.5504,
+          "lat": 13.8609
+        }
+      ],
+      "per_department": {
+        "SV-AH": 12,
+        "SV-CA": 9,
+        "SV-CH": 34,
+        "SV-CU": 17,
+        "SV-LI": 21,
+        "SV-MO": 27,
+        "SV-PA": 22,
+        "SV-SA": 13,
+        "SV-SM": 20,
+        "SV-SO": 17,
+        "SV-SS": 19,
+        "SV-SV": 13,
+        "SV-UN": 20,
+        "SV-US": 28
+      }
+    }
+  },
+  "validation": [
+    {
+      "check": "geometrías válidas (sin reparar)",
+      "passed": true,
+      "detail": "{'adm0': 0, 'adm1': 0, 'adm2': 0}"
+    },
+    {
+      "check": "geometrías válidas tras reparación",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "área nacional ≈ 21041 km²",
+      "passed": true,
+      "detail": "20,966.4 km² (desvío 0.35%)"
+    },
+    {
+      "check": "suma ADM1 == área nacional",
+      "passed": true,
+      "detail": "20,966.4 vs 20,966.4"
+    },
+    {
+      "check": "ADM1 contenido en límite nacional",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "sin solapes entre departamentos",
+      "passed": true,
+      "detail": "área solapada=0.00e+00"
+    },
+    {
+      "check": "14 departamentos",
+      "passed": true,
+      "detail": "14"
+    },
+    {
+      "check": "todos los ADM2 tienen departamento",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "ADM2 conserva registros del origen",
+      "passed": true,
+      "detail": "272"
+    },
+    {
+      "check": "ADM2 marcada no oficial",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "ADM2 cubre el territorio nacional (>=95%)",
+      "passed": true,
+      "detail": "97.22% cubierto, hueco 583.3 km2 (cuerpos de agua)"
+    },
+    {
+      "check": "cada departamento tiene >=1 ADM2",
+      "passed": true,
+      "detail": "min=9 max=34"
+    }
+  ],
+  "attribution": "Límites administrativos: geoBoundaries (gbOpen), CC BY-SA 2.0, derivados de OpenStreetMap vía osm-boundaries.com.",
+  "license": "CC-BY-SA-2.0"
+}
