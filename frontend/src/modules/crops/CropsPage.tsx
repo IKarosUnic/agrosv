@@ -49,6 +49,11 @@ export default function CropsPage() {
   const [simLoading, setSimLoading] = useState(false);
   const [simError, setSimError] = useState<string | null>(null);
 
+  // Nutrients (N-P-K demand)
+  const [targetYield, setTargetYield] = useState("3.0");
+  const [nutrientData, setNutrientData] = useState<Record<string, unknown> | null>(null);
+  const [nutrientLoading, setNutrientLoading] = useState(false);
+
   useEffect(() => {
     const ac = new AbortController();
     setLoadingList(true);
@@ -75,6 +80,24 @@ export default function CropsPage() {
       .catch(() => setDetail(null));
     return () => ac.abort();
   }, [selectedCropId]);
+
+  useEffect(() => {
+    if (tab !== "detail") return;
+    const ac = new AbortController();
+    const yieldVal = Number(targetYield);
+    if (!yieldVal || yieldVal <= 0) return;
+    setNutrientLoading(true);
+    agrosvApi.nutrientDemand(selectedCropId, yieldVal, "user_reference", ac.signal)
+      .then(({ data }) => {
+        setNutrientData((data as unknown as { demand_kg_ha?: Record<string, unknown> })?.demand_kg_ha ?? null);
+        setNutrientLoading(false);
+      })
+      .catch(() => {
+        setNutrientData(null);
+        setNutrientLoading(false);
+      });
+    return () => ac.abort();
+  }, [tab, selectedCropId, targetYield]);
 
   useEffect(() => {
     if (tab !== "suitability") return;
@@ -283,11 +306,77 @@ export default function CropsPage() {
             </div>
           </div>
 
+          <div className="card stack-sm">
+            <div className="row-wrap" style={{ justifyContent: "space-between" }}>
+              <h3 className="card-title">Demanda nutricional estimada (N – P₂O₅ – K₂O)</h3>
+              <div className="row-wrap" style={{ alignItems: "center", gap: 8 }}>
+                <label style={{ fontSize: 13, display: "inline-flex", alignItems: "center", gap: 6 }}>
+                  <span>Meta de rendimiento:</span>
+                  <input
+                    type="number"
+                    step="0.5"
+                    min="0.5"
+                    max="30"
+                    className="input input-sm"
+                    style={{ width: 85 }}
+                    value={targetYield}
+                    onChange={(e) => setTargetYield(e.target.value)}
+                  />
+                  <span>t/ha</span>
+                </label>
+              </div>
+            </div>
+            {nutrientLoading ? (
+              <LoadingState message="Calculando extracción de nutrientes…" />
+            ) : nutrientData ? (
+              <div className="grid-3" style={{ marginTop: 8 }}>
+                {Object.entries(nutrientData).map(([elem, val]) => {
+                  const spec = val as { kg_ha?: [number, number]; kg_per_t?: [number, number]; status?: string };
+                  const rangeHa = spec.kg_ha ? `${spec.kg_ha[0]} – ${spec.kg_ha[1]} kg/ha` : "Sin dato";
+                  const rangePerT = spec.kg_per_t ? `(${spec.kg_per_t[0]} – ${spec.kg_per_t[1]} kg/t cosechada)` : "";
+                  return (
+                    <div key={elem} className="metric-card">
+                      <div className="metric-label">{elem} (Extracción del cultivo)</div>
+                      <div className="metric-value" style={{ fontSize: 20 }}>{rangeHa}</div>
+                      <div className="metric-detail">{rangePerT} · Ref. bibliográfica internacional ({spec.status ?? "REF"})</div>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <div style={{ fontSize: 13, color: "var(--ink-muted)" }}>
+                Sin curvas de extracción nutricional validadas para este cultivo en el catálogo.
+              </div>
+            )}
+          </div>
+
           <div className="grid-2">
             <section className="card">
-              <h3 className="card-title">Plagas y enfermedades asociadas</h3>
-              <p style={{ fontSize: 13 }}><strong>Plagas:</strong> {detail.pests.length ? detail.pests.join(", ") : "Sin registros en catálogo"}</p>
-              <p style={{ fontSize: 13 }}><strong>Enfermedades:</strong> {detail.diseases.length ? detail.diseases.join(", ") : "Sin registros en catálogo"}</p>
+              <h3 className="card-title">Plagas y enfermedades documentadas</h3>
+              <div style={{ marginTop: 8 }}>
+                <strong style={{ fontSize: 13 }}>Plagas:</strong>
+                {detail.pests.length ? (
+                  <div className="row-wrap" style={{ marginTop: 6, gap: 6 }}>
+                    {detail.pests.map((p) => (
+                      <span key={p} className="badge badge-warn" style={{ fontSize: 12 }}>{p}</span>
+                    ))}
+                  </div>
+                ) : (
+                  <p style={{ fontSize: 13, color: "var(--ink-muted)" }}>Sin plagas registradas en catálogo</p>
+                )}
+              </div>
+              <div style={{ marginTop: 12 }}>
+                <strong style={{ fontSize: 13 }}>Enfermedades:</strong>
+                {detail.diseases.length ? (
+                  <div className="row-wrap" style={{ marginTop: 6, gap: 6 }}>
+                    {detail.diseases.map((d) => (
+                      <span key={d} className="badge badge-crit" style={{ fontSize: 12 }}>{d}</span>
+                    ))}
+                  </div>
+                ) : (
+                  <p style={{ fontSize: 13, color: "var(--ink-muted)" }}>Sin enfermedades registradas en catálogo</p>
+                )}
+              </div>
             </section>
             <section className="card">
               <h3 className="card-title">Vacíos documentados (GAP)</h3>
@@ -420,18 +509,48 @@ export default function CropsPage() {
 
           {simError && <ErrorState message={simError} />}
 
-          {simEnv && (
-            <div className="card stack-sm">
-              <div className="row-wrap" style={{ justifyContent: "space-between" }}>
-                <h3 className="card-title">Resultado de simulación ({selectedCropId})</h3>
-                <EvidenceBadge evidenceClass="simulated" />
+          {simEnv && (() => {
+            const outputs = (simRes.outputs ?? {}) as Record<string, unknown>;
+            const water = (outputs.water ?? {}) as Record<string, number | undefined>;
+            const stress = (outputs.stress ?? {}) as Record<string, number | undefined>;
+            const yld = (outputs.yield ?? {}) as Record<string, unknown>;
+            return (
+              <div className="card stack-md">
+                <div className="row-wrap" style={{ justifyContent: "space-between" }}>
+                  <h3 className="card-title">Balance Hídrico del Ciclo ({selectedCropId})</h3>
+                  <EvidenceBadge evidenceClass="simulated" />
+                </div>
+
+                <div className="grid-3">
+                  <MetricCard
+                    label="Precipitación del ciclo"
+                    value={water.precip_mm != null ? `${water.precip_mm.toFixed(1)} mm` : "—"}
+                    detail={`Efectiva: ${water.effective_precip_mm != null ? `${water.effective_precip_mm.toFixed(1)} mm` : "—"}`}
+                    evidenceClass="reanalysis"
+                  />
+                  <MetricCard
+                    label="Evapotranspiración del cultivo"
+                    value={water.eta_mm != null ? `${water.eta_mm.toFixed(1)} mm (ETa)` : "—"}
+                    detail={`Demanda máxima ETm: ${water.etm_mm != null ? `${water.etm_mm.toFixed(1)} mm` : "—"}`}
+                    evidenceClass="simulated"
+                  />
+                  <MetricCard
+                    label="Estrés hídrico detectado"
+                    value={stress.stress_days != null ? `${stress.stress_days} días` : "0 días"}
+                    detail={`Relación ETa/ETm: ${stress.eta_etm_ratio != null ? stress.eta_etm_ratio.toFixed(3) : "—"}`}
+                    evidenceClass="simulated"
+                  />
+                </div>
+
+                <div className="callout callout--info" style={{ fontSize: 13 }}>
+                  <strong>Rendimiento simulado:</strong> {String(yld.reason ?? "Sin estimación (requiere Ky local y variedad calibrada)")}.
+                  El motor calcula el balance de agua del suelo conforme a FAO-56 sin extrapolar producción comercial sin datos empíricos.
+                </div>
+
+                <UncertaintyPanel limitations={simEnv.limitations} assumptions={simEnv.assumptions} />
               </div>
-              <pre style={{ margin: 0, padding: 12, borderRadius: 8, background: "var(--bg-subtle)", overflowX: "auto", fontSize: 12 }}>
-                {JSON.stringify(simRes.summary ?? simRes.water_balance ?? simRes, null, 2)}
-              </pre>
-              <UncertaintyPanel limitations={simEnv.limitations} assumptions={simEnv.assumptions} />
-            </div>
-          )}
+            );
+          })()}
 
           {Object.keys(adapters).length > 0 && (
             <section className="card">

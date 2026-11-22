@@ -4,6 +4,7 @@ import { AppProvider } from "../stores/AppContext";
 import TerritoryPage from "../modules/territory/TerritoryPage";
 import MonitoringPage from "../modules/monitoring/MonitoringPage";
 import MarketsPricesPage from "../modules/economics/MarketsPricesPage";
+import ProfitabilityPage from "../modules/economics/ProfitabilityPage";
 import RisksAlertsPage from "../modules/risks/RisksAlertsPage";
 import { clearMemoryCache } from "../services/api/client";
 
@@ -152,6 +153,95 @@ describe("Territory, Monitoring, Markets, and Risks workflows", () => {
     await waitFor(() => {
       expect(screen.getByText("2026-10-15")).toBeInTheDocument();
       expect(screen.getByText("wholesale")).toBeInTheDocument();
+    });
+  });
+
+  it("evaluates investment NPV and household economy in ProfitabilityPage tabs", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockImplementation((input: RequestInfo | URL) => {
+        const url = String(input);
+        let body: unknown = { result: {} };
+        if (url.includes("/api/economics/profitability")) {
+          body = {
+            result: {
+              gross_revenue: 2200,
+              gross_margin: 620,
+              net_operating_margin: 380,
+              profit_per_ha: 266,
+              saleable_t: 4.5,
+            },
+            assumptions: [],
+            limitations: [],
+          };
+        } else if (url.includes("/api/economics/break-even")) {
+          body = {
+            result: {
+              break_even_price_per_qq46: 18.2,
+              break_even_yield_qq_mz: 32.5,
+              cost_sensitivity: [],
+            },
+          };
+        } else if (url.includes("/api/economics/investment")) {
+          body = {
+            result: {
+              initial_investment: 2200,
+              payback_years: 3.4,
+              npv: 420.5,
+              irr: 0.145,
+              annual_net_cash_flows: [650, 650, 650, 650, 650],
+            },
+            assumptions: [],
+            limitations: [],
+          };
+        } else if (url.includes("/api/economics/household")) {
+          body = {
+            result: {
+              economy: {
+                net_agricultural_cashflow_usd: 1400,
+                net_savings_change_usd: -490,
+                liquidity_gap_usd: 1200,
+                operating_budget_usd: 350,
+                household_state: {
+                  household_type: "nuclear",
+                  size: 5,
+                  adults: 3,
+                  children: 2,
+                  labor_days_household: 410,
+                  labor_availability_factor: 0.5,
+                  adaptation_options: ["riego por goteo"],
+                },
+              },
+            },
+            assumptions: [],
+            limitations: [],
+          };
+        }
+        return Promise.resolve(new Response(JSON.stringify(body), { status: 200, headers: { "Content-Type": "application/json" } }));
+      }),
+    );
+
+    render(
+      <AppProvider>
+        <ProfitabilityPage />
+      </AppProvider>,
+    );
+
+    await waitFor(() => expect(screen.getByText("Ingreso bruto")).toBeInTheDocument());
+
+    // Switch to Investment tab
+    fireEvent.click(screen.getByRole("tab", { name: /Evaluación de inversiones/i }));
+    await waitFor(() => {
+      expect(screen.getByText(/Periodo de recuperación/i)).toBeInTheDocument();
+      expect(screen.getByText(/Valor Actual Neto/i)).toBeInTheDocument();
+      expect(screen.getByText(/Tasa Interna de Retorno/i)).toBeInTheDocument();
+    });
+
+    // Switch to Household economy tab
+    fireEvent.click(screen.getByRole("tab", { name: /Economía del hogar/i }));
+    await waitFor(() => {
+      expect(screen.getByText(/Flujo de caja agrícola neto/i)).toBeInTheDocument();
+      expect(screen.getByText(/Composición del hogar sintético/i)).toBeInTheDocument();
     });
   });
 });

@@ -13,9 +13,11 @@ import {
 import { ChartFrame, SvgLineChart } from "../../components/charts/Charts";
 import type { MarketItem, PriceRecord } from "../../types/api";
 
+type TabId = "prices" | "markets" | "compare" | "value_chain" | "storage";
+
 export default function MarketsPricesPage() {
   const { selectedLocation, selectedCropId, setSelectedCropId, simpleMode } = useApp();
-  const [tab, setTab] = useState<"prices" | "markets">("prices");
+  const [tab, setTab] = useState<TabId>("prices");
   const [priceType, setPriceType] = useState("wholesale");
   const [unit, setUnit] = useState<"46 kg" | "t" | "kg">("46 kg");
   const [marketFilter, setMarketFilter] = useState("");
@@ -26,6 +28,22 @@ export default function MarketsPricesPage() {
   const [markets, setMarkets] = useState<MarketItem[]>([]);
   const [logisticsRes, setLogisticsRes] = useState<Record<string, unknown> | null>(null);
   const [loading, setLoading] = useState(true);
+
+  // Market comparison
+  const [compareQty, setCompareQty] = useState("5.0");
+  const [compareRes, setCompareRes] = useState<Record<string, unknown> | null>(null);
+  const [compareLoading, setCompareLoading] = useState(false);
+
+  // Value chain
+  const [vcRes, setVcRes] = useState<Record<string, unknown> | null>(null);
+  const [vcLoading, setVcLoading] = useState(false);
+
+  // Storage
+  const [storageQty, setStorageQty] = useState("10.0");
+  const [storageDays, setStorageDays] = useState("30");
+  const [storageMoisture, setStorageMoisture] = useState("13.5");
+  const [storageRes, setStorageRes] = useState<Record<string, unknown> | null>(null);
+  const [storageLoading, setStorageLoading] = useState(false);
 
   useEffect(() => {
     const ac = new AbortController();
@@ -71,6 +89,56 @@ export default function MarketsPricesPage() {
     return () => ac.abort();
   }, [selectedCropId, marketFilter, priceType, unit, selectedLocation.lat, selectedLocation.lon]);
 
+  const runMarketCompare = async (e?: React.FormEvent) => {
+    e?.preventDefault();
+    setCompareLoading(true);
+    try {
+      const res = await agrosvApi.marketCompare({
+        crop_id: selectedCropId,
+        quantity_t: Number(compareQty) || 5.0,
+        origin_lon: selectedLocation.lon,
+        origin_lat: selectedLocation.lat,
+      });
+      setCompareRes(res.result);
+    } catch {
+      setCompareRes(null);
+    } finally {
+      setCompareLoading(false);
+    }
+  };
+
+  const runStorageEval = async (e?: React.FormEvent) => {
+    e?.preventDefault();
+    setStorageLoading(true);
+    try {
+      const res = await agrosvApi.storage({
+        crop_id: selectedCropId,
+        quantity_t: Number(storageQty) || 10.0,
+        storage_days: Number(storageDays) || 30,
+        observed_moisture_pct: Number(storageMoisture) || undefined,
+      });
+      setStorageRes(res.result);
+    } catch {
+      setStorageRes(null);
+    } finally {
+      setStorageLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (tab === "compare") {
+      runMarketCompare();
+    } else if (tab === "value_chain") {
+      setVcLoading(true);
+      agrosvApi.valueChain({ crop_id: selectedCropId, market: "San Salvador" })
+        .then((env) => setVcRes(env.result as Record<string, unknown>))
+        .catch(() => setVcRes(null))
+        .finally(() => setVcLoading(false));
+    } else if (tab === "storage") {
+      runStorageEval();
+    }
+  }, [tab, selectedCropId, selectedLocation.lat, selectedLocation.lon]);
+
   const nearestMarkets = ((logisticsRes?.nearest_markets ?? []) as Array<Record<string, unknown>>);
   const nearestRoad = (logisticsRes?.nearest_osm_road ?? {}) as Record<string, unknown>;
 
@@ -78,7 +146,7 @@ export default function MarketsPricesPage() {
     <div className="stack-md">
       <PageHeader
         title="Mercados, Precios y Logística (Fase 8)"
-        subtitle="Series históricas normalizadas WFP/MAG El Salvador y catálogo de mercados verificados (WFP + OpenStreetMap)."
+        subtitle="Series históricas normalizadas WFP/MAG El Salvador, catálogo de mercados, retorno neto comparativo y poscosecha."
         actions={
           <div className="row-wrap">
             <select className="select" style={{ width: "auto" }} aria-label="Producto agrícola" value={selectedCropId} onChange={(e) => setSelectedCropId(e.target.value)}>
@@ -103,12 +171,24 @@ export default function MarketsPricesPage() {
       </div>
 
       <div className="tabs" role="tablist">
-        <button type="button" role="tab" aria-selected={tab === "prices"} className="tab-btn" onClick={() => setTab("prices")}>
-          Precios y tendencias
-        </button>
-        <button type="button" role="tab" aria-selected={tab === "markets"} className="tab-btn" onClick={() => setTab("markets")}>
-          Mercados y logística ({markets.length})
-        </button>
+        {[
+          ["prices", "Precios y tendencias"],
+          ["compare", "Comparador de retorno neto"],
+          ["markets", `Mercados y logística (${markets.length})`],
+          ["value_chain", "Cadena de valor (WFP)"],
+          ["storage", "Poscosecha y almacenamiento"],
+        ].map(([id, label]) => (
+          <button
+            key={id}
+            type="button"
+            role="tab"
+            aria-selected={tab === id}
+            className="tab-btn"
+            onClick={() => setTab(id as typeof tab)}
+          >
+            {label}
+          </button>
+        ))}
       </div>
 
       {loading ? (
@@ -180,6 +260,204 @@ export default function MarketsPricesPage() {
               </section>
             </>
           )}
+        </div>
+      ) : tab === "compare" ? (
+        <div className="stack-md">
+          <form onSubmit={runMarketCompare} className="card row-wrap" style={{ alignItems: "center", gap: 12 }}>
+            <label className="field" style={{ minWidth: 200 }}>
+              <span className="field-label">Volumen a comercializar (t)</span>
+              <input
+                type="number"
+                step="0.5"
+                min="0.5"
+                className="input"
+                value={compareQty}
+                onChange={(e) => setCompareQty(e.target.value)}
+              />
+            </label>
+            <div style={{ marginTop: 22 }}>
+              <button type="submit" className="btn btn-primary" disabled={compareLoading}>
+                {compareLoading ? "Comparando mercados…" : "Recalcular retorno neto"}
+              </button>
+            </div>
+            <div style={{ marginTop: 22, fontSize: 13, color: "var(--ink-muted)" }}>
+              Origen: {selectedLocation.label} (Flete de referencia $0.25 USD/(t·km))
+            </div>
+          </form>
+
+          {compareRes ? (() => {
+            const alts = (compareRes.alternatives ?? []) as Array<Record<string, unknown>>;
+            const best = String(compareRes.highest_net_market ?? "");
+            return (
+              <div className="stack-md">
+                <div className="card">
+                  <div className="row-wrap" style={{ justifyContent: "space-between", marginBottom: 12 }}>
+                    <div>
+                      <h2 className="card-title">Retorno neto comparado para {compareQty} t de {selectedCropId}</h2>
+                      <p className="card-subtitle">
+                        Mercado con mayor retorno neto: <strong>{best}</strong> (descontando costo de transporte por distancia vial estimada).
+                      </p>
+                    </div>
+                    <EvidenceBadge evidenceClass="model_estimate" />
+                  </div>
+
+                  <div className="table-wrap">
+                    <table className="data-table">
+                      <thead>
+                        <tr>
+                          <th>Mercado</th>
+                          <th>Distancia vial est.</th>
+                          <th>Precio bruto USD/t</th>
+                          <th>Flete est. USD/t</th>
+                          <th>Precio neto al productor</th>
+                          <th>Ingreso neto total</th>
+                          <th>Última fecha WFP</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {alts.map((a) => {
+                          const isBest = a.market === best;
+                          return (
+                            <tr key={String(a.market)} style={{ background: isBest ? "var(--accent-soft)" : undefined }}>
+                              <td>
+                                <strong>{String(a.market)}</strong> {isBest && <span className="badge badge-ok" style={{ marginLeft: 6 }}>Mejor opción</span>}
+                              </td>
+                              <td className="tabular-nums">{fmtNum(a.distance_km as number, 1, "km")}</td>
+                              <td className="tabular-nums">{fmtUsd(a.gross_price_per_t as number)}</td>
+                              <td className="tabular-nums">{fmtUsd(a.transport_cost_per_t as number)}</td>
+                              <td className="tabular-nums"><strong>{fmtUsd(a.net_producer_price_per_t as number)} / t</strong></td>
+                              <td className="tabular-nums" style={{ color: "var(--accent-primary)", fontWeight: 700 }}>
+                                {fmtUsd(a.net_revenue_usd as number)}
+                              </td>
+                              <td className="tabular-nums" style={{ fontSize: 12 }}>{String(a.observation_date ?? "—")}</td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div className="callout callout--info" style={{ fontSize: 13 }}>
+                  <strong>Aviso de comercialización:</strong> Los precios de plaza mayorista no garantizan absorción del volumen ofertado ni compras en firme; las tarifas de flete son estimaciones geodésicas (×1.3) y no sustituyen cotizaciones de transportistas locales.
+                </div>
+              </div>
+            );
+          })() : (
+            <div className="card">
+              <p style={{ fontSize: 13, color: "var(--ink-muted)" }}>
+                No hay series de precios vigentes en WFP para el cultivo seleccionado ({selectedCropId}).
+              </p>
+            </div>
+          )}
+        </div>
+      ) : tab === "value_chain" ? (
+        <div className="stack-md">
+          {vcLoading ? (
+            <LoadingState message="Consultando series mayorista y minorista WFP…" />
+          ) : vcRes ? (() => {
+            const spread = vcRes.wholesale_to_retail_spread_per_t as number | null;
+            const wShare = vcRes.wholesale_share_of_retail as number | null;
+            return (
+              <div className="stack-md">
+                <div className="card stack-sm">
+                  <div className="row-wrap" style={{ justifyContent: "space-between" }}>
+                    <h2 className="card-title">Margen de intermediación mayorista vs minorista ({selectedCropId})</h2>
+                    <EvidenceBadge evidenceClass="official_statistic" />
+                  </div>
+                  <div className="grid-3" style={{ marginTop: 8 }}>
+                    <div className="metric-card">
+                      <div className="metric-label">Precio mayorista WFP (t)</div>
+                      <div className="metric-value" style={{ fontSize: 20 }}>{fmtUsd(vcRes.wholesale_price_per_t as number)}</div>
+                      <div className="metric-detail">Mercado San Salvador</div>
+                    </div>
+                    <div className="metric-card">
+                      <div className="metric-label">Precio minorista WFP (t)</div>
+                      <div className="metric-value" style={{ fontSize: 20 }}>{fmtUsd(vcRes.retail_price_per_t as number)}</div>
+                      <div className="metric-detail">Mercado San Salvador</div>
+                    </div>
+                    <div className="metric-card">
+                      <div className="metric-label">Margen de plaza (Spread)</div>
+                      <div className="metric-value" style={{ fontSize: 20 }}>{fmtUsd(spread ?? 0)} / t</div>
+                      <div className="metric-detail">Mayorista representa {wShare ? `${(wShare * 100).toFixed(1)}%` : "—"} del precio minorista</div>
+                    </div>
+                  </div>
+                  <div className="callout callout--info" style={{ fontSize: 13, marginTop: 10 }}>
+                    <strong>Regla científica de interpretación:</strong> {String(vcRes.interpretation_rule)}
+                  </div>
+                </div>
+              </div>
+            );
+          })() : (
+            <div className="card">
+              <p style={{ fontSize: 13, color: "var(--ink-muted)" }}>
+                Sin datos comparables de cadena de valor para {selectedCropId}.
+              </p>
+            </div>
+          )}
+        </div>
+      ) : tab === "storage" ? (
+        <div className="stack-md">
+          <form onSubmit={runStorageEval} className="card stack-sm">
+            <h2 className="card-title">Evaluador de condiciones de almacenamiento y poscosecha ({selectedCropId})</h2>
+            <div className="grid-3">
+              <label className="field">
+                <span className="field-label">Volumen cosechado (t)</span>
+                <input type="number" step="1" className="input" value={storageQty} onChange={(e) => setStorageQty(e.target.value)} />
+              </label>
+              <label className="field">
+                <span className="field-label">Días de almacenamiento previstos</span>
+                <input type="number" step="5" min="5" max="365" className="input" value={storageDays} onChange={(e) => setStorageDays(e.target.value)} />
+              </label>
+              <label className="field">
+                <span className="field-label">Humedad del grano cosechado (%)</span>
+                <input type="number" step="0.5" className="input" value={storageMoisture} onChange={(e) => setStorageMoisture(e.target.value)} />
+              </label>
+            </div>
+            <div>
+              <button type="submit" className="btn btn-primary btn-sm" disabled={storageLoading}>
+                {storageLoading ? "Evaluando…" : "Verificar umbrales de conservación"}
+              </button>
+            </div>
+          </form>
+
+          {storageRes && (() => {
+            const ref = (storageRes.reference_parameters ?? {}) as Record<string, unknown>;
+            const safeM = ref.safe_moisture_pct as number | undefined;
+            const shelfLife = ref.shelf_life_days_ambient as number | undefined;
+            return (
+              <div className="stack-md">
+                <div className="card stack-sm">
+                  <div className="row-wrap" style={{ justifyContent: "space-between" }}>
+                    <h3 className="card-title">Parámetros técnicos de referencia poscosecha</h3>
+                    <EvidenceBadge evidenceClass="institutional_reference" />
+                  </div>
+                  <div className="grid-3" style={{ marginTop: 8 }}>
+                    <div className="metric-card">
+                      <div className="metric-label">Humedad segura máxima</div>
+                      <div className="metric-value" style={{ fontSize: 20 }}>{safeM != null ? `${safeM}%` : "No declarada"}</div>
+                      <div className="metric-detail">
+                        Humedad aportada: {storageMoisture}% · {Number(storageMoisture) > (safeM ?? 13) ? "Riesgo de hongos y gorgojo" : "Dentro de rango seguro"}
+                      </div>
+                    </div>
+                    <div className="metric-card">
+                      <div className="metric-label">Vida útil ambiental estimada</div>
+                      <div className="metric-value" style={{ fontSize: 20 }}>{shelfLife != null ? `${shelfLife} días` : "—"}</div>
+                      <div className="metric-detail">Días de almacenaje previstos: {storageDays} días</div>
+                    </div>
+                    <div className="metric-card">
+                      <div className="metric-label">Perecibilidad del cultivo</div>
+                      <div className="metric-value" style={{ fontSize: 20 }}>{String(ref.perishability ?? "media")}</div>
+                      <div className="metric-detail">Temperatura óptima: {String(ref.temp_c ?? "15-25")} °C</div>
+                    </div>
+                  </div>
+                  <div className="callout callout--info" style={{ fontSize: 13, marginTop: 10 }}>
+                    <strong>Recomendación agronómica:</strong> El uso de silos metálicos herméticos (tecnología validada en El Salvador por CENTA) reduce las pérdidas poscosecha a menos del 1%, en comparación con bodegas tradicionales o sacos abiertos donde las pérdidas pueden superar el 15%.
+                  </div>
+                </div>
+              </div>
+            );
+          })()}
         </div>
       ) : (
         <div className="stack-md">

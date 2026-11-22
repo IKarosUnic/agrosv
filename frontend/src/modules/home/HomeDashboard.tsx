@@ -15,7 +15,7 @@ import {
 import type { AlertItem, DeptFeatureProps, HealthResponse } from "../../types/api";
 
 export function HomeDashboard({ onNavigate }: { onNavigate: (id: RouteId) => void }) {
-  const { selectedLocation, setSelectedLocation, selectedCropId, simpleMode } = useApp();
+  const { selectedLocation, setSelectedLocation, selectedCropId, simpleMode, roleProfile, setRoleProfile } = useApp();
   const [health, setHealth] = useState<HealthResponse | null>(null);
   const [depts, setDepts] = useState<DeptFeatureProps[]>([]);
   const [envData, setEnvData] = useState<Record<string, unknown> | null>(null);
@@ -284,36 +284,133 @@ export function HomeDashboard({ onNavigate }: { onNavigate: (id: RouteId) => voi
         </section>
 
         <section className="card" aria-labelledby="home-next-title">
-          <h2 id="home-next-title" className="card-title">¿Qué deseas hacer ahora?</h2>
-          <p className="card-subtitle" style={{ marginBottom: 12 }}>
-            Flujos guiados conectados a los motores reales de AGROSV
-          </p>
-          <div className="stack-sm">
-            <button type="button" className="btn" style={{ justifyContent: "space-between" }} onClick={() => onNavigate("crops")}>
-              <span>1. Evaluar si un cultivo es apto en esta ubicación</span>
-              <span className="badge badge--info">Fase 6</span>
-            </button>
-            <button type="button" className="btn" style={{ justifyContent: "space-between" }} onClick={() => onNavigate("calendar")}>
-              <span>2. Consultar ventanas de siembra y etapas del cultivo</span>
-              <span className="badge badge--info">Calendario</span>
-            </button>
-            <button type="button" className="btn" style={{ justifyContent: "space-between" }} onClick={() => onNavigate("monitoring")}>
-              <span>3. Registrar una observación de campo o revisar plagas</span>
-              <span className="badge badge--warn">Campo</span>
-            </button>
-            <button type="button" className="btn" style={{ justifyContent: "space-between" }} onClick={() => onNavigate("production")}>
-              <span>4. Calcular costos de producción en manzanas o hectáreas</span>
-              <span className="badge badge--ok">Fase 8</span>
-            </button>
-            <button type="button" className="btn" style={{ justifyContent: "space-between" }} onClick={() => onNavigate("markets")}>
-              <span>5. Comparar precios históricos WFP y mercados cercanos</span>
-              <span className="badge badge--ok">Mercados</span>
-            </button>
-            <button type="button" className="btn" style={{ justifyContent: "space-between" }} onClick={() => onNavigate("profitability")}>
-              <span>6. Evaluar rentabilidad y punto de equilibrio</span>
-              <span className="badge badge--ok">Finanzas</span>
-            </button>
+          <div className="card-header">
+            <div>
+              <h2 id="home-next-title" className="card-title">Flujos guiados por perfil</h2>
+              <div className="card-subtitle">
+                Experiencia para {roleProfile === "farmer" ? "Productor / Agricultor" : roleProfile === "technician" ? "Técnico agrícola" : roleProfile === "researcher" ? "Investigador / Estudiante" : "Institucional"}
+              </div>
+            </div>
+            <select
+              className="select"
+              style={{ width: "auto" }}
+              aria-label="Perfil de usuario"
+              value={roleProfile}
+              onChange={(e) => setRoleProfile(e.target.value as "farmer" | "technician" | "researcher" | "institutional")}
+            >
+              <option value="farmer">Productor / Agricultor</option>
+              <option value="technician">Técnico agrícola</option>
+              <option value="researcher">Investigador / Estudiante</option>
+              <option value="institutional">Institucional / Directivo</option>
+            </select>
           </div>
+
+          <div className="stack-sm" style={{ marginTop: 10 }}>
+            {roleProfile === "farmer" && (
+              <>
+                <button type="button" className="btn" style={{ justifyContent: "space-between" }} onClick={() => onNavigate("crops")}>
+                  <span>1. ¿Qué tan apto es mi cultivo ({selectedCropId}) en esta parcela?</span>
+                  <span className="badge badge--info">Aptitud</span>
+                </button>
+                <button type="button" className="btn" style={{ justifyContent: "space-between" }} onClick={() => onNavigate("calendar")}>
+                  <span>2. Consultar fecha de siembra y fases fenológicas</span>
+                  <span className="badge badge--info">Calendario</span>
+                </button>
+                <button type="button" className="btn" style={{ justifyContent: "space-between" }} onClick={() => onNavigate("production")}>
+                  <span>3. Calcular presupuesto de costos en manzanas o quintales</span>
+                  <span className="badge badge--ok">Costos</span>
+                </button>
+                <button type="button" className="btn" style={{ justifyContent: "space-between" }} onClick={() => onNavigate("markets")}>
+                  <span>4. ¿En qué mercado WFP me pagan mejor (retorno neto con flete)?</span>
+                  <span className="badge badge--ok">Mercados</span>
+                </button>
+                <button type="button" className="btn" style={{ justifyContent: "space-between" }} onClick={() => onNavigate("profitability")}>
+                  <span>5. Evaluar ganancias, punto de equilibrio y balance familiar</span>
+                  <span className="badge badge--ok">Finanzas</span>
+                </button>
+                <button type="button" className="btn" style={{ justifyContent: "space-between" }} onClick={() => onNavigate("monitoring")}>
+                  <span>6. Registrar una observación o sospecha de plaga en campo</span>
+                  <span className="badge badge--warn">Campo</span>
+                </button>
+              </>
+            )}
+
+            {roleProfile === "technician" && (
+              <>
+                <button type="button" className="btn" style={{ justifyContent: "space-between" }} onClick={() => onNavigate("monitoring")}>
+                  <span>1. Monitoreo fitosanitario: evaluar índice de riesgo de plagas/enfermedades</span>
+                  <span className="badge badge--warn">Fitosanitario</span>
+                </button>
+                <button type="button" className="btn" style={{ justifyContent: "space-between" }} onClick={() => onNavigate("risks")}>
+                  <span>2. Evaluar motores de sequía, exceso hídrico, calor y degradación</span>
+                  <span className="badge badge--warn">Riesgos</span>
+                </button>
+                <button type="button" className="btn" style={{ justifyContent: "space-between" }} onClick={() => onNavigate("crops")}>
+                  <span>3. Balance hídrico de ciclo FAO-56 y cálculo nutricional N-P-K</span>
+                  <span className="badge badge--info">Cultivos</span>
+                </button>
+                <button type="button" className="btn" style={{ justifyContent: "space-between" }} onClick={() => onNavigate("markets")}>
+                  <span>4. Mapeo de cadena de suministro y parámetros de almacenamiento poscosecha</span>
+                  <span className="badge badge--ok">Cadenas</span>
+                </button>
+                <button type="button" className="btn" style={{ justifyContent: "space-between" }} onClick={() => onNavigate("profitability")}>
+                  <span>5. Análisis financiero de inversiones (riego por goteo, reservorio, silos)</span>
+                  <span className="badge badge--ok">Inversión</span>
+                </button>
+              </>
+            )}
+
+            {roleProfile === "researcher" && (
+              <>
+                <button type="button" className="btn" style={{ justifyContent: "space-between" }} onClick={() => onNavigate("territory")}>
+                  <span>1. Perfil ambiental decadal ERA5, SoilGrids 250m y Copernicus DEM 30m</span>
+                  <span className="badge badge--info">Territorio</span>
+                </button>
+                <button type="button" className="btn" style={{ justifyContent: "space-between" }} onClick={() => onNavigate("scenarios")}>
+                  <span>2. Simular escenarios socioeconómicos con agentes sintéticos Nemotron</span>
+                  <span className="badge badge--info">Nemotron</span>
+                </button>
+                <button type="button" className="btn" style={{ justifyContent: "space-between" }} onClick={() => onNavigate("research")}>
+                  <span>3. Consultar catálogo de datos científicos, QC y trazabilidad SHA-256</span>
+                  <span className="badge badge--primary">Catálogo</span>
+                </button>
+                <button type="button" className="btn" style={{ justifyContent: "space-between" }} onClick={() => onNavigate("crops")}>
+                  <span>4. Simulación agronómica biofísica y balance evapotranspirativo</span>
+                  <span className="badge badge--info">Biofísica</span>
+                </button>
+                <button type="button" className="btn" style={{ justifyContent: "space-between" }} onClick={() => onNavigate("markets")}>
+                  <span>5. Análisis de márgenes de intermediación mayorista-minorista</span>
+                  <span className="badge badge--ok">Econometría</span>
+                </button>
+              </>
+            )}
+
+            {roleProfile === "institutional" && (
+              <>
+                <button type="button" className="btn" style={{ justifyContent: "space-between" }} onClick={() => onNavigate("map")}>
+                  <span>1. Cobertura geoespacial interactiva de los 14 departamentos</span>
+                  <span className="badge badge--info">Geoespacial</span>
+                </button>
+                <button type="button" className="btn" style={{ justifyContent: "space-between" }} onClick={() => onNavigate("production")}>
+                  <span>2. Estadísticas de producción nacional (V Censo Agropecuario 2025)</span>
+                  <span className="badge badge--ok">Estadística</span>
+                </button>
+                <button type="button" className="btn" style={{ justifyContent: "space-between" }} onClick={() => onNavigate("risks")}>
+                  <span>3. Matriz nacional de alertas agroclimáticas y gestión del riesgo</span>
+                  <span className="badge badge--warn">Riesgos</span>
+                </button>
+                <button type="button" className="btn" style={{ justifyContent: "space-between" }} onClick={() => onNavigate("markets")}>
+                  <span>4. Monitoreo de precios y abastecimiento en los 13 mercados WFP</span>
+                  <span className="badge badge--ok">Mercados</span>
+                </button>
+                <button type="button" className="btn" style={{ justifyContent: "space-between" }} onClick={() => onNavigate("scenarios")}>
+                  <span>5. Evaluación de impacto de subsidios y choques climáticos</span>
+                  <span className="badge badge--primary">Políticas</span>
+                </button>
+              </>
+            )}
+          </div>
+
           {climate && (
             <div style={{ marginTop: 12, fontSize: 12, color: "var(--ink-muted)" }}>
               Nota de cobertura: no existen escenas satelitales archivadas ni estaciones meteorológicas nacionales en este repositorio.

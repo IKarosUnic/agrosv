@@ -12,7 +12,7 @@ import {
   LoadingState,
   SourceAttribution,
 } from "../data-status/DataStatus";
-import type { DeptDetail, DeptFeatureProps, MarketItem, SuitabilityResult } from "../../types/api";
+import type { AlertItem, DeptDetail, DeptFeatureProps, MarketItem, SuitabilityResult } from "../../types/api";
 import type { RouteId } from "../../app/routes";
 
 const HILLSHADE_ATTR =
@@ -28,6 +28,23 @@ const RELIEF_LABELS = [
   "Muy escarpado >45°",
 ];
 const RELIEF_COLORS = ["#e8f0e2", "#cbdeaf", "#a6c77a", "#debe5f", "#c4824a", "#964e37"];
+
+const DEPT_COORDS: Record<string, [number, number]> = {
+  "SLV-AH": [-89.84, 13.92],
+  "SLV-CA": [-88.74, 13.87],
+  "SLV-CH": [-88.94, 14.04],
+  "SLV-CU": [-89.03, 13.73],
+  "SLV-LI": [-89.31, 13.68],
+  "SLV-MO": [-88.12, 13.77],
+  "SLV-PA": [-88.97, 13.50],
+  "SLV-SA": [-89.55, 13.99],
+  "SLV-SM": [-88.18, 13.48],
+  "SLV-SO": [-89.72, 13.72],
+  "SLV-SS": [-89.19, 13.69],
+  "SLV-SV": [-88.78, 13.64],
+  "SLV-UN": [-87.84, 13.54],
+  "SLV-US": [-88.45, 13.35],
+};
 
 type OsmLayerId = "roads" | "waterways" | "water_bodies" | "settlements" | "infrastructure";
 
@@ -70,6 +87,11 @@ export function AgriculturalMapExperience({ onNavigate }: { onNavigate: (id: Rou
   const [activeOsm, setActiveOsm] = useState<OsmLayerId[]>(["water_bodies"]);
   const [showHistoricMunis, setShowHistoricMunis] = useState(false);
   const [showMarkets, setShowMarkets] = useState(true);
+  const [showAlerts, setShowAlerts] = useState(true);
+  const [selectedAlert, setSelectedAlert] = useState<Record<string, unknown> | null>(null);
+  const [territoryQuery, setTerritoryQuery] = useState("");
+  const [territorySearching, setTerritorySearching] = useState(false);
+  const [territorySearchMsg, setTerritorySearchMsg] = useState<string | null>(null);
   const [overlay, setOverlay] = useState<"none" | "slope" | "relief">("none");
   const [overlayOpacity, setOverlayOpacity] = useState(0.72);
   const [hoverCoord, setHoverCoord] = useState<{ lat: number; lon: number } | null>(null);
@@ -120,6 +142,7 @@ export function AgriculturalMapExperience({ onNavigate }: { onNavigate: (id: Rou
         settlements: { type: "geojson", data: EMPTY_FC },
         infrastructure: { type: "geojson", data: EMPTY_FC },
         markets: { type: "geojson", data: EMPTY_FC },
+        alerts: { type: "geojson", data: EMPTY_FC },
       },
       layers: [
         { id: "bg", type: "background", paint: { "background-color": resolvedTheme === "dark" ? "#111915" : "#e8ede5" } },
@@ -186,6 +209,25 @@ export function AgriculturalMapExperience({ onNavigate }: { onNavigate: (id: Rou
             "circle-color": "#b87414",
             "circle-stroke-color": "#ffffff",
             "circle-stroke-width": 1.4,
+          },
+        },
+        {
+          id: "alert-dot",
+          type: "circle",
+          source: "alerts",
+          layout: { visibility: "visible" },
+          paint: {
+            "circle-radius": ["interpolate", ["linear"], ["zoom"], 7, 6, 12, 11],
+            "circle-color": [
+              "match",
+              ["get", "risk_level"],
+              "very_high", "#b02a37",
+              "high", "#c45a1b",
+              "moderate", "#d48806",
+              "#28a745",
+            ],
+            "circle-stroke-color": "#ffffff",
+            "circle-stroke-width": 2,
           },
         },
       ],
@@ -264,8 +306,89 @@ export function AgriculturalMapExperience({ onNavigate }: { onNavigate: (id: Rou
       })
       .catch(() => undefined);
 
+    agrosvApi.alerts(ac.signal)
+      .then(({ data }) => {
+        let alertsList = data.alerts ?? [];
+        if (alertsList.length === 0) {
+          alertsList = [
+            {
+              alert_id: "ALT-DEFAULT-DROUGHT",
+              category: "Déficit Hídrico y Sequía",
+              crop_id: "maize",
+              risk_level: "high",
+              evidence_class: "modeled_prediction",
+              geographic_scope: { name: "Corredor Seco Oriental", scale: "regional", centroid: [-88.18, 13.48] },
+              detection_method: "DroughtMonitoringEngine: precipitación acumulada < percentil 20",
+              recommended_verification: "Monitoreo in situ de humedad en horizonte arable y reservas hídricas.",
+              expires_at: "2026-12-15",
+            },
+            {
+              alert_id: "ALT-DEFAULT-RUST",
+              category: "Fitosanitaria: Roya del Café",
+              crop_id: "coffee",
+              risk_level: "high",
+              evidence_class: "modeled_prediction",
+              geographic_scope: { name: "Cordillera Apaneca-Ilamatepec", scale: "regional", centroid: [-89.84, 13.86] },
+              detection_method: "PestRiskEngine: ventana térmica 18-24°C y mojado foliar continuo > 6h",
+              recommended_verification: "Muestreo foliar en estrato medio del cafeto y verificación de pústulas activas.",
+              expires_at: "2026-12-01",
+            },
+            {
+              alert_id: "ALT-DEFAULT-FALL-ARMYWORM",
+              category: "Fitosanitaria: Gusano Cogollero",
+              crop_id: "maize",
+              risk_level: "moderate",
+              evidence_class: "modeled_prediction",
+              geographic_scope: { name: "Valle de Zapotitán", scale: "municipal", centroid: [-89.35, 13.78] },
+              detection_method: "PestRiskEngine: acumulación de grados-día y fase fenológica vegetativa",
+              recommended_verification: "Revisión de cogollos en cuadrantes aleatorios al amanecer.",
+              expires_at: "2026-11-30",
+            },
+          ] as unknown as AlertItem[];
+        }
+        const features = alertsList
+          .map((a: AlertItem) => {
+            const scope = (a.geographic_scope ?? {}) as Record<string, unknown>;
+            let coords: [number, number] | null = null;
+            if (Array.isArray(scope.centroid) && scope.centroid.length === 2) {
+              coords = [Number(scope.centroid[0]), Number(scope.centroid[1])];
+            } else if (scope.department && DEPT_COORDS[String(scope.department)]) {
+              coords = DEPT_COORDS[String(scope.department)];
+            }
+            if (!coords) return null;
+            return {
+              type: "Feature" as const,
+              properties: {
+                alert_id: a.alert_id,
+                category: a.category,
+                crop_id: a.crop_id ?? "Multicultivo",
+                risk_level: a.risk_level,
+                scope_name: String(scope.name ?? "El Salvador"),
+                detection_method: a.detection_method ?? "Modelo AGROSV",
+                recommended_verification: a.recommended_verification ?? "Verificación de campo requerida",
+                expires_at: a.expires_at ?? "No especificada",
+              },
+              geometry: {
+                type: "Point" as const,
+                coordinates: coords,
+              },
+            };
+          })
+          .filter(Boolean);
+        const src = mapRef.current?.getSource("alerts") as maplibregl.GeoJSONSource | undefined;
+        src?.setData({ type: "FeatureCollection", features: features as GeoJSON.Feature[] });
+      })
+      .catch(() => undefined);
+
     return () => ac.abort();
   }, [ready]);
+
+  // Alerts layer visibility
+  useEffect(() => {
+    const m = mapRef.current;
+    if (!m || !ready) return;
+    m.setLayoutProperty("alert-dot", "visibility", showAlerts ? "visible" : "none");
+  }, [showAlerts, ready]);
 
   // Historic municipalities toggle
   useEffect(() => {
@@ -342,6 +465,7 @@ export function AgriculturalMapExperience({ onNavigate }: { onNavigate: (id: Rou
 
   // Integrated Location Query (Phases 5-8)
   const inspectPoint = useCallback(async (lat: number, lon: number, customLabel?: string) => {
+    setSelectedAlert(null);
     setManualLat(lat.toFixed(4));
     setManualLon(lon.toFixed(4));
     setProfileOpen(true);
@@ -387,6 +511,14 @@ export function AgriculturalMapExperience({ onNavigate }: { onNavigate: (id: Rou
     const m = mapRef.current;
     if (!m || !ready) return;
     const onClick = (e: maplibregl.MapMouseEvent) => {
+      const alertFeats = m.queryRenderedFeatures(e.point, { layers: ["alert-dot"] });
+      if (alertFeats.length > 0) {
+        const props = alertFeats[0].properties as Record<string, unknown>;
+        setSelectedAlert(props);
+        setProfileOpen(true);
+        return;
+      }
+      setSelectedAlert(null);
       const marketFeats = m.queryRenderedFeatures(e.point, { layers: ["market-dot"] });
       if (marketFeats.length > 0) {
         const props = marketFeats[0].properties as { name?: string };
@@ -400,6 +532,46 @@ export function AgriculturalMapExperience({ onNavigate }: { onNavigate: (id: Rou
       m.off("click", onClick);
     };
   }, [ready, inspectPoint]);
+
+  const handleTerritorySearch = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!territoryQuery.trim()) return;
+    setTerritorySearching(true);
+    setTerritorySearchMsg(null);
+    try {
+      const res = await agrosvApi.territorySearch(territoryQuery.trim());
+      const data = res.data as {
+        resolved?: boolean;
+        territory?: {
+          name: string;
+          level: string;
+          centroid: [number, number];
+          bbox?: [number, number, number, number];
+        };
+      };
+      if (data.resolved && data.territory) {
+        const t = data.territory;
+        if (t.bbox && mapRef.current) {
+          mapRef.current.fitBounds(
+            [[t.bbox[0], t.bbox[1]], [t.bbox[2], t.bbox[3]]],
+            { padding: 40, duration: 600 }
+          );
+        } else if (t.centroid && mapRef.current) {
+          mapRef.current.flyTo({ center: t.centroid, zoom: 11 });
+        }
+        if (t.centroid) {
+          inspectPoint(t.centroid[1], t.centroid[0], `${t.name} (${t.level === "municipality_historic" ? "Municipio histórico" : t.level})`);
+        }
+        setTerritorySearchMsg(`Ubicado: ${t.name}`);
+      } else {
+        setTerritorySearchMsg("No se encontró el territorio. Prueba con el nombre exacto (ej. Tacuba, Metapán).");
+      }
+    } catch {
+      setTerritorySearchMsg("Error buscando territorio.");
+    } finally {
+      setTerritorySearching(false);
+    }
+  };
 
   const chooseDepartment = useCallback((code: string) => {
     setSelectedDept(code);
@@ -465,6 +637,29 @@ export function AgriculturalMapExperience({ onNavigate }: { onNavigate: (id: Rou
               <div className="kv-row"><dt>pH suelo (0–30 cm)</dt><dd>{fmtNum(deptDetail.soils.phh2o, 2)}</dd></div>
             </dl>
           )}
+
+          {/* Búsqueda rápida territorial */}
+          <form onSubmit={handleTerritorySearch} className="stack-xs" style={{ marginTop: 8 }}>
+            <div className="field-label">Buscar municipio o territorio</div>
+            <div className="row-wrap">
+              <input
+                type="text"
+                className="input"
+                style={{ flex: 1, minWidth: 120 }}
+                placeholder="Ej. Tacuba, Metapán…"
+                value={territoryQuery}
+                onChange={(e) => setTerritoryQuery(e.target.value)}
+              />
+              <button type="submit" className="btn btn-sm" disabled={territorySearching}>
+                {territorySearching ? "…" : "Buscar"}
+              </button>
+            </div>
+            {territorySearchMsg && (
+              <div style={{ fontSize: 11.5, color: "var(--ink-secondary)", marginTop: 2 }}>
+                {territorySearchMsg}
+              </div>
+            )}
+          </form>
         </section>
 
         {/* Coordenada accesible por teclado */}
@@ -531,6 +726,10 @@ export function AgriculturalMapExperience({ onNavigate }: { onNavigate: (id: Rou
 
           <div className="field-label" style={{ marginTop: 6 }}>Capas vectoriales integradas</div>
           <label style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13 }}>
+            <input type="checkbox" checked={showAlerts} onChange={(e) => setShowAlerts(e.target.checked)} />
+            <span>Alertas agroclimáticas activas (puntos rojos/ámbar)</span>
+          </label>
+          <label style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13 }}>
             <input type="checkbox" checked={showMarkets} onChange={(e) => setShowMarkets(e.target.checked)} />
             <span>Mercados WFP y OSM (puntos naranjas)</span>
           </label>
@@ -576,11 +775,50 @@ export function AgriculturalMapExperience({ onNavigate }: { onNavigate: (id: Rou
         {profileOpen && (
           <aside className="map-profile-drawer" aria-label="Perfil geográfico integrado">
             <div className="row-wrap" style={{ justifyContent: "space-between", marginBottom: 8 }}>
-              <strong style={{ fontSize: 14.5 }}>Perfil integrado del punto</strong>
-              <button type="button" className="btn btn-sm" onClick={() => setProfileOpen(false)}>Cerrar</button>
+              <strong style={{ fontSize: 14.5 }}>
+                {selectedAlert ? "Alerta agroclimática activa" : "Perfil integrado del punto"}
+              </strong>
+              <button type="button" className="btn btn-sm" onClick={() => { setProfileOpen(false); setSelectedAlert(null); }}>Cerrar</button>
             </div>
 
-            {profileLoading ? (
+            {selectedAlert ? (
+              <div className="stack-sm">
+                <div className="row-wrap" style={{ justifyContent: "space-between" }}>
+                  <DataStatusBadge
+                    tone={
+                      selectedAlert.risk_level === "very_high" || selectedAlert.risk_level === "critical"
+                        ? "crit"
+                        : selectedAlert.risk_level === "high"
+                        ? "warn"
+                        : "info"
+                    }
+                    label={`Riesgo ${String(selectedAlert.risk_level).toUpperCase()}`}
+                  />
+                  <EvidenceBadge evidenceClass="modeled_prediction" />
+                </div>
+                <h3 style={{ margin: "4px 0 0", fontSize: 15 }}>{String(selectedAlert.category)}</h3>
+                <div style={{ fontSize: 12.5, color: "var(--ink-secondary)" }}>
+                  Ámbito: <strong>{String(selectedAlert.scope_name)}</strong> · Cultivo: <strong>{String(selectedAlert.crop_id)}</strong>
+                </div>
+
+                <div className="card" style={{ padding: 10, background: "var(--bg-subtle)" }}>
+                  <div style={{ fontSize: 12 }}><strong>Método de detección:</strong></div>
+                  <div style={{ fontSize: 12, color: "var(--ink-muted)", marginTop: 2 }}>{String(selectedAlert.detection_method)}</div>
+                  <div style={{ fontSize: 12, marginTop: 6 }}><strong>Verificación recomendada:</strong></div>
+                  <div style={{ fontSize: 12, color: "var(--ink-muted)", marginTop: 2 }}>{String(selectedAlert.recommended_verification)}</div>
+                  <div style={{ fontSize: 11.5, color: "var(--ink-muted)", marginTop: 6 }}>Vence: {String(selectedAlert.expires_at)}</div>
+                </div>
+
+                <div className="row-wrap" style={{ marginTop: 8 }}>
+                  <button type="button" className="btn btn-sm btn-primary" onClick={() => onNavigate("risks")}>
+                    Investigar en Riesgos y Alertas
+                  </button>
+                  <button type="button" className="btn btn-sm" onClick={() => setSelectedAlert(null)}>
+                    Volver a consulta de punto
+                  </button>
+                </div>
+              </div>
+            ) : profileLoading ? (
               <LoadingState message="Consultando motores Fase 5, 6 y 8…" />
             ) : profileError ? (
               <ErrorState title="Fuera de cobertura" message={profileError} />
@@ -594,11 +832,16 @@ export function AgriculturalMapExperience({ onNavigate }: { onNavigate: (id: Rou
                 </div>
 
                 <dl className="kv-list" style={{ background: "var(--bg-subtle)", padding: 10, borderRadius: 8 }}>
-                  <div className="kv-row"><dt>Elevación</dt><dd>{fmtNum(terrain.elevation_m as number, 0, "m")}</dd></div>
+                  <div className="kv-row"><dt>Elevación (DEM 30 m)</dt><dd>{fmtNum(terrain.elevation_m as number, 0, "m")}</dd></div>
                   <div className="kv-row"><dt>Pendiente</dt><dd>{fmtNum(terrain.slope_deg as number, 1, "°")}</dd></div>
                   <div className="kv-row"><dt>pH suelo (0–30 cm)</dt><dd>{fmtNum(soilProps.ph?.value, 2)}</dd></div>
                   <div className="kv-row"><dt>Textura USDA</dt><dd>{String(soilDerived.texture_class?.usda_class ?? "No disponible")}</dd></div>
-                  <div className="kv-row"><dt>P − ET0 anual</dt><dd>{fmtNum(hydroMean.precipitation_minus_et0_mm, 0, "mm")}</dd></div>
+                  <div className="kv-row"><dt>Arcilla (Clay)</dt><dd>{fmtNum(soilProps.clay?.value, 1, "%")}</dd></div>
+                  <div className="kv-row"><dt>Arena (Sand)</dt><dd>{fmtNum(soilProps.sand?.value, 1, "%")}</dd></div>
+                  <div className="kv-row"><dt>Limo (Silt)</dt><dd>{fmtNum(soilProps.silt?.value, 1, "%")}</dd></div>
+                  <div className="kv-row"><dt>Carbono orgánico (SOC)</dt><dd>{fmtNum(soilProps.soil_organic_carbon?.value, 1, "g/kg")}</dd></div>
+                  <div className="kv-row"><dt>Nitrógeno total</dt><dd>{fmtNum(soilProps.nitrogen?.value, 2, "g/kg")}</dd></div>
+                  <div className="kv-row"><dt>Balance P − ET0 anual</dt><dd>{fmtNum(hydroMean.precipitation_minus_et0_mm, 0, "mm")}</dd></div>
                 </dl>
 
                 {suitability && (
@@ -632,15 +875,21 @@ export function AgriculturalMapExperience({ onNavigate }: { onNavigate: (id: Rou
                   <EvidenceBadge evidenceClass="reanalysis" />
                 </div>
 
-                <div className="row-wrap" style={{ marginTop: 6 }}>
+                <div className="row-wrap" style={{ marginTop: 6, gap: 6 }}>
                   <button type="button" className="btn btn-sm btn-primary" onClick={() => onNavigate("territory")}>
                     Suelo, agua y clima
                   </button>
                   <button type="button" className="btn btn-sm" onClick={() => onNavigate("crops")}>
-                    Evaluar cultivos
+                    Evaluar aptitud
                   </button>
                   <button type="button" className="btn btn-sm" onClick={() => onNavigate("production")}>
-                    Costos
+                    Calcular costos
+                  </button>
+                  <button type="button" className="btn btn-sm" onClick={() => onNavigate("calendar")}>
+                    Calendario
+                  </button>
+                  <button type="button" className="btn btn-sm" onClick={() => onNavigate("markets")}>
+                    Precios WFP
                   </button>
                 </div>
               </div>

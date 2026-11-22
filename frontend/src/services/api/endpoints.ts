@@ -131,8 +131,12 @@ export const agrosvApi = {
     apiPost<Record<string, unknown>>("/api/monitoring/crop-health", body, { signal }),
   pests: (crop?: string, signal?: AbortSignal) =>
     apiGet<Record<string, unknown>>(`/api/monitoring/pests${crop ? `?crop=${encodeURIComponent(crop)}` : ""}`, { signal, ttlMs: HOUR }),
+  pestDetail: (pestId: string, signal?: AbortSignal) =>
+    apiGet<Record<string, unknown>>(`/api/monitoring/pests/${encodeURIComponent(pestId)}`, { signal, ttlMs: HOUR }),
   diseases: (crop?: string, signal?: AbortSignal) =>
     apiGet<Record<string, unknown>>(`/api/monitoring/diseases${crop ? `?crop=${encodeURIComponent(crop)}` : ""}`, { signal, ttlMs: HOUR }),
+  diseaseDetail: (diseaseId: string, signal?: AbortSignal) =>
+    apiGet<Record<string, unknown>>(`/api/monitoring/diseases/${encodeURIComponent(diseaseId)}`, { signal, ttlMs: HOUR }),
   assessPestRisk: (body: Record<string, unknown>, signal?: AbortSignal) =>
     apiPost<Record<string, unknown>>("/api/monitoring/pest-risk", body, { signal }),
   assessDiseaseRisk: (body: Record<string, unknown>, signal?: AbortSignal) =>
@@ -143,6 +147,12 @@ export const agrosvApi = {
     apiPost<Record<string, unknown>>("/api/monitoring/flood-risk", body, { signal }),
   assessHeatRisk: (body: Record<string, unknown>, signal?: AbortSignal) =>
     apiPost<Record<string, unknown>>("/api/monitoring/heat-risk", body, { signal }),
+  assessSoilDegradation: (body: Record<string, unknown>, signal?: AbortSignal) =>
+    apiPost<Record<string, unknown>>("/api/monitoring/soil-degradation", body, { signal }),
+  assessCropLoss: (body: Record<string, unknown>, signal?: AbortSignal) =>
+    apiPost<Record<string, unknown>>("/api/monitoring/crop-loss", body, { signal }),
+  earlyWarning: (body: Record<string, unknown>, signal?: AbortSignal) =>
+    apiPost<Record<string, unknown>>("/api/monitoring/early-warning", body, { signal }),
   alerts: (signal?: AbortSignal) =>
     apiGet<{ count: number; alerts: AlertItem[]; by_status: Record<string, number>; by_category: Record<string, number> }>(
       "/api/monitoring/alerts",
@@ -152,6 +162,10 @@ export const agrosvApi = {
     apiPost<Record<string, unknown>>("/api/monitoring/alerts", body, { signal }),
   verifyAlert: (alertId: string, body: Record<string, unknown>, signal?: AbortSignal) =>
     apiPost<Record<string, unknown>>(`/api/monitoring/alerts/${encodeURIComponent(alertId)}/verify`, body, { signal }),
+  prioritizeAlerts: (body: Record<string, unknown> = {}, signal?: AbortSignal) =>
+    apiPost<Record<string, unknown>>("/api/monitoring/alerts/prioritize", body, { signal }),
+  transitionAlert: (alertId: string, status: string, reason: string, signal?: AbortSignal) =>
+    apiPost<Record<string, unknown>>(`/api/monitoring/alerts/${encodeURIComponent(alertId)}/transition`, { status, reason }, { signal }),
   fieldObservations: (signal?: AbortSignal) =>
     apiGet<{ count: number; observations: FieldObservation[]; note?: string }>(
       "/api/monitoring/field-observations",
@@ -218,4 +232,23 @@ export const agrosvApi = {
     apiGet<EngineEnvelope<{ count: number; scenarios: EconomicScenarioSpec[] }>>("/api/economics/scenarios", { signal, ttlMs: HOUR }),
   runEconomicScenario: (body: Record<string, unknown>, signal?: AbortSignal) =>
     apiPost<EngineEnvelope<Record<string, unknown>>>("/api/economics/scenarios/run", body, { signal }),
+  valueChain: (body: Record<string, unknown>, signal?: AbortSignal) =>
+    apiPost<EngineEnvelope<Record<string, unknown>>>("/api/economics/value-chain", body, { signal }),
+  supplyChain: (body: { crop_id: string }, signal?: AbortSignal) =>
+    apiPost<EngineEnvelope<Record<string, unknown>>>("/api/economics/supply-chain", body, { signal }),
+  storage: (body: Record<string, unknown>, signal?: AbortSignal) =>
+    apiPost<EngineEnvelope<Record<string, unknown>>>("/api/economics/storage", body, { signal }),
+  marketCompare: (body: Record<string, unknown>, signal?: AbortSignal) =>
+    apiPost<EngineEnvelope<Record<string, unknown>>>("/api/economics/markets/compare", body, { signal }),
+  marketSupplyDemand: (body: Record<string, unknown>, signal?: AbortSignal) =>
+    apiPost<EngineEnvelope<Record<string, unknown>>>("/api/economics/markets/supply-demand", body, { signal }),
+  investment: (body: Record<string, unknown>, signal?: AbortSignal) =>
+    apiPost<EngineEnvelope<Record<string, unknown>>>("/api/economics/investment", body, { signal }),
+  householdEconomy: (body: Record<string, unknown> = {}, signal?: AbortSignal) =>
+    apiPost<EngineEnvelope<Record<string, unknown>>>("/api/economics/household", body, { signal }),
+  decisionSupport: (body: Record<string, unknown>, signal?: AbortSignal) =>
+    apiPost<EngineEnvelope<Record<string, unknown>>>("/api/economics/decision-support", body, { signal }),
+  economicAnalysis: (market = "San Salvador", signal?: AbortSignal) =>
+    apiGet<EngineEnvelope<Record<string, unknown>>>(`/api/economics/analysis?market=${encodeURIComponent(market)}`, { signal, ttlMs: HOUR }),
+
 };

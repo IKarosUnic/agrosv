@@ -222,3 +222,87 @@ export interface EconomicScenarioSpec {
   description?: string;
   changes: Record<string, number>;
 }
+
+export interface PestDetail {
+  id: string;
+  scientific_name: string;
+  common_names: string[];
+  local_names?: string[];
+  affected_crops: string[];
+  presence_scope: string;
+  evidence_quality: string;
+  taxonomy?: Record<string, string>;
+  host_plants?: string[];
+  economic_importance?: string;
+  environmental_windows?: Array<Record<string, unknown>>;
+  management?: Record<string, unknown>;
+}
+
+export interface DiseaseDetail {
+  id: string;
+  name: string;
+  scientific_name?: string;
+  common_names?: string[];
+  causal_organism?: {
+    scientific_name: string;
+    type: string;
+    kingdom?: string;
+    phylum?: string;
+  };
+  category?: string;
+  affected_crops: string[];
+  presence_scope: string;
+  evidence_quality?: string;
+  symptoms?: string[];
+  favorable_conditions?: string;
+  management?: Record<string, unknown>;
+}
+
+export interface ValueChainResult {
+  crop_id: string;
+  market: string;
+  currency: string;
+  producer_price_per_t: number | null;
+  wholesale_price_per_t: number | null;
+  retail_price_per_t: number | null;
+  producer_share_of_retail: number | null;
+  wholesale_share_of_retail: number | null;
+  wholesale_to_retail_spread_per_t: number | null;
+  processing_value_added_per_t: number;
+  transport_cost_per_t: number;
+  wfp_data_used: boolean;
+  market_power_inferred: boolean;
+  interpretation_rule: string;
+}
+
+export interface InvestmentResult {
+  currency: string;
+  investment_type: string;
+  initial_investment: number;
+  years: number;
+  annual_net_cash_flows: number[];
+  payback_years: number;
+  discount_rate: number;
+  discount_rate_justification: string;
+  npv: number;
+  irr: number | null;
+  financing_terms?: string;
+  returns_guaranteed: boolean;
+}
+
+export interface SupplyChainStageLink {
+  from: string;
+  to: string;
+  status: "evidenced" | "hypothetical";
+  evidence: string | null;
+  channel_notes: string | null;
+}
+
+export interface SupplyChainResult {
+  crop_id: string;
+  stages_vocabulary: string[];
+  links: SupplyChainStageLink[];
+  evidenced_links_count: number;
+  hypothetical_links_count: number;
+}
+

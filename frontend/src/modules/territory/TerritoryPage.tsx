@@ -22,6 +22,9 @@ export default function TerritoryPage() {
   const [tab, setTab] = useState<TabId>("integrated");
   const [latInput, setLatInput] = useState(String(selectedLocation.lat));
   const [lonInput, setLonInput] = useState(String(selectedLocation.lon));
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searching, setSearching] = useState(false);
+  const [searchFeedback, setSearchFeedback] = useState<string | null>(null);
 
   const [envEnv, setEnvEnv] = useState<EngineEnvelope<Record<string, unknown>> | null>(null);
   const [soilEnv, setSoilEnv] = useState<EngineEnvelope<Record<string, unknown>> | null>(null);
@@ -72,6 +75,42 @@ export default function TerritoryPage() {
     });
   };
 
+  const handleSearch = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!searchQuery.trim()) return;
+    setSearching(true);
+    setSearchFeedback(null);
+    try {
+      const res = await agrosvApi.territorySearch(searchQuery.trim());
+      const data = res.data as {
+        resolved?: boolean;
+        territory?: {
+          name: string;
+          level: string;
+          centroid: [number, number];
+          parent_id?: string;
+        };
+      };
+      if (data.resolved && data.territory?.centroid) {
+        const t = data.territory;
+        setSelectedLocation({
+          lat: t.centroid[1],
+          lon: t.centroid[0],
+          label: `${t.name} (${t.level === "municipality_historic" ? "Municipio histórico" : t.level})`,
+          departmentCode: t.parent_id,
+        });
+        setSearchFeedback(`Ubicado: ${t.name}`);
+        setSearchQuery("");
+      } else {
+        setSearchFeedback("No se encontró el municipio. Prueba con el nombre exacto (ej. Tacuba, Metapán).");
+      }
+    } catch {
+      setSearchFeedback("Error buscando territorio");
+    } finally {
+      setSearching(false);
+    }
+  };
+
   const env = (envEnv?.result ?? {}) as Record<string, unknown>;
   const ident = (env.identification ?? {}) as Record<string, Record<string, unknown> | undefined>;
   const terrain = (env.terrain ?? {}) as Record<string, unknown>;
@@ -109,13 +148,33 @@ export default function TerritoryPage() {
         title="Territorio y Recursos Ambientales (Fase 5)"
         subtitle={`Ubicación analizada: ${selectedLocation.label} · ${fmtCoord(selectedLocation.lat, selectedLocation.lon)}`}
         actions={
-          <form onSubmit={applyCoords} className="row-wrap">
-            <input className="input" style={{ width: 110 }} aria-label="Latitud" value={latInput} onChange={(e) => setLatInput(e.target.value)} />
-            <input className="input" style={{ width: 115 }} aria-label="Longitud" value={lonInput} onChange={(e) => setLonInput(e.target.value)} />
-            <button type="submit" className="btn btn-primary btn-sm">Actualizar punto</button>
-          </form>
+          <div className="row-wrap" style={{ gap: 8 }}>
+            <form onSubmit={handleSearch} className="row-wrap" style={{ gap: 4 }}>
+              <input
+                className="input"
+                style={{ width: 175 }}
+                placeholder="Buscar municipio (ej. Tacuba)…"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              <button type="submit" className="btn btn-sm" disabled={searching}>
+                {searching ? "…" : "Buscar"}
+              </button>
+            </form>
+            <form onSubmit={applyCoords} className="row-wrap" style={{ gap: 4 }}>
+              <input className="input" style={{ width: 95 }} aria-label="Latitud" value={latInput} onChange={(e) => setLatInput(e.target.value)} />
+              <input className="input" style={{ width: 95 }} aria-label="Longitud" value={lonInput} onChange={(e) => setLonInput(e.target.value)} />
+              <button type="submit" className="btn btn-primary btn-sm">Ir</button>
+            </form>
+          </div>
         }
       />
+
+      {searchFeedback && (
+        <div className="callout callout--info" style={{ fontSize: 13, padding: "8px 12px" }}>
+          {searchFeedback}
+        </div>
+      )}
 
       <CacheNotice cachedAt={cachedAt} />
       {error && <ErrorState title="Error en consulta territorial" message={error} />}
@@ -253,12 +312,134 @@ export default function TerritoryPage() {
                   />
                 ))}
               </div>
+              {/* Desglose granulométrico y Escala de pH */}
               <div className="grid-2">
                 <section className="card">
-                  <h2 className="card-title">Textura USDA y limitaciones detectadas</h2>
+                  <h2 className="card-title">Distribución granulométrica (Textura USDA)</h2>
+                  <div style={{ marginTop: 10 }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", fontSize: 13, marginBottom: 6 }}>
+                      <span>Arcilla: <strong>{fmtNum(soilProps.clay?.value, 1, "%")}</strong></span>
+                      <span>Limo: <strong>{fmtNum(soilProps.silt?.value, 1, "%")}</strong></span>
+                      <span>Arena: <strong>{fmtNum(soilProps.sand?.value, 1, "%")}</strong></span>
+                    </div>
+
+                    {/* Barra apilada granulométrica */}
+                    <div style={{ display: "flex", height: 18, borderRadius: 6, overflow: "hidden", border: "1px solid var(--border-subtle)" }}>
+                      <div
+                        style={{ width: `${Math.min(Number(soilProps.clay?.value ?? 33), 100)}%`, background: "#964e37" }}
+                        title={`Arcilla: ${soilProps.clay?.value ?? 0}%`}
+                      />
+                      <div
+                        style={{ width: `${Math.min(Number(soilProps.silt?.value ?? 33), 100)}%`, background: "#c4824a" }}
+                        title={`Limo: ${soilProps.silt?.value ?? 0}%`}
+                      />
+                      <div
+                        style={{ width: `${Math.min(Number(soilProps.sand?.value ?? 34), 100)}%`, background: "#debe5f" }}
+                        title={`Arena: ${soilProps.sand?.value ?? 0}%`}
+                      />
+                    </div>
+                    <div style={{ display: "flex", justifyContent: "space-between", fontSize: 11, color: "var(--ink-muted)", marginTop: 4 }}>
+                      <span style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                        <span style={{ width: 8, height: 8, background: "#964e37", borderRadius: 2 }} /> Arcilla (&lt; 0.002 mm)
+                      </span>
+                      <span style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                        <span style={{ width: 8, height: 8, background: "#c4824a", borderRadius: 2 }} /> Limo (0.002–0.05 mm)
+                      </span>
+                      <span style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                        <span style={{ width: 8, height: 8, background: "#debe5f", borderRadius: 2 }} /> Arena (0.05–2.0 mm)
+                      </span>
+                    </div>
+
+                    <div style={{ marginTop: 12, padding: 10, background: "var(--bg-subtle)", borderRadius: 8, fontSize: 13 }}>
+                      Clase USDA: <strong>{String(soilDerived.texture_class?.usda_class ?? "No disponible")}</strong>
+                      <div style={{ fontSize: 12, color: "var(--ink-secondary)", marginTop: 4 }}>
+                        {(Number(soilProps.clay?.value ?? 0) > 40)
+                          ? "Suelo arcilloso: alta capacidad de retención de humedad y cationes, pero susceptible a compactación y drenaje lento en eventos torrenciales."
+                          : (Number(soilProps.sand?.value ?? 0) > 50)
+                          ? "Suelo de textura ligera/arenosa: excelente infiltración pero baja retención de agua y nutrientes; vulnerable a desecación rápida en canícula."
+                          : "Suelo de textura media/franca: equilibrio óptimo entre capacidad de retención hídrica, aireación radicular y trabajabilidad para cultivos anuales."}
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+                <section className="card">
+                  <h2 className="card-title">Diagnóstico e interpretación del pH</h2>
+                  <div style={{ marginTop: 10 }}>
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }}>
+                      <span style={{ fontSize: 22, fontWeight: 700, fontFamily: "var(--font-mono)" }}>
+                        {soilProps.ph?.value !== undefined && soilProps.ph?.value !== null ? fmtNum(soilProps.ph.value, 2) : "—"}
+                      </span>
+                      <DataStatusBadge
+                        tone={
+                          Number(soilProps.ph?.value ?? 7) < 5.0
+                            ? "crit"
+                            : Number(soilProps.ph?.value ?? 7) < 6.0
+                            ? "warn"
+                            : Number(soilProps.ph?.value ?? 7) <= 7.3
+                            ? "ok"
+                            : "info"
+                        }
+                        label={
+                          Number(soilProps.ph?.value ?? 7) < 5.0
+                            ? "Fuertemente ácido"
+                            : Number(soilProps.ph?.value ?? 7) < 6.0
+                            ? "Moderadamente ácido"
+                            : Number(soilProps.ph?.value ?? 7) <= 7.3
+                            ? "Rango óptimo"
+                            : "Alcalino"
+                        }
+                      />
+                    </div>
+
+                    {/* Escala de pH visual */}
+                    <div style={{ position: "relative", height: 12, borderRadius: 6, background: "linear-gradient(to right, #d32f2f, #f57c00, #388e3c, #1976d2)", border: "1px solid var(--border-subtle)" }}>
+                      {soilProps.ph?.value && (
+                        <div
+                          style={{
+                            position: "absolute",
+                            left: `${Math.max(0, Math.min(100, ((Number(soilProps.ph.value) - 4) / 5) * 100))}%`,
+                            top: -4,
+                            width: 6,
+                            height: 20,
+                            background: "#000",
+                            border: "2px solid #fff",
+                            borderRadius: 3,
+                            transform: "translateX(-50%)",
+                          }}
+                        />
+                      )}
+                    </div>
+                    <div style={{ display: "flex", justifyContent: "space-between", fontSize: 10.5, color: "var(--ink-muted)", marginTop: 4 }}>
+                      <span>4.0 (Muy ácido)</span>
+                      <span>5.5</span>
+                      <span>6.5 (Óptimo)</span>
+                      <span>7.5</span>
+                      <span>9.0 (Alcalino)</span>
+                    </div>
+
+                    <div style={{ marginTop: 12, padding: 10, background: "var(--bg-subtle)", borderRadius: 8, fontSize: 12.5, color: "var(--ink-secondary)" }}>
+                      {Number(soilProps.ph?.value ?? 7) < 5.2 ? (
+                        "Alerta agronómica: a pH < 5.2 aumenta la solubilidad de aluminio (Al³⁺) y manganeso tóxicos, y se inmoviliza el fósforo disponible. Se sugiere evaluar enmienda con cal agrícola (CaCO₃) tras análisis de laboratorio."
+                      ) : Number(soilProps.ph?.value ?? 7) < 6.0 ? (
+                        "Frecuente en suelos volcánicos y cafetales de altura en El Salvador. Adecuado para café y tolerado por maíz; en frijol monitorear fertilización fosfatada al fondo del surco."
+                      ) : Number(soilProps.ph?.value ?? 7) <= 7.3 ? (
+                        "Condición ideal: máxima disponibilidad química de nitrógeno, fósforo, potasio, calcio y magnesio. Favorece la actividad microbiana y nodulación de leguminosas."
+                      ) : (
+                        "Suelo con tendencia alcalina o calcárea. Riesgo de clorosis por fijación de hierro y zinc; evitar aplicaciones excesivas de fertilizantes de base cálcica."
+                      )}
+                    </div>
+                  </div>
+                </section>
+              </div>
+
+              <div className="grid-2">
+                <section className="card">
+                  <h2 className="card-title">Materia orgánica y limitaciones detectadas</h2>
                   <p style={{ fontSize: 13.5 }}>
-                    Clase textural derivada: <strong>{String(soilDerived.texture_class?.usda_class ?? "No disponible")}</strong>
-                    {" · "}Materia orgánica estimada: <strong>{fmtNum(soilDerived.organic_matter?.value as number, 2, "%")}</strong>
+                    Materia orgánica estimada: <strong>{fmtNum(soilDerived.organic_matter?.value as number, 2, "%")}</strong>
+                    {" · "}Carbono orgánico (SOC): <strong>{fmtNum(soilProps.soil_organic_carbon?.value, 1, "g/kg")}</strong>
+                    {" · "}Nitrógeno total: <strong>{fmtNum(soilProps.nitrogen?.value, 2, "g/kg")}</strong>
                   </p>
                   {soilLimits.length > 0 ? (
                     <ul style={{ margin: "8px 0 0 18px", padding: 0, fontSize: 13 }}>

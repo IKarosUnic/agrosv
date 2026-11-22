@@ -19,7 +19,7 @@ import {
 } from "../../components/data-status/DataStatus";
 import type { FieldObservation } from "../../types/api";
 
-type TabId = "satellite" | "health" | "pests" | "field";
+type TabId = "field" | "pests" | "satellite" | "health" | "early_warning";
 
 const OBS_TYPES = [
   { id: "crop_observation", label: "Observación general de cultivo" },
@@ -54,6 +54,20 @@ export default function MonitoringPage() {
   const [pests, setPests] = useState<Array<Record<string, unknown>>>([]);
   const [diseases, setDiseases] = useState<Array<Record<string, unknown>>>([]);
   const [loadingCatalogs, setLoadingCatalogs] = useState(false);
+  const [threatType, setThreatType] = useState<"pest" | "disease">("pest");
+  const [targetThreatId, setTargetThreatId] = useState("fall_armyworm");
+  const [threatTemp, setThreatTemp] = useState("26.0");
+  const [threatStage, setThreatStage] = useState("vegetative");
+  const [threatWetness, setThreatWetness] = useState("8");
+  const [threatRiskResult, setThreatRiskResult] = useState<Record<string, unknown> | null>(null);
+  const [threatRiskLoading, setThreatRiskLoading] = useState(false);
+
+  // Early warning
+  const [forecastTmax, setForecastTmax] = useState("36.5");
+  const [forecastHorizon, setForecastHorizon] = useState("3");
+  const [forecastThreshold, setForecastThreshold] = useState("35.0");
+  const [warningRes, setWarningRes] = useState<Record<string, unknown> | null>(null);
+  const [warningLoading, setWarningLoading] = useState(false);
 
   // Field observations + offline drafts
   const [serverObs, setServerObs] = useState<FieldObservation[]>([]);
@@ -111,6 +125,67 @@ export default function MonitoringPage() {
       baseline_years: 3,
     });
     setHealthRes(res);
+  };
+
+  const evaluateThreatRisk = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setThreatRiskLoading(true);
+    setThreatRiskResult(null);
+    try {
+      const temp = Number(threatTemp) || 25.0;
+      if (threatType === "pest") {
+        const res = await agrosvApi.assessPestRisk({
+          pest_id: targetThreatId,
+          crop_id: selectedCropId,
+          stage: threatStage,
+          conditions: { temperature_mean_c: temp },
+        });
+        setThreatRiskResult(res);
+      } else {
+        const wetness = Number(threatWetness) || 6.0;
+        const res = await agrosvApi.assessDiseaseRisk({
+          disease_id: targetThreatId,
+          crop_id: selectedCropId,
+          stage: threatStage,
+          conditions: { temperature_mean_c: temp, leaf_wetness_hours: wetness },
+        });
+        setThreatRiskResult(res);
+      }
+    } catch (err) {
+      setThreatRiskResult({ error: err instanceof Error ? err.message : "Error evaluando riesgo" });
+    } finally {
+      setThreatRiskLoading(false);
+    }
+  };
+
+  const evaluateEarlyWarning = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setWarningLoading(true);
+    setWarningRes(null);
+    try {
+      const tmax = Number(forecastTmax) || 36.0;
+      const horizon = Number(forecastHorizon) || 3;
+      const threshold = Number(forecastThreshold) || 35.0;
+      const res = await agrosvApi.earlyWarning({
+        forecast: {
+          provider: "NOAA_GFS_SIM",
+          horizon_days: horizon,
+          issued_at: new Date().toISOString(),
+          valid_from: new Date().toISOString(),
+          valid_to: new Date(Date.now() + horizon * 86400000).toISOString(),
+          uncertainty: "moderate",
+          values: Array.from({ length: horizon }, (_, i) => tmax - (i % 2 === 0 ? 0 : 0.5)),
+        },
+        threshold_c: threshold,
+        threshold_source: "FAO-56",
+        crop_id: selectedCropId,
+      });
+      setWarningRes(res);
+    } catch (err) {
+      setWarningRes({ error: err instanceof Error ? err.message : "Error en aviso temprano" });
+    } finally {
+      setWarningLoading(false);
+    }
   };
 
   const buildDraft = (syncStatus: FieldObservationDraft["syncStatus"]): FieldObservationDraft => {
@@ -178,6 +253,7 @@ export default function MonitoringPage() {
         {([
           ["field", "Observaciones de campo"],
           ["pests", "Plagas y enfermedades"],
+          ["early_warning", "Avisos tempranos (Pronóstico)"],
           ["satellite", "Satélites e índices"],
           ["health", "Evaluador de sanidad"],
         ] as [TabId, string][]).map(([id, label]) => (
@@ -314,6 +390,111 @@ export default function MonitoringPage() {
           <div className="callout callout--info">
             <strong>Idoneidad ambiental ≠ presencia confirmada:</strong> el catálogo distingue entre presencia nacional confirmada, registro regional y riesgo ambiental teórico.
           </div>
+
+          <form onSubmit={evaluateThreatRisk} className="card stack-sm">
+            <div className="row-wrap" style={{ justifyContent: "space-between" }}>
+              <h2 className="card-title">Evaluador de idoneidad y riesgo fitosanitario</h2>
+              <EvidenceBadge evidenceClass="model_estimate" />
+            </div>
+            <div className="grid-4">
+              <label className="field">
+                <span className="field-label">Tipo de amenaza</span>
+                <select className="select" value={threatType} onChange={(e) => {
+                  const t = e.target.value as "pest" | "disease";
+                  setThreatType(t);
+                  setTargetThreatId(t === "pest" ? "fall_armyworm" : "coffee_leaf_rust");
+                }}>
+                  <option value="pest">Plaga insecto</option>
+                  <option value="disease">Enfermedad fitopatógena</option>
+                </select>
+              </label>
+              <label className="field">
+                <span className="field-label">Organismo</span>
+                <select className="select" value={targetThreatId} onChange={(e) => setTargetThreatId(e.target.value)}>
+                  {threatType === "pest" ? (
+                    <>
+                      <option value="fall_armyworm">Gusano cogollero (Spodoptera frugiperda)</option>
+                      <option value="coffee_berry_borer">Broca del café (Hypothenemus hampei)</option>
+                      <option value="whitefly">Mosca blanca (Bemisia tabaci)</option>
+                      <option value="sugarcane_borer">Barrenador del tallo (Diatraea saccharalis)</option>
+                      <option value="banana_weevil">Picudo del banano (Cosmopolites sordidus)</option>
+                    </>
+                  ) : (
+                    <>
+                      <option value="coffee_leaf_rust">Roya del café (Hemileia vastatrix)</option>
+                      <option value="bean_common_bacterial_blight">Bacteriosis común del frijol (Xanthomonas)</option>
+                      <option value="bean_golden_yellow_mosaic">Mosaico dorado del frijol (BGMV)</option>
+                      <option value="banana_black_sigatoka">Sigatoka negra (Pseudocorynespora fijiensis)</option>
+                    </>
+                  )}
+                </select>
+              </label>
+              <label className="field">
+                <span className="field-label">Temperatura media (°C)</span>
+                <input type="number" step="0.5" className="input" value={threatTemp} onChange={(e) => setThreatTemp(e.target.value)} />
+              </label>
+              <label className="field">
+                <span className="field-label">Etapa fenológica</span>
+                <select className="select" value={threatStage} onChange={(e) => setThreatStage(e.target.value)}>
+                  <option value="vegetative">Vegetativa</option>
+                  <option value="flowering">Floración</option>
+                  <option value="reproductive">Reproductiva</option>
+                  <option value="grain_filling">Llenado de grano</option>
+                  <option value="maturity">Maduración</option>
+                </select>
+              </label>
+            </div>
+            {threatType === "disease" && (
+              <label className="field" style={{ maxWidth: 260 }}>
+                <span className="field-label">Horas de mojado de hoja (0–24 h)</span>
+                <input type="number" step="1" className="input" value={threatWetness} onChange={(e) => setThreatWetness(e.target.value)} />
+              </label>
+            )}
+            <div>
+              <button type="submit" className="btn btn-primary btn-sm" disabled={threatRiskLoading}>
+                {threatRiskLoading ? "Calculando…" : "Evaluar idoneidad ambiental"}
+              </button>
+            </div>
+
+            {threatRiskResult && (
+              <div style={{ marginTop: 12, padding: 12, borderRadius: 8, background: "var(--bg-subtle)", border: "1px solid var(--border-subtle)" }}>
+                {threatRiskResult.error ? (
+                  <div style={{ color: "var(--status-crit)" }}>{String(threatRiskResult.error)}</div>
+                ) : (
+                  <div className="grid-3">
+                    <div>
+                      <span style={{ fontSize: 12, color: "var(--ink-muted)" }}>Índice de riesgo calculado:</span>
+                      <div style={{ fontSize: 22, fontWeight: 700 }}>
+                        {threatRiskResult.risk_index != null ? `${Number(threatRiskResult.risk_index).toFixed(3)}` : "No cuantificado"}
+                      </div>
+                      <div style={{ fontSize: 12 }}>
+                        Idoneidad ambiental: {threatRiskResult.environmental_suitability != null ? Number(threatRiskResult.environmental_suitability).toFixed(2) : "—"}
+                      </div>
+                    </div>
+                    <div>
+                      <span style={{ fontSize: 12, color: "var(--ink-muted)" }}>Presencia documentada en SV:</span>
+                      <div style={{ fontWeight: 600 }}>
+                        {String((threatRiskResult.presence_evidence as Record<string, unknown> | undefined)?.scope ?? "Documentado")}
+                      </div>
+                      <div style={{ fontSize: 12, color: "var(--ink-muted)" }}>
+                        Calidad de evidencia: {String((threatRiskResult.presence_evidence as Record<string, unknown> | undefined)?.evidence_quality ?? "moderada")}
+                      </div>
+                    </div>
+                    <div>
+                      <span style={{ fontSize: 12, color: "var(--ink-muted)" }}>Exposición del cultivo ({selectedCropId}):</span>
+                      <div style={{ fontWeight: 600 }}>
+                        {Number((threatRiskResult.crop_exposure as Record<string, unknown> | undefined)?.documented_host ?? threatRiskResult.crop_exposure) === 1.0 ? "Hospedero documentado (1.0)" : "No registrado como hospedero (0.0)"}
+                      </div>
+                      <div style={{ fontSize: 12, color: "var(--ink-muted)" }}>
+                        {String(threatRiskResult.potential_damage ?? threatRiskResult.favorable_conditions ?? "")}
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+          </form>
+
           {loadingCatalogs ? (
             <LoadingState />
           ) : (
@@ -357,6 +538,76 @@ export default function MonitoringPage() {
                   })}
                 </div>
               </section>
+            </div>
+          )}
+        </div>
+      )}
+
+      {tab === "early_warning" && (
+        <div className="stack-md">
+          <div className="callout callout--warn">
+            <strong>Avisos por pronóstico (no deterministas):</strong> un pronóstico meteorológico tiene incertidumbre intrínseca; el motor emite avisos basados en superación de umbrales fisiológicos sin afirmar certeza absoluta.
+          </div>
+
+          <form onSubmit={evaluateEarlyWarning} className="card stack-sm">
+            <h2 className="card-title">Configurar aviso temprano por calor extremo ({selectedCropId})</h2>
+            <div className="grid-3">
+              <label className="field">
+                <span className="field-label">Temperatura máx. pronosticada (°C)</span>
+                <input type="number" step="0.5" className="input" value={forecastTmax} onChange={(e) => setForecastTmax(e.target.value)} />
+              </label>
+              <label className="field">
+                <span className="field-label">Horizonte de pronóstico (días)</span>
+                <input type="number" step="1" min="1" max="7" className="input" value={forecastHorizon} onChange={(e) => setForecastHorizon(e.target.value)} />
+              </label>
+              <label className="field">
+                <span className="field-label">Umbral crítico del cultivo (°C)</span>
+                <input type="number" step="0.5" className="input" value={forecastThreshold} onChange={(e) => setForecastThreshold(e.target.value)} />
+              </label>
+            </div>
+            <div>
+              <button type="submit" className="btn btn-primary" disabled={warningLoading}>
+                {warningLoading ? "Evaluando pronóstico…" : "Emitir evaluación de aviso temprano"}
+              </button>
+            </div>
+          </form>
+
+          {warningRes && (
+            <div className="card stack-sm">
+              <div className="row-wrap" style={{ justifyContent: "space-between" }}>
+                <h3 className="card-title">Resultado de Aviso Temprano</h3>
+                <EvidenceBadge evidenceClass="forecast" />
+              </div>
+              {warningRes.error ? (
+                <div style={{ color: "var(--status-crit)" }}>{String(warningRes.error)}</div>
+              ) : (
+                <div className="stack-sm">
+                  <div className="grid-3">
+                    <div className="metric-card">
+                      <div className="metric-label">Estado del aviso</div>
+                      <div className="metric-value" style={{ fontSize: 19 }}>
+                        {String(warningRes.status) === "possible_heat_warning" ? "Aviso Posible" : "Sin Aviso"}
+                      </div>
+                      <div className="metric-detail">{String(warningRes.statement)}</div>
+                    </div>
+                    <div className="metric-card">
+                      <div className="metric-label">Días sobre umbral</div>
+                      <div className="metric-value" style={{ fontSize: 19 }}>
+                        {String((warningRes.exposure as Record<string, unknown> | undefined)?.days_above ?? 0)} de {String(warningRes.lead_time_days ?? 0)} días
+                      </div>
+                      <div className="metric-detail">Grados-día sobre umbral: {String((warningRes.exposure as Record<string, unknown> | undefined)?.degree_days_above_c ?? 0)}°C</div>
+                    </div>
+                    <div className="metric-card">
+                      <div className="metric-label">Incertidumbre declarada</div>
+                      <div className="metric-value" style={{ fontSize: 19 }}>{String(warningRes.uncertainty ?? "moderada")}</div>
+                      <div className="metric-detail">Fuente umbral: FAO-56 · Proveedor GFS/NOAA</div>
+                    </div>
+                  </div>
+                  <div className="callout callout--info" style={{ fontSize: 12.5 }}>
+                    <strong>Limitaciones del aviso:</strong> Un pronóstico no es una observación. No se emite afirmación determinista sobre el futuro; la incertidumbre del modelo meteorológico debe conservarse.
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </div>
