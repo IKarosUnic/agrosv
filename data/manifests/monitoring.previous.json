@@ -1,14 +1,14 @@
 {
   "ok": true,
-  "generated_at": "2026-11-22T04:12:36Z",
+  "generated_at": "2026-11-22T05:31:17Z",
   "catalog": {
-    "count": 22,
+    "count": 21,
     "by_state": {
       "DISCOVERED": 1,
       "ACCESS_PENDING": 2,
       "DOWNLOADED": 1,
       "PARSED": 1,
-      "VALIDATED": 2,
+      "VALIDATED": 1,
       "INTEGRATED": 7,
       "RESTRICTED": 4,
       "UNAVAILABLE": 3,
@@ -17,7 +17,7 @@
     "by_domain": {
       "AGRICULTURE": 4,
       "BIODIVERSITY": 2,
-      "CLIMATE": 5,
+      "CLIMATE": 4,
       "ECONOMY": 1,
       "HYDROLOGY": 2,
       "SOILS": 3,
@@ -44,27 +44,27 @@
     "note": "state ≠ calidad: un dataset INTEGRATED puede tener evidence_level V0"
   },
   "audit": {
-    "checked": 22,
+    "checked": 21,
     "ok": true,
     "problems": [],
-    "transitions": 71,
+    "transitions": 67,
     "note": "auditoría estructural, no científica: no reevalúa la calidad"
   },
   "store": {
     "exists": true,
-    "path": "C:\\GIT HUB\\agrosv\\data\\validated\\agrosv_data.sqlite",
+    "path": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/validated/agrosv_data.sqlite",
     "schema_version": 4,
-    "datasets": 22,
+    "datasets": 21,
     "observations": 20456,
     "occurrences": 300,
     "territories": 287,
-    "assets": 22,
-    "quality_reports": 10,
+    "assets": 20,
+    "quality_reports": 9,
     "rtree": true
   },
   "freshness": {
     "stale_or_unknown": [],
-    "fresh": 11,
+    "fresh": 10,
     "not_evaluated": [
       "agera5",
       "centa_suelos",
@@ -92,17 +92,9 @@
   },
   "missing_artifacts": {},
   "quality": {
-    "reports": 10,
+    "reports": 9,
     "failing": [],
     "latest_by_dataset": {
-      "copdem30": {
-        "status": "PASS",
-        "report_id": "55584ee3b04fed88"
-      },
-      "soilgrids_2": {
-        "status": "PASS_WITH_WARNINGS",
-        "report_id": "4f99765f26b64d19"
-      },
       "geoboundaries_adm1": {
         "status": "PASS",
         "report_id": "27bf3e6cc93a8c42"
@@ -111,21 +103,25 @@
         "status": "PASS_WITH_WARNINGS",
         "report_id": "7d1cc8f640f5ef0c"
       },
+      "copdem30": {
+        "status": "PASS",
+        "report_id": "55584ee3b04fed88"
+      },
+      "soilgrids_2": {
+        "status": "PASS_WITH_WARNINGS",
+        "report_id": "4f99765f26b64d19"
+      },
       "nasa_power_point": {
         "status": "PASS_WITH_WARNINGS",
         "report_id": "b77372c6936c09e8"
       },
       "open_meteo_point": {
         "status": "PASS_WITH_WARNINGS",
-        "report_id": "b2e8deefe42dc44e"
+        "report_id": "e8b2ebb2a8261df8"
       },
       "gbif_sv": {
         "status": "PASS_WITH_WARNINGS",
         "report_id": "c73ba05057daf822"
-      },
-      "chirps3": {
-        "status": "PASS_WITH_WARNINGS",
-        "report_id": "ce891ec912a5902a"
       },
       "worldbank_agri_share": {
         "status": "PASS_WITH_WARNINGS",

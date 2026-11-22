@@ -3,7 +3,7 @@
   "file": "data/samples/phase3/sentinel2_stac/s2_stac_search.json",
   "bytes": 42425,
   "sha256": "049c3afc7efa5f16d0f49ba96a21a697d2d1a367fd613d89100d04dc048d8f3e",
-  "retrieved_at": "2026-11-22T03:05:53+00:00",
+  "retrieved_at": "2026-11-22T05:33:43+00:00",
   "source_id": "s2-l2a-stac",
   "url": "https://earth-search.aws.element84.com/v1/search",
   "license": "Copernicus Sentinel data: libre con atribucion",

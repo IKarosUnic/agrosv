@@ -4,7 +4,7 @@
   "rows": 287,
   "endpoint": "/api/territory/{territory_id},/api/data/territories",
   "store": "data/validated/agrosv_data.sqlite",
-  "verified_at": "2026-11-22T04:19:52Z",
+  "verified_at": "2026-11-22T05:33:56Z",
   "levels": [
     "country",
     "department",

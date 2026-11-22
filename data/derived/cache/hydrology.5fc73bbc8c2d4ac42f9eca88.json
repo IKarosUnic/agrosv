@@ -1,0 +1,402 @@
+{
+  "engine": "hydrology",
+  "engine_version": "5.0.0",
+  "generated_at": "2026-11-22T16:51:45Z",
+  "query": {
+    "lon": -89.2,
+    "lat": 13.7,
+    "size_m": 3000
+  },
+  "result": {
+    "surface_water": {
+      "available": true,
+      "query": {
+        "lon": -89.2,
+        "lat": 13.7,
+        "max_km": 10.0
+      },
+      "nearest_waterway": {
+        "kind": "waterway",
+        "osm_id": "569734677",
+        "name": "Quebrada La Mascota",
+        "class": "stream",
+        "distance_m": 445.2,
+        "distance_km": 0.445
+      },
+      "nearest_water_body": {
+        "kind": "water_body",
+        "osm_id": "1288968928",
+        "name": null,
+        "class": "otro",
+        "distance_m": 904.0,
+        "distance_km": 0.904
+      },
+      "nearest_any": {
+        "kind": "waterway",
+        "osm_id": "569734677",
+        "name": "Quebrada La Mascota",
+        "class": "stream",
+        "distance_m": 445.2,
+        "distance_km": 0.445
+      },
+      "within_max_distance": [
+        {
+          "kind": "waterway",
+          "osm_id": "569734677",
+          "name": "Quebrada La Mascota",
+          "class": "stream",
+          "distance_m": 445.2,
+          "distance_km": 0.445
+        },
+        {
+          "kind": "water_body",
+          "osm_id": "1288968928",
+          "name": null,
+          "class": "otro",
+          "distance_m": 904.0,
+          "distance_km": 0.904
+        }
+      ],
+      "distance_method": "distancia euclídea en EPSG:32616 desde el punto al elemento",
+      "source": "osm_sv",
+      "caveats": [
+        "un cauce mapeado no implica caudal permanente ni agua disponible",
+        "la ausencia en OSM no implica ausencia en el terreno",
+        "la proximidad a un cauce no dice nada sobre agua subterránea"
+      ]
+    },
+    "watershed": {
+      "window": {
+        "size_m": 3000,
+        "cells": [
+          100,
+          100
+        ],
+        "res_m": 30.0,
+        "crs": "EPSG:32616",
+        "nodata_share": 0.0,
+        "valid_cells": 10000,
+        "total_cells": 10000,
+        "source_resampling": "DEM nativo 1 arcosegundo (~30 m) reproyectado a 30 m EPSG:32616: remuestreo declarado, no resolución nueva"
+      },
+      "pour_point": {
+        "row": 50,
+        "col": 50,
+        "lon": -89.2,
+        "lat": 13.7
+      },
+      "upstream_area_km2": 0.0045,
+      "upstream_area_from_accumulation_km2": 0.0045,
+      "truncated": false,
+      "outlet": {
+        "row": 88,
+        "col": 42,
+        "offset_m": {
+          "east": -240.0,
+          "north": -1140.0
+        },
+        "accumulation_cells": 250
+      },
+      "diagnostics": {
+        "cells": 10000,
+        "valid_cells": 10000,
+        "cellsize_m": 30.0,
+        "depressions": {
+          "cells_raised": 734,
+          "raised_pct": 7.34
+        },
+        "flow": {
+          "flat_or_outlet_cells": 766,
+          "flat_or_outlet_pct": 7.66
+        },
+        "stream_threshold_cells": 100,
+        "stream_threshold_ratio": 0.01,
+        "max_accumulation": 250
+      },
+      "res_m": 30.0,
+      "method": "priority-flood + D8 + recorrido inverso de la cuenca desde la celda del punto; área = celdas de la cuenca × 900 m²",
+      "limitations": [
+        "no es una cuenca oficial: es una derivación D8 local del DEM",
+        "si el área toca el borde de la ventana, la cuenca está truncada",
+        "el DEM de 30 m no resuelve obras hidráulicas ni cauces menores",
+        "las zonas planas y los sumideros rellenados tienen orden de flujo arbitrario (diagnóstico incluido)"
+      ]
+    },
+    "water_balance": {
+      "available": true,
+      "point": {
+        "dataset_id": "nasa_power_point",
+        "latitude": 13.7,
+        "longitude": -89.2,
+        "cell_support": "0,5° × 0,625° (MERRA-2/POWER)",
+        "dataset_version": "v2.10.5",
+        "period": {
+          "start": "2019-01-01",
+          "end": "2025-12-31"
+        },
+        "distance_km": 0.0,
+        "representative": true,
+        "distance_note": "el punto consultado coincide con la celda"
+      },
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "annual": [
+        {
+          "year": 2019,
+          "precipitation_mm": 1865.74,
+          "et0_mm": 1635.64,
+          "precipitation_minus_et0_mm": 230.1,
+          "aridity_index_p_over_et0": 1.141,
+          "budyko_runoff_mm_omega2": 845.6
+        },
+        {
+          "year": 2020,
+          "precipitation_mm": 2306.18,
+          "et0_mm": 1554.44,
+          "precipitation_minus_et0_mm": 751.7,
+          "aridity_index_p_over_et0": 1.484,
+          "budyko_runoff_mm_omega2": 1226.7
+        },
+        {
+          "year": 2021,
+          "precipitation_mm": 2684.69,
+          "et0_mm": 1626.0,
+          "precipitation_minus_et0_mm": 1058.7,
+          "aridity_index_p_over_et0": 1.651,
+          "budyko_runoff_mm_omega2": 1512.7
+        },
+        {
+          "year": 2022,
+          "precipitation_mm": 2791.42,
+          "et0_mm": 1556.66,
+          "precipitation_minus_et0_mm": 1234.8,
+          "aridity_index_p_over_et0": 1.793,
+          "budyko_runoff_mm_omega2": 1639.5
+        },
+        {
+          "year": 2023,
+          "precipitation_mm": 1786.0,
+          "et0_mm": 1680.33,
+          "precipitation_minus_et0_mm": 105.7,
+          "aridity_index_p_over_et0": 1.063,
+          "budyko_runoff_mm_omega2": 771.9
+        },
+        {
+          "year": 2024,
+          "precipitation_mm": 2187.19,
+          "et0_mm": 1601.47,
+          "precipitation_minus_et0_mm": 585.7,
+          "aridity_index_p_over_et0": 1.366,
+          "budyko_runoff_mm_omega2": 1109.3
+        },
+        {
+          "year": 2025,
+          "precipitation_mm": 1912.48,
+          "et0_mm": 1670.46,
+          "precipitation_minus_et0_mm": 242.0,
+          "aridity_index_p_over_et0": 1.145,
+          "budyko_runoff_mm_omega2": 868.8
+        }
+      ],
+      "mean": {
+        "precipitation_mm": 2219.1,
+        "et0_mm": 1617.9,
+        "precipitation_minus_et0_mm": 601.2,
+        "aridity_index_p_over_et0": 1.372,
+        "budyko_runoff_mm": 1128.4,
+        "budyko_runoff_range_mm_omega_1.5_3.0": [
+          857.2,
+          1446.2
+        ],
+        "budyko_range_note": "[cota inferior con ω=3,0; cota superior con ω=1,5]: mayor ω implica más evaporación y menos escorrentía"
+      },
+      "method": "P y ET0 anuales de reanálisis; déficit = P − ET0. Escorrentía estimada por Budyko–Fu con ω=2 (curva de Budyko) y sensibilidad ω=1,5–3,0. Ningún parámetro se calibró con aforos.",
+      "assumptions": [
+        "estado estacionario anual: no hay cambio de almacenamiento",
+        "ω=2 es una elección documentada, no calibrada en El Salvador",
+        "la escorrentía de Budyko incluye todo el excedente; no separa infiltración, recarga ni caudal base",
+        "P y ET0 provienen de puntos distintos (NASA POWER y Open-Meteo)"
+      ],
+      "limitations": [
+        "no es un caudal ni un volumen aprovechable",
+        "no es recarga de acuífero",
+        "no incorpora extracciones, riego ni regulación",
+        "un punto de reanálisis no representa una cuenca"
+      ],
+      "uncertainty": {
+        "method": "rango entre productos de precipitación y sensibilidad de ω",
+        "note": "el rango NO es un intervalo de confianza: no hay estaciones de referencia"
+      }
+    },
+    "groundwater": {
+      "available": false,
+      "variables": {
+        "groundwater_aquifers": {
+          "variables": [
+            "aquifer_boundary",
+            "aquifer_type"
+          ],
+          "reason": "no hay capa de acuíferos verificada en el repositorio (el geoportal MARN no expone un REST verificable)",
+          "would_require": "shapefile de acuíferos del MARN/ANDA con licencia",
+          "status": "NO_SOURCE"
+        },
+        "groundwater_levels": {
+          "variables": [
+            "water_level"
+          ],
+          "reason": "no hay series de niveles piezométricos ni pozos con datum",
+          "would_require": "red de observación de pozos (ANDA/MARN)",
+          "status": "NO_SOURCE"
+        },
+        "groundwater_recharge": {
+          "variables": [
+            "recharge"
+          ],
+          "reason": "no se estima sin acuífero, niveles ni parámetros hidráulicos; un número aquí sería inventado",
+          "would_require": "modelo hidrogeológico calibrado o trazadores",
+          "status": "BLOCKED_BY_MISSING_INPUT"
+        },
+        "water_quality": {
+          "variables": [
+            "water_quality"
+          ],
+          "reason": "no hay muestreos de calidad de agua integrados",
+          "would_require": "datos de laboratorio (MARN/ANDA) con método y fecha",
+          "status": "NO_SOURCE"
+        },
+        "water_rights": {
+          "variables": [
+            "water_right"
+          ],
+          "reason": "el acceso legal al agua no es un dato físico y no existe en el repositorio; AGROSV no infiere disponibilidad legal",
+          "would_require": "registro administrativo de derechos de agua (ANDA/MARN)",
+          "status": "NO_SOURCE"
+        }
+      },
+      "note": "no se infiere agua subterránea de la proximidad de un río, de un cuerpo de agua ni de la geología superficial; la ausencia es una propiedad del repositorio, no un resultado del motor",
+      "what_would_be_needed": [
+        "polígono de acuíferos con fuente y licencia (MARN/ANDA)",
+        "series de nivel piezométrico con datum y fecha",
+        "parámetros hidráulicos o modelo calibrado para estimar recarga"
+      ]
+    },
+    "hydrological_interpretation": {
+      "physically_present_water": "cuenca aportante y balance climático calculados",
+      "not_computed": [
+        "caudal (sin aforos)",
+        "recarga (sin acuífero)",
+        "almacenamiento de suelo (sin AWC)",
+        "agua autorizada o comprometida (no es un dato físico)"
+      ],
+      "rule": "potencial hidrológico ≠ acceso legal ni operativo al agua"
+    }
+  },
+  "sources": [
+    {
+      "dataset_id": "copdem30",
+      "name": "Copernicus DEM GLO-30 (DSM) y derivados topográficos",
+      "institution": "ESA / Airbus Defence and Space / DLR (distribuido por Copernicus)",
+      "source_url": "https://copernicus-dem-30m.s3.amazonaws.com/",
+      "version": "GLO-30 (release 2021)",
+      "data_class": "modeled_prediction",
+      "license": "Copernicus DEM (DLR/Airbus) — uso libre con atribución",
+      "spatial_resolution": "1 arcosegundo (~30 m en el ecuador; ~30,9 m en 13,7° N)",
+      "temporal_coverage": "estático (modelo de superficie de una adquisición)",
+      "provenance_id": "dem30_wgs84@2026-11-21T18:58:23Z",
+      "available": true
+    },
+    {
+      "dataset_id": "osm_sv",
+      "name": "OpenStreetMap — red hidrográfica y cuerpos de agua (extracto Geofabrik)",
+      "institution": "OpenStreetMap contributors (extracto Geofabrik)",
+      "source_url": "https://download.geofabrik.de/central-america/el-salvador.html",
+      "version": "extracto con marca temporal OSM",
+      "data_class": "observed",
+      "license": "ODbL 1.0",
+      "spatial_resolution": "vectorial; precisión heterogénea según colaborador",
+      "temporal_coverage": "instantánea del extracto",
+      "provenance_id": "infrastructure@2026-11-21T20:19:58Z",
+      "available": true
+    },
+    {
+      "dataset_id": "nasa_power_point",
+      "name": "NASA POWER — serie diaria en un punto (13,70° N, 89,20° O)",
+      "institution": "NASA Langley Research Center (POWER / MERRA-2)",
+      "source_url": "https://power.larc.nasa.gov/",
+      "version": "v2.10.5 (declarado por fila)",
+      "data_class": "reanalysis",
+      "license": "NASA POWER — datos abiertos, uso con atribución",
+      "spatial_resolution": "celda 0,5° × 0,625° (MERRA-2)",
+      "temporal_coverage": "2019-01-01 a 2025-12-31",
+      "provenance_id": null,
+      "available": true
+    },
+    {
+      "dataset_id": "open_meteo_point",
+      "name": "Open-Meteo Historical Weather API — serie diaria en un punto (13,673° N, 89,174° O)",
+      "institution": "Open-Meteo (ERA5/IFS)",
+      "source_url": "https://open-meteo.com/en/docs/historical-weather-api",
+      "version": "archive-api v1 (declarado por fila)",
+      "data_class": "reanalysis",
+      "license": "Open-Meteo — datos abiertos (CC BY 4.0 para datos; verificar términos)",
+      "spatial_resolution": "celda ~0,1° (~9 km)",
+      "temporal_coverage": "2019-01-01 a 2025-12-31",
+      "provenance_id": null,
+      "available": true
+    }
+  ],
+  "coverage": {
+    "surface_water": "cauces y cuerpos de agua mapeados en OSM (cobertura incompleta)",
+    "watershed": "derivación D8 local en ventana; no es delimitación oficial",
+    "groundwater": "no disponible"
+  },
+  "limitations": [
+    "la cuenca es una derivación local del DEM, no una cuenca oficial",
+    "no hay aforos: ningún caudal está calibrado ni validado",
+    "no hay datos de agua subterránea",
+    "el balance P−ET0 no separa escorrentía, infiltración ni recarga",
+    "cobertura de cauces OSM incompleta y de precisión variable"
+  ],
+  "processing_history": [
+    {
+      "step": "superficie: cauce/cuerpo más cercano",
+      "tool": "agrosv.engines.hydrology.surface_water",
+      "at": "2026-11-22T16:51:45Z",
+      "params": {
+        "max_km": 10.0
+      }
+    },
+    {
+      "step": "cuenca derivada D8",
+      "tool": "watershed_from_point",
+      "at": "2026-11-22T16:51:45Z",
+      "params": {
+        "size_m": 3000
+      }
+    },
+    {
+      "step": "balance hídrico climático",
+      "tool": "water_balance",
+      "at": "2026-11-22T16:51:45Z",
+      "params": {}
+    }
+  ],
+  "conventions": {
+    "crs_query": "EPSG:4326",
+    "crs_metric": "EPSG:32616",
+    "crs_area": "EPSG:6933",
+    "units": "SI y unidades aceptadas por agrosv.data.units",
+    "nodata": "null en JSON; nunca 0 por defecto"
+  },
+  "_cache": {
+    "key": "5fc73bbc8c2d4ac42f9eca88",
+    "created_at": "2026-11-22T16:51:45Z"
+  }
+}

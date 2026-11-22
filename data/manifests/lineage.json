@@ -1,10 +1,10 @@
 {
   "schema_version": 4,
-  "generated_at": "2026-11-22T04:19:54Z",
+  "generated_at": "2026-11-22T05:33:58Z",
   "count": 5,
   "derivations": [
     {
-      "run_id": "6df26b0b135159ee",
+      "run_id": "1ef87493d134f0bc",
       "dataset_id": "chirps3",
       "name": "chirps3_recorte_sv",
       "version": "AGROSV-4.0",
@@ -38,26 +38,26 @@
       ],
       "inputs": [
         {
-          "path": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\chirps3_day\\chirps-v3.0.rnl.2026.01.15.tif",
+          "path": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/samples/phase3/chirps3_day/chirps-v3.0.rnl.2026.01.15.tif",
           "sha256": "1769f6f4fffeff4a501962259b4331d3eb35ca2b8576cf4f58aefebaa12de9dd",
           "digest": "sha256"
         }
       ],
       "outputs": [
         {
-          "path": "C:\\GIT HUB\\agrosv\\data\\validated\\chirps3\\chirps3_precip_0p05deg_sv_2026-01-15_v3.0.tif",
-          "sha256": "26ff9d9a09f60941bfabce13aa56fb8917f04023fffa39bc9a07bb0ca150532e",
+          "path": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/validated/chirps3/chirps3_precip_0p05deg_sv_2026-01-15_v3.0.tif",
+          "sha256": "cc51c7bce08b65adecee0670bbf61474f4d0982838e5c1675409ac1207221ce7",
           "digest": "sha256",
-          "bytes": 3577
+          "bytes": 3559
         }
       ],
       "validation_state": "VALIDATED",
-      "manifest_path": "C:\\GIT HUB\\agrosv\\data\\manifests\\derivations\\6df26b0b135159ee.json",
-      "created_at": "2026-11-22T04:19:53Z",
+      "manifest_path": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/manifests/derivations/1ef87493d134f0bc.json",
+      "created_at": "2026-11-22T05:33:57Z",
       "notes": "Recorte sin remuestreo; resolución nativa conservada."
     },
     {
-      "run_id": "17acb18fcbe37faa",
+      "run_id": "8c8f330205304cb2",
       "dataset_id": "nasa_power_point",
       "name": "nasa_power_point_normalizacion",
       "version": "AGROSV-4.0",
@@ -83,26 +83,26 @@
       ],
       "inputs": [
         {
-          "path": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\nasa_power_point\\power_daily_13.70N_89.20W.json",
-          "sha256": "f0ff69a77369bf695f220e82cfd3425e9352e34a734814755916243a7135dfe9",
+          "path": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/samples/phase3/nasa_power_point/power_daily_13.70N_89.20W.json",
+          "sha256": "eb127dace11ac09f56c5845bce067f1e7621e8624d2948855b15748374f0afd5",
           "digest": "sha256"
         }
       ],
       "outputs": [
         {
-          "path": "C:\\GIT HUB\\agrosv\\data\\validated\\observations\\nasa_power_point_daily.csv",
+          "path": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/validated/observations/nasa_power_point_daily.csv",
           "sha256": "1e6870a94d0fd302d2828b8b38baece3ad03b5dcfc61106411249b6f3ed0d21e",
           "digest": "sha256",
           "bytes": 1500637
         }
       ],
       "validation_state": "VALIDATED",
-      "manifest_path": "C:\\GIT HUB\\agrosv\\data\\manifests\\derivations\\17acb18fcbe37faa.json",
-      "created_at": "2026-11-22T04:19:53Z",
+      "manifest_path": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/manifests/derivations/8c8f330205304cb2.json",
+      "created_at": "2026-11-22T05:33:57Z",
       "notes": "Normalización de unidades, tiempo y clase de evidencia."
     },
     {
-      "run_id": "c2bbe50c42515384",
+      "run_id": "97f6eafb35267c69",
       "dataset_id": "open_meteo_point",
       "name": "open_meteo_point_normalizacion",
       "version": "AGROSV-4.0",
@@ -128,26 +128,26 @@
       ],
       "inputs": [
         {
-          "path": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\open_meteo_point\\openmeteo_daily_13.70N_89.20W.json",
-          "sha256": "9a6d9b1b1064a6024cd8a4992d257833610b2d7445fac6374cac0e55a4882f54",
+          "path": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/samples/phase3/open_meteo_point/openmeteo_daily_13.70N_89.20W.json",
+          "sha256": "8128d7b956d682aedfd7e5376878bd0db269b7f4b963de41528ca85e7f207c78",
           "digest": "sha256"
         }
       ],
       "outputs": [
         {
-          "path": "C:\\GIT HUB\\agrosv\\data\\validated\\observations\\open_meteo_point_daily.csv",
+          "path": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/validated/observations/open_meteo_point_daily.csv",
           "sha256": "ce6b36fc6b37e7f8b923face8b5f8c10c0418a12b0e991d74d5b2ad16a286f88",
           "digest": "sha256",
           "bytes": 2462736
         }
       ],
       "validation_state": "VALIDATED",
-      "manifest_path": "C:\\GIT HUB\\agrosv\\data\\manifests\\derivations\\c2bbe50c42515384.json",
-      "created_at": "2026-11-22T04:19:53Z",
+      "manifest_path": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/manifests/derivations/97f6eafb35267c69.json",
+      "created_at": "2026-11-22T05:33:57Z",
       "notes": "Normalización de unidades, tiempo y clase de evidencia."
     },
     {
-      "run_id": "8560918a12a983cf",
+      "run_id": "3f91b455197086cd",
       "dataset_id": "gbif_sv",
       "name": "gbif_sv_normalizacion",
       "version": "AGROSV-4.0",
@@ -173,26 +173,26 @@
       ],
       "inputs": [
         {
-          "path": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\gbif_sv\\gbif_occurrence_sv_300.json",
+          "path": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/samples/phase3/gbif_sv/gbif_occurrence_sv_300.json",
           "sha256": "c2bf4264b01d1f6fc1df082e10995e7933114c00b01741027b5d7e8ace1ca7b9",
           "digest": "sha256"
         }
       ],
       "outputs": [
         {
-          "path": "C:\\GIT HUB\\agrosv\\data\\validated\\observations\\gbif_sv_sample_occurrences.csv",
+          "path": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/validated/observations/gbif_sv_sample_occurrences.csv",
           "sha256": "4e54a062f77db258182b7ca520323ed8a0a447b21c026ab042ca5a6e217ad6d2",
           "digest": "sha256",
           "bytes": 36312
         }
       ],
       "validation_state": "VALIDATED",
-      "manifest_path": "C:\\GIT HUB\\agrosv\\data\\manifests\\derivations\\8560918a12a983cf.json",
-      "created_at": "2026-11-22T04:19:53Z",
+      "manifest_path": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/manifests/derivations/3f91b455197086cd.json",
+      "created_at": "2026-11-22T05:33:57Z",
       "notes": "Normalización de unidades, tiempo y clase de evidencia."
     },
     {
-      "run_id": "5dfe200ca3244520",
+      "run_id": "5be487cfc487cb23",
       "dataset_id": "agrosv_data_store",
       "name": "carga_base_consulta",
       "version": "AGROSV-4.0",
@@ -213,32 +213,32 @@
       ],
       "inputs": [
         {
-          "path": "C:\\GIT HUB\\agrosv\\data\\validated\\observations\\nasa_power_point_daily.csv",
+          "path": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/validated/observations/nasa_power_point_daily.csv",
           "sha256": "1e6870a94d0fd302d2828b8b38baece3ad03b5dcfc61106411249b6f3ed0d21e",
           "digest": "sha256"
         },
         {
-          "path": "C:\\GIT HUB\\agrosv\\data\\validated\\observations\\open_meteo_point_daily.csv",
+          "path": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/validated/observations/open_meteo_point_daily.csv",
           "sha256": "ce6b36fc6b37e7f8b923face8b5f8c10c0418a12b0e991d74d5b2ad16a286f88",
           "digest": "sha256"
         },
         {
-          "path": "C:\\GIT HUB\\agrosv\\data\\validated\\observations\\gbif_sv_sample_occurrences.csv",
+          "path": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/validated/observations/gbif_sv_sample_occurrences.csv",
           "sha256": "4e54a062f77db258182b7ca520323ed8a0a447b21c026ab042ca5a6e217ad6d2",
           "digest": "sha256"
         }
       ],
       "outputs": [
         {
-          "path": "C:\\GIT HUB\\agrosv\\data\\validated\\agrosv_data.sqlite",
-          "sha256": "257880bde87a777017e780908d6c9795421ab0530b5fb69eb303de035643f477",
+          "path": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/validated/agrosv_data.sqlite",
+          "sha256": "12b2fdf14aed02e7f1988326a0c1f893e7fae6517819e98ce83fa946ed62dca1",
           "digest": "sqlite-logical",
-          "bytes": 9494528
+          "bytes": 9498624
         }
       ],
       "validation_state": "VALIDATED",
-      "manifest_path": "C:\\GIT HUB\\agrosv\\data\\manifests\\derivations\\5dfe200ca3244520.json",
-      "created_at": "2026-11-22T04:19:54Z",
+      "manifest_path": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/manifests/derivations/5be487cfc487cb23.json",
+      "created_at": "2026-11-22T05:33:58Z",
       "notes": "La base conserva la clase de evidencia por fila."
     }
   ],

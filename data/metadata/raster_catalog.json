@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-11-22T04:19:53Z",
+  "generated_at": "2026-11-22T05:33:57Z",
   "count": 13,
   "rasters": [
     {
-      "path": "C:\\GIT HUB\\agrosv\\data\\processed\\topography\\dem30_wgs84.tif",
+      "path": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/processed/topography/dem30_wgs84.tif",
       "driver": "GTiff",
       "crs": "EPSG:4326",
       "width": 9159,
@@ -56,7 +56,7 @@
       }
     },
     {
-      "path": "C:\\GIT HUB\\agrosv\\data\\processed\\topography\\slope_deg.tif",
+      "path": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/processed/topography/slope_deg.tif",
       "driver": "GTiff",
       "crs": "EPSG:32616",
       "width": 9217,
@@ -109,7 +109,7 @@
       }
     },
     {
-      "path": "C:\\GIT HUB\\agrosv\\data\\processed\\topography\\aspect_deg.tif",
+      "path": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/processed/topography/aspect_deg.tif",
       "driver": "GTiff",
       "crs": "EPSG:32616",
       "width": 9217,
@@ -162,7 +162,7 @@
       }
     },
     {
-      "path": "C:\\GIT HUB\\agrosv\\data\\processed\\topography\\hillshade.tif",
+      "path": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/processed/topography/hillshade.tif",
       "driver": "GTiff",
       "crs": "EPSG:32616",
       "width": 9217,
@@ -215,7 +215,7 @@
       }
     },
     {
-      "path": "C:\\GIT HUB\\agrosv\\data\\processed\\topography\\relief_class.tif",
+      "path": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/processed/topography/relief_class.tif",
       "driver": "GTiff",
       "crs": "EPSG:32616",
       "width": 9217,
@@ -268,7 +268,7 @@
       }
     },
     {
-      "path": "C:\\GIT HUB\\agrosv\\data\\processed\\soils\\rasters\\phh2o_0-30cm.tif",
+      "path": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/processed/soils/rasters/phh2o_0-30cm.tif",
       "driver": "GTiff",
       "crs": "EPSG:32616",
       "width": 1107,
@@ -318,7 +318,7 @@
       }
     },
     {
-      "path": "C:\\GIT HUB\\agrosv\\data\\processed\\soils\\rasters\\soc_0-30cm.tif",
+      "path": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/processed/soils/rasters/soc_0-30cm.tif",
       "driver": "GTiff",
       "crs": "EPSG:32616",
       "width": 1107,
@@ -368,7 +368,7 @@
       }
     },
     {
-      "path": "C:\\GIT HUB\\agrosv\\data\\processed\\soils\\rasters\\nitrogen_0-30cm.tif",
+      "path": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/processed/soils/rasters/nitrogen_0-30cm.tif",
       "driver": "GTiff",
       "crs": "EPSG:32616",
       "width": 1107,
@@ -418,7 +418,7 @@
       }
     },
     {
-      "path": "C:\\GIT HUB\\agrosv\\data\\processed\\soils\\rasters\\clay_0-30cm.tif",
+      "path": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/processed/soils/rasters/clay_0-30cm.tif",
       "driver": "GTiff",
       "crs": "EPSG:32616",
       "width": 1107,
@@ -468,7 +468,7 @@
       }
     },
     {
-      "path": "C:\\GIT HUB\\agrosv\\data\\processed\\soils\\rasters\\sand_0-30cm.tif",
+      "path": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/processed/soils/rasters/sand_0-30cm.tif",
       "driver": "GTiff",
       "crs": "EPSG:32616",
       "width": 1107,
@@ -518,7 +518,7 @@
       }
     },
     {
-      "path": "C:\\GIT HUB\\agrosv\\data\\processed\\soils\\rasters\\silt_0-30cm.tif",
+      "path": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/processed/soils/rasters/silt_0-30cm.tif",
       "driver": "GTiff",
       "crs": "EPSG:32616",
       "width": 1107,
@@ -568,7 +568,7 @@
       }
     },
     {
-      "path": "C:\\GIT HUB\\agrosv\\data\\validated\\chirps3\\chirps3_precip_0p05deg_sv_2026-01-15_v3.0.tif",
+      "path": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/validated/chirps3/chirps3_precip_0p05deg_sv_2026-01-15_v3.0.tif",
       "driver": "GTiff",
       "crs": "EPSG:4326",
       "width": 51,
@@ -605,7 +605,7 @@
       "variable": "chirps3_precip_0p05deg_sv",
       "dataset_id": "chirps3",
       "zone": "validated",
-      "bytes": 3577,
+      "bytes": 3559,
       "nodata_candidates": {
         "declared": false,
         "nodata": null,
@@ -631,7 +631,7 @@
       }
     },
     {
-      "path": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\chirps3_day\\chirps-v3.0.rnl.2026.01.15.tif",
+      "path": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/samples/phase3/chirps3_day/chirps-v3.0.rnl.2026.01.15.tif",
       "driver": "GTiff",
       "crs": "EPSG:4326",
       "width": 7200,

@@ -2,7 +2,7 @@
   "artifact_id": "gbif_sv.c2bf4264b01d",
   "dataset_id": "gbif_sv",
   "source_id": "gbif",
-  "original_path": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\gbif_sv\\gbif_occurrence_sv_300.json",
+  "original_path": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/samples/phase3/gbif_sv/gbif_occurrence_sv_300.json",
   "stored_path": "C:\\GIT HUB\\agrosv\\data\\raw\\_objects\\c2\\bf\\c2bf4264b01d1f6fc1df082e10995e7933114c00b01741027b5d7e8ace1ca7b9",
   "sha256": "c2bf4264b01d1f6fc1df082e10995e7933114c00b01741027b5d7e8ace1ca7b9",
   "bytes": 2125141,
@@ -48,7 +48,7 @@
     ]
   },
   "status": "DUPLICATE",
-  "retrieved_at": "2026-11-22T04:19:52Z",
+  "retrieved_at": "2026-11-22T05:33:56Z",
   "license": "Por registro (GBIF agrega licencias de publicadores)",
   "source_url": "https://api.gbif.org/v1/occurrence/search?country=SV&limit=300",
   "version": null,

@@ -1,6 +1,6 @@
 {
   "schema_version": 4,
-  "generated_at": "2026-11-22T04:19:54Z",
+  "generated_at": "2026-11-22T05:33:58Z",
   "count": 22,
   "states": {
     "DISCOVERED": 1,
@@ -53,14 +53,14 @@
           "dataset_id": "agera5",
           "state_from": "DISCOVERED",
           "state_to": "DISCOVERED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "alta en catálogo con evidencia de descubrimiento",
           "evidence": [
             {
               "evidence_type": "manual_review",
               "reference": "docs/data_expansion/DATA_SOURCE_REGISTRY.md#agera5",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "token CDS requerido; no descargado",
               "passed": true,
               "sha256": null,
@@ -72,14 +72,14 @@
           "dataset_id": "agera5",
           "state_from": "DISCOVERED",
           "state_to": "RESTRICTED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "restringido por credenciales",
           "evidence": [
             {
               "evidence_type": "license_check",
               "reference": "research/raw/phase3/probes_20261122_r3.json#agera5_cds",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "acceso con cuenta/token CDS",
               "passed": true,
               "sha256": null,
@@ -91,7 +91,7 @@
         }
       ],
       "notes": "",
-      "updated_at": "2026-11-22T04:19:52Z",
+      "updated_at": "2026-11-22T05:33:56Z",
       "CRITICAL_FIELDS": [
         "license",
         "geographic_coverage",
@@ -150,14 +150,14 @@
           "dataset_id": "centa_suelos",
           "state_from": "DISCOVERED",
           "state_to": "DISCOVERED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "alta en catálogo con evidencia de descubrimiento",
           "evidence": [
             {
               "evidence_type": "manual_review",
               "reference": "docs/data_expansion/DATA_SOURCE_REGISTRY.md#centa_suelos",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "acceso restringido; requiere convenio con CENTA",
               "passed": true,
               "sha256": null,
@@ -169,14 +169,14 @@
           "dataset_id": "centa_suelos",
           "state_from": "DISCOVERED",
           "state_to": "RESTRICTED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "restringido: sin licencia ni acceso verificable",
           "evidence": [
             {
               "evidence_type": "license_check",
               "reference": "research/raw/phase3/probes_20261122_r3.json#centa_suelos",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "sin licencia declarada; acceso 403",
               "passed": true,
               "sha256": null,
@@ -189,7 +189,7 @@
         }
       ],
       "notes": "",
-      "updated_at": "2026-11-22T04:19:52Z",
+      "updated_at": "2026-11-22T05:33:56Z",
       "CRITICAL_FIELDS": [
         "license",
         "geographic_coverage",
@@ -254,14 +254,14 @@
           "dataset_id": "chirps3",
           "state_from": "DISCOVERED",
           "state_to": "DISCOVERED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "alta en catálogo",
           "evidence": [
             {
               "evidence_type": "file_hash",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\chirps3_day\\chirps-v3.0.rnl.2026.01.15.tif",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/samples/phase3/chirps3_day/chirps-v3.0.rnl.2026.01.15.tif",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "muestra CHIRPS de Fase 3",
               "passed": true,
               "sha256": "1769f6f4fffeff4a501962259b4331d3eb35ca2b8576cf4f58aefebaa12de9dd",
@@ -273,14 +273,14 @@
           "dataset_id": "chirps3",
           "state_from": "DISCOVERED",
           "state_to": "DOWNLOADED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "muestra global descargada y hasheada",
           "evidence": [
             {
               "evidence_type": "file_hash",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\chirps3_day\\chirps-v3.0.rnl.2026.01.15.tif",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/samples/phase3/chirps3_day/chirps-v3.0.rnl.2026.01.15.tif",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "archivo existente (14000124 B)",
               "passed": true,
               "sha256": "1769f6f4fffeff4a501962259b4331d3eb35ca2b8576cf4f58aefebaa12de9dd",
@@ -292,17 +292,17 @@
           "dataset_id": "chirps3",
           "state_from": "DOWNLOADED",
           "state_to": "PARSED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "cabecera y rejilla verificadas; recorte al país registrado",
           "evidence": [
             {
               "evidence_type": "parse_result",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\manifests\\ingest\\chirps3.1769f6f4fffe.json",
-              "captured_at": "2026-11-22T04:19:52Z",
-              "note": "archivo existente (2550 B)",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/manifests/ingest/chirps3.1769f6f4fffe.json",
+              "captured_at": "2026-11-22T05:33:56Z",
+              "note": "archivo existente (2503 B)",
               "passed": true,
-              "sha256": "55cf9d59df2dfb0e85eecb77c02d4a71d5d1c5282d1f3fc04a0acd77c41ab264",
+              "sha256": "92c21823e7949b9e9ab783363218bf5255d32c36a7e589876d17808460095e9a",
               "payload": {
                 "parser": "agrosv.data.ingest/4.0",
                 "format": "geotiff"
@@ -314,29 +314,29 @@
           "dataset_id": "chirps3",
           "state_from": "PARSED",
           "state_to": "VALIDATED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "QC ráster de CRS, rejilla, NoData y cobertura",
           "evidence": [
             {
               "evidence_type": "validation_report",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\metadata\\quality_reports\\chirps3.ce891ec912a5902a.json",
-              "captured_at": "2026-11-22T04:19:52Z",
-              "note": "archivo existente (3382 B)",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/metadata/quality_reports/chirps3.065f5d9a978bd9a6.json",
+              "captured_at": "2026-11-22T05:33:56Z",
+              "note": "archivo existente (3324 B)",
               "passed": true,
-              "sha256": "430677e4e20d266663e3087ab5eba17264f2b69ecaa6c250fdc1d7c5069ba525",
+              "sha256": "a8de0528043664cadc8f215f1d151cebfae98cc47137f66a044fa7b40eb8a921",
               "payload": {
                 "status": "PASS_WITH_WARNINGS",
                 "checks_run": 12,
                 "scope": "muestra de 1 día global recortada a El Salvador; no es una serie nacional integrada",
-                "report_id": "ce891ec912a5902a"
+                "report_id": "065f5d9a978bd9a6"
               }
             }
           ]
         }
       ],
       "notes": "",
-      "updated_at": "2026-11-22T04:19:52Z",
+      "updated_at": "2026-11-22T05:33:56Z",
       "CRITICAL_FIELDS": [
         "license",
         "geographic_coverage",
@@ -392,14 +392,14 @@
           "dataset_id": "cnr_elsalvadormaps",
           "state_from": "DISCOVERED",
           "state_to": "DISCOVERED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "alta en catálogo con evidencia de descubrimiento",
           "evidence": [
             {
               "evidence_type": "url_probe",
               "reference": "research/raw/phase3/probes_20261122_r3.json#cnr_elsalvadormaps",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "TLS inválido; no se estableció acceso",
               "passed": false,
               "sha256": null,
@@ -415,14 +415,14 @@
           "dataset_id": "cnr_elsalvadormaps",
           "state_from": "DISCOVERED",
           "state_to": "ACCESS_PENDING",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "acceso pendiente de autorización institucional",
           "evidence": [
             {
               "evidence_type": "url_probe",
               "reference": "research/raw/phase3/probes_20261122_r3.json#cnr_elsalvadormaps",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "solicitud de ficha técnica y licencia pendiente",
               "passed": false,
               "sha256": null,
@@ -436,7 +436,7 @@
         }
       ],
       "notes": "",
-      "updated_at": "2026-11-22T04:19:52Z",
+      "updated_at": "2026-11-22T05:33:56Z",
       "CRITICAL_FIELDS": [
         "license",
         "geographic_coverage",
@@ -510,17 +510,17 @@
           "dataset_id": "copdem30",
           "state_from": "DISCOVERED",
           "state_to": "DISCOVERED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "alta en catálogo",
           "evidence": [
             {
               "evidence_type": "file_hash",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\processed\\topography\\dem30_wgs84.tif.provenance.json",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/processed/topography/dem30_wgs84.tif.provenance.json",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "manifiesto de procedencia de Fase 1",
               "passed": true,
-              "sha256": "1bc2b9ef1174d9cc78592ae6e2feb8e931901a11f0bdb00d4372f78137e0a40c",
+              "sha256": "613ef77ba64b9ceccdd08fc63282bf010882507c913a8dfd24550f1fdfe8c0e0",
               "payload": {}
             }
           ]
@@ -529,14 +529,14 @@
           "dataset_id": "copdem30",
           "state_from": "DISCOVERED",
           "state_to": "DOWNLOADED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "artefacto de Fase 1 presente y verificado",
           "evidence": [
             {
               "evidence_type": "file_hash",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\processed\\topography\\dem30_wgs84.tif",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/processed/topography/dem30_wgs84.tif",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "hash del DEM procesado",
               "passed": true,
               "sha256": "1d41870a4ae4365a511554d37deead0ad181f1305e7d12a96847d03bf293db20",
@@ -548,14 +548,14 @@
           "dataset_id": "copdem30",
           "state_from": "DOWNLOADED",
           "state_to": "PARSED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "cabecera GeoTIFF leída con rasterio",
           "evidence": [
             {
               "evidence_type": "parse_result",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\processed\\topography\\dem30_wgs84.tif",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/processed/topography/dem30_wgs84.tif",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "archivo existente (94695736 B)",
               "passed": true,
               "sha256": "1d41870a4ae4365a511554d37deead0ad181f1305e7d12a96847d03bf293db20",
@@ -570,17 +570,17 @@
           "dataset_id": "copdem30",
           "state_from": "PARSED",
           "state_to": "VALIDATED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "QC de CRS, rejilla, NoData y cobertura",
           "evidence": [
             {
               "evidence_type": "validation_report",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\metadata\\quality_reports\\copdem30.55584ee3b04fed88.json",
-              "captured_at": "2026-11-22T04:19:52Z",
-              "note": "archivo existente (1663 B)",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/metadata/quality_reports/copdem30.55584ee3b04fed88.json",
+              "captured_at": "2026-11-22T05:33:56Z",
+              "note": "archivo existente (1609 B)",
               "passed": true,
-              "sha256": "d8e275271768456e64e1f959341c3e6d89e16acdb8afbc6c1b0af5ab347e84db",
+              "sha256": "211c5d998d49d0c846ee79585a66fc1654761c35663c340a819566036e86866f",
               "payload": {
                 "status": "PASS",
                 "checks_run": 3,
@@ -594,17 +594,17 @@
           "dataset_id": "copdem30",
           "state_from": "VALIDATED",
           "state_to": "INTEGRATED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "servido por la API de topografía y teselas desde la Fase 1",
           "evidence": [
             {
               "evidence_type": "integration_record",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\manifests\\integration\\copdem30.json",
-              "captured_at": "2026-11-22T04:19:52Z",
-              "note": "archivo existente (245 B)",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/manifests/integration/copdem30.json",
+              "captured_at": "2026-11-22T05:33:56Z",
+              "note": "archivo existente (237 B)",
               "passed": true,
-              "sha256": "ccd630ef5a0ba50d0078cdcd5f0f1b7b98990bffb80c8188f11f54f3fb84e8e9",
+              "sha256": "78bddd2420238b4e867c6765a0d1a9b78700e16ad7d255b93ec5f8d4356687d6",
               "payload": {
                 "queryable": true,
                 "rows": 0,
@@ -615,7 +615,7 @@
         }
       ],
       "notes": "Fecha de descarga tomada del manifiesto de Fase 1; la fecha de descarga original no se registró en esa fase.",
-      "updated_at": "2026-11-22T04:19:52Z",
+      "updated_at": "2026-11-22T05:33:56Z",
       "CRITICAL_FIELDS": [
         "license",
         "geographic_coverage",
@@ -670,14 +670,14 @@
           "dataset_id": "fao_ecocrop",
           "state_from": "DISCOVERED",
           "state_to": "DISCOVERED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "alta en catálogo con evidencia de descubrimiento",
           "evidence": [
             {
               "evidence_type": "url_probe",
               "reference": "research/raw/phase3/probes_20261122_r3.json#fao_ecocrop",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "HTTP 503",
               "passed": false,
               "sha256": null,
@@ -693,14 +693,14 @@
           "dataset_id": "fao_ecocrop",
           "state_from": "DISCOVERED",
           "state_to": "UNAVAILABLE",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "servicio retirado",
           "evidence": [
             {
               "evidence_type": "url_probe",
               "reference": "research/raw/phase3/probes_20261122_r3.json#fao_ecocrop",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "servicio retirado (503)",
               "passed": false,
               "sha256": null,
@@ -714,7 +714,7 @@
         }
       ],
       "notes": "",
-      "updated_at": "2026-11-22T04:19:52Z",
+      "updated_at": "2026-11-22T05:33:56Z",
       "CRITICAL_FIELDS": [
         "license",
         "geographic_coverage",
@@ -771,14 +771,14 @@
           "dataset_id": "faostat",
           "state_from": "DISCOVERED",
           "state_to": "DISCOVERED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "alta en catálogo con evidencia de descubrimiento",
           "evidence": [
             {
               "evidence_type": "url_probe",
               "reference": "research/raw/phase3/probes_20261122_r3.json#faostat_api",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "API 521 / bulk 403",
               "passed": false,
               "sha256": null,
@@ -794,14 +794,14 @@
           "dataset_id": "faostat",
           "state_from": "DISCOVERED",
           "state_to": "ACCESS_PENDING",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "canal no disponible; se mantiene pendiente",
           "evidence": [
             {
               "evidence_type": "url_probe",
               "reference": "research/raw/phase3/probes_20261122_r3.json#faostat_api",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "reintentar con canal oficial alternativo",
               "passed": false,
               "sha256": null,
@@ -815,7 +815,7 @@
         }
       ],
       "notes": "",
-      "updated_at": "2026-11-22T04:19:52Z",
+      "updated_at": "2026-11-22T05:33:56Z",
       "CRITICAL_FIELDS": [
         "license",
         "geographic_coverage",
@@ -880,14 +880,14 @@
           "dataset_id": "gbif_sv",
           "state_from": "DISCOVERED",
           "state_to": "DISCOVERED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "alta en catálogo",
           "evidence": [
             {
               "evidence_type": "file_hash",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\gbif_sv\\gbif_occurrence_sv_300.json",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/samples/phase3/gbif_sv/gbif_occurrence_sv_300.json",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "muestra descargada en Fase 3",
               "passed": true,
               "sha256": "c2bf4264b01d1f6fc1df082e10995e7933114c00b01741027b5d7e8ace1ca7b9",
@@ -899,14 +899,14 @@
           "dataset_id": "gbif_sv",
           "state_from": "DISCOVERED",
           "state_to": "DOWNLOADED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "muestra descargada y hasheada",
           "evidence": [
             {
               "evidence_type": "file_hash",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\gbif_sv\\gbif_occurrence_sv_300.json",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/samples/phase3/gbif_sv/gbif_occurrence_sv_300.json",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "sha256 c2bf4264b01d1f6f…",
               "passed": true,
               "sha256": "c2bf4264b01d1f6fc1df082e10995e7933114c00b01741027b5d7e8ace1ca7b9",
@@ -918,17 +918,17 @@
           "dataset_id": "gbif_sv",
           "state_from": "DOWNLOADED",
           "state_to": "PARSED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "formato detectado y metadatos extraídos",
           "evidence": [
             {
               "evidence_type": "parse_result",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\manifests\\ingest\\gbif_sv.c2bf4264b01d.json",
-              "captured_at": "2026-11-22T04:19:52Z",
-              "note": "archivo existente (1611 B)",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/manifests/ingest/gbif_sv.c2bf4264b01d.json",
+              "captured_at": "2026-11-22T05:33:56Z",
+              "note": "archivo existente (1572 B)",
               "passed": true,
-              "sha256": "2ffac089c6aa175ee78bbe84420bd8f6e562a8724f583df73e5d1ed6538c8d7b",
+              "sha256": "1864cb8c0f29328b8af1bcb76654a1c49858df33e283031bd5195f3424146216",
               "payload": {
                 "parser": "agrosv.data.ingest/4.0",
                 "format": "json"
@@ -940,17 +940,17 @@
           "dataset_id": "gbif_sv",
           "state_from": "PARSED",
           "state_to": "VALIDATED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "motor de calidad: PASS_WITH_WARNINGS con 4 comprobaciones",
           "evidence": [
             {
               "evidence_type": "validation_report",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\metadata\\quality_reports\\gbif_sv.c73ba05057daf822.json",
-              "captured_at": "2026-11-22T04:19:52Z",
-              "note": "archivo existente (2734 B)",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/metadata/quality_reports/gbif_sv.c73ba05057daf822.json",
+              "captured_at": "2026-11-22T05:33:56Z",
+              "note": "archivo existente (2637 B)",
               "passed": true,
-              "sha256": "156d4902b5921407a1f872ed4ed23197e0d60178a13168c242a5ff9858d0d961",
+              "sha256": "80a7e5eb230289141cd2d068d5cb0a49663bf940e26ff490c190649af3aff616",
               "payload": {
                 "status": "PASS_WITH_WARNINGS",
                 "checks_run": 4,
@@ -964,17 +964,17 @@
           "dataset_id": "gbif_sv",
           "state_from": "VALIDATED",
           "state_to": "INTEGRATED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "consultable por /api/data",
           "evidence": [
             {
               "evidence_type": "integration_record",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\manifests\\integration\\gbif_sv.json",
-              "captured_at": "2026-11-22T04:19:52Z",
-              "note": "archivo existente (265 B)",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/manifests/integration/gbif_sv.json",
+              "captured_at": "2026-11-22T05:33:56Z",
+              "note": "archivo existente (256 B)",
               "passed": true,
-              "sha256": "7320db2a4d9b12b39575224c0b2535e7777e11b5851f144525992deeac4f8bc1",
+              "sha256": "d9c69c49c128910124ca4b4fb148872f22042b514fbc944b47f540728950ba3c",
               "payload": {
                 "queryable": true,
                 "rows": 300,
@@ -985,7 +985,7 @@
         }
       ],
       "notes": "Muestra mínima de Fase 3; no es el dataset nacional completo.",
-      "updated_at": "2026-11-22T04:19:52Z",
+      "updated_at": "2026-11-22T05:33:56Z",
       "CRITICAL_FIELDS": [
         "license",
         "geographic_coverage",
@@ -1049,17 +1049,17 @@
           "dataset_id": "geoboundaries_adm1",
           "state_from": "DISCOVERED",
           "state_to": "DISCOVERED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "alta en catálogo",
           "evidence": [
             {
               "evidence_type": "file_hash",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\processed\\territory\\territory.gpkg.provenance.json",
-              "captured_at": "2026-11-22T04:19:52Z",
-              "note": "archivo existente (1066 B)",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/processed/territory/territory.gpkg.provenance.json",
+              "captured_at": "2026-11-22T05:33:56Z",
+              "note": "archivo existente (1040 B)",
               "passed": true,
-              "sha256": "ce76e9f011dd839cf69d7851ac7f9d7d1a899d57e911f57f9575fe9c84c9d38d",
+              "sha256": "d99dd2de859ee82c72bc641860085e72d955b1a75de1310c0b69dbe26f12906f",
               "payload": {}
             }
           ]
@@ -1068,14 +1068,14 @@
           "dataset_id": "geoboundaries_adm1",
           "state_from": "DISCOVERED",
           "state_to": "DOWNLOADED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "GeoPackage presente con manifiesto",
           "evidence": [
             {
               "evidence_type": "file_hash",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\processed\\territory\\territory.gpkg",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/processed/territory/territory.gpkg",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "archivo existente (1613824 B)",
               "passed": true,
               "sha256": "22a96832d7576fd26e5a86e8995ff5bd9b63d9c56b55152216da09f9318a0359",
@@ -1087,14 +1087,14 @@
           "dataset_id": "geoboundaries_adm1",
           "state_from": "DOWNLOADED",
           "state_to": "PARSED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "capas y CRS leídos con pyogrio",
           "evidence": [
             {
               "evidence_type": "parse_result",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\processed\\territory\\territory.gpkg",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/processed/territory/territory.gpkg",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "archivo existente (1613824 B)",
               "passed": true,
               "sha256": "22a96832d7576fd26e5a86e8995ff5bd9b63d9c56b55152216da09f9318a0359",
@@ -1112,17 +1112,17 @@
           "dataset_id": "geoboundaries_adm1",
           "state_from": "PARSED",
           "state_to": "VALIDATED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "QC geométrico de ADM1 y revisión de cobertura",
           "evidence": [
             {
               "evidence_type": "validation_report",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\metadata\\quality_reports\\geoboundaries_adm1.27bf3e6cc93a8c42.json",
-              "captured_at": "2026-11-22T04:19:52Z",
-              "note": "archivo existente (529 B)",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/metadata/quality_reports/geoboundaries_adm1.27bf3e6cc93a8c42.json",
+              "captured_at": "2026-11-22T05:33:56Z",
+              "note": "archivo existente (514 B)",
               "passed": true,
-              "sha256": "711ff4390ba8d0fe692e8b0baff61660f8e44e5502db17f3b69415d0f791158a",
+              "sha256": "8169764255109b53f3ee6b63f38425bda8cc88f899045087a0a629e0b98c26e4",
               "payload": {
                 "status": "PASS",
                 "checks_run": 8,
@@ -1136,17 +1136,17 @@
           "dataset_id": "geoboundaries_adm1",
           "state_from": "VALIDATED",
           "state_to": "INTEGRATED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "índice territorial e ingreso en la base de consulta",
           "evidence": [
             {
               "evidence_type": "integration_record",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\manifests\\integration\\geoboundaries_adm1.json",
-              "captured_at": "2026-11-22T04:19:52Z",
-              "note": "archivo existente (326 B)",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/manifests/integration/geoboundaries_adm1.json",
+              "captured_at": "2026-11-22T05:33:56Z",
+              "note": "archivo existente (314 B)",
               "passed": true,
-              "sha256": "ce2fc6903754c83680fb3b82fdb146d192f8b28840bbf28dd1aef62939d3e587",
+              "sha256": "3917e91df1d33b1dc0d06ff0e8ad1a760a00f4e093a32a503d65cc7de5c910f9",
               "payload": {
                 "queryable": true,
                 "rows": 287,
@@ -1157,7 +1157,7 @@
         }
       ],
       "notes": "No se renombra la capa de Fase 1; la corrección 2023 se resolverá con la tabla de correspondencia oficial.",
-      "updated_at": "2026-11-22T04:19:52Z",
+      "updated_at": "2026-11-22T05:33:56Z",
       "CRITICAL_FIELDS": [
         "license",
         "geographic_coverage",
@@ -1212,14 +1212,14 @@
           "dataset_id": "hydrosheds",
           "state_from": "DISCOVERED",
           "state_to": "DISCOVERED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "alta en catálogo con evidencia de descubrimiento",
           "evidence": [
             {
               "evidence_type": "url_probe",
               "reference": "research/raw/phase3/probes_20261122_r3.json#hydrosheds",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "status=200; url=https://www.hydrosheds.org/products",
               "passed": true,
               "sha256": null,
@@ -1233,7 +1233,7 @@
         }
       ],
       "notes": "",
-      "updated_at": "2026-11-22T04:19:52Z",
+      "updated_at": "2026-11-22T05:33:56Z",
       "CRITICAL_FIELDS": [
         "license",
         "geographic_coverage",
@@ -1291,14 +1291,14 @@
           "dataset_id": "mag_anuario_2022_23",
           "state_from": "DISCOVERED",
           "state_to": "DISCOVERED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "alta en catálogo con evidencia de descubrimiento",
           "evidence": [
             {
               "evidence_type": "url_probe",
               "reference": "research/raw/phase3/probes_20261122_r3.json#mag_anuario_2022_23",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "HTTP 404",
               "passed": false,
               "sha256": null,
@@ -1314,14 +1314,14 @@
           "dataset_id": "mag_anuario_2022_23",
           "state_from": "DISCOVERED",
           "state_to": "UNAVAILABLE",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "no disponible en la ruta documentada",
           "evidence": [
             {
               "evidence_type": "url_probe",
               "reference": "research/raw/phase3/probes_20261122_r3.json#mag_anuario_2022_23",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "HTTP 404 en la URL documentada",
               "passed": false,
               "sha256": null,
@@ -1335,7 +1335,7 @@
         }
       ],
       "notes": "",
-      "updated_at": "2026-11-22T04:19:52Z",
+      "updated_at": "2026-11-22T05:33:56Z",
       "CRITICAL_FIELDS": [
         "license",
         "geographic_coverage",
@@ -1392,14 +1392,14 @@
           "dataset_id": "marn_geoportal",
           "state_from": "DISCOVERED",
           "state_to": "DISCOVERED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "alta en catálogo con evidencia de descubrimiento",
           "evidence": [
             {
               "evidence_type": "url_probe",
               "reference": "research/raw/phase3/probes_20261122_r3.json#marn_geoportal",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "HTTP 522",
               "passed": false,
               "sha256": null,
@@ -1415,14 +1415,14 @@
           "dataset_id": "marn_geoportal",
           "state_from": "DISCOVERED",
           "state_to": "UNAVAILABLE",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "no disponible: el servicio no respondió",
           "evidence": [
             {
               "evidence_type": "url_probe",
               "reference": "research/raw/phase3/probes_20261122_r3.json#marn_geoportal",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "HTTP 522 en la verificación",
               "passed": false,
               "sha256": null,
@@ -1436,7 +1436,7 @@
         }
       ],
       "notes": "",
-      "updated_at": "2026-11-22T04:19:52Z",
+      "updated_at": "2026-11-22T05:33:56Z",
       "CRITICAL_FIELDS": [
         "license",
         "geographic_coverage",
@@ -1503,17 +1503,17 @@
           "dataset_id": "nasa_power_point",
           "state_from": "DISCOVERED",
           "state_to": "DISCOVERED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "alta en catálogo",
           "evidence": [
             {
               "evidence_type": "file_hash",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\nasa_power_point\\power_daily_13.70N_89.20W.json",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/samples/phase3/nasa_power_point/power_daily_13.70N_89.20W.json",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "muestra descargada en Fase 3",
               "passed": true,
-              "sha256": "f0ff69a77369bf695f220e82cfd3425e9352e34a734814755916243a7135dfe9",
+              "sha256": "eb127dace11ac09f56c5845bce067f1e7621e8624d2948855b15748374f0afd5",
               "payload": {}
             }
           ]
@@ -1522,17 +1522,17 @@
           "dataset_id": "nasa_power_point",
           "state_from": "DISCOVERED",
           "state_to": "DOWNLOADED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "muestra descargada y hasheada",
           "evidence": [
             {
               "evidence_type": "file_hash",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\nasa_power_point\\power_daily_13.70N_89.20W.json",
-              "captured_at": "2026-11-22T04:19:52Z",
-              "note": "sha256 f0ff69a77369bf69…",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/samples/phase3/nasa_power_point/power_daily_13.70N_89.20W.json",
+              "captured_at": "2026-11-22T05:33:56Z",
+              "note": "sha256 eb127dace11ac09f…",
               "passed": true,
-              "sha256": "f0ff69a77369bf695f220e82cfd3425e9352e34a734814755916243a7135dfe9",
+              "sha256": "eb127dace11ac09f56c5845bce067f1e7621e8624d2948855b15748374f0afd5",
               "payload": {}
             }
           ]
@@ -1541,17 +1541,17 @@
           "dataset_id": "nasa_power_point",
           "state_from": "DOWNLOADED",
           "state_to": "PARSED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "formato detectado y metadatos extraídos",
           "evidence": [
             {
               "evidence_type": "parse_result",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\manifests\\ingest\\nasa_power_point.f0ff69a77369.json",
-              "captured_at": "2026-11-22T04:19:52Z",
-              "note": "archivo existente (1807 B)",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/manifests/ingest/nasa_power_point.eb127dace11a.json",
+              "captured_at": "2026-11-22T05:33:56Z",
+              "note": "archivo existente (1786 B)",
               "passed": true,
-              "sha256": "4ea3572d2b70ee9db64b8a41e9b08c6972a3d90a606894169baf5464bc2d7eaa",
+              "sha256": "e88652ab8678367cd70a48ac57a6154e7b10daf49185d69ae24f98b89681eed0",
               "payload": {
                 "parser": "agrosv.data.ingest/4.0",
                 "format": "geojson"
@@ -1563,17 +1563,17 @@
           "dataset_id": "nasa_power_point",
           "state_from": "PARSED",
           "state_to": "VALIDATED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "motor de calidad: PASS_WITH_WARNINGS con 4 comprobaciones",
           "evidence": [
             {
               "evidence_type": "validation_report",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\metadata\\quality_reports\\nasa_power_point.b77372c6936c09e8.json",
-              "captured_at": "2026-11-22T04:19:52Z",
-              "note": "archivo existente (2510 B)",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/metadata/quality_reports/nasa_power_point.b77372c6936c09e8.json",
+              "captured_at": "2026-11-22T05:33:56Z",
+              "note": "archivo existente (2420 B)",
               "passed": true,
-              "sha256": "86704bed828bc182193e5a484855e146d5978e9cd95e9bfcab2b1a6f7ff057b0",
+              "sha256": "026093824e4dbcd79808d01b039bdddc0ca499f55f054a30ab208bf4ee52c61b",
               "payload": {
                 "status": "PASS_WITH_WARNINGS",
                 "checks_run": 4,
@@ -1587,17 +1587,17 @@
           "dataset_id": "nasa_power_point",
           "state_from": "VALIDATED",
           "state_to": "INTEGRATED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "consultable por /api/data",
           "evidence": [
             {
               "evidence_type": "integration_record",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\manifests\\integration\\nasa_power_point.json",
-              "captured_at": "2026-11-22T04:19:52Z",
-              "note": "archivo existente (371 B)",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/manifests/integration/nasa_power_point.json",
+              "captured_at": "2026-11-22T05:33:56Z",
+              "note": "archivo existente (358 B)",
               "passed": true,
-              "sha256": "a39edd656141e52c6f097eaaef4d50551da6a6e24a8f8dc0d5afd87449c02c2a",
+              "sha256": "99a1a8e9239202e8ea4835e7cecf2de72f3c9894c1813fdf109f66be966492c0",
               "payload": {
                 "queryable": true,
                 "rows": 7671,
@@ -1608,7 +1608,7 @@
         }
       ],
       "notes": "Muestra mínima de Fase 3; no es el dataset nacional completo.",
-      "updated_at": "2026-11-22T04:19:52Z",
+      "updated_at": "2026-11-22T05:33:56Z",
       "CRITICAL_FIELDS": [
         "license",
         "geographic_coverage",
@@ -1631,7 +1631,7 @@
       "institution": "NVIDIA (Nemotron Personas)",
       "source_url": "https://huggingface.co/datasets/nvidia/Nemotron-Personas-El-Salvador",
       "publication_date": null,
-      "download_date": "2026-11-21",
+      "download_date": "2026-11-22",
       "version": null,
       "license": "CC BY 4.0",
       "redistribution_allowed": null,
@@ -1672,14 +1672,14 @@
           "dataset_id": "nemotron_sv",
           "state_from": "DISCOVERED",
           "state_to": "DISCOVERED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "alta en catálogo con evidencia de descubrimiento",
           "evidence": [
             {
               "evidence_type": "file_hash",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\nemotron_rows\\nemotron_rows_sample.json",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/samples/phase3/nemotron_rows/nemotron_rows_sample.json",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "archivo existente (27580 B)",
               "passed": true,
               "sha256": "59ea5ead123c66d27afbf25ddbd8f0032b68442700e922ef47d665d0075a1751",
@@ -1691,14 +1691,14 @@
           "dataset_id": "nemotron_sv",
           "state_from": "DISCOVERED",
           "state_to": "DOWNLOADED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "muestra de filas descargada",
           "evidence": [
             {
               "evidence_type": "file_hash",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\nemotron_rows\\nemotron_rows_sample.json",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/samples/phase3/nemotron_rows/nemotron_rows_sample.json",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "archivo existente (27580 B)",
               "passed": true,
               "sha256": "59ea5ead123c66d27afbf25ddbd8f0032b68442700e922ef47d665d0075a1751",
@@ -1710,14 +1710,14 @@
           "dataset_id": "nemotron_sv",
           "state_from": "DOWNLOADED",
           "state_to": "PARSED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "estructura parseada; no se promueve a VALIDATED",
           "evidence": [
             {
               "evidence_type": "parse_result",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\nemotron_rows\\nemotron_rows_sample.json",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/samples/phase3/nemotron_rows/nemotron_rows_sample.json",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "archivo existente (27580 B)",
               "passed": true,
               "sha256": "59ea5ead123c66d27afbf25ddbd8f0032b68442700e922ef47d665d0075a1751",
@@ -1730,7 +1730,7 @@
         }
       ],
       "notes": "",
-      "updated_at": "2026-11-22T04:19:52Z",
+      "updated_at": "2026-11-22T05:33:56Z",
       "CRITICAL_FIELDS": [
         "license",
         "geographic_coverage",
@@ -1776,7 +1776,7 @@
         "relative_humidity": "%"
       },
       "format": "JSON",
-      "size": "92,997 B",
+      "size": "92,996 B",
       "methodology": "Descarga con zona America/El_Salvador (UTC−6); períodos diarios locales convertidos a UTC; unidades verificadas contra daily_units.",
       "limitations": [
         "agregador de reanálisis: no es medición local",
@@ -1799,17 +1799,17 @@
           "dataset_id": "open_meteo_point",
           "state_from": "DISCOVERED",
           "state_to": "DISCOVERED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "alta en catálogo",
           "evidence": [
             {
               "evidence_type": "file_hash",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\open_meteo_point\\openmeteo_daily_13.70N_89.20W.json",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/samples/phase3/open_meteo_point/openmeteo_daily_13.70N_89.20W.json",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "muestra descargada en Fase 3",
               "passed": true,
-              "sha256": "9a6d9b1b1064a6024cd8a4992d257833610b2d7445fac6374cac0e55a4882f54",
+              "sha256": "8128d7b956d682aedfd7e5376878bd0db269b7f4b963de41528ca85e7f207c78",
               "payload": {}
             }
           ]
@@ -1818,17 +1818,17 @@
           "dataset_id": "open_meteo_point",
           "state_from": "DISCOVERED",
           "state_to": "DOWNLOADED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "muestra descargada y hasheada",
           "evidence": [
             {
               "evidence_type": "file_hash",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\open_meteo_point\\openmeteo_daily_13.70N_89.20W.json",
-              "captured_at": "2026-11-22T04:19:52Z",
-              "note": "sha256 9a6d9b1b1064a602…",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/samples/phase3/open_meteo_point/openmeteo_daily_13.70N_89.20W.json",
+              "captured_at": "2026-11-22T05:33:56Z",
+              "note": "sha256 8128d7b956d682ae…",
               "passed": true,
-              "sha256": "9a6d9b1b1064a6024cd8a4992d257833610b2d7445fac6374cac0e55a4882f54",
+              "sha256": "8128d7b956d682aedfd7e5376878bd0db269b7f4b963de41528ca85e7f207c78",
               "payload": {}
             }
           ]
@@ -1837,17 +1837,17 @@
           "dataset_id": "open_meteo_point",
           "state_from": "DOWNLOADED",
           "state_to": "PARSED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "formato detectado y metadatos extraídos",
           "evidence": [
             {
               "evidence_type": "parse_result",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\manifests\\ingest\\open_meteo_point.9a6d9b1b1064.json",
-              "captured_at": "2026-11-22T04:19:52Z",
-              "note": "archivo existente (1949 B)",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/manifests/ingest/open_meteo_point.8128d7b956d6.json",
+              "captured_at": "2026-11-22T05:33:56Z",
+              "note": "archivo existente (1922 B)",
               "passed": true,
-              "sha256": "75253ab69d63c5510f3b5cad26bd24d60bced8ec3234e1a58eec2b3c9f46497c",
+              "sha256": "7a3824cc36cc719d5081debbe3ee3237350d8421f4e947b8f77ec145c2657c52",
               "payload": {
                 "parser": "agrosv.data.ingest/4.0",
                 "format": "json"
@@ -1859,22 +1859,22 @@
           "dataset_id": "open_meteo_point",
           "state_from": "PARSED",
           "state_to": "VALIDATED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "motor de calidad: PASS_WITH_WARNINGS con 7 comprobaciones",
           "evidence": [
             {
               "evidence_type": "validation_report",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\metadata\\quality_reports\\open_meteo_point.a01b9eaf8169e2da.json",
-              "captured_at": "2026-11-22T04:19:52Z",
-              "note": "archivo existente (2763 B)",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/metadata/quality_reports/open_meteo_point.a01b9eaf8169e2da.json",
+              "captured_at": "2026-11-22T05:33:56Z",
+              "note": "archivo existente (2661 B)",
               "passed": true,
-              "sha256": "17dbe2c42abb4e75122373fec4ef1c75d563b62e4b6c1282eb4c52f2a50fcf88",
+              "sha256": "59d2cf69cdf1d7aa7daaf3f2ed802e2324e7d3236be3808b82bfc7c6b8fdce8b",
               "payload": {
                 "status": "PASS_WITH_WARNINGS",
                 "checks_run": 7,
                 "scope": "muestra de punto: 13,67 N, 89,17 W, 2019–2025",
-                "report_id": "b2e8deefe42dc44e"
+                "report_id": "e8b2ebb2a8261df8"
               }
             }
           ]
@@ -1883,17 +1883,17 @@
           "dataset_id": "open_meteo_point",
           "state_from": "VALIDATED",
           "state_to": "INTEGRATED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "consultable por /api/data",
           "evidence": [
             {
               "evidence_type": "integration_record",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\manifests\\integration\\open_meteo_point.json",
-              "captured_at": "2026-11-22T04:19:52Z",
-              "note": "archivo existente (368 B)",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/manifests/integration/open_meteo_point.json",
+              "captured_at": "2026-11-22T05:33:56Z",
+              "note": "archivo existente (354 B)",
               "passed": true,
-              "sha256": "088099d7f202bcec33da8dab2f7db372d313416cf6d10905c87719907e83b940",
+              "sha256": "f6c751b80b618a0c61ee58e7c1dc9d2cbac37f0b3ea0668fe82ca9a017c5eba9",
               "payload": {
                 "queryable": true,
                 "rows": 12785,
@@ -1904,7 +1904,7 @@
         }
       ],
       "notes": "Muestra mínima de Fase 3; no es el dataset nacional completo.",
-      "updated_at": "2026-11-22T04:19:52Z",
+      "updated_at": "2026-11-22T05:33:56Z",
       "CRITICAL_FIELDS": [
         "license",
         "geographic_coverage",
@@ -1968,17 +1968,17 @@
           "dataset_id": "osm_sv",
           "state_from": "DISCOVERED",
           "state_to": "DISCOVERED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "alta en catálogo",
           "evidence": [
             {
               "evidence_type": "file_hash",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\processed\\infrastructure\\infrastructure.gpkg.provenance.json",
-              "captured_at": "2026-11-22T04:19:52Z",
-              "note": "archivo existente (1344 B)",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/processed/infrastructure/infrastructure.gpkg.provenance.json",
+              "captured_at": "2026-11-22T05:33:56Z",
+              "note": "archivo existente (1311 B)",
               "passed": true,
-              "sha256": "9621e3e46af4bd49dc49f49b32dd9b7e04e9503cc0a0adcc418c47eb3fc372f8",
+              "sha256": "2c195fa18225a44d23f9e2e60eeda42f7657a0355a8ba934d7fa4dd296195eff",
               "payload": {}
             }
           ]
@@ -1987,14 +1987,14 @@
           "dataset_id": "osm_sv",
           "state_from": "DISCOVERED",
           "state_to": "DOWNLOADED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "extracto procesado con manifiesto",
           "evidence": [
             {
               "evidence_type": "file_hash",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\processed\\infrastructure\\infrastructure.gpkg",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/processed/infrastructure/infrastructure.gpkg",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "archivo existente (52998144 B)",
               "passed": true,
               "sha256": "44bdc4caaac7eca665bc58d85ebbeb92ba169a5da51c1903f2caa274339cbae1",
@@ -2006,14 +2006,14 @@
           "dataset_id": "osm_sv",
           "state_from": "DOWNLOADED",
           "state_to": "PARSED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "capas y CRS verificados con pyogrio",
           "evidence": [
             {
               "evidence_type": "parse_result",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\processed\\infrastructure\\infrastructure.gpkg",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/processed/infrastructure/infrastructure.gpkg",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "archivo existente (52998144 B)",
               "passed": true,
               "sha256": "44bdc4caaac7eca665bc58d85ebbeb92ba169a5da51c1903f2caa274339cbae1",
@@ -2027,17 +2027,17 @@
           "dataset_id": "osm_sv",
           "state_from": "PARSED",
           "state_to": "VALIDATED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "QC de CRS, cobertura y licencia",
           "evidence": [
             {
               "evidence_type": "validation_report",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\metadata\\quality_reports\\osm_sv.7d1cc8f640f5ef0c.json",
-              "captured_at": "2026-11-22T04:19:52Z",
-              "note": "archivo existente (1446 B)",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/metadata/quality_reports/osm_sv.7d1cc8f640f5ef0c.json",
+              "captured_at": "2026-11-22T05:33:56Z",
+              "note": "archivo existente (1398 B)",
               "passed": true,
-              "sha256": "601f0103d4a2253d7fa627aa58517e5e86988ed42e85a4eec152d0aecc5df04e",
+              "sha256": "e715004850885661c1cc2a2975af91bc5e93e86ff3facfeff97a4c3ae5ae908d",
               "payload": {
                 "status": "PASS_WITH_WARNINGS",
                 "checks_run": 4,
@@ -2051,17 +2051,17 @@
           "dataset_id": "osm_sv",
           "state_from": "VALIDATED",
           "state_to": "INTEGRATED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "servido por la API de infraestructura",
           "evidence": [
             {
               "evidence_type": "integration_record",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\manifests\\integration\\osm_sv.json",
-              "captured_at": "2026-11-22T04:19:52Z",
-              "note": "archivo existente (232 B)",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/manifests/integration/osm_sv.json",
+              "captured_at": "2026-11-22T05:33:56Z",
+              "note": "archivo existente (224 B)",
               "passed": true,
-              "sha256": "e492951329b3b5b88511031c4142ff9d47832a2b0086f5c5693712e375dbae7c",
+              "sha256": "359effc4f118af8343124c6a16d272b679da62c9ff1993ac0349646ac988ca88",
               "payload": {
                 "queryable": true,
                 "rows": 0,
@@ -2072,7 +2072,7 @@
         }
       ],
       "notes": "",
-      "updated_at": "2026-11-22T04:19:52Z",
+      "updated_at": "2026-11-22T05:33:56Z",
       "CRITICAL_FIELDS": [
         "license",
         "geographic_coverage",
@@ -2127,14 +2127,14 @@
           "dataset_id": "protectedplanet",
           "state_from": "DISCOVERED",
           "state_to": "DISCOVERED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "alta en catálogo con evidencia de descubrimiento",
           "evidence": [
             {
               "evidence_type": "manual_review",
               "reference": "docs/data_expansion/DATA_SOURCE_REGISTRY.md#protectedplanet",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "API 401 sin token",
               "passed": true,
               "sha256": null,
@@ -2146,14 +2146,14 @@
           "dataset_id": "protectedplanet",
           "state_from": "DISCOVERED",
           "state_to": "RESTRICTED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "restringido por token y licencia",
           "evidence": [
             {
               "evidence_type": "license_check",
               "reference": "research/raw/phase3/probes_20261122_r3.json#protectedplanet_sv",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "token requerido; uso no comercial",
               "passed": true,
               "sha256": null,
@@ -2165,7 +2165,7 @@
         }
       ],
       "notes": "",
-      "updated_at": "2026-11-22T04:19:52Z",
+      "updated_at": "2026-11-22T05:33:56Z",
       "CRITICAL_FIELDS": [
         "license",
         "geographic_coverage",
@@ -2190,7 +2190,7 @@
       "institution": "Copernicus/ESA (vía STAC Earth Search)",
       "source_url": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-c1-l2a",
       "publication_date": null,
-      "download_date": "2026-11-21",
+      "download_date": "2026-11-22",
       "version": null,
       "license": "Copernicus (atribución)",
       "redistribution_allowed": null,
@@ -2229,14 +2229,14 @@
           "dataset_id": "sentinel2_c1_l2a",
           "state_from": "DISCOVERED",
           "state_to": "DISCOVERED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "alta en catálogo con evidencia de descubrimiento",
           "evidence": [
             {
               "evidence_type": "file_hash",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\sentinel2_stac\\s2_stac_search.json",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/samples/phase3/sentinel2_stac/s2_stac_search.json",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "archivo existente (42425 B)",
               "passed": true,
               "sha256": "049c3afc7efa5f16d0f49ba96a21a697d2d1a367fd613d89100d04dc048d8f3e",
@@ -2248,14 +2248,14 @@
           "dataset_id": "sentinel2_c1_l2a",
           "state_from": "DISCOVERED",
           "state_to": "DOWNLOADED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "metadatos STAC descargados; no se descargaron escenas",
           "evidence": [
             {
               "evidence_type": "file_hash",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\sentinel2_stac\\s2_stac_search.json",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/samples/phase3/sentinel2_stac/s2_stac_search.json",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "archivo existente (42425 B)",
               "passed": true,
               "sha256": "049c3afc7efa5f16d0f49ba96a21a697d2d1a367fd613d89100d04dc048d8f3e",
@@ -2265,7 +2265,7 @@
         }
       ],
       "notes": "",
-      "updated_at": "2026-11-22T04:19:52Z",
+      "updated_at": "2026-11-22T05:33:56Z",
       "CRITICAL_FIELDS": [
         "license",
         "geographic_coverage",
@@ -2342,17 +2342,17 @@
           "dataset_id": "soilgrids_2",
           "state_from": "DISCOVERED",
           "state_to": "DISCOVERED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "alta en catálogo",
           "evidence": [
             {
               "evidence_type": "file_hash",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\processed\\soils\\rasters\\phh2o_0-30cm.tif.provenance.json",
-              "captured_at": "2026-11-22T04:19:52Z",
-              "note": "archivo existente (1430 B)",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/processed/soils/rasters/phh2o_0-30cm.tif.provenance.json",
+              "captured_at": "2026-11-22T05:33:56Z",
+              "note": "archivo existente (1385 B)",
               "passed": true,
-              "sha256": "94e8208d5593201a38f9e311c8081cd39f7e3d9d135984a4d5bbb00c8c8beb73",
+              "sha256": "1f67eb6e9f137d51c5ad2574d13052a20dea27101fa70f6015ce609b18bd8e61",
               "payload": {}
             }
           ]
@@ -2361,14 +2361,14 @@
           "dataset_id": "soilgrids_2",
           "state_from": "DISCOVERED",
           "state_to": "DOWNLOADED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "seis propiedades recortadas y verificadas",
           "evidence": [
             {
               "evidence_type": "file_hash",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\processed\\soils\\rasters\\phh2o_0-30cm.tif",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/processed/soils/rasters/phh2o_0-30cm.tif",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "archivo existente (145997 B)",
               "passed": true,
               "sha256": "261120d4ac064763a6347b586902b249e1dab4a1f26f8ef9e6c3682e2e43cd7b",
@@ -2376,8 +2376,8 @@
             },
             {
               "evidence_type": "file_hash",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\processed\\soils\\rasters\\soc_0-30cm.tif",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/processed/soils/rasters/soc_0-30cm.tif",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "archivo existente (491151 B)",
               "passed": true,
               "sha256": "b1b539dc26fd15205f33b35678130e8011a14333bf7ecd53675f8ea08dc0d3a2",
@@ -2385,8 +2385,8 @@
             },
             {
               "evidence_type": "file_hash",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\processed\\soils\\rasters\\nitrogen_0-30cm.tif",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/processed/soils/rasters/nitrogen_0-30cm.tif",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "archivo existente (461913 B)",
               "passed": true,
               "sha256": "79c99fea9656b046d3169f0066213cc2b68c1444534c91678221c2d678a4946c",
@@ -2394,8 +2394,8 @@
             },
             {
               "evidence_type": "file_hash",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\processed\\soils\\rasters\\clay_0-30cm.tif",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/processed/soils/rasters/clay_0-30cm.tif",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "archivo existente (399400 B)",
               "passed": true,
               "sha256": "bfebd14cfe9782c3421caa4f12d48a81dd241104050986d508cebce92911f7c3",
@@ -2403,8 +2403,8 @@
             },
             {
               "evidence_type": "file_hash",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\processed\\soils\\rasters\\sand_0-30cm.tif",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/processed/soils/rasters/sand_0-30cm.tif",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "archivo existente (362724 B)",
               "passed": true,
               "sha256": "73d04880aad074dfaeb173a77e5a04738e60b70de9df7dbe4306a073aae8eaf1",
@@ -2412,8 +2412,8 @@
             },
             {
               "evidence_type": "file_hash",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\processed\\soils\\rasters\\silt_0-30cm.tif",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/processed/soils/rasters/silt_0-30cm.tif",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "archivo existente (390134 B)",
               "passed": true,
               "sha256": "9c66f8d75251ece94cca7072b77f914fffde4fde637a4c15686024ea710439ef",
@@ -2425,14 +2425,14 @@
           "dataset_id": "soilgrids_2",
           "state_from": "DOWNLOADED",
           "state_to": "PARSED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "cabeceras GeoTIFF leídas",
           "evidence": [
             {
               "evidence_type": "parse_result",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\processed\\soils\\rasters\\phh2o_0-30cm.tif",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/processed/soils/rasters/phh2o_0-30cm.tif",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "archivo existente (145997 B)",
               "passed": true,
               "sha256": "261120d4ac064763a6347b586902b249e1dab4a1f26f8ef9e6c3682e2e43cd7b",
@@ -2447,17 +2447,17 @@
           "dataset_id": "soilgrids_2",
           "state_from": "PARSED",
           "state_to": "VALIDATED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "QC de rejilla, NoData y rango de pH",
           "evidence": [
             {
               "evidence_type": "validation_report",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\metadata\\quality_reports\\soilgrids_2.4f99765f26b64d19.json",
-              "captured_at": "2026-11-22T04:19:52Z",
-              "note": "archivo existente (1281 B)",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/metadata/quality_reports/soilgrids_2.4f99765f26b64d19.json",
+              "captured_at": "2026-11-22T05:33:56Z",
+              "note": "archivo existente (1240 B)",
               "passed": true,
-              "sha256": "a3e89048d845897130de89672a0c70aa7c3f75cada5278f97f440da446a87843",
+              "sha256": "0733d64f11757fda49f88b969b04e454c1fdbdf0f1e1906280d781ccde5a0fe1",
               "payload": {
                 "status": "PASS_WITH_WARNINGS",
                 "checks_run": 10,
@@ -2471,17 +2471,17 @@
           "dataset_id": "soilgrids_2",
           "state_from": "VALIDATED",
           "state_to": "INTEGRATED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "consulta puntual servida desde Fase 1",
           "evidence": [
             {
               "evidence_type": "integration_record",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\manifests\\integration\\soilgrids_2.json",
-              "captured_at": "2026-11-22T04:19:52Z",
-              "note": "archivo existente (237 B)",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/manifests/integration/soilgrids_2.json",
+              "captured_at": "2026-11-22T05:33:56Z",
+              "note": "archivo existente (229 B)",
               "passed": true,
-              "sha256": "48e47a0f1a18036c65902becdc30d65442ec63a2d1eda525248d3f255a703ce3",
+              "sha256": "6628e8d3de90151ffb70f2993bffbadfa4d1f657d96503ac900d76698a1f32af",
               "payload": {
                 "queryable": true,
                 "rows": 0,
@@ -2492,7 +2492,7 @@
         }
       ],
       "notes": "",
-      "updated_at": "2026-11-22T04:19:52Z",
+      "updated_at": "2026-11-22T05:33:56Z",
       "CRITICAL_FIELDS": [
         "license",
         "geographic_coverage",
@@ -2515,7 +2515,7 @@
       "institution": "ISRIC — World Soil Information",
       "source_url": "https://rest.isric.org/soilgrids/v2.0/properties/query",
       "publication_date": null,
-      "download_date": "2026-11-21",
+      "download_date": "2026-11-22",
       "version": null,
       "license": "CC BY 4.0",
       "redistribution_allowed": null,
@@ -2553,14 +2553,14 @@
           "dataset_id": "soilgrids_rest",
           "state_from": "DISCOVERED",
           "state_to": "DISCOVERED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "alta en catálogo con evidencia de descubrimiento",
           "evidence": [
             {
               "evidence_type": "file_hash",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\soilgrids_rest_point\\soilgrids_phh2o_point.json",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/samples/phase3/soilgrids_rest_point/soilgrids_phh2o_point.json",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "archivo existente (357 B)",
               "passed": true,
               "sha256": "0c456e2042b33ba5f2ce431349143cd95469d468dd70b3e7cef06d51276add75",
@@ -2572,14 +2572,14 @@
           "dataset_id": "soilgrids_rest",
           "state_from": "DISCOVERED",
           "state_to": "DOWNLOADED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "respuesta JSON descargada",
           "evidence": [
             {
               "evidence_type": "file_hash",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\soilgrids_rest_point\\soilgrids_phh2o_point.json",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/samples/phase3/soilgrids_rest_point/soilgrids_phh2o_point.json",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "archivo existente (357 B)",
               "passed": true,
               "sha256": "0c456e2042b33ba5f2ce431349143cd95469d468dd70b3e7cef06d51276add75",
@@ -2591,14 +2591,14 @@
           "dataset_id": "soilgrids_rest",
           "state_from": "DOWNLOADED",
           "state_to": "PARSED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "JSON parseado; el campo mean es null",
           "evidence": [
             {
               "evidence_type": "parse_result",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\soilgrids_rest_point\\soilgrids_phh2o_point.json",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/samples/phase3/soilgrids_rest_point/soilgrids_phh2o_point.json",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "archivo existente (357 B)",
               "passed": true,
               "sha256": "0c456e2042b33ba5f2ce431349143cd95469d468dd70b3e7cef06d51276add75",
@@ -2612,14 +2612,14 @@
           "dataset_id": "soilgrids_rest",
           "state_from": "PARSED",
           "state_to": "REJECTED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "rechazada: el canal devuelve null; se usa WebDAV",
           "evidence": [
             {
               "evidence_type": "validation_report",
               "reference": "data/samples/phase3/soilgrids_rest_point/soilgrids_phh2o_point.json",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "mean=null: no hay dato que validar",
               "passed": false,
               "sha256": null,
@@ -2632,7 +2632,7 @@
         }
       ],
       "notes": "",
-      "updated_at": "2026-11-22T04:19:52Z",
+      "updated_at": "2026-11-22T05:33:56Z",
       "CRITICAL_FIELDS": [
         "license",
         "geographic_coverage",
@@ -2694,14 +2694,14 @@
           "dataset_id": "worldbank_agri_share",
           "state_from": "DISCOVERED",
           "state_to": "DISCOVERED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "alta en catálogo",
           "evidence": [
             {
               "evidence_type": "file_hash",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\worldbank_slv\\wb_agri_land_share_slv.json",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/samples/phase3/worldbank_slv/wb_agri_land_share_slv.json",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "archivo existente (14891 B)",
               "passed": true,
               "sha256": "dbe04d5b44be078c19800ebf3419bc42fe0a1ea9eeb235a6a56e93c9e9267a74",
@@ -2713,14 +2713,14 @@
           "dataset_id": "worldbank_agri_share",
           "state_from": "DISCOVERED",
           "state_to": "DOWNLOADED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "serie descargada y hasheada",
           "evidence": [
             {
               "evidence_type": "file_hash",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\worldbank_slv\\wb_agri_land_share_slv.json",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/samples/phase3/worldbank_slv/wb_agri_land_share_slv.json",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "archivo existente (14891 B)",
               "passed": true,
               "sha256": "dbe04d5b44be078c19800ebf3419bc42fe0a1ea9eeb235a6a56e93c9e9267a74",
@@ -2732,17 +2732,17 @@
           "dataset_id": "worldbank_agri_share",
           "state_from": "DOWNLOADED",
           "state_to": "PARSED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "JSON parseado; 65 registros anuales",
           "evidence": [
             {
               "evidence_type": "parse_result",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\manifests\\ingest\\worldbank_agri_share.dbe04d5b44be.json",
-              "captured_at": "2026-11-22T04:19:52Z",
-              "note": "archivo existente (1520 B)",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/manifests/ingest/worldbank_agri_share.dbe04d5b44be.json",
+              "captured_at": "2026-11-22T05:33:56Z",
+              "note": "archivo existente (1488 B)",
               "passed": true,
-              "sha256": "57edaa95a452db2dd309b9b4212b11d7588e45acb2b0894c752c55f662db4505",
+              "sha256": "47077ed661f6f8c9b3f4be8283534011d4e3666d0c5b6188939e4dfdd36a8062",
               "payload": {
                 "parser": "agrosv.data.ingest/4.0",
                 "format": "json"
@@ -2754,17 +2754,17 @@
           "dataset_id": "worldbank_agri_share",
           "state_from": "PARSED",
           "state_to": "VALIDATED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "QC numérico, temporal y ausencia-vs-cero",
           "evidence": [
             {
               "evidence_type": "validation_report",
-              "reference": "C:\\GIT HUB\\agrosv\\data\\metadata\\quality_reports\\worldbank_agri_share.3e342c0ba7307d01.json",
-              "captured_at": "2026-11-22T04:19:52Z",
-              "note": "archivo existente (1313 B)",
+              "reference": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/metadata/quality_reports/worldbank_agri_share.3e342c0ba7307d01.json",
+              "captured_at": "2026-11-22T05:33:56Z",
+              "note": "archivo existente (1274 B)",
               "passed": true,
-              "sha256": "c6152fbb9dbd6e13a1bab1010bd128bd763dbb3b7e0402428d2d696828a83e9a",
+              "sha256": "6d3b29ad4c9d0481321c17020eb257f50ced52c4333c359eef4c017cf39049e2",
               "payload": {
                 "status": "PASS_WITH_WARNINGS",
                 "checks_run": 3,
@@ -2776,7 +2776,7 @@
         }
       ],
       "notes": "",
-      "updated_at": "2026-11-22T04:19:52Z",
+      "updated_at": "2026-11-22T05:33:56Z",
       "CRITICAL_FIELDS": [
         "license",
         "geographic_coverage",
@@ -2831,14 +2831,14 @@
           "dataset_id": "worldclim_21",
           "state_from": "DISCOVERED",
           "state_to": "DISCOVERED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "alta en catálogo con evidencia de descubrimiento",
           "evidence": [
             {
               "evidence_type": "manual_review",
               "reference": "docs/data_expansion/DATA_SOURCE_REGISTRY.md#worldclim_21",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "licencia no comercial",
               "passed": true,
               "sha256": null,
@@ -2850,14 +2850,14 @@
           "dataset_id": "worldclim_21",
           "state_from": "DISCOVERED",
           "state_to": "RESTRICTED",
-          "at": "2026-11-22T04:19:52Z",
+          "at": "2026-11-22T05:33:56Z",
           "actor": "agrosv.pipeline",
           "note": "restringido por licencia",
           "evidence": [
             {
               "evidence_type": "license_check",
               "reference": "docs/data_expansion/DATA_LICENSE_AND_ACCESS_REPORT.md",
-              "captured_at": "2026-11-22T04:19:52Z",
+              "captured_at": "2026-11-22T05:33:56Z",
               "note": "licencia no comercial, sin redistribución",
               "passed": true,
               "sha256": null,
@@ -2870,7 +2870,7 @@
         }
       ],
       "notes": "",
-      "updated_at": "2026-11-22T04:19:52Z",
+      "updated_at": "2026-11-22T05:33:56Z",
       "CRITICAL_FIELDS": [
         "license",
         "geographic_coverage",

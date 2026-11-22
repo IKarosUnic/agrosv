@@ -1,0 +1,1897 @@
+{
+  "engine": "environmental",
+  "engine_version": "5.0.0",
+  "generated_at": "2026-11-22T16:51:46Z",
+  "query": {
+    "lon": -89.2,
+    "lat": 13.7,
+    "size_m": 3000.0,
+    "radius_cells": 2
+  },
+  "result": {
+    "identification": {
+      "query": {
+        "lon": -89.2,
+        "lat": 13.7
+      },
+      "crs": "EPSG:4326",
+      "inside_bbox": true,
+      "inside_land": true,
+      "country": {
+        "level": "country",
+        "name": "El Salvador",
+        "source_code": "SV",
+        "official": true,
+        "area_km2": 20966.364,
+        "source_id": "SLV-ADM1-dissolve"
+      },
+      "department": {
+        "level": "department",
+        "name": "San Salvador",
+        "source_code": "SV-SS",
+        "official": true,
+        "area_km2": 900.394,
+        "source_id": "98794003B39565856515381"
+      },
+      "municipality_historic": {
+        "level": "municipality_historic",
+        "name": "San Salvador",
+        "source_code": "SV-SS",
+        "official": false,
+        "area_km2": 55.866,
+        "source_id": "79315794B23581403220274"
+      }
+    },
+    "terrain": {
+      "available": true,
+      "query": {
+        "lon": -89.2,
+        "lat": 13.7,
+        "radius_cells": 2
+      },
+      "elevation_m": 676.82,
+      "slope_deg": 2.67,
+      "slope_pct": 4.66,
+      "aspect_deg": 139.8,
+      "aspect_compass": "SE",
+      "relief_class": {
+        "code": 1,
+        "label": "suave",
+        "min_deg": 2,
+        "max_deg": 5
+      },
+      "tri_m": 3.6,
+      "tpi_m": 0.73,
+      "topographic_position": "ladera",
+      "window": {
+        "radius_cells": 2,
+        "cells": [
+          5,
+          5
+        ],
+        "approx_cell_m": 30.5,
+        "crs": "EPSG:4326",
+        "extent_m": 152.3
+      },
+      "methods": {
+        "elevation": "muestreo del DEM Copernicus GLO-30 (DSM)",
+        "slope": "diferencias finitas centrales sobre rejilla de 30 m EPSG:32616 (Fase 1)",
+        "aspect": "azimut de máxima pendiente, 0=N, 90=E (arctan2(−dz/dx, −dz/dy))",
+        "relief_class": "umbrales de pendiente declarados en config.RELIEF_BREAKS",
+        "tri": "Riley et al. (1999), ventana 3×3, √Σ(z−z0)²",
+        "tpi": "z0 − media de 8 vecinos; cresta ≥ +2 m, valle ≤ −2 m, plano local ≤ 0,5 m (convención AGROSV)",
+        "cell_size_for_tri": "aproximación 111.132 m/grado (N-S) y 111.320·cos(lat) m/grado (E-O)"
+      },
+      "terrain_classification": {
+        "scheme": "clases de relieve por pendiente (AGROSV)",
+        "thresholds_deg": [
+          {
+            "label": "plano",
+            "min": 0,
+            "max": 2
+          },
+          {
+            "label": "suave",
+            "min": 2,
+            "max": 5
+          },
+          {
+            "label": "ondulado",
+            "min": 5,
+            "max": 12
+          },
+          {
+            "label": "quebrado",
+            "min": 12,
+            "max": 25
+          },
+          {
+            "label": "escarpado",
+            "min": 25,
+            "max": 45
+          },
+          {
+            "label": "muy_escarpado",
+            "min": 45,
+            "max": 91
+          }
+        ],
+        "documented": true,
+        "note": "una clase de relieve describe pendiente, no uso del suelo, fertilidad ni aptitud de cultivo"
+      },
+      "source": "copdem30",
+      "limitations": [
+        "DSM (superficie) ≠ DTM (terreno desnudo): incluye dosel y edificios",
+        "resolución de 30 m ≠ exactitud posicional de 30 m",
+        "TRI y TPI describen una ventana local de ~150 m, no una cuenca",
+        "en zonas planas el aspecto es inestable y puede ser nulo"
+      ]
+    },
+    "soil": {
+      "query": {
+        "lon": -89.2,
+        "lat": 13.7
+      },
+      "depth_interval_cm": [
+        0,
+        30
+      ],
+      "properties": {
+        "clay": {
+          "value": null,
+          "unit": "%",
+          "label": "arcilla",
+          "evidence_class": "modeled_prediction",
+          "dataset_id": "soilgrids_2",
+          "cell": {
+            "available": false,
+            "crs": "EPSG:32616",
+            "res": [
+              250.0,
+              250.0
+            ],
+            "nodata": -32768.0,
+            "scale": 0.1,
+            "cell": {
+              "row": 337,
+              "col": 428
+            },
+            "reason": "celda NoData (agua, costa o fuera de la máscara)"
+          },
+          "available": false
+        },
+        "sand": {
+          "value": null,
+          "unit": "%",
+          "label": "arena",
+          "evidence_class": "modeled_prediction",
+          "dataset_id": "soilgrids_2",
+          "cell": {
+            "available": false,
+            "crs": "EPSG:32616",
+            "res": [
+              250.0,
+              250.0
+            ],
+            "nodata": -32768.0,
+            "scale": 0.1,
+            "cell": {
+              "row": 337,
+              "col": 428
+            },
+            "reason": "celda NoData (agua, costa o fuera de la máscara)"
+          },
+          "available": false
+        },
+        "silt": {
+          "value": null,
+          "unit": "%",
+          "label": "limo",
+          "evidence_class": "modeled_prediction",
+          "dataset_id": "soilgrids_2",
+          "cell": {
+            "available": false,
+            "crs": "EPSG:32616",
+            "res": [
+              250.0,
+              250.0
+            ],
+            "nodata": -32768.0,
+            "scale": 0.1,
+            "cell": {
+              "row": 337,
+              "col": 428
+            },
+            "reason": "celda NoData (agua, costa o fuera de la máscara)"
+          },
+          "available": false
+        },
+        "ph": {
+          "value": null,
+          "unit": "",
+          "label": "pH (H2O)",
+          "evidence_class": "modeled_prediction",
+          "dataset_id": "soilgrids_2",
+          "cell": {
+            "available": false,
+            "crs": "EPSG:32616",
+            "res": [
+              250.0,
+              250.0
+            ],
+            "nodata": -32768.0,
+            "scale": 0.1,
+            "cell": {
+              "row": 337,
+              "col": 428
+            },
+            "reason": "celda NoData (agua, costa o fuera de la máscara)"
+          },
+          "available": false
+        },
+        "soil_organic_carbon": {
+          "value": null,
+          "unit": "g kg-1",
+          "label": "carbono orgánico",
+          "evidence_class": "modeled_prediction",
+          "dataset_id": "soilgrids_2",
+          "cell": {
+            "available": false,
+            "crs": "EPSG:32616",
+            "res": [
+              250.0,
+              250.0
+            ],
+            "nodata": -32768.0,
+            "scale": 0.1,
+            "cell": {
+              "row": 337,
+              "col": 428
+            },
+            "reason": "celda NoData (agua, costa o fuera de la máscara)"
+          },
+          "available": false
+        },
+        "soil_nitrogen": {
+          "value": null,
+          "unit": "g kg-1",
+          "label": "nitrógeno total",
+          "evidence_class": "modeled_prediction",
+          "dataset_id": "soilgrids_2",
+          "cell": {
+            "available": false,
+            "crs": "EPSG:32616",
+            "res": [
+              250.0,
+              250.0
+            ],
+            "nodata": -32768.0,
+            "scale": 0.01,
+            "cell": {
+              "row": 337,
+              "col": 428
+            },
+            "reason": "celda NoData (agua, costa o fuera de la máscara)"
+          },
+          "available": false
+        }
+      },
+      "derived": {
+        "organic_matter": null,
+        "texture_class": null
+      },
+      "limitations_found": [],
+      "profile": {
+        "intervals_cm": [
+          [
+            0,
+            30
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            5,
+            15
+          ],
+          [
+            15,
+            30
+          ],
+          [
+            30,
+            60
+          ],
+          [
+            60,
+            100
+          ],
+          [
+            100,
+            200
+          ]
+        ],
+        "standard_intervals_cm": [
+          [
+            0,
+            5
+          ],
+          [
+            5,
+            15
+          ],
+          [
+            15,
+            30
+          ],
+          [
+            30,
+            60
+          ],
+          [
+            60,
+            100
+          ],
+          [
+            100,
+            200
+          ]
+        ],
+        "integrated_interval_cm": [
+          0,
+          30
+        ],
+        "intervals": [
+          {
+            "top_cm": 0,
+            "bottom_cm": 30,
+            "midpoint_cm": 15.0,
+            "role": "integrated",
+            "status": "available",
+            "source": "soilgrids_2",
+            "reason": null
+          },
+          {
+            "top_cm": 0,
+            "bottom_cm": 5,
+            "midpoint_cm": 2.5,
+            "role": "standard",
+            "status": "not_available",
+            "source": null,
+            "reason": "SoilGrids se descargó agregado a 0–30 cm; no hay capa para este intervalo y no se interpola entre profundidades"
+          },
+          {
+            "top_cm": 5,
+            "bottom_cm": 15,
+            "midpoint_cm": 10.0,
+            "role": "standard",
+            "status": "not_available",
+            "source": null,
+            "reason": "SoilGrids se descargó agregado a 0–30 cm; no hay capa para este intervalo y no se interpola entre profundidades"
+          },
+          {
+            "top_cm": 15,
+            "bottom_cm": 30,
+            "midpoint_cm": 22.5,
+            "role": "standard",
+            "status": "not_available",
+            "source": null,
+            "reason": "SoilGrids se descargó agregado a 0–30 cm; no hay capa para este intervalo y no se interpola entre profundidades"
+          },
+          {
+            "top_cm": 30,
+            "bottom_cm": 60,
+            "midpoint_cm": 45.0,
+            "role": "standard",
+            "status": "not_available",
+            "source": null,
+            "reason": "SoilGrids se descargó agregado a 0–30 cm; no hay capa para este intervalo y no se interpola entre profundidades"
+          },
+          {
+            "top_cm": 60,
+            "bottom_cm": 100,
+            "midpoint_cm": 80.0,
+            "role": "standard",
+            "status": "not_available",
+            "source": null,
+            "reason": "SoilGrids se descargó agregado a 0–30 cm; no hay capa para este intervalo y no se interpola entre profundidades"
+          },
+          {
+            "top_cm": 100,
+            "bottom_cm": 200,
+            "midpoint_cm": 150.0,
+            "role": "standard",
+            "status": "not_available",
+            "source": null,
+            "reason": "SoilGrids se descargó agregado a 0–30 cm; no hay capa para este intervalo y no se interpola entre profundidades"
+          }
+        ],
+        "available_intervals": [
+          [
+            0,
+            30
+          ]
+        ],
+        "depth_weighting": "media 0–30 cm con pesos 5/30, 10/30 y 15/30",
+        "note": "0–30 cm es una agregación ponderada de 0–5, 5–15 y 15–30 cm; se lista como intervalo integrado y no se desagrega",
+        "rule": "no se inventa una propiedad a una profundidad que no se descargó ni se mide"
+      },
+      "comparison": {
+        "available_sources": [
+          {
+            "dataset_id": "soilgrids_2",
+            "role": "predicción global 250 m, 0–30 cm",
+            "variables": [],
+            "evidence_class": "modeled_prediction"
+          }
+        ],
+        "unavailable_sources": [
+          {
+            "dataset_id": "centa_suelos",
+            "role": "cartografía nacional de suelos (referencia local)",
+            "status": "RESTRICTED",
+            "reason": "sin acceso ni licencia verificados: no se usa y no se presenta como si existiera"
+          }
+        ],
+        "conflicts": [],
+        "comparison_possible": false,
+        "note": "no se puede comparar una predicción global con una fuente nacional que no está accesible; por eso no hay detección de conflictos que mostrar"
+      },
+      "not_available": {
+        "soil_profile_by_horizon": {
+          "variables": [
+            "clay",
+            "sand",
+            "silt",
+            "ph",
+            "soil_organic_carbon"
+          ],
+          "reason": "SoilGrids se descargó agregado a 0–30 cm; no hay horizontes ni intervalos de profundidad adicionales en el repositorio",
+          "would_require": "descargar las capas de SoilGrids para 30–60, 60–100 y 100–200 cm (o perfiles CENTA)",
+          "status": "NOT_DOWNLOADED"
+        },
+        "soil_depth": {
+          "variables": [
+            "soil_depth"
+          ],
+          "reason": "ni SoilGrids 0–30 cm ni ninguna otra fuente integrada miden profundidad efectiva del suelo",
+          "would_require": "mapa de suelos nacional (CENTA) o perfiles de campo",
+          "status": "NO_SOURCE"
+        },
+        "soil_bulk_density": {
+          "variables": [
+            "bulk_density"
+          ],
+          "reason": "no integrada; tampoco se derivó por pedotransferencia",
+          "would_require": "SoilGrids bdod (no descargado) o mediciones",
+          "status": "NOT_DOWNLOADED"
+        },
+        "soil_coarse_fragments": {
+          "variables": [
+            "coarse_fragments"
+          ],
+          "reason": "no integrada; SoilGrids cfvo no descargado",
+          "would_require": "SoilGrids cfvo o granulometría de campo",
+          "status": "NOT_DOWNLOADED"
+        },
+        "soil_cec": {
+          "variables": [
+            "cation_exchange_capacity"
+          ],
+          "reason": "no integrada y no se estima por pedotransferencia sin declarar y validar los coeficientes",
+          "would_require": "SoilGrids cec o laboratorio",
+          "status": "NOT_DOWNLOADED"
+        },
+        "soil_awc": {
+          "variables": [
+            "available_water_capacity"
+          ],
+          "reason": "requiere pedotransferencia desde textura y densidad aparente; la densidad aparente no está disponible, de modo que una AWC calculada sería un supuesto disfrazado de dato",
+          "would_require": "densidad aparente y curva de retención, o AWC medida",
+          "status": "BLOCKED_BY_MISSING_INPUT"
+        },
+        "soil_salinity": {
+          "variables": [
+            "electrical_conductivity"
+          ],
+          "reason": "ninguna fuente integrada mide CE; no se infiere salinidad de textura o clima",
+          "would_require": "análisis de laboratorio (CE de extracto saturado)",
+          "status": "NO_SOURCE"
+        },
+        "soil_national_map": {
+          "variables": [
+            "soil_unit",
+            "soil_depth",
+            "drainage_class"
+          ],
+          "reason": "el Mapa Digital de Suelos del CENTA está en el catálogo como RESTRICTED: sin acceso ni licencia verificados",
+          "would_require": "convenio de acceso y licencia de uso/redistribución",
+          "status": "RESTRICTED_SOURCE"
+        }
+      },
+      "interpretation_rule": "las limitaciones son reglas declaradas sobre una predicción global; no constituyen un índice de aptitud ni una recomendación agronómica"
+    },
+    "hydrology": {
+      "surface_water": {
+        "available": true,
+        "query": {
+          "lon": -89.2,
+          "lat": 13.7,
+          "max_km": 10.0
+        },
+        "nearest_waterway": {
+          "kind": "waterway",
+          "osm_id": "569734677",
+          "name": "Quebrada La Mascota",
+          "class": "stream",
+          "distance_m": 445.2,
+          "distance_km": 0.445
+        },
+        "nearest_water_body": {
+          "kind": "water_body",
+          "osm_id": "1288968928",
+          "name": null,
+          "class": "otro",
+          "distance_m": 904.0,
+          "distance_km": 0.904
+        },
+        "nearest_any": {
+          "kind": "waterway",
+          "osm_id": "569734677",
+          "name": "Quebrada La Mascota",
+          "class": "stream",
+          "distance_m": 445.2,
+          "distance_km": 0.445
+        },
+        "within_max_distance": [
+          {
+            "kind": "waterway",
+            "osm_id": "569734677",
+            "name": "Quebrada La Mascota",
+            "class": "stream",
+            "distance_m": 445.2,
+            "distance_km": 0.445
+          },
+          {
+            "kind": "water_body",
+            "osm_id": "1288968928",
+            "name": null,
+            "class": "otro",
+            "distance_m": 904.0,
+            "distance_km": 0.904
+          }
+        ],
+        "distance_method": "distancia euclídea en EPSG:32616 desde el punto al elemento",
+        "source": "osm_sv",
+        "caveats": [
+          "un cauce mapeado no implica caudal permanente ni agua disponible",
+          "la ausencia en OSM no implica ausencia en el terreno",
+          "la proximidad a un cauce no dice nada sobre agua subterránea"
+        ]
+      },
+      "watershed": {
+        "window": {
+          "size_m": 3000.0,
+          "cells": [
+            100,
+            100
+          ],
+          "res_m": 30.0,
+          "crs": "EPSG:32616",
+          "nodata_share": 0.0,
+          "valid_cells": 10000,
+          "total_cells": 10000,
+          "source_resampling": "DEM nativo 1 arcosegundo (~30 m) reproyectado a 30 m EPSG:32616: remuestreo declarado, no resolución nueva"
+        },
+        "pour_point": {
+          "row": 50,
+          "col": 50,
+          "lon": -89.2,
+          "lat": 13.7
+        },
+        "upstream_area_km2": 0.0045,
+        "upstream_area_from_accumulation_km2": 0.0045,
+        "truncated": false,
+        "outlet": {
+          "row": 88,
+          "col": 42,
+          "offset_m": {
+            "east": -240.0,
+            "north": -1140.0
+          },
+          "accumulation_cells": 250
+        },
+        "diagnostics": {
+          "cells": 10000,
+          "valid_cells": 10000,
+          "cellsize_m": 30.0,
+          "depressions": {
+            "cells_raised": 734,
+            "raised_pct": 7.34
+          },
+          "flow": {
+            "flat_or_outlet_cells": 766,
+            "flat_or_outlet_pct": 7.66
+          },
+          "stream_threshold_cells": 100,
+          "stream_threshold_ratio": 0.01,
+          "max_accumulation": 250
+        },
+        "res_m": 30.0,
+        "method": "priority-flood + D8 + recorrido inverso de la cuenca desde la celda del punto; área = celdas de la cuenca × 900 m²",
+        "limitations": [
+          "no es una cuenca oficial: es una derivación D8 local del DEM",
+          "si el área toca el borde de la ventana, la cuenca está truncada",
+          "el DEM de 30 m no resuelve obras hidráulicas ni cauces menores",
+          "las zonas planas y los sumideros rellenados tienen orden de flujo arbitrario (diagnóstico incluido)"
+        ]
+      },
+      "water_balance": {
+        "available": true,
+        "point": {
+          "dataset_id": "nasa_power_point",
+          "latitude": 13.7,
+          "longitude": -89.2,
+          "cell_support": "0,5° × 0,625° (MERRA-2/POWER)",
+          "dataset_version": "v2.10.5",
+          "period": {
+            "start": "2019-01-01",
+            "end": "2025-12-31"
+          },
+          "distance_km": 0.0,
+          "representative": true,
+          "distance_note": "el punto consultado coincide con la celda"
+        },
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025
+        ],
+        "annual": [
+          {
+            "year": 2019,
+            "precipitation_mm": 1865.74,
+            "et0_mm": 1635.64,
+            "precipitation_minus_et0_mm": 230.1,
+            "aridity_index_p_over_et0": 1.141,
+            "budyko_runoff_mm_omega2": 845.6
+          },
+          {
+            "year": 2020,
+            "precipitation_mm": 2306.18,
+            "et0_mm": 1554.44,
+            "precipitation_minus_et0_mm": 751.7,
+            "aridity_index_p_over_et0": 1.484,
+            "budyko_runoff_mm_omega2": 1226.7
+          },
+          {
+            "year": 2021,
+            "precipitation_mm": 2684.69,
+            "et0_mm": 1626.0,
+            "precipitation_minus_et0_mm": 1058.7,
+            "aridity_index_p_over_et0": 1.651,
+            "budyko_runoff_mm_omega2": 1512.7
+          },
+          {
+            "year": 2022,
+            "precipitation_mm": 2791.42,
+            "et0_mm": 1556.66,
+            "precipitation_minus_et0_mm": 1234.8,
+            "aridity_index_p_over_et0": 1.793,
+            "budyko_runoff_mm_omega2": 1639.5
+          },
+          {
+            "year": 2023,
+            "precipitation_mm": 1786.0,
+            "et0_mm": 1680.33,
+            "precipitation_minus_et0_mm": 105.7,
+            "aridity_index_p_over_et0": 1.063,
+            "budyko_runoff_mm_omega2": 771.9
+          },
+          {
+            "year": 2024,
+            "precipitation_mm": 2187.19,
+            "et0_mm": 1601.47,
+            "precipitation_minus_et0_mm": 585.7,
+            "aridity_index_p_over_et0": 1.366,
+            "budyko_runoff_mm_omega2": 1109.3
+          },
+          {
+            "year": 2025,
+            "precipitation_mm": 1912.48,
+            "et0_mm": 1670.46,
+            "precipitation_minus_et0_mm": 242.0,
+            "aridity_index_p_over_et0": 1.145,
+            "budyko_runoff_mm_omega2": 868.8
+          }
+        ],
+        "mean": {
+          "precipitation_mm": 2219.1,
+          "et0_mm": 1617.9,
+          "precipitation_minus_et0_mm": 601.2,
+          "aridity_index_p_over_et0": 1.372,
+          "budyko_runoff_mm": 1128.4,
+          "budyko_runoff_range_mm_omega_1.5_3.0": [
+            857.2,
+            1446.2
+          ],
+          "budyko_range_note": "[cota inferior con ω=3,0; cota superior con ω=1,5]: mayor ω implica más evaporación y menos escorrentía"
+        },
+        "method": "P y ET0 anuales de reanálisis; déficit = P − ET0. Escorrentía estimada por Budyko–Fu con ω=2 (curva de Budyko) y sensibilidad ω=1,5–3,0. Ningún parámetro se calibró con aforos.",
+        "assumptions": [
+          "estado estacionario anual: no hay cambio de almacenamiento",
+          "ω=2 es una elección documentada, no calibrada en El Salvador",
+          "la escorrentía de Budyko incluye todo el excedente; no separa infiltración, recarga ni caudal base",
+          "P y ET0 provienen de puntos distintos (NASA POWER y Open-Meteo)"
+        ],
+        "limitations": [
+          "no es un caudal ni un volumen aprovechable",
+          "no es recarga de acuífero",
+          "no incorpora extracciones, riego ni regulación",
+          "un punto de reanálisis no representa una cuenca"
+        ],
+        "uncertainty": {
+          "method": "rango entre productos de precipitación y sensibilidad de ω",
+          "note": "el rango NO es un intervalo de confianza: no hay estaciones de referencia"
+        }
+      },
+      "groundwater": {
+        "available": false,
+        "variables": {
+          "groundwater_aquifers": {
+            "variables": [
+              "aquifer_boundary",
+              "aquifer_type"
+            ],
+            "reason": "no hay capa de acuíferos verificada en el repositorio (el geoportal MARN no expone un REST verificable)",
+            "would_require": "shapefile de acuíferos del MARN/ANDA con licencia",
+            "status": "NO_SOURCE"
+          },
+          "groundwater_levels": {
+            "variables": [
+              "water_level"
+            ],
+            "reason": "no hay series de niveles piezométricos ni pozos con datum",
+            "would_require": "red de observación de pozos (ANDA/MARN)",
+            "status": "NO_SOURCE"
+          },
+          "groundwater_recharge": {
+            "variables": [
+              "recharge"
+            ],
+            "reason": "no se estima sin acuífero, niveles ni parámetros hidráulicos; un número aquí sería inventado",
+            "would_require": "modelo hidrogeológico calibrado o trazadores",
+            "status": "BLOCKED_BY_MISSING_INPUT"
+          },
+          "water_quality": {
+            "variables": [
+              "water_quality"
+            ],
+            "reason": "no hay muestreos de calidad de agua integrados",
+            "would_require": "datos de laboratorio (MARN/ANDA) con método y fecha",
+            "status": "NO_SOURCE"
+          },
+          "water_rights": {
+            "variables": [
+              "water_right"
+            ],
+            "reason": "el acceso legal al agua no es un dato físico y no existe en el repositorio; AGROSV no infiere disponibilidad legal",
+            "would_require": "registro administrativo de derechos de agua (ANDA/MARN)",
+            "status": "NO_SOURCE"
+          }
+        },
+        "note": "no se infiere agua subterránea de la proximidad de un río, de un cuerpo de agua ni de la geología superficial; la ausencia es una propiedad del repositorio, no un resultado del motor",
+        "what_would_be_needed": [
+          "polígono de acuíferos con fuente y licencia (MARN/ANDA)",
+          "series de nivel piezométrico con datum y fecha",
+          "parámetros hidráulicos o modelo calibrado para estimar recarga"
+        ]
+      }
+    },
+    "climate": {
+      "engine": "climate",
+      "engine_version": "5.0.0",
+      "generated_at": "2026-11-22T16:51:46Z",
+      "query": {
+        "lon": -89.2,
+        "lat": 13.7
+      },
+      "result": {
+        "point": {
+          "dataset_id": "nasa_power_point",
+          "latitude": 13.7,
+          "longitude": -89.2,
+          "cell_support": "0,5° × 0,625° (MERRA-2/POWER)",
+          "dataset_version": "v2.10.5",
+          "period": {
+            "start": "2019-01-01",
+            "end": "2025-12-31"
+          },
+          "distance_km": 0.0,
+          "representative": true,
+          "distance_note": "el punto consultado coincide con la celda"
+        },
+        "stations": {
+          "available": false,
+          "reason": "no hay series de estaciones SNET/MARN accesibles; por eso el clima se sirve como reanálisis y no se valida contra estación"
+        },
+        "period": {
+          "start": "2019-01-01",
+          "end": "2025-12-31"
+        },
+        "annual_precipitation": {
+          "2019": {
+            "value": 1865.74,
+            "n_days": 365,
+            "coverage": 1.0,
+            "complete": true,
+            "quality_flag": "ok"
+          },
+          "2020": {
+            "value": 2306.18,
+            "n_days": 366,
+            "coverage": 1.0,
+            "complete": true,
+            "quality_flag": "ok"
+          },
+          "2021": {
+            "value": 2684.69,
+            "n_days": 365,
+            "coverage": 1.0,
+            "complete": true,
+            "quality_flag": "ok"
+          },
+          "2022": {
+            "value": 2791.42,
+            "n_days": 365,
+            "coverage": 1.0,
+            "complete": true,
+            "quality_flag": "ok"
+          },
+          "2023": {
+            "value": 1786.0,
+            "n_days": 365,
+            "coverage": 1.0,
+            "complete": true,
+            "quality_flag": "ok"
+          },
+          "2024": {
+            "value": 2187.19,
+            "n_days": 366,
+            "coverage": 1.0,
+            "complete": true,
+            "quality_flag": "ok"
+          },
+          "2025": {
+            "value": 1912.48,
+            "n_days": 365,
+            "coverage": 1.0,
+            "complete": true,
+            "quality_flag": "ok"
+          }
+        },
+        "annual_et0": {
+          "2019": {
+            "value": 1635.64,
+            "n_days": 365,
+            "coverage": 1.0,
+            "complete": true,
+            "quality_flag": "ok"
+          },
+          "2020": {
+            "value": 1554.44,
+            "n_days": 366,
+            "coverage": 1.0,
+            "complete": true,
+            "quality_flag": "ok"
+          },
+          "2021": {
+            "value": 1626.0,
+            "n_days": 365,
+            "coverage": 1.0,
+            "complete": true,
+            "quality_flag": "ok"
+          },
+          "2022": {
+            "value": 1556.66,
+            "n_days": 365,
+            "coverage": 1.0,
+            "complete": true,
+            "quality_flag": "ok"
+          },
+          "2023": {
+            "value": 1680.33,
+            "n_days": 365,
+            "coverage": 1.0,
+            "complete": true,
+            "quality_flag": "ok"
+          },
+          "2024": {
+            "value": 1601.47,
+            "n_days": 366,
+            "coverage": 1.0,
+            "complete": true,
+            "quality_flag": "ok"
+          },
+          "2025": {
+            "value": 1670.46,
+            "n_days": 365,
+            "coverage": 1.0,
+            "complete": true,
+            "quality_flag": "ok"
+          }
+        },
+        "monthly_precipitation": {
+          "dataset_id": "nasa_power_point",
+          "variable": "precipitation",
+          "aggregation": "sum",
+          "unit": "mm",
+          "months": [
+            {
+              "month": 1,
+              "mean": 41.12,
+              "min": 1.03,
+              "max": 109.63,
+              "n_years": 7
+            },
+            {
+              "month": 2,
+              "mean": 21.55,
+              "min": 0.42,
+              "max": 123.92,
+              "n_years": 7
+            },
+            {
+              "month": 3,
+              "mean": 92.12,
+              "min": 0.57,
+              "max": 327.33,
+              "n_years": 7
+            },
+            {
+              "month": 4,
+              "mean": 64.97,
+              "min": 18.76,
+              "max": 122.95,
+              "n_years": 7
+            },
+            {
+              "month": 5,
+              "mean": 251.01,
+              "min": 116.51,
+              "max": 367.5,
+              "n_years": 7
+            },
+            {
+              "month": 6,
+              "mean": 391.83,
+              "min": 196.3,
+              "max": 542.42,
+              "n_years": 7
+            },
+            {
+              "month": 7,
+              "mean": 254.77,
+              "min": 197.69,
+              "max": 301.39,
+              "n_years": 7
+            },
+            {
+              "month": 8,
+              "mean": 342.2,
+              "min": 222.99,
+              "max": 449.79,
+              "n_years": 7
+            },
+            {
+              "month": 9,
+              "mean": 331.01,
+              "min": 248.44,
+              "max": 386.88,
+              "n_years": 7
+            },
+            {
+              "month": 10,
+              "mean": 250.3,
+              "min": 78.67,
+              "max": 303.42,
+              "n_years": 7
+            },
+            {
+              "month": 11,
+              "mean": 135.64,
+              "min": 23.47,
+              "max": 240.42,
+              "n_years": 7
+            },
+            {
+              "month": 12,
+              "mean": 42.59,
+              "min": 6.15,
+              "max": 87.29,
+              "n_years": 7
+            }
+          ],
+          "method": "media de los totales/prodmedios mensuales del período disponible (2019–2025)",
+          "evidence_class": "reanalysis",
+          "not_a_normal": "con 7 años no se calcula una normal climatológica de la OMM; es una climatología del período"
+        },
+        "seasonality": {
+          "months": [
+            {
+              "month": 1,
+              "precipitation_mm": 7.46,
+              "temperature_mean_c": 26.41,
+              "walter_lieth_humid": false
+            },
+            {
+              "month": 2,
+              "precipitation_mm": 10.46,
+              "temperature_mean_c": 27.11,
+              "walter_lieth_humid": false
+            },
+            {
+              "month": 3,
+              "precipitation_mm": 23.43,
+              "temperature_mean_c": 28.09,
+              "walter_lieth_humid": false
+            },
+            {
+              "month": 4,
+              "precipitation_mm": 72.5,
+              "temperature_mean_c": 28.59,
+              "walter_lieth_humid": true
+            },
+            {
+              "month": 5,
+              "precipitation_mm": 216.66,
+              "temperature_mean_c": 28.25,
+              "walter_lieth_humid": true
+            },
+            {
+              "month": 6,
+              "precipitation_mm": 333.19,
+              "temperature_mean_c": 27.16,
+              "walter_lieth_humid": true
+            },
+            {
+              "month": 7,
+              "precipitation_mm": 179.84,
+              "temperature_mean_c": 27.76,
+              "walter_lieth_humid": true
+            },
+            {
+              "month": 8,
+              "precipitation_mm": 255.07,
+              "temperature_mean_c": 27.5,
+              "walter_lieth_humid": true
+            },
+            {
+              "month": 9,
+              "precipitation_mm": 286.43,
+              "temperature_mean_c": 27.09,
+              "walter_lieth_humid": true
+            },
+            {
+              "month": 10,
+              "precipitation_mm": 249.67,
+              "temperature_mean_c": 26.8,
+              "walter_lieth_humid": true
+            },
+            {
+              "month": 11,
+              "precipitation_mm": 112.63,
+              "temperature_mean_c": 26.54,
+              "walter_lieth_humid": true
+            },
+            {
+              "month": 12,
+              "precipitation_mm": 19.4,
+              "temperature_mean_c": 26.14,
+              "walter_lieth_humid": false
+            }
+          ],
+          "humid_months_walter_lieth": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "wettest_month": {
+            "month": 6,
+            "precipitation_mm": 333.19,
+            "temperature_mean_c": 27.16,
+            "walter_lieth_humid": true
+          },
+          "driest_month": {
+            "month": 1,
+            "precipitation_mm": 7.46,
+            "temperature_mean_c": 26.41,
+            "walter_lieth_humid": false
+          },
+          "top3_months_share_pct": 49.5,
+          "method": "climatología mensual; mes húmedo según Walter–Lieth (P_mes > 2·T_mes, P en mm y T en °C)",
+          "evidence_class": "reanalysis",
+          "note": "la temporada agrícola (primera/postrera) NO se deriva de esta tabla: requiere calendarios del MAG/CENTA"
+        },
+        "dry_spells": {
+          "dataset_id": "open_meteo_point",
+          "threshold_mm": 1.0,
+          "definition": "día seco = precipitación diaria < 1,0 mm",
+          "years": [
+            {
+              "year": 2019,
+              "max_consecutive_dry_days": 43,
+              "start": "2019-01-10",
+              "end": "2019-02-21",
+              "spells_ge_5d": 8,
+              "spells_ge_10d": 4,
+              "spells_ge_15d": 2,
+              "spells_ge_20d": 2
+            },
+            {
+              "year": 2020,
+              "max_consecutive_dry_days": 33,
+              "start": "2020-02-09",
+              "end": "2020-03-12",
+              "spells_ge_5d": 9,
+              "spells_ge_10d": 5,
+              "spells_ge_15d": 4,
+              "spells_ge_20d": 1
+            },
+            {
+              "year": 2021,
+              "max_consecutive_dry_days": 23,
+              "start": "2021-01-22",
+              "end": "2021-02-13",
+              "spells_ge_5d": 9,
+              "spells_ge_10d": 4,
+              "spells_ge_15d": 4,
+              "spells_ge_20d": 2
+            },
+            {
+              "year": 2022,
+              "max_consecutive_dry_days": 37,
+              "start": "2022-01-30",
+              "end": "2022-03-07",
+              "spells_ge_5d": 5,
+              "spells_ge_10d": 3,
+              "spells_ge_15d": 1,
+              "spells_ge_20d": 1
+            },
+            {
+              "year": 2023,
+              "max_consecutive_dry_days": 56,
+              "start": "2023-01-11",
+              "end": "2023-03-07",
+              "spells_ge_5d": 9,
+              "spells_ge_10d": 3,
+              "spells_ge_15d": 3,
+              "spells_ge_20d": 1
+            },
+            {
+              "year": 2024,
+              "max_consecutive_dry_days": 62,
+              "start": "2024-01-01",
+              "end": "2024-03-02",
+              "spells_ge_5d": 7,
+              "spells_ge_10d": 4,
+              "spells_ge_15d": 2,
+              "spells_ge_20d": 1
+            },
+            {
+              "year": 2025,
+              "max_consecutive_dry_days": 37,
+              "start": "2025-01-05",
+              "end": "2025-02-10",
+              "spells_ge_5d": 8,
+              "spells_ge_10d": 2,
+              "spells_ge_15d": 1,
+              "spells_ge_20d": 1
+            }
+          ],
+          "series_max_dry_days": 62,
+          "evidence_class": "reanalysis",
+          "note": "una racha seca de reanálisis no es una sequía agrícola: no incorpora suelo ni demanda hídrica"
+        },
+        "extremes": {
+          "dataset_id": "open_meteo_point",
+          "base_period": {
+            "start": "2019-01-01",
+            "end": "2025-12-31"
+          },
+          "r95p_threshold_mm": 22.33,
+          "definitions": {
+            "prcptot": "suma anual de precipitación diaria",
+            "rx1day": "máxima precipitación de 1 día",
+            "rx5day": "máxima suma de 5 días consecutivos",
+            "r95p": "suma anual de días con P > percentil 95 de días húmedos del período base",
+            "cdd": "máxima racha de días con P < 1 mm",
+            "cwd": "máxima racha de días con P ≥ 1 mm",
+            "sdii": "precipitación total / días húmedos"
+          },
+          "reference": "definiciones ETCCDI (Zhang et al., 2011)",
+          "years": [
+            {
+              "year": 2019,
+              "prcptot_mm": 1747.6,
+              "rx1day_mm": 177.6,
+              "rx5day_mm": 244.6,
+              "r95p_mm": 475.6,
+              "cdd_days": 43,
+              "cwd_days": 49,
+              "sdii_mm_per_wet_day": 8.52,
+              "wet_days": 203
+            },
+            {
+              "year": 2020,
+              "prcptot_mm": 2070.7,
+              "rx1day_mm": 136.4,
+              "rx5day_mm": 336.8,
+              "r95p_mm": 677.7,
+              "cdd_days": 33,
+              "cwd_days": 34,
+              "sdii_mm_per_wet_day": 9.99,
+              "wet_days": 204
+            },
+            {
+              "year": 2021,
+              "prcptot_mm": 1601.1,
+              "rx1day_mm": 82.9,
+              "rx5day_mm": 175.2,
+              "r95p_mm": 215.7,
+              "cdd_days": 23,
+              "cwd_days": 39,
+              "sdii_mm_per_wet_day": 7.62,
+              "wet_days": 206
+            },
+            {
+              "year": 2022,
+              "prcptot_mm": 1878.1,
+              "rx1day_mm": 98.8,
+              "rx5day_mm": 148.5,
+              "r95p_mm": 347.3,
+              "cdd_days": 37,
+              "cwd_days": 46,
+              "sdii_mm_per_wet_day": 8.22,
+              "wet_days": 226
+            },
+            {
+              "year": 2023,
+              "prcptot_mm": 1534.8,
+              "rx1day_mm": 45.0,
+              "rx5day_mm": 144.4,
+              "r95p_mm": 340.7,
+              "cdd_days": 56,
+              "cwd_days": 27,
+              "sdii_mm_per_wet_day": 7.58,
+              "wet_days": 199
+            },
+            {
+              "year": 2024,
+              "prcptot_mm": 2006.1,
+              "rx1day_mm": 115.1,
+              "rx5day_mm": 313.6,
+              "r95p_mm": 608.0,
+              "cdd_days": 62,
+              "cwd_days": 57,
+              "sdii_mm_per_wet_day": 9.21,
+              "wet_days": 216
+            },
+            {
+              "year": 2025,
+              "prcptot_mm": 1528.7,
+              "rx1day_mm": 48.0,
+              "rx5day_mm": 105.4,
+              "r95p_mm": 264.6,
+              "cdd_days": 37,
+              "cwd_days": 22,
+              "sdii_mm_per_wet_day": 7.45,
+              "wet_days": 200
+            }
+          ],
+          "evidence_class": "reanalysis",
+          "note": "los índices se calculan sobre un producto de reanálisis de ~9 km: subestiman la intensidad de lluvias convectivas locales"
+        },
+        "anomalies": {
+          "dataset_id": "nasa_power_point",
+          "method": "temperatura media diaria = (Tmax + Tmin)/2; anomalía anual respecto de la media del período 2019–2025; extremos por percentiles p95/p5 del período",
+          "period_mean_c": 27.29,
+          "thresholds": {
+            "tmax_p95_c": 32.77,
+            "tmin_p5_c": 22.13
+          },
+          "years": [
+            {
+              "year": 2019,
+              "mean_temperature_c": 27.5,
+              "anomaly_c": 0.22,
+              "days_tmax_gt_p95": 31,
+              "days_tmin_lt_p5": 12,
+              "n_days": 365,
+              "complete": true
+            },
+            {
+              "year": 2020,
+              "mean_temperature_c": 27.31,
+              "anomaly_c": 0.02,
+              "days_tmax_gt_p95": 31,
+              "days_tmin_lt_p5": 18,
+              "n_days": 366,
+              "complete": true
+            },
+            {
+              "year": 2021,
+              "mean_temperature_c": 26.76,
+              "anomaly_c": -0.52,
+              "days_tmax_gt_p95": 0,
+              "days_tmin_lt_p5": 24,
+              "n_days": 365,
+              "complete": true
+            },
+            {
+              "year": 2022,
+              "mean_temperature_c": 26.66,
+              "anomaly_c": -0.62,
+              "days_tmax_gt_p95": 2,
+              "days_tmin_lt_p5": 28,
+              "n_days": 365,
+              "complete": true
+            },
+            {
+              "year": 2023,
+              "mean_temperature_c": 27.7,
+              "anomaly_c": 0.42,
+              "days_tmax_gt_p95": 18,
+              "days_tmin_lt_p5": 17,
+              "n_days": 365,
+              "complete": true
+            },
+            {
+              "year": 2024,
+              "mean_temperature_c": 27.49,
+              "anomaly_c": 0.2,
+              "days_tmax_gt_p95": 19,
+              "days_tmin_lt_p5": 17,
+              "n_days": 366,
+              "complete": true
+            },
+            {
+              "year": 2025,
+              "mean_temperature_c": 27.58,
+              "anomaly_c": 0.29,
+              "days_tmax_gt_p95": 27,
+              "days_tmin_lt_p5": 9,
+              "n_days": 365,
+              "complete": true
+            }
+          ],
+          "evidence_class": "reanalysis",
+          "note": "una anomalía térmica de reanálisis no es un evento extremo observado; la celda es de ~55 × 69 km"
+        },
+        "drought": {
+          "dataset_id": "open_meteo_point",
+          "window_months": 3,
+          "latest_window_end": "2025-12",
+          "precipitation_3m_mm": 278.3,
+          "percentile": 39.0,
+          "category": "normal",
+          "categories": [
+            {
+              "max_percentile": 5.0,
+              "category": "extremadamente_seco",
+              "definition": "percentil ≤ 5"
+            },
+            {
+              "max_percentile": 10.0,
+              "category": "muy_seco",
+              "definition": "percentil 5–10"
+            },
+            {
+              "max_percentile": 20.0,
+              "category": "seco",
+              "definition": "percentil 10–20"
+            },
+            {
+              "max_percentile": 80.0,
+              "category": "normal",
+              "definition": "percentil 20–80"
+            },
+            {
+              "max_percentile": 90.0,
+              "category": "humedo",
+              "definition": "percentil 80–90"
+            },
+            {
+              "max_percentile": 95.0,
+              "category": "muy_humedo",
+              "definition": "percentil 90–95"
+            },
+            {
+              "max_percentile": 100.0,
+              "category": "extremadamente_humedo",
+              "definition": "percentil > 95"
+            }
+          ],
+          "n_windows": 82,
+          "method": "percentil empírico de la precipitación acumulada a 3 meses respecto de todas las ventanas del período",
+          "not_spi": "NO es el SPI: el SPI requiere ajustar una distribución (gamma mixta con ceros) sobre ≥30 años; con 7 años y muchos ceros de precipitación el ajuste no sería defendible",
+          "evidence_class": "reanalysis",
+          "limitations": [
+            "un percentil de 7 años es una referencia débil",
+            "precipitación baja no equivale a sequía agrícola sin demanda hídrica y suelo"
+          ]
+        },
+        "normals": {
+          "status": "insufficient_record",
+          "period": {
+            "start": 2019,
+            "end": 2025
+          },
+          "years": 7,
+          "wmo_requirement_years": 30,
+          "published_as": "climatología del período disponible",
+          "note": "no se publica una normal de 30 años: exigiría una serie homogénea de 1991–2020 o 1981–2010 con control de calidad",
+          "evidence_class": "reanalysis"
+        },
+        "forecasts": {
+          "available": false,
+          "reason": "no se integra ningún pronóstico: no hay proveedor configurado"
+        },
+        "spatial_interpolation": {
+          "applied": false,
+          "reason": "con dos puntos no se interpola clima: un mapa interpolado sería una invención con apariencia de dato"
+        },
+        "evidence_classes_present": [
+          "reanalysis"
+        ]
+      },
+      "sources": [
+        {
+          "dataset_id": "nasa_power_point",
+          "name": "NASA POWER — serie diaria en un punto (13,70° N, 89,20° O)",
+          "institution": "NASA Langley Research Center (POWER / MERRA-2)",
+          "source_url": "https://power.larc.nasa.gov/",
+          "version": "v2.10.5 (declarado por fila)",
+          "data_class": "reanalysis",
+          "license": "NASA POWER — datos abiertos, uso con atribución",
+          "spatial_resolution": "celda 0,5° × 0,625° (MERRA-2)",
+          "temporal_coverage": "2019-01-01 a 2025-12-31",
+          "provenance_id": null,
+          "available": true
+        },
+        {
+          "dataset_id": "open_meteo_point",
+          "name": "Open-Meteo Historical Weather API — serie diaria en un punto (13,673° N, 89,174° O)",
+          "institution": "Open-Meteo (ERA5/IFS)",
+          "source_url": "https://open-meteo.com/en/docs/historical-weather-api",
+          "version": "archive-api v1 (declarado por fila)",
+          "data_class": "reanalysis",
+          "license": "Open-Meteo — datos abiertos (CC BY 4.0 para datos; verificar términos)",
+          "spatial_resolution": "celda ~0,1° (~9 km)",
+          "temporal_coverage": "2019-01-01 a 2025-12-31",
+          "provenance_id": null,
+          "available": true
+        }
+      ],
+      "coverage": {
+        "points": [
+          {
+            "dataset_id": "nasa_power_point",
+            "lat": 13.7,
+            "lon": -89.2
+          },
+          {
+            "dataset_id": "open_meteo_point",
+            "lat": 13.673111,
+            "lon": -89.17432
+          }
+        ],
+        "period": "2019-01-01 a 2025-12-31",
+        "warning": "dos coordenadas no cubren El Salvador: no se interpola espacialmente el clima"
+      },
+      "limitations": [
+        "solo dos puntos de reanálisis: no hay cobertura nacional",
+        "reanálisis ≠ observación de estación",
+        "7 años no son una normal climatológica de la OMM",
+        "no hay pronóstico ni proyección climática",
+        "el indicador de sequía es por percentiles, no SPI",
+        "no se interpola espacialmente el clima"
+      ],
+      "processing_history": [
+        {
+          "step": "selección del punto climático más cercano",
+          "tool": "nearest_point",
+          "at": "2026-11-22T16:51:46Z",
+          "params": {}
+        },
+        {
+          "step": "agregaciones diarias/mensuales/anuales",
+          "tool": "agrosv.engines.climate",
+          "at": "2026-11-22T16:51:46Z",
+          "params": {}
+        },
+        {
+          "step": "índices ETCCDI y rachas",
+          "tool": "extremes / dry_spells",
+          "at": "2026-11-22T16:51:46Z",
+          "params": {}
+        }
+      ],
+      "conventions": {
+        "crs_query": "EPSG:4326",
+        "crs_metric": "EPSG:32616",
+        "crs_area": "EPSG:6933",
+        "units": "SI y unidades aceptadas por agrosv.data.units",
+        "nodata": "null en JSON; nunca 0 por defecto"
+      }
+    },
+    "environmental_constraints": [
+      {
+        "code": "racha_seca_prolongada",
+        "rule": "racha seca máxima ≥ 20 días consecutivos con P < 1 mm",
+        "domains": [
+          "climate",
+          "hydrology"
+        ],
+        "implication": "exposición a veranillos; su efecto depende de suelo y cultivo, que no se modelan aquí",
+        "inputs": {
+          "max_dry_days": 62
+        },
+        "evidence_class": "derived_from_rule",
+        "declares_absence": false,
+        "validated": false
+      },
+      {
+        "code": "sin_dato_de_profundidad",
+        "rule": "profundidad efectiva no disponible en el repositorio: no se asume un valor",
+        "domains": [
+          "soil"
+        ],
+        "implication": "cualquier balance de agua del suelo quedaría incompleto; se declara en vez de suponer",
+        "inputs": {
+          "soil_depth_cm": null
+        },
+        "evidence_class": "derived_from_rule",
+        "declares_absence": true,
+        "validated": false
+      }
+    ],
+    "environmental_profile_rule": "el perfil enumera hechos y reglas; no produce una puntuación ni una recomendación de uso",
+    "data_coverage": {
+      "identification": {
+        "available": true,
+        "levels": [
+          "country",
+          "department",
+          "municipality_historic"
+        ],
+        "missing": [
+          "municipality_2023",
+          "district"
+        ]
+      },
+      "terrain": {
+        "available": true,
+        "resolution": "30 m (DSM)",
+        "extent": "nacional"
+      },
+      "soil": {
+        "available": false,
+        "depth": "0–30 cm",
+        "resolution": "250 m",
+        "note": "predicción, no medición"
+      },
+      "surface_water": {
+        "available": true,
+        "note": "OSM: cobertura incompleta"
+      },
+      "watershed": {
+        "available": true,
+        "truncated": false,
+        "note": "derivación D8 local; no es cuenca oficial"
+      },
+      "water_balance": {
+        "available": true,
+        "note": "P−ET0 de reanálisis; no es caudal ni recarga"
+      },
+      "groundwater": {
+        "available": false,
+        "reason": "sin capa ni series"
+      },
+      "climate": {
+        "available": true,
+        "points": 2,
+        "spatial_representativity": "no evaluada; el punto está a distancia declarada"
+      },
+      "failed_components": {}
+    },
+    "uncertainty": {
+      "terrain": {
+        "evidence_class": "modeled_prediction",
+        "components": {
+          "vertical": "no cuantificada (sin puntos de control)",
+          "horizontal": "no cuantificada",
+          "model": "DSM incluye dosel y edificios"
+        },
+        "confidence": "baja"
+      },
+      "soil": {
+        "evidence_class": "modeled_prediction",
+        "components": {
+          "model": "error de SoilGrids no declarado por celda",
+          "spatial": "soporte de 250 m y agregación 0–30 cm",
+          "measurement": "no aplica: no hay medición",
+          "provenance": "cadena de custodia del producto global"
+        },
+        "confidence": "baja"
+      },
+      "climate": {
+        "evidence_class": "reanalysis",
+        "components": {
+          "model": "reanálisis de celda gruesa",
+          "spatial": "representatividad de celda, no de punto",
+          "temporal": "serie 2019–2025, sin homogeneización",
+          "measurement": "no aplica: no hay estación"
+        },
+        "confidence": "baja"
+      },
+      "hydrology": {
+        "evidence_class": "simulation",
+        "components": {
+          "model": "D8 y Budyko no calibrados",
+          "spatial": "DEM 30 m y ventana finita"
+        },
+        "confidence": "baja",
+        "note": {
+          "method": "rango entre productos de precipitación y sensibilidad de ω",
+          "note": "el rango NO es un intervalo de confianza: no hay estaciones de referencia"
+        }
+      },
+      "aggregate": {
+        "quantified": false,
+        "reason": "no hay datos de referencia para cuantificar ningún componente; publicar un compuesto numérico sería inventarlo",
+        "policy": "confianza 'baja' en todo el perfil"
+      }
+    },
+    "component_errors": {},
+    "processing_history": [
+      {
+        "step": "identificación territorial",
+        "tool": "agrosv.engines.territorial.locate",
+        "at": "2026-11-22T16:51:46Z",
+        "params": {}
+      },
+      {
+        "step": "métricas de terreno",
+        "tool": "agrosv.engines.terrain.terrain_metrics",
+        "at": "2026-11-22T16:51:46Z",
+        "params": {
+          "radius_cells": 2
+        }
+      },
+      {
+        "step": "suelo 0–30 cm",
+        "tool": "agrosv.engines.soil.SoilEngine.sample",
+        "at": "2026-11-22T16:51:46Z",
+        "params": {}
+      },
+      {
+        "step": "hidrología superficial y cuenca local",
+        "tool": "agrosv.engines.hydrology",
+        "at": "2026-11-22T16:51:46Z",
+        "params": {
+          "size_m": 3000.0
+        }
+      },
+      {
+        "step": "climatología del punto más cercano",
+        "tool": "agrosv.engines.climate.ClimateEngine.profile",
+        "at": "2026-11-22T16:51:46Z",
+        "params": {}
+      }
+    ]
+  },
+  "sources": [
+    {
+      "dataset_id": "copdem30",
+      "name": "Copernicus DEM GLO-30 (DSM) y derivados topográficos",
+      "institution": "ESA / Airbus Defence and Space / DLR (distribuido por Copernicus)",
+      "source_url": "https://copernicus-dem-30m.s3.amazonaws.com/",
+      "version": "GLO-30 (release 2021)",
+      "data_class": "modeled_prediction",
+      "license": "Copernicus DEM (DLR/Airbus) — uso libre con atribución",
+      "spatial_resolution": "1 arcosegundo (~30 m en el ecuador; ~30,9 m en 13,7° N)",
+      "temporal_coverage": "estático (modelo de superficie de una adquisición)",
+      "provenance_id": "dem30_wgs84@2026-11-21T18:58:23Z",
+      "available": true
+    },
+    {
+      "dataset_id": "geoboundaries_adm1",
+      "name": "Límites administrativos ADM0/ADM1/ADM2 (geoBoundaries gbOpen)",
+      "institution": "geoBoundaries (William & Mary geoLab), derivado de OpenStreetMap",
+      "source_url": "https://www.geoboundaries.org/",
+      "version": "gbOpen (fecha de compilación en manifiesto de capa)",
+      "data_class": "observed",
+      "license": "CC BY-SA 2.0",
+      "spatial_resolution": "vectorial; generalización no declarada por el proveedor",
+      "temporal_coverage": "instantánea de la compilación; no es una serie",
+      "provenance_id": null,
+      "available": true
+    },
+    {
+      "dataset_id": "soilgrids_2",
+      "name": "SoilGrids 2.0 — propiedades 0–30 cm",
+      "institution": "ISRIC — World Soil Information",
+      "source_url": "https://files.isric.org/soilgrids/latest/data/",
+      "version": "SoilGrids 2.0 (2020)",
+      "data_class": "modeled_prediction",
+      "license": "CC BY 4.0",
+      "spatial_resolution": "250 m (predicción); remuestreo a 250 m desde la malla nativa",
+      "temporal_coverage": "estático (predicción de una compilación de perfiles)",
+      "provenance_id": null,
+      "available": true
+    },
+    {
+      "dataset_id": "osm_sv",
+      "name": "OpenStreetMap — red hidrográfica y cuerpos de agua (extracto Geofabrik)",
+      "institution": "OpenStreetMap contributors (extracto Geofabrik)",
+      "source_url": "https://download.geofabrik.de/central-america/el-salvador.html",
+      "version": "extracto con marca temporal OSM",
+      "data_class": "observed",
+      "license": "ODbL 1.0",
+      "spatial_resolution": "vectorial; precisión heterogénea según colaborador",
+      "temporal_coverage": "instantánea del extracto",
+      "provenance_id": "infrastructure@2026-11-21T20:19:58Z",
+      "available": true
+    },
+    {
+      "dataset_id": "nasa_power_point",
+      "name": "NASA POWER — serie diaria en un punto (13,70° N, 89,20° O)",
+      "institution": "NASA Langley Research Center (POWER / MERRA-2)",
+      "source_url": "https://power.larc.nasa.gov/",
+      "version": "v2.10.5 (declarado por fila)",
+      "data_class": "reanalysis",
+      "license": "NASA POWER — datos abiertos, uso con atribución",
+      "spatial_resolution": "celda 0,5° × 0,625° (MERRA-2)",
+      "temporal_coverage": "2019-01-01 a 2025-12-31",
+      "provenance_id": null,
+      "available": true
+    },
+    {
+      "dataset_id": "open_meteo_point",
+      "name": "Open-Meteo Historical Weather API — serie diaria en un punto (13,673° N, 89,174° O)",
+      "institution": "Open-Meteo (ERA5/IFS)",
+      "source_url": "https://open-meteo.com/en/docs/historical-weather-api",
+      "version": "archive-api v1 (declarado por fila)",
+      "data_class": "reanalysis",
+      "license": "Open-Meteo — datos abiertos (CC BY 4.0 para datos; verificar términos)",
+      "spatial_resolution": "celda ~0,1° (~9 km)",
+      "temporal_coverage": "2019-01-01 a 2025-12-31",
+      "provenance_id": null,
+      "available": true
+    }
+  ],
+  "coverage": {
+    "territorial_extent": {
+      "bbox_wgs84": [
+        -90.1790975,
+        12.976046,
+        -87.6351394,
+        14.4510488
+      ],
+      "note": "rectángulo envolvente de ADM1, no el polígono"
+    },
+    "terrain": {
+      "available": true,
+      "extent": "recorte nacional del DEM",
+      "resolution": "1 arcosegundo (~30 m en el ecuador; ~30,9 m en 13,7° N)",
+      "derived_metrics": "30 m (EPSG:32616)"
+    },
+    "soils": {
+      "available": true,
+      "extent": "tierra firme de El Salvador (97,4 % de cobertura medida)",
+      "depth": "0–30 cm únicamente",
+      "resolution": "250 m"
+    },
+    "hydrology": {
+      "surface_water": "cauces y cuerpos de agua mapeados en OSM (cobertura incompleta)",
+      "watershed": "derivación D8 local en ventana; no es delimitación oficial",
+      "groundwater": "no disponible"
+    },
+    "climate": {
+      "points": [
+        {
+          "dataset_id": "nasa_power_point",
+          "lat": 13.7,
+          "lon": -89.2
+        },
+        {
+          "dataset_id": "open_meteo_point",
+          "lat": 13.673111,
+          "lon": -89.17432
+        }
+      ],
+      "period": "2019-01-01 a 2025-12-31",
+      "warning": "dos coordenadas no cubren El Salvador: no se interpola espacialmente el clima"
+    },
+    "admin_levels_present": [
+      "country",
+      "department",
+      "municipality_historic"
+    ],
+    "admin_levels_missing": [
+      "municipality_2023",
+      "district",
+      "basin",
+      "subbasin",
+      "protected_area",
+      "parcel"
+    ]
+  },
+  "limitations": [
+    "no hay índice compuesto: no existen pesos validados",
+    "el clima proviene de dos puntos de reanálisis, no del lugar",
+    "el suelo es una predicción global 250 m de 0–30 cm",
+    "no hay agua subterránea, profundidad de suelo, AWC ni datos de estaciones",
+    "las reglas de interacción son generales y no están validadas con rendimientos locales",
+    "un perfil completo no es una validación científica"
+  ],
+  "processing_history": [
+    {
+      "step": "identificación territorial",
+      "tool": "agrosv.engines.territorial.locate",
+      "at": "2026-11-22T16:51:46Z",
+      "params": {}
+    },
+    {
+      "step": "métricas de terreno",
+      "tool": "agrosv.engines.terrain.terrain_metrics",
+      "at": "2026-11-22T16:51:46Z",
+      "params": {
+        "radius_cells": 2
+      }
+    },
+    {
+      "step": "suelo 0–30 cm",
+      "tool": "agrosv.engines.soil.SoilEngine.sample",
+      "at": "2026-11-22T16:51:46Z",
+      "params": {}
+    },
+    {
+      "step": "hidrología superficial y cuenca local",
+      "tool": "agrosv.engines.hydrology",
+      "at": "2026-11-22T16:51:46Z",
+      "params": {
+        "size_m": 3000.0
+      }
+    },
+    {
+      "step": "climatología del punto más cercano",
+      "tool": "agrosv.engines.climate.ClimateEngine.profile",
+      "at": "2026-11-22T16:51:46Z",
+      "params": {}
+    }
+  ],
+  "conventions": {
+    "crs_query": "EPSG:4326",
+    "crs_metric": "EPSG:32616",
+    "crs_area": "EPSG:6933",
+    "units": "SI y unidades aceptadas por agrosv.data.units",
+    "nodata": "null en JSON; nunca 0 por defecto"
+  },
+  "uncertainty_policy": "cada componente conserva su clase de evidencia; ninguno se cuantifica con datos de referencia porque no existen",
+  "_cache": {
+    "key": "cec9d4bea0ac753f778a37c4",
+    "created_at": "2026-11-22T16:51:46Z"
+  }
+}

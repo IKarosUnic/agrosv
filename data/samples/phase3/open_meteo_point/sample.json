@@ -1,9 +1,9 @@
 {
   "sample_id": "open_meteo_point",
   "file": "data/samples/phase3/open_meteo_point/openmeteo_daily_13.70N_89.20W.json",
-  "bytes": 92997,
-  "sha256": "9a6d9b1b1064a6024cd8a4992d257833610b2d7445fac6374cac0e55a4882f54",
-  "retrieved_at": "2026-11-22T03:05:45+00:00",
+  "bytes": 92996,
+  "sha256": "8128d7b956d682aedfd7e5376878bd0db269b7f4b963de41528ca85e7f207c78",
+  "retrieved_at": "2026-11-22T05:32:16+00:00",
   "source_id": "open_meteo",
   "url": "https://archive-api.open-meteo.com/v1/archive?latitude=13.70&longitude=-89.20&start_date=2019-01-01&end_date=2025-12-31&daily=precipitation_sum,temperature_2m_max,temperature_2m_min,et0_fao_evapotranspiration,relative_humidity_2m_mean&timezone=America%2FEl_Salvador",
   "license": "CC BY 4.0; nivel gratuito solo uso no comercial (<10.000 llamadas/dia)",

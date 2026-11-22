@@ -2,7 +2,7 @@
   "artifact_id": "nasa_power_point.f0ff69a77369",
   "dataset_id": "nasa_power_point",
   "source_id": "nasa",
-  "original_path": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\nasa_power_point\\power_daily_13.70N_89.20W.json",
+  "original_path": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/samples/phase3/nasa_power_point/power_daily_13.70N_89.20W.json",
   "stored_path": "C:\\GIT HUB\\agrosv\\data\\raw\\_objects\\f0\\ff\\f0ff69a77369bf695f220e82cfd3425e9352e34a734814755916243a7135dfe9",
   "sha256": "f0ff69a77369bf695f220e82cfd3425e9352e34a734814755916243a7135dfe9",
   "bytes": 128012,
@@ -45,7 +45,7 @@
     ]
   },
   "status": "DUPLICATE",
-  "retrieved_at": "2026-11-22T04:19:52Z",
+  "retrieved_at": "2026-11-22T05:31:16Z",
   "license": "NASA POWER: datos abiertos, uso comercial permitido con cita",
   "source_url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=PRECTOTCORR,T2M_MAX,T2M_MIN&community=AG&longitude=-89.20&latitude=13.70&start=20190101&end=20251231&format=JSON",
   "version": null,

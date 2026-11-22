@@ -1,0 +1,54 @@
+{
+  "artifact_id": "nasa_power_point.eb127dace11a",
+  "dataset_id": "nasa_power_point",
+  "source_id": "nasa",
+  "original_path": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/samples/phase3/nasa_power_point/power_daily_13.70N_89.20W.json",
+  "stored_path": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/raw/_objects/eb/12/eb127dace11ac09f56c5845bce067f1e7621e8624d2948855b15748374f0afd5",
+  "sha256": "eb127dace11ac09f56c5845bce067f1e7621e8624d2948855b15748374f0afd5",
+  "bytes": 128012,
+  "format": "geojson",
+  "format_evidence": "JSON con objeto Feature/FC",
+  "metadata": {
+    "format": "geojson",
+    "bytes": 128012,
+    "geojson": {
+      "type": "Feature",
+      "features": 0,
+      "crs": null,
+      "property_keys": []
+    },
+    "limitations": [
+      "GeoJSON sin CRS declarado: RFC 7946 asume EPSG:4326, pero se debe verificar contra la fuente"
+    ]
+  },
+  "integrity": {
+    "ok": true,
+    "checks": [
+      {
+        "check": "archivo no vacío",
+        "passed": true,
+        "detail": "",
+        "severity": "error"
+      },
+      {
+        "check": "formato reconocido",
+        "passed": true,
+        "detail": "geojson",
+        "severity": "error"
+      },
+      {
+        "check": "extensión coherente con el contenido",
+        "passed": true,
+        "detail": "extensión .json, contenido geojson",
+        "severity": "error"
+      }
+    ]
+  },
+  "status": "INGESTED",
+  "retrieved_at": "2026-11-22T05:33:56Z",
+  "license": "NASA POWER: datos abiertos, uso comercial permitido con cita",
+  "source_url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=PRECTOTCORR,T2M_MAX,T2M_MIN&community=AG&longitude=-89.20&latitude=13.70&start=20190101&end=20251231&format=JSON",
+  "version": null,
+  "error": null,
+  "manifest_path": null
+}

@@ -2,7 +2,7 @@
   "artifact_id": "open_meteo_point.9a6d9b1b1064",
   "dataset_id": "open_meteo_point",
   "source_id": "open-meteo",
-  "original_path": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\open_meteo_point\\openmeteo_daily_13.70N_89.20W.json",
+  "original_path": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/samples/phase3/open_meteo_point/openmeteo_daily_13.70N_89.20W.json",
   "stored_path": "C:\\GIT HUB\\agrosv\\data\\raw\\_objects\\9a\\6d\\9a6d9b1b1064a6024cd8a4992d257833610b2d7445fac6374cac0e55a4882f54",
   "sha256": "9a6d9b1b1064a6024cd8a4992d257833610b2d7445fac6374cac0e55a4882f54",
   "bytes": 92997,
@@ -51,7 +51,7 @@
     ]
   },
   "status": "DUPLICATE",
-  "retrieved_at": "2026-11-22T04:19:52Z",
+  "retrieved_at": "2026-11-22T05:31:16Z",
   "license": "CC BY 4.0; nivel gratuito solo uso no comercial",
   "source_url": "https://archive-api.open-meteo.com/v1/archive?latitude=13.70&longitude=-89.20&start_date=2019-01-01&end_date=2025-12-31&daily=precipitation_sum,temperature_2m_max,temperature_2m_min,et0_fao_evapotranspiration,relative_humidity_2m_mean&timezone=America%2FEl_Salvador",
   "version": null,

@@ -2,7 +2,7 @@
   "artifact_id": "chirps3.1769f6f4fffe",
   "dataset_id": "chirps3",
   "source_id": "chirps3",
-  "original_path": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\chirps3_day\\chirps-v3.0.rnl.2026.01.15.tif",
+  "original_path": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/samples/phase3/chirps3_day/chirps-v3.0.rnl.2026.01.15.tif",
   "stored_path": "C:\\GIT HUB\\agrosv\\data\\raw\\_objects\\17\\69\\1769f6f4fffeff4a501962259b4331d3eb35ca2b8576cf4f58aefebaa12de9dd",
   "sha256": "1769f6f4fffeff4a501962259b4331d3eb35ca2b8576cf4f58aefebaa12de9dd",
   "bytes": 14000124,
@@ -12,7 +12,7 @@
     "format": "geotiff",
     "bytes": 14000124,
     "raster": {
-      "path": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\chirps3_day\\chirps-v3.0.rnl.2026.01.15.tif",
+      "path": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/samples/phase3/chirps3_day/chirps-v3.0.rnl.2026.01.15.tif",
       "driver": "GTiff",
       "crs": "EPSG:4326",
       "width": 7200,
@@ -73,7 +73,7 @@
     ]
   },
   "status": "DUPLICATE",
-  "retrieved_at": "2026-11-22T04:19:52Z",
+  "retrieved_at": "2026-11-22T05:33:56Z",
   "license": "Uso abierto con atribución (verificar aviso CHC)",
   "source_url": "https://data.chc.ucsb.edu/products/CHIRPS/v3.0/daily/final/rnl/2026/chirps-v3.0.rnl.2026.01.15.tif",
   "version": null,

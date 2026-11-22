@@ -98,6 +98,6 @@
   "parameters": {},
   "inputs": [],
   "validator_version": "agrosv.data.quality/4.0",
-  "generated_at": "2026-11-22T04:19:48Z",
+  "generated_at": "2026-11-22T05:33:50Z",
   "note": "PASS no significa «dato correcto»: significa que las comprobaciones ejecutadas no encontraron defectos"
 }

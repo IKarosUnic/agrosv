@@ -3,7 +3,7 @@
   "file": "data/samples/phase3/chirps3_day/chirps-v3.0.rnl.2026.01.15.tif",
   "bytes": 14000124,
   "sha256": "1769f6f4fffeff4a501962259b4331d3eb35ca2b8576cf4f58aefebaa12de9dd",
-  "retrieved_at": "2026-11-22T03:05:52+00:00",
+  "retrieved_at": "2026-11-22T05:33:42+00:00",
   "source_id": "chirps3",
   "url": "https://data.chc.ucsb.edu/products/CHIRPS/v3.0/daily/final/rnl/2026/chirps-v3.0.rnl.2026.01.15.tif",
   "license": "CHIRPS: uso abierto con atribucion (verificar aviso oficial)",

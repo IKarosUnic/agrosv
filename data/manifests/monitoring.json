@@ -1,6 +1,6 @@
 {
   "ok": true,
-  "generated_at": "2026-11-22T04:19:54Z",
+  "generated_at": "2026-11-22T05:33:58Z",
   "catalog": {
     "count": 22,
     "by_state": {
@@ -52,7 +52,7 @@
   },
   "store": {
     "exists": true,
-    "path": "C:\\GIT HUB\\agrosv\\data\\validated\\agrosv_data.sqlite",
+    "path": "/workspace/chats/b87a4c6cc910e4fa27d25f33/data/validated/agrosv_data.sqlite",
     "schema_version": 4,
     "datasets": 22,
     "observations": 20456,
@@ -117,7 +117,7 @@
       },
       "open_meteo_point": {
         "status": "PASS_WITH_WARNINGS",
-        "report_id": "b2e8deefe42dc44e"
+        "report_id": "e8b2ebb2a8261df8"
       },
       "gbif_sv": {
         "status": "PASS_WITH_WARNINGS",
@@ -125,7 +125,7 @@
       },
       "chirps3": {
         "status": "PASS_WITH_WARNINGS",
-        "report_id": "ce891ec912a5902a"
+        "report_id": "065f5d9a978bd9a6"
       },
       "worldbank_agri_share": {
         "status": "PASS_WITH_WARNINGS",
