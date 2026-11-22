@@ -1,0 +1,112 @@
+{
+  "report_id": "ce891ec912a5902a",
+  "dataset_id": "chirps3",
+  "artifact": "data/validated/chirps3/chirps3_precip_0p05deg_sv_2026-01-15_v3.0.tif",
+  "scope": "muestra de 1 día global recortada a El Salvador; no es una serie nacional integrada",
+  "status": "PASS_WITH_WARNINGS",
+  "checks_run": 12,
+  "errors": 0,
+  "warnings": 1,
+  "findings": [
+    {
+      "code": "nodata_sin_declarar",
+      "severity": "warning",
+      "message": "valores centinela presentes sin NoData declarado",
+      "count": 0,
+      "examples": [],
+      "detail": {
+        "candidates": [
+          {
+            "value": -9999.0,
+            "cells": 297,
+            "pct": 19.412
+          }
+        ]
+      }
+    },
+    {
+      "code": "ventana_de_cobertura",
+      "severity": "info",
+      "message": "estadísticas de la ventana solicitada (no del archivo completo)",
+      "count": 0,
+      "examples": [],
+      "detail": {
+        "cells": 1479,
+        "min": -9999.0,
+        "max": 1.7576243877410889,
+        "mean": -1683.3250439623575,
+        "median": 0.00037805724423378706,
+        "p10": -9999.0,
+        "p90": 0.2500059425830841,
+        "masked_cells": 0
+      }
+    }
+  ],
+  "parameters": {
+    "clip": {
+      "source": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\chirps3_day\\chirps-v3.0.rnl.2026.01.15.tif",
+      "output": "C:\\GIT HUB\\agrosv\\data\\validated\\chirps3\\chirps3_precip_0p05deg_sv_2026-01-15_v3.0.tif",
+      "bounds": [
+        -90.1790975,
+        12.976046,
+        -87.6351394,
+        14.4510488
+      ],
+      "window": [
+        1796,
+        911,
+        51,
+        30
+      ],
+      "resampling": "none",
+      "native_resolution": [
+        0.05000000074505806,
+        0.05000000074505806
+      ],
+      "profile": {
+        "path": "C:\\GIT HUB\\agrosv\\data\\validated\\chirps3\\chirps3_precip_0p05deg_sv_2026-01-15_v3.0.tif",
+        "driver": "GTiff",
+        "crs": "EPSG:4326",
+        "width": 51,
+        "height": 30,
+        "count": 1,
+        "dtype": "float32",
+        "nodata": null,
+        "nodata_declared": false,
+        "res": [
+          0.05000000074505806,
+          0.05000000074505806
+        ],
+        "bounds": [
+          -90.19999866187572,
+          12.949999298900366,
+          -87.64999862387776,
+          14.449999321252108
+        ],
+        "tiled": true,
+        "block_shape": [
+          16,
+          48
+        ],
+        "compress": "deflate",
+        "overviews": [],
+        "pixel_area_m2": 30048106.754142035,
+        "cog_heuristic": false,
+        "cog_notes": [
+          "bloque (16, 48) distinto de 256/512/1024",
+          "sin overviews: zoom-out obliga a leer resolución completa",
+          "NoData no declarado"
+        ],
+        "note": "cog_heuristic es una comprobación estructural, no una certificación de Cloud Optimized GeoTIFF"
+      }
+    },
+    "native_vs_effective": {
+      "native": "0,05° (pentadal; el diario está desagregado con ERA5)",
+      "effective": "diaria desagregada, no independiente a escala diaria"
+    }
+  },
+  "inputs": [],
+  "validator_version": "agrosv.data.quality/4.0",
+  "generated_at": "2026-11-22T04:19:48Z",
+  "note": "PASS no significa «dato correcto»: significa que las comprobaciones ejecutadas no encontraron defectos"
+}

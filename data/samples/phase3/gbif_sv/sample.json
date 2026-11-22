@@ -1,0 +1,13 @@
+{
+  "sample_id": "gbif_sv",
+  "file": "data/samples/phase3/gbif_sv/gbif_occurrence_sv_300.json",
+  "bytes": 2125141,
+  "sha256": "c2bf4264b01d1f6fc1df082e10995e7933114c00b01741027b5d7e8ace1ca7b9",
+  "retrieved_at": "2026-11-22T03:05:47+00:00",
+  "source_id": "gbif_api",
+  "url": "https://api.gbif.org/v1/occurrence/search?country=SV&limit=300&hasCoordinate=true",
+  "license": "Registros individuales con licencia propia (CC0/CC BY/CC BY-NC); campo license por registro",
+  "count": 1240548,
+  "returned": false,
+  "checks": "JSON valido; coordenadas presentes (hasCoordinate=true)"
+}

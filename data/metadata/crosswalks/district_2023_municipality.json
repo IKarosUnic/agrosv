@@ -1,0 +1,9 @@
+{
+  "source_level": "municipality_historic",
+  "target_level": "municipality_2023",
+  "source_id": "BCR/CNR — tabla oficial de correspondencia",
+  "status": "INCOMPLETE",
+  "entries": [],
+  "limitation": "No existe en el repositorio una tabla oficial verificada de los 272 distritos (o municipios históricos) a los 44 municipios vigentes. Se deja vacía a propósito: inventarla produciría uniones incorrectas con el censo.",
+  "required_evidence": "Publicación del BCR/CNR con códigos de distrito y municipio, fecha de vigencia y decreto de reforma"
+}

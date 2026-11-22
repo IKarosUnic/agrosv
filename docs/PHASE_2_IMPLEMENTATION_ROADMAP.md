@@ -1,6 +1,6 @@
 # Phase 2 Implementation Roadmap
 
-**Versión:** 1.0 · **Fecha:** 2026-11-21 · **Estado:** plan definido; ejecución **no iniciada**.
+**Versión:** 2.0 · **Fecha:** 2026-11-22 · **Estado:** ejecución **iniciada**; infraestructura transversal, núcleo hidrológico y API `/api/v1` implementados y probados (ver `PHASE_2_IMPLEMENTATION_REPORT.md`).
 
 Plan de ejecución de Fase 2 en 7 etapas. No implementa todos los módulos: define
 qué se construye, en qué orden y con qué puerta de aceptación.
@@ -49,7 +49,7 @@ incertidumbre, limitaciones, dependencias y «qué no hace».
 | Entregable | Tipo | Estado |
 |---|---|---|
 | Registro maestro de fuentes con estado | doc | **hecho** (ampliado) |
-| Corrección de licencias erróneas (AquaCrop) | doc | **pendiente** |
+| Corrección de licencias erróneas (AquaCrop) | doc | **hecho** |
 | Sondas de accesibilidad por fuente | code | **parcial** (20 sondas Fase 1.5) |
 
 **Puerta:** ninguna fuente entra sin URL, institución, licencia y estado.
@@ -75,16 +75,16 @@ prioritario».
 
 ### ETAPA 5 — Implementación selectiva
 
-Alcance recomendado para el **próximo ciclo de código** (no en esta fase):
+Alcance recomendado para el próximo ciclo de código, con el estado real de este:
 
 | # | Entregable | Módulo | Prueba de aceptación |
 |---|---|---|---|
-| 1 | `Provenance Engine` mínimo (tabla + `provenance_id` en respuestas) | Transversal | toda respuesta con fuente y fecha |
-| 2 | Serie CHIRPS por celda y SPI-3 | Clima/F | SPI calculado y contrastado con 3 productos |
-| 3 | Serie NDVI/NDMI nacional a 10 m (COG, 40 fechas) | A | 1 fecha nacional procesada < 10 min |
-| 4 | Detección de cambios simple entre 2 fechas | A | máscara de cambios con umbral documentado |
-| 5 | Presupuesto de maíz con precios MAG fechados | E | cuadre de costos ± 1 % |
-| 6 | Simulación AquaCrop/DSSAT en 1 punto, 1 ciclo | C | corrida reproducible con hash |
+| 1 | `Provenance Engine` + versionado por hash | Transversal | **hecho** — `science/registry.py` |
+| 2 | Serie CHIRPS por celda y SPI-3 | Clima/F | pendiente |
+| 3 | Aritmética de índices espectrales y anomalías | A | **hecho** — `science/indices.py`; adquisición pendiente |
+| 4 | Detección de cambios entre 2 fechas | A | **hecho** — `indices.change_mask` exige umbral |
+| 5 | Presupuesto de maíz con precios MAG fechados | E | pendiente (PDF sin licencia de reutilización) |
+| 6 | Manifiestos de corrida verificables por hash | C/Transversal | **hecho** — `science/reproducibility.py`; modelo de cultivo pendiente |
 
 **Puerta:** cada entregable con prueba automatizada y datos reales.
 
@@ -95,7 +95,7 @@ Alcance recomendado para el **próximo ciclo de código** (no en esta fase):
 | Entregable | Tipo | Estado |
 |---|---|---|
 | Protocolo de validación | doc | **hecho** |
-| Pruebas de integridad geoespacial | code | **pendiente** |
+| Pruebas de integridad geoespacial | code | **hecho** — `science/qc.py` + 30 pruebas |
 | Contraste CHIRPS vs IMERG vs ERA5 | code | **pendiente** (requiere cuentas) |
 | Validación con estaciones | code | **bloqueada** |
 
@@ -109,7 +109,7 @@ Alcance recomendado para el **próximo ciclo de código** (no en esta fase):
 |---|---|---|
 | 18 documentos nuevos en `docs/` | doc | **hecho** |
 | 7 documentos raíz actualizados | doc | **hecho** |
-| Verificación automática de documentos | code | **pendiente** |
+| Verificación automática de documentos | code | **hecho** — `scripts/05_verify_phase2_docs.py` |
 
 **Puerta:** script que comprueba existencia, secciones obligatorias y enlaces.
 
@@ -169,3 +169,26 @@ La fase se considera arquitectónicamente completa cuando:
 **No** se considera completa por tener documentos: se considera completa por
 tener arquitectura verificable y un primer conjunto de módulos ejecutables
 identificado.
+
+---
+
+## 7. Ciclo de implementación ejecutado (2026-11-22)
+
+| Entregable | Tipo | Evidencia |
+|---|---|---|
+| Contrato `ScientificResult` | code | `science/schemas.py`; rechaza salidas sin limitaciones, sin procedencia o con confianza alta sin cuantiles |
+| Registro/versionado de datasets | code | `science/registry.py`; `dataset_version` derivado del hash |
+| QC geoespacial | code | `science/qc.py`; detecta ráster vacío y geometría duplicada |
+| Incertidumbre | code | `science/uncertainty.py`; Monte Carlo con semilla obligatoria |
+| Validación V0–V4 | code | `science/validation.py`; nivel deducido, no elegido |
+| Reproducibilidad | code | `science/reproducibility.py`; detecta archivo alterado |
+| Orquestador | code | `science/orchestrator.py`; reintentos, reanudación, ciclos |
+| Motor hidrológico D8 | code | `science/hydrology.py`; invariantes sobre DEM real |
+| Índices espectrales | code | `science/indices.py`; valores analíticos |
+| API `/api/v1` (9 rutas) | code | `backend/agrosv/api_v2.py` |
+| Paquetes offline | code | ZIP por departamento con manifiesto y atribución |
+| Informe de implementación | doc | `PHASE_2_IMPLEMENTATION_REPORT.md` |
+
+Resultado: **161 pruebas verdes** (89 previas + 72 nuevas). Sigue sin existir
+clima, adquisición satelital, simulación de cultivos, economía, fitosanidad,
+alertas, autenticación ni parcelas.

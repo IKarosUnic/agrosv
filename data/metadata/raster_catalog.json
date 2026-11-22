@@ -1,0 +1,699 @@
+{
+  "generated_at": "2026-11-22T04:19:53Z",
+  "count": 13,
+  "rasters": [
+    {
+      "path": "C:\\GIT HUB\\agrosv\\data\\processed\\topography\\dem30_wgs84.tif",
+      "driver": "GTiff",
+      "crs": "EPSG:4326",
+      "width": 9159,
+      "height": 5311,
+      "count": 1,
+      "dtype": "float32",
+      "nodata": -32768.0,
+      "nodata_declared": true,
+      "res": [
+        0.0002777777777777778,
+        0.0002777777777777778
+      ],
+      "bounds": [
+        -90.17916666666666,
+        12.975833333333332,
+        -87.63499999999999,
+        14.45111111111111
+      ],
+      "tiled": true,
+      "block_shape": [
+        512,
+        512
+      ],
+      "compress": "deflate",
+      "overviews": [
+        2,
+        4,
+        8,
+        16,
+        32
+      ],
+      "pixel_area_m2": 927.3574874391303,
+      "cog_heuristic": true,
+      "cog_notes": [],
+      "note": "cog_heuristic es una comprobación estructural, no una certificación de Cloud Optimized GeoTIFF",
+      "variable": "dem30_wgs84",
+      "dataset_id": "copdem30",
+      "zone": "processed",
+      "bytes": 94695736,
+      "container_recommendation": {
+        "container": "cog",
+        "use_when": "un ráster por variable, lecturas por ventana o teselas, tamaño nacional o menor",
+        "why": "lectura por rango HTTP y por bloque; un solo archivo por producto",
+        "limits": "no representa series multivariable ni cubos temporales",
+        "decided_by": {
+          "temporal": false,
+          "variables": 1,
+          "access": "window"
+        }
+      }
+    },
+    {
+      "path": "C:\\GIT HUB\\agrosv\\data\\processed\\topography\\slope_deg.tif",
+      "driver": "GTiff",
+      "crs": "EPSG:32616",
+      "width": 9217,
+      "height": 5516,
+      "count": 1,
+      "dtype": "int16",
+      "nodata": -32768.0,
+      "nodata_declared": true,
+      "res": [
+        30.0,
+        30.0
+      ],
+      "bounds": [
+        155053.25176952017,
+        1434513.0095924507,
+        431563.25176952017,
+        1599993.0095924507
+      ],
+      "tiled": true,
+      "block_shape": [
+        512,
+        512
+      ],
+      "compress": "deflate",
+      "overviews": [
+        2,
+        4,
+        8,
+        16,
+        32
+      ],
+      "pixel_area_m2": 900.0,
+      "cog_heuristic": true,
+      "cog_notes": [],
+      "note": "cog_heuristic es una comprobación estructural, no una certificación de Cloud Optimized GeoTIFF",
+      "variable": "slope_deg",
+      "dataset_id": "copdem30",
+      "zone": "processed",
+      "bytes": 48395613,
+      "container_recommendation": {
+        "container": "cog",
+        "use_when": "un ráster por variable, lecturas por ventana o teselas, tamaño nacional o menor",
+        "why": "lectura por rango HTTP y por bloque; un solo archivo por producto",
+        "limits": "no representa series multivariable ni cubos temporales",
+        "decided_by": {
+          "temporal": false,
+          "variables": 1,
+          "access": "window"
+        }
+      }
+    },
+    {
+      "path": "C:\\GIT HUB\\agrosv\\data\\processed\\topography\\aspect_deg.tif",
+      "driver": "GTiff",
+      "crs": "EPSG:32616",
+      "width": 9217,
+      "height": 5516,
+      "count": 1,
+      "dtype": "uint16",
+      "nodata": 65535.0,
+      "nodata_declared": true,
+      "res": [
+        30.0,
+        30.0
+      ],
+      "bounds": [
+        155053.25176952017,
+        1434513.0095924507,
+        431563.25176952017,
+        1599993.0095924507
+      ],
+      "tiled": true,
+      "block_shape": [
+        512,
+        512
+      ],
+      "compress": "deflate",
+      "overviews": [
+        2,
+        4,
+        8,
+        16,
+        32
+      ],
+      "pixel_area_m2": 900.0,
+      "cog_heuristic": true,
+      "cog_notes": [],
+      "note": "cog_heuristic es una comprobación estructural, no una certificación de Cloud Optimized GeoTIFF",
+      "variable": "aspect_deg",
+      "dataset_id": "copdem30",
+      "zone": "processed",
+      "bytes": 49602315,
+      "container_recommendation": {
+        "container": "cog",
+        "use_when": "un ráster por variable, lecturas por ventana o teselas, tamaño nacional o menor",
+        "why": "lectura por rango HTTP y por bloque; un solo archivo por producto",
+        "limits": "no representa series multivariable ni cubos temporales",
+        "decided_by": {
+          "temporal": false,
+          "variables": 1,
+          "access": "window"
+        }
+      }
+    },
+    {
+      "path": "C:\\GIT HUB\\agrosv\\data\\processed\\topography\\hillshade.tif",
+      "driver": "GTiff",
+      "crs": "EPSG:32616",
+      "width": 9217,
+      "height": 5516,
+      "count": 1,
+      "dtype": "uint8",
+      "nodata": 0.0,
+      "nodata_declared": true,
+      "res": [
+        30.0,
+        30.0
+      ],
+      "bounds": [
+        155053.25176952017,
+        1434513.0095924507,
+        431563.25176952017,
+        1599993.0095924507
+      ],
+      "tiled": true,
+      "block_shape": [
+        512,
+        512
+      ],
+      "compress": "deflate",
+      "overviews": [
+        2,
+        4,
+        8,
+        16,
+        32
+      ],
+      "pixel_area_m2": 900.0,
+      "cog_heuristic": true,
+      "cog_notes": [],
+      "note": "cog_heuristic es una comprobación estructural, no una certificación de Cloud Optimized GeoTIFF",
+      "variable": "hillshade",
+      "dataset_id": "copdem30",
+      "zone": "processed",
+      "bytes": 22542996,
+      "container_recommendation": {
+        "container": "cog",
+        "use_when": "un ráster por variable, lecturas por ventana o teselas, tamaño nacional o menor",
+        "why": "lectura por rango HTTP y por bloque; un solo archivo por producto",
+        "limits": "no representa series multivariable ni cubos temporales",
+        "decided_by": {
+          "temporal": false,
+          "variables": 1,
+          "access": "window"
+        }
+      }
+    },
+    {
+      "path": "C:\\GIT HUB\\agrosv\\data\\processed\\topography\\relief_class.tif",
+      "driver": "GTiff",
+      "crs": "EPSG:32616",
+      "width": 9217,
+      "height": 5516,
+      "count": 1,
+      "dtype": "uint8",
+      "nodata": 255.0,
+      "nodata_declared": true,
+      "res": [
+        30.0,
+        30.0
+      ],
+      "bounds": [
+        155053.25176952017,
+        1434513.0095924507,
+        431563.25176952017,
+        1599993.0095924507
+      ],
+      "tiled": true,
+      "block_shape": [
+        512,
+        512
+      ],
+      "compress": "deflate",
+      "overviews": [
+        2,
+        4,
+        8,
+        16,
+        32
+      ],
+      "pixel_area_m2": 900.0,
+      "cog_heuristic": true,
+      "cog_notes": [],
+      "note": "cog_heuristic es una comprobación estructural, no una certificación de Cloud Optimized GeoTIFF",
+      "variable": "relief_class",
+      "dataset_id": "copdem30",
+      "zone": "processed",
+      "bytes": 6765357,
+      "container_recommendation": {
+        "container": "cog",
+        "use_when": "un ráster por variable, lecturas por ventana o teselas, tamaño nacional o menor",
+        "why": "lectura por rango HTTP y por bloque; un solo archivo por producto",
+        "limits": "no representa series multivariable ni cubos temporales",
+        "decided_by": {
+          "temporal": false,
+          "variables": 1,
+          "access": "window"
+        }
+      }
+    },
+    {
+      "path": "C:\\GIT HUB\\agrosv\\data\\processed\\soils\\rasters\\phh2o_0-30cm.tif",
+      "driver": "GTiff",
+      "crs": "EPSG:32616",
+      "width": 1107,
+      "height": 662,
+      "count": 1,
+      "dtype": "int16",
+      "nodata": -32768.0,
+      "nodata_declared": true,
+      "res": [
+        250.0,
+        250.0
+      ],
+      "bounds": [
+        155000.0,
+        1434500.0,
+        431750.0,
+        1600000.0
+      ],
+      "tiled": true,
+      "block_shape": [
+        512,
+        512
+      ],
+      "compress": "deflate",
+      "overviews": [
+        2,
+        4
+      ],
+      "pixel_area_m2": 62500.0,
+      "cog_heuristic": true,
+      "cog_notes": [],
+      "note": "cog_heuristic es una comprobación estructural, no una certificación de Cloud Optimized GeoTIFF",
+      "variable": "soilgrids_phh2o_0-30cm",
+      "dataset_id": "soilgrids_2",
+      "zone": "processed",
+      "bytes": 145997,
+      "container_recommendation": {
+        "container": "cog",
+        "use_when": "un ráster por variable, lecturas por ventana o teselas, tamaño nacional o menor",
+        "why": "lectura por rango HTTP y por bloque; un solo archivo por producto",
+        "limits": "no representa series multivariable ni cubos temporales",
+        "decided_by": {
+          "temporal": false,
+          "variables": 1,
+          "access": "window"
+        }
+      }
+    },
+    {
+      "path": "C:\\GIT HUB\\agrosv\\data\\processed\\soils\\rasters\\soc_0-30cm.tif",
+      "driver": "GTiff",
+      "crs": "EPSG:32616",
+      "width": 1107,
+      "height": 662,
+      "count": 1,
+      "dtype": "int16",
+      "nodata": -32768.0,
+      "nodata_declared": true,
+      "res": [
+        250.0,
+        250.0
+      ],
+      "bounds": [
+        155000.0,
+        1434500.0,
+        431750.0,
+        1600000.0
+      ],
+      "tiled": true,
+      "block_shape": [
+        512,
+        512
+      ],
+      "compress": "deflate",
+      "overviews": [
+        2,
+        4
+      ],
+      "pixel_area_m2": 62500.0,
+      "cog_heuristic": true,
+      "cog_notes": [],
+      "note": "cog_heuristic es una comprobación estructural, no una certificación de Cloud Optimized GeoTIFF",
+      "variable": "soilgrids_soc_0-30cm",
+      "dataset_id": "soilgrids_2",
+      "zone": "processed",
+      "bytes": 491151,
+      "container_recommendation": {
+        "container": "cog",
+        "use_when": "un ráster por variable, lecturas por ventana o teselas, tamaño nacional o menor",
+        "why": "lectura por rango HTTP y por bloque; un solo archivo por producto",
+        "limits": "no representa series multivariable ni cubos temporales",
+        "decided_by": {
+          "temporal": false,
+          "variables": 1,
+          "access": "window"
+        }
+      }
+    },
+    {
+      "path": "C:\\GIT HUB\\agrosv\\data\\processed\\soils\\rasters\\nitrogen_0-30cm.tif",
+      "driver": "GTiff",
+      "crs": "EPSG:32616",
+      "width": 1107,
+      "height": 662,
+      "count": 1,
+      "dtype": "int16",
+      "nodata": -32768.0,
+      "nodata_declared": true,
+      "res": [
+        250.0,
+        250.0
+      ],
+      "bounds": [
+        155000.0,
+        1434500.0,
+        431750.0,
+        1600000.0
+      ],
+      "tiled": true,
+      "block_shape": [
+        512,
+        512
+      ],
+      "compress": "deflate",
+      "overviews": [
+        2,
+        4
+      ],
+      "pixel_area_m2": 62500.0,
+      "cog_heuristic": true,
+      "cog_notes": [],
+      "note": "cog_heuristic es una comprobación estructural, no una certificación de Cloud Optimized GeoTIFF",
+      "variable": "soilgrids_nitrogen_0-30cm",
+      "dataset_id": "soilgrids_2",
+      "zone": "processed",
+      "bytes": 461913,
+      "container_recommendation": {
+        "container": "cog",
+        "use_when": "un ráster por variable, lecturas por ventana o teselas, tamaño nacional o menor",
+        "why": "lectura por rango HTTP y por bloque; un solo archivo por producto",
+        "limits": "no representa series multivariable ni cubos temporales",
+        "decided_by": {
+          "temporal": false,
+          "variables": 1,
+          "access": "window"
+        }
+      }
+    },
+    {
+      "path": "C:\\GIT HUB\\agrosv\\data\\processed\\soils\\rasters\\clay_0-30cm.tif",
+      "driver": "GTiff",
+      "crs": "EPSG:32616",
+      "width": 1107,
+      "height": 662,
+      "count": 1,
+      "dtype": "int16",
+      "nodata": -32768.0,
+      "nodata_declared": true,
+      "res": [
+        250.0,
+        250.0
+      ],
+      "bounds": [
+        155000.0,
+        1434500.0,
+        431750.0,
+        1600000.0
+      ],
+      "tiled": true,
+      "block_shape": [
+        512,
+        512
+      ],
+      "compress": "deflate",
+      "overviews": [
+        2,
+        4
+      ],
+      "pixel_area_m2": 62500.0,
+      "cog_heuristic": true,
+      "cog_notes": [],
+      "note": "cog_heuristic es una comprobación estructural, no una certificación de Cloud Optimized GeoTIFF",
+      "variable": "soilgrids_clay_0-30cm",
+      "dataset_id": "soilgrids_2",
+      "zone": "processed",
+      "bytes": 399400,
+      "container_recommendation": {
+        "container": "cog",
+        "use_when": "un ráster por variable, lecturas por ventana o teselas, tamaño nacional o menor",
+        "why": "lectura por rango HTTP y por bloque; un solo archivo por producto",
+        "limits": "no representa series multivariable ni cubos temporales",
+        "decided_by": {
+          "temporal": false,
+          "variables": 1,
+          "access": "window"
+        }
+      }
+    },
+    {
+      "path": "C:\\GIT HUB\\agrosv\\data\\processed\\soils\\rasters\\sand_0-30cm.tif",
+      "driver": "GTiff",
+      "crs": "EPSG:32616",
+      "width": 1107,
+      "height": 662,
+      "count": 1,
+      "dtype": "int16",
+      "nodata": -32768.0,
+      "nodata_declared": true,
+      "res": [
+        250.0,
+        250.0
+      ],
+      "bounds": [
+        155000.0,
+        1434500.0,
+        431750.0,
+        1600000.0
+      ],
+      "tiled": true,
+      "block_shape": [
+        512,
+        512
+      ],
+      "compress": "deflate",
+      "overviews": [
+        2,
+        4
+      ],
+      "pixel_area_m2": 62500.0,
+      "cog_heuristic": true,
+      "cog_notes": [],
+      "note": "cog_heuristic es una comprobación estructural, no una certificación de Cloud Optimized GeoTIFF",
+      "variable": "soilgrids_sand_0-30cm",
+      "dataset_id": "soilgrids_2",
+      "zone": "processed",
+      "bytes": 362724,
+      "container_recommendation": {
+        "container": "cog",
+        "use_when": "un ráster por variable, lecturas por ventana o teselas, tamaño nacional o menor",
+        "why": "lectura por rango HTTP y por bloque; un solo archivo por producto",
+        "limits": "no representa series multivariable ni cubos temporales",
+        "decided_by": {
+          "temporal": false,
+          "variables": 1,
+          "access": "window"
+        }
+      }
+    },
+    {
+      "path": "C:\\GIT HUB\\agrosv\\data\\processed\\soils\\rasters\\silt_0-30cm.tif",
+      "driver": "GTiff",
+      "crs": "EPSG:32616",
+      "width": 1107,
+      "height": 662,
+      "count": 1,
+      "dtype": "int16",
+      "nodata": -32768.0,
+      "nodata_declared": true,
+      "res": [
+        250.0,
+        250.0
+      ],
+      "bounds": [
+        155000.0,
+        1434500.0,
+        431750.0,
+        1600000.0
+      ],
+      "tiled": true,
+      "block_shape": [
+        512,
+        512
+      ],
+      "compress": "deflate",
+      "overviews": [
+        2,
+        4
+      ],
+      "pixel_area_m2": 62500.0,
+      "cog_heuristic": true,
+      "cog_notes": [],
+      "note": "cog_heuristic es una comprobación estructural, no una certificación de Cloud Optimized GeoTIFF",
+      "variable": "soilgrids_silt_0-30cm",
+      "dataset_id": "soilgrids_2",
+      "zone": "processed",
+      "bytes": 390134,
+      "container_recommendation": {
+        "container": "cog",
+        "use_when": "un ráster por variable, lecturas por ventana o teselas, tamaño nacional o menor",
+        "why": "lectura por rango HTTP y por bloque; un solo archivo por producto",
+        "limits": "no representa series multivariable ni cubos temporales",
+        "decided_by": {
+          "temporal": false,
+          "variables": 1,
+          "access": "window"
+        }
+      }
+    },
+    {
+      "path": "C:\\GIT HUB\\agrosv\\data\\validated\\chirps3\\chirps3_precip_0p05deg_sv_2026-01-15_v3.0.tif",
+      "driver": "GTiff",
+      "crs": "EPSG:4326",
+      "width": 51,
+      "height": 30,
+      "count": 1,
+      "dtype": "float32",
+      "nodata": null,
+      "nodata_declared": false,
+      "res": [
+        0.05000000074505806,
+        0.05000000074505806
+      ],
+      "bounds": [
+        -90.19999866187572,
+        12.949999298900366,
+        -87.64999862387776,
+        14.449999321252108
+      ],
+      "tiled": true,
+      "block_shape": [
+        16,
+        48
+      ],
+      "compress": "deflate",
+      "overviews": [],
+      "pixel_area_m2": 30048106.754142035,
+      "cog_heuristic": false,
+      "cog_notes": [
+        "bloque (16, 48) distinto de 256/512/1024",
+        "sin overviews: zoom-out obliga a leer resolución completa",
+        "NoData no declarado"
+      ],
+      "note": "cog_heuristic es una comprobación estructural, no una certificación de Cloud Optimized GeoTIFF",
+      "variable": "chirps3_precip_0p05deg_sv",
+      "dataset_id": "chirps3",
+      "zone": "validated",
+      "bytes": 3577,
+      "nodata_candidates": {
+        "declared": false,
+        "nodata": null,
+        "suspicious": [
+          {
+            "value": -9999.0,
+            "cells": 297,
+            "pct": 19.412
+          }
+        ],
+        "note": "un centinela frecuente sin NoData declarado es un defecto de metadatos: el motor de calidad no debe interpretarlo como valor observado"
+      },
+      "container_recommendation": {
+        "container": "cog",
+        "use_when": "un ráster por variable, lecturas por ventana o teselas, tamaño nacional o menor",
+        "why": "lectura por rango HTTP y por bloque; un solo archivo por producto",
+        "limits": "no representa series multivariable ni cubos temporales",
+        "decided_by": {
+          "temporal": false,
+          "variables": 1,
+          "access": "window"
+        }
+      }
+    },
+    {
+      "path": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\chirps3_day\\chirps-v3.0.rnl.2026.01.15.tif",
+      "driver": "GTiff",
+      "crs": "EPSG:4326",
+      "width": 7200,
+      "height": 2400,
+      "count": 1,
+      "dtype": "float32",
+      "nodata": null,
+      "nodata_declared": false,
+      "res": [
+        0.05000000074505806,
+        0.05000000074505806
+      ],
+      "bounds": [
+        -180.0,
+        -60.00000178813934,
+        180.00000536441803,
+        60.0
+      ],
+      "tiled": false,
+      "block_shape": [
+        1,
+        7200
+      ],
+      "compress": "lzw",
+      "overviews": [],
+      "pixel_area_m2": 30928036.521727286,
+      "cog_heuristic": false,
+      "cog_notes": [
+        "no está teselado: la lectura por ventana degrada",
+        "bloque (1, 7200) distinto de 256/512/1024",
+        "sin overviews: zoom-out obliga a leer resolución completa",
+        "NoData no declarado"
+      ],
+      "note": "cog_heuristic es una comprobación estructural, no una certificación de Cloud Optimized GeoTIFF",
+      "variable": "chirps3_precip_global_sample",
+      "dataset_id": "chirps3",
+      "zone": "samples",
+      "bytes": 14000124,
+      "nodata_candidates": {
+        "declared": false,
+        "nodata": null,
+        "suspicious": [
+          {
+            "value": -9999.0,
+            "cells": 12437119,
+            "pct": 71.974
+          }
+        ],
+        "note": "un centinela frecuente sin NoData declarado es un defecto de metadatos: el motor de calidad no debe interpretarlo como valor observado"
+      },
+      "container_recommendation": {
+        "container": "cog",
+        "use_when": "un ráster por variable, lecturas por ventana o teselas, tamaño nacional o menor",
+        "why": "lectura por rango HTTP y por bloque; un solo archivo por producto",
+        "limits": "no representa series multivariable ni cubos temporales",
+        "decided_by": {
+          "temporal": false,
+          "variables": 1,
+          "access": "window"
+        }
+      }
+    }
+  ],
+  "note": "resolución nativa y efectiva declaradas por separado; el contenedor recomendado es una decisión, no una conversión"
+}

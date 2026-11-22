@@ -1,0 +1,12 @@
+{
+  "sample_id": "geoboundaries_slv",
+  "file": "data/samples/phase3/geoboundaries_slv/slv_adm0.geojson",
+  "bytes": 321639,
+  "sha256": "c864925e93e1851af10062792881683189771be4a04c111a9f276a6c6de547c4",
+  "retrieved_at": "2026-11-22T03:05:55+00:00",
+  "source_id": "geoboundaries",
+  "url": "https://github.com/wmgeolab/geoBoundaries/raw/9469f09/releaseData/gbOpen/SLV/ADM0/geoBoundaries-SLV-ADM0.geojson",
+  "license": "Creative Commons Attribution-ShareAlike 2.0",
+  "boundary_year": "2021",
+  "checks": "GeoJSON valido; ADM0 nacional"
+}

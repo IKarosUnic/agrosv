@@ -1,0 +1,11 @@
+{
+  "sample_id": "worldbank_slv",
+  "file": "data/samples/phase3/worldbank_slv/wb_agri_land_share_slv.json",
+  "bytes": 14891,
+  "sha256": "dbe04d5b44be078c19800ebf3419bc42fe0a1ea9eeb235a6a56e93c9e9267a74",
+  "retrieved_at": "2026-11-22T03:05:45+00:00",
+  "source_id": "worldbank_api",
+  "url": "https://api.worldbank.org/v2/country/SLV/indicator/AG.LND.AGRI.ZS?format=json&per_page=70&date=1960:2024",
+  "license": "CC BY 4.0",
+  "checks": "JSON valido; 65 registros"
+}

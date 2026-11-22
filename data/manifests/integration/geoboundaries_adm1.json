@@ -1,0 +1,13 @@
+{
+  "dataset_id": "geoboundaries_adm1",
+  "queryable": true,
+  "rows": 287,
+  "endpoint": "/api/territory/{territory_id},/api/data/territories",
+  "store": "data/validated/agrosv_data.sqlite",
+  "verified_at": "2026-11-22T04:19:52Z",
+  "levels": [
+    "country",
+    "department",
+    "municipality_historic"
+  ]
+}

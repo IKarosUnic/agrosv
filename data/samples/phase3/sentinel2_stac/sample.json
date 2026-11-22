@@ -1,0 +1,14 @@
+{
+  "sample_id": "sentinel2_stac",
+  "file": "data/samples/phase3/sentinel2_stac/s2_stac_search.json",
+  "bytes": 42425,
+  "sha256": "049c3afc7efa5f16d0f49ba96a21a697d2d1a367fd613d89100d04dc048d8f3e",
+  "retrieved_at": "2026-11-22T03:05:53+00:00",
+  "source_id": "s2-l2a-stac",
+  "url": "https://earth-search.aws.element84.com/v1/search",
+  "license": "Copernicus Sentinel data: libre con atribucion",
+  "matched": 36,
+  "first_item": "S2B_15PZR_20250227_0_L2A",
+  "cog_range_read": "206 2048 B",
+  "checks": "STAC search valido; lectura por rango del COG B04"
+}

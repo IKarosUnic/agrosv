@@ -1,0 +1,103 @@
+{
+  "report_id": "a01b9eaf8169e2da",
+  "dataset_id": "open_meteo_point",
+  "artifact": "data/samples/phase3/open_meteo_point/openmeteo_daily_13.70N_89.20W.json",
+  "scope": "muestra de punto: 13,67 N, 89,17 W, 2019–2025",
+  "status": "PASS_WITH_WARNINGS",
+  "checks_run": 5,
+  "errors": 0,
+  "warnings": 2,
+  "findings": [
+    {
+      "code": "valores_extremos",
+      "severity": "warning",
+      "message": "210 valores con |z robusto| > 6 respecto a la propia serie; revisar, no eliminar automáticamente",
+      "count": 210,
+      "examples": [
+        177.6,
+        136.4,
+        115.1,
+        103.9,
+        98.8
+      ],
+      "detail": {}
+    },
+    {
+      "code": "distribucion",
+      "severity": "info",
+      "message": "resumen distribucional (no es un criterio de aprobación)",
+      "count": 2557,
+      "examples": [],
+      "detail": {
+        "mean": 4.836566,
+        "sd": 9.085752,
+        "p01": 0.0,
+        "p50": 1.5,
+        "p99": 35.764,
+        "skew": 7.0731,
+        "n": 2557
+      }
+    },
+    {
+      "code": "distribucion",
+      "severity": "info",
+      "message": "resumen distribucional (no es un criterio de aprobación)",
+      "count": 5114,
+      "examples": [],
+      "detail": {
+        "mean": 24.955377,
+        "sd": 4.843032,
+        "p01": 17.6,
+        "p50": 22.6,
+        "p99": 34.1,
+        "skew": 0.2462,
+        "n": 5114
+      }
+    },
+    {
+      "code": "distribucion",
+      "severity": "info",
+      "message": "resumen distribucional (no es un criterio de aprobación)",
+      "count": 2557,
+      "examples": [],
+      "detail": {
+        "mean": 4.429018,
+        "sd": 1.012382,
+        "p01": 1.486,
+        "p50": 4.48,
+        "p99": 6.8144,
+        "skew": -0.3154,
+        "n": 2557
+      }
+    },
+    {
+      "code": "distribucion",
+      "severity": "info",
+      "message": "resumen distribucional (no es un criterio de aprobación)",
+      "count": 2557,
+      "examples": [],
+      "detail": {
+        "mean": 75.351975,
+        "sd": 12.537038,
+        "p01": 50.0,
+        "p50": 77.0,
+        "p99": 97.0,
+        "skew": -0.2478,
+        "n": 2557
+      }
+    },
+    {
+      "code": "licencia_no_comercial",
+      "severity": "warning",
+      "message": "el nivel gratuito de Open-Meteo es solo para uso no comercial: el uso comercial exige plan de pago",
+      "count": 0,
+      "examples": [],
+      "detail": {}
+    }
+  ],
+  "parameters": {},
+  "inputs": [],
+  "validator_version": "agrosv.data.quality/4.0",
+  "generated_at": "2026-11-22T04:19:48Z",
+  "note": "PASS no significa «dato correcto»: significa que las comprobaciones ejecutadas no encontraron defectos"
+}

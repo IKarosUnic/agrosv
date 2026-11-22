@@ -1,0 +1,55 @@
+{
+  "report_id": "55584ee3b04fed88",
+  "dataset_id": "copdem30",
+  "artifact": "data/processed/topography/dem30_wgs84.tif",
+  "scope": "capa nacional completa (DEM y derivados)",
+  "status": "PASS",
+  "checks_run": 3,
+  "errors": 0,
+  "warnings": 0,
+  "findings": [
+    {
+      "code": "cobertura_por_bloques",
+      "severity": "info",
+      "message": "46.67% de celdas válidas leídas por bloques; sin umbral porque el rectángulo incluye mar",
+      "count": 0,
+      "examples": [],
+      "detail": {
+        "cells": 48643449,
+        "valid_pct": 46.67,
+        "nodata_declared": true,
+        "sentinels_found": [
+          {
+            "value": 255.0,
+            "cells": 68,
+            "pct": 0.0001
+          }
+        ],
+        "suspicious": [],
+        "method": "lectura por bloques nativos; no se cargó el ráster completo"
+      }
+    },
+    {
+      "code": "ventana_de_cobertura",
+      "severity": "info",
+      "message": "estadísticas de la ventana solicitada (no del archivo completo)",
+      "count": 0,
+      "examples": [],
+      "detail": {
+        "cells": 22701941,
+        "min": -2.9380886554718018,
+        "max": 2725.2646484375,
+        "mean": 436.07757804757546,
+        "median": 384.0999755859375,
+        "p10": 28.466886520385742,
+        "p90": 878.4622192382812,
+        "masked_cells": 25927039
+      }
+    }
+  ],
+  "parameters": {},
+  "inputs": [],
+  "validator_version": "agrosv.data.quality/4.0",
+  "generated_at": "2026-11-22T04:19:51Z",
+  "note": "PASS no significa «dato correcto»: significa que las comprobaciones ejecutadas no encontraron defectos"
+}

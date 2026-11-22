@@ -1,6 +1,6 @@
 # MODULE J — Hydrological Simulation
 
-**Versión:** 1.0 · **Fecha:** 2026-11-21 · **Estado:** diseñado, **no implementado**.
+**Versión:** 2.0 · **Fecha:** 2026-11-22 · **Estado:** **núcleo D8 implementado y probado** (`backend/agrosv/science/hydrology.py`); balance hídrico, SWAT+, recarga y demanda agrícola siguen **no implementados**.
 
 Delimitación de cuencas, balance hídrico y demanda agrícola. El módulo responde
 «¿cuánta agua hay, cuándo y con qué confiabilidad?», no «¿hay un río cerca?».
@@ -143,3 +143,27 @@ Depende de: DEM, CHIRPS, AgERA5, suelos, subcuencas. Habilita: Module F
 
 **Prioridad:** media. Primero delimitación y balance simple (sin SWAT+); SWAT+
 solo cuando exista una cuenca piloto y datos para calibrar.
+
+---
+
+## 9. Implementado en este ciclo (2026-11-22)
+
+`backend/agrosv/science/hydrology.py` implementa, con NumPy y `heapq` (sin
+dependencias nuevas):
+
+| Componente | Método | Verificación |
+|---|---|---|
+| Relleno de sumideros | priority-flood (Barnes et al., 2014) | pozo interior rellenado al borde; nunca se rellena una celda sin dato |
+| Dirección de flujo | D8 (O'Callaghan & Mark, 1984) | ladera plana drena al este; el borde queda como salida |
+| Acumulación | orden descendente de elevación | crece aguas abajo; conserva el área total |
+| Cuenca | recorrido inverso D8 desde la salida | máscara = acumulación de la celda de salida (invariante probado en el DEM real) |
+| Red de drenaje | umbral de área declarado | umbral inválido rechazado |
+| Pendiente y LS | diferencias finitas + Wischmeier & Smith (1978) | positivo, monótono con pendiente y área aportante |
+
+Expuesto en la API como `GET /api/v1/hydro/watershed` y `GET /api/v1/hydro/aoi`,
+con etiqueta `derivado`, resolución 30 m, `truncated` cuando la cuenca toca el
+borde de la ventana y la limitación explícita de que **no está calibrado**.
+
+Lo que sigue sin existir: balance hídrico con ET real, escorrentía SCS-CN,
+recarga, demanda agrícola, riesgo de inundación, SWAT+, y cualquier validación
+contra aforos. La proximidad a un cauce sigue sin implicar agua disponible.

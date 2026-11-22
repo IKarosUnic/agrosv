@@ -4,7 +4,11 @@ node_modules/
 frontend/dist/
 
 # Datos crudos: se regeneran con scripts/download_data.sh (~420 MB)
-data/raw/
+# Se conserva la estructura de carpetas (.gitkeep), no los archivos.
+data/raw/*
+!data/raw/*/
+data/raw/*/*
+!data/raw/*/.gitkeep
 data/interim/
 
 # Temporales de ejecución
@@ -32,3 +36,16 @@ agrosv_fase0.tar.gz
 # Respaldos locales
 AGROSV_FULL_BACKUP*
 agrosv_fase0*
+
+# Muestras: no versionar rasters ni comprimidos de gran tamano
+# (el hash queda en data/manifests/phase3_samples.json)
+data/samples/**/*.tif
+data/samples/**/*.pbf
+data/samples/**/*.zip
+
+# Fase 4: base de consulta y rasteres derivados son regenerables
+# (hash, receta y linaje quedan en data/manifests/)
+data/validated/*.sqlite
+data/validated/*.sqlite-wal
+data/validated/*.sqlite-shm
+data/validated/**/*.tif

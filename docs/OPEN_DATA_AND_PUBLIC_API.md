@@ -1,6 +1,6 @@
 # Open Data and Public API
 
-**Versión:** 1.0 · **Fecha:** 2026-11-21 · **Estado:** diseñado, **no implementado**.
+**Versión:** 2.0 · **Fecha:** 2026-11-22 · **Estado:** **implementada** la capa `/api/v1` (9 rutas) y los paquetes offline; varios endpoints del diseño siguen pendientes porque dependen de módulos no implementados.
 
 Define qué datos de AGROSV son públicos, bajo qué licencia, en qué formato y con
 qué límites. Un dato restringido **no** se publica «porque está en el servidor».
@@ -135,3 +135,32 @@ Depende de: Data Provenance Engine, versionado, Module A/C para derivados.
 
 **Prioridad:** media-alta. Publicar lo que ya existe (territorio, relieve,
 hidrografía) es barato y da valor inmediato; el resto llega con cada módulo.
+
+---
+
+## 10. Implementado en este ciclo (2026-11-22)
+
+Router independiente en `backend/agrosv/api_v2.py`; los 13 endpoints de Fase 1
+no se modificaron.
+
+| Ruta | Devuelve | Estado |
+|---|---|---|
+| `GET /api/v1/meta` | versión, datasets versionados, licencias, fichas de índices | implementado |
+| `GET /api/v1/sources` | catálogo con `sha256` y licencia; `?verify=true` recalcula hashes | implementado |
+| `GET /api/v1/provenance/{id}` | manifiesto completo del artefacto | implementado |
+| `GET /api/v1/qc` | QC vectorial; `?include_rasters=true` añade rásteres | implementado |
+| `GET /api/v1/hydro/watershed` | cuenca D8 aguas arriba, área y diagnósticos | implementado |
+| `GET /api/v1/hydro/aoi` | pendiente, LS y red de drenaje de la ventana | implementado |
+| `GET /api/v1/indices` | fichas de índices y lo no implementado | implementado |
+| `GET /api/v1/offline/{dept}.zip` | paquete territorial con manifiesto y atribución | implementado |
+| `GET /api/v1/validation/policy` | niveles V0–V4 y estado real por capa | implementado |
+
+Diseñados y **no** implementados: `/climate/normals`, `/alerts`, `/aptitude`,
+`/experiments/{id}/export` (dependen de módulos C, E, F y M).
+
+Cabeceras emitidas en las respuestas implementadas: `X-AGROSV-Version`,
+`X-AGROSV-Provenance`, `X-AGROSV-License`, `X-AGROSV-Data-Date`.
+
+El paquete offline incluye `metadata.json`, `README.txt`, el límite
+departamental, los municipios históricos y resúmenes de topografía y suelos;
+excluye OSM por *share-alike* y no contiene datos privados. No incluye rásteres.

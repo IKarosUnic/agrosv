@@ -1,0 +1,49 @@
+{
+  "report_id": "7d1cc8f640f5ef0c",
+  "dataset_id": "osm_sv",
+  "artifact": "data/processed/infrastructure/infrastructure.gpkg",
+  "scope": "capa de vialidad (extracto Geofabrik)",
+  "status": "PASS_WITH_WARNINGS",
+  "checks_run": 4,
+  "errors": 0,
+  "warnings": 1,
+  "findings": [
+    {
+      "code": "crs",
+      "severity": "info",
+      "message": "CRS declarado: EPSG:4326",
+      "count": 0,
+      "examples": [],
+      "detail": {}
+    },
+    {
+      "code": "cobertura",
+      "severity": "info",
+      "message": "bounds [-90.1302941, 13.1567127, -87.6943183, 14.4464288] frente a El Salvador (-90.1790975, 12.976046, -87.6351394, 14.4510488)",
+      "count": 0,
+      "examples": [],
+      "detail": {}
+    },
+    {
+      "code": "entidades",
+      "severity": "info",
+      "message": "120807 elementos en 'roads'",
+      "count": 0,
+      "examples": [],
+      "detail": {}
+    },
+    {
+      "code": "licencia_odbl",
+      "severity": "warning",
+      "message": "ODbL 1.0: base de datos derivada sujeta a share-alike; no se redistribuye dentro de paquetes cerrados",
+      "count": 0,
+      "examples": [],
+      "detail": {}
+    }
+  ],
+  "parameters": {},
+  "inputs": [],
+  "validator_version": "agrosv.data.quality/4.0",
+  "generated_at": "2026-11-22T04:19:51Z",
+  "note": "PASS no significa «dato correcto»: significa que las comprobaciones ejecutadas no encontraron defectos"
+}

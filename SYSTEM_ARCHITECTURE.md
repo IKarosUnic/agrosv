@@ -423,3 +423,38 @@ Los agentes (perfiles sintéticos Nemotron) **no** calculan rendimiento,
 precipitación, suelo ni parámetros. Consumen salidas de los motores mediante
 interfaces estructuradas y producen decisiones declaradas como escenario
 experimental. Esta frontera es arquitectónica, no una recomendación.
+
+---
+
+## 13. Capa científica implementada (2026-11-22)
+
+El paquete `backend/agrosv/science/` materializa la infraestructura transversal
+de §12.3, que hasta ahora era solo contrato:
+
+| Módulo | Rol | Reemplaza a |
+|---|---|---|
+| `schemas` | envoltura obligatoria de cada resultado | convención de documentación |
+| `registry` | catálogo y versionado derivados de los sidecars de procedencia | un catálogo paralelo |
+| `qc` | control de calidad geoespacial | revisión manual |
+| `uncertainty` | cuantiles, Monte Carlo, anomalía robusta | intervalos «a ojo» |
+| `validation` | métricas y niveles V0–V4 | afirmaciones de validez |
+| `reproducibility` | manifiesto verificable por hash | ausencia de trazabilidad |
+| `orchestrator` | ejecución por lotes reanudable | ejecución manual sin estado |
+| `hydrology` | priority-flood, D8, acumulación, cuenca, LS | nada (no existía) |
+| `indices` | NDVI, EVI, NDWI, NDMI, NBR, cambio | nada (no existía) |
+
+Reglas que ahora se aplican en código:
+
+1. `science.schemas.wrap` es el único camino para publicar una cifra; exige
+   etiqueta, resolución real, incertidumbre, limitaciones y `provenance_id`.
+2. El versionado de datasets **deriva** de `data/processed/**/*.provenance.json`:
+   no hay un segundo catálogo que pueda desincronizarse.
+3. La API científica vive en `backend/agrosv/api_v2.py` (`/api/v1`) y no toca
+   los 13 endpoints de Fase 1 ni su contrato.
+4. El procesamiento pesado se hace por **ventana geoespacial**; el endpoint
+   hidrológico limita el área de análisis por coste real, no por estética.
+
+Lo que sigue sin existir en esta capa: clima, adquisición satelital, simulación
+de cultivos, economía, autenticación y persistencia de parcelas. PostGIS sigue
+fuera por la misma razón que en Fase 1 (ADR-001 D-1): todavía no hay escritura
+concurrente multiusuario.

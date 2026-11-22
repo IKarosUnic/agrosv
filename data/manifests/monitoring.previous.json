@@ -1,0 +1,143 @@
+{
+  "ok": true,
+  "generated_at": "2026-11-22T04:12:36Z",
+  "catalog": {
+    "count": 22,
+    "by_state": {
+      "DISCOVERED": 1,
+      "ACCESS_PENDING": 2,
+      "DOWNLOADED": 1,
+      "PARSED": 1,
+      "VALIDATED": 2,
+      "INTEGRATED": 7,
+      "RESTRICTED": 4,
+      "UNAVAILABLE": 3,
+      "REJECTED": 1
+    },
+    "by_domain": {
+      "AGRICULTURE": 4,
+      "BIODIVERSITY": 2,
+      "CLIMATE": 5,
+      "ECONOMY": 1,
+      "HYDROLOGY": 2,
+      "SOILS": 3,
+      "TERRITORY": 5
+    },
+    "integrated": [
+      "copdem30",
+      "gbif_sv",
+      "geoboundaries_adm1",
+      "nasa_power_point",
+      "open_meteo_point",
+      "osm_sv",
+      "soilgrids_2"
+    ],
+    "restricted_or_unavailable": [
+      "agera5",
+      "centa_suelos",
+      "fao_ecocrop",
+      "mag_anuario_2022_23",
+      "marn_geoportal",
+      "protectedplanet",
+      "worldclim_21"
+    ],
+    "note": "state ≠ calidad: un dataset INTEGRATED puede tener evidence_level V0"
+  },
+  "audit": {
+    "checked": 22,
+    "ok": true,
+    "problems": [],
+    "transitions": 71,
+    "note": "auditoría estructural, no científica: no reevalúa la calidad"
+  },
+  "store": {
+    "exists": true,
+    "path": "C:\\GIT HUB\\agrosv\\data\\validated\\agrosv_data.sqlite",
+    "schema_version": 4,
+    "datasets": 22,
+    "observations": 20456,
+    "occurrences": 300,
+    "territories": 287,
+    "assets": 22,
+    "quality_reports": 10,
+    "rtree": true
+  },
+  "freshness": {
+    "stale_or_unknown": [],
+    "fresh": 11,
+    "not_evaluated": [
+      "agera5",
+      "centa_suelos",
+      "cnr_elsalvadormaps",
+      "fao_ecocrop",
+      "faostat",
+      "hydrosheds",
+      "mag_anuario_2022_23",
+      "marn_geoportal",
+      "protectedplanet",
+      "soilgrids_rest",
+      "worldclim_21"
+    ],
+    "policy_days": {
+      "TERRITORY": 730,
+      "SOILS": 1825,
+      "HYDROLOGY": 365,
+      "CLIMATE": 60,
+      "AGRICULTURE": 400,
+      "ECONOMY": 45,
+      "PHYTOSANITARY": 30,
+      "BIODIVERSITY": 365
+    },
+    "note": "solo se evalúa vigencia en estados activos: un dataset RESTRICTED o UNAVAILABLE no envejece"
+  },
+  "missing_artifacts": {},
+  "quality": {
+    "reports": 10,
+    "failing": [],
+    "latest_by_dataset": {
+      "copdem30": {
+        "status": "PASS",
+        "report_id": "55584ee3b04fed88"
+      },
+      "soilgrids_2": {
+        "status": "PASS_WITH_WARNINGS",
+        "report_id": "4f99765f26b64d19"
+      },
+      "geoboundaries_adm1": {
+        "status": "PASS",
+        "report_id": "27bf3e6cc93a8c42"
+      },
+      "osm_sv": {
+        "status": "PASS_WITH_WARNINGS",
+        "report_id": "7d1cc8f640f5ef0c"
+      },
+      "nasa_power_point": {
+        "status": "PASS_WITH_WARNINGS",
+        "report_id": "b77372c6936c09e8"
+      },
+      "open_meteo_point": {
+        "status": "PASS_WITH_WARNINGS",
+        "report_id": "b2e8deefe42dc44e"
+      },
+      "gbif_sv": {
+        "status": "PASS_WITH_WARNINGS",
+        "report_id": "c73ba05057daf822"
+      },
+      "chirps3": {
+        "status": "PASS_WITH_WARNINGS",
+        "report_id": "ce891ec912a5902a"
+      },
+      "worldbank_agri_share": {
+        "status": "PASS_WITH_WARNINGS",
+        "report_id": "3e342c0ba7307d01"
+      }
+    }
+  },
+  "revalidation_queue": [],
+  "errors": [],
+  "observations_by_dataset": {
+    "nasa_power_point": 7671,
+    "open_meteo_point": 12785
+  },
+  "note": "el monitoreo detecta envejecimiento y fallos operativos; no certifica calidad científica"
+}

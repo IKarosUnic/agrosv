@@ -1,0 +1,14 @@
+{
+  "dataset_id": "nasa_power_point",
+  "queryable": true,
+  "rows": 7671,
+  "endpoint": "/api/data/observations?dataset_id=nasa_power_point",
+  "store": "data/validated/agrosv_data.sqlite",
+  "verified_at": "2026-11-22T04:19:52Z",
+  "variables": [
+    "precipitation",
+    "temperature"
+  ],
+  "frequency": "daily",
+  "time_basis": "LST (UTC−6 asumido)"
+}

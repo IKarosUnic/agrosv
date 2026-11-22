@@ -44,6 +44,24 @@ app = FastAPI(
 )
 app.add_middleware(GZipMiddleware, minimum_size=1024)
 
+# Capa científica versionada (/api/v1). Se monta como router independiente para
+# no tocar los 13 endpoints de Fase 1 ni su contrato.
+from .api_v2 import router as science_router  # noqa: E402
+
+app.include_router(science_router)
+
+# Capa de datos nacionales (Fase 4) en `/api/data`. Tampoco modifica los
+# endpoints anteriores: solo añade un prefijo nuevo.
+from .data.api import router as data_router  # noqa: E402
+
+app.include_router(data_router)
+
+# Motores territoriales y ambientales (Fase 5) en `/api/engines`. Prefijo nuevo:
+# los endpoints anteriores conservan su contrato.
+from .engines.api import router as engines_router  # noqa: E402
+
+app.include_router(engines_router)
+
 # Rango de zoom servido para hillshade. El DEM nativo es de 30 m; más allá de
 # z13 no hay información nueva, solo interpolación.
 HILLSHADE_MINZOOM, HILLSHADE_MAXZOOM = 7, 14

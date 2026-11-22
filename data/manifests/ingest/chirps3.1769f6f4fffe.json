@@ -1,0 +1,82 @@
+{
+  "artifact_id": "chirps3.1769f6f4fffe",
+  "dataset_id": "chirps3",
+  "source_id": "chirps3",
+  "original_path": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\chirps3_day\\chirps-v3.0.rnl.2026.01.15.tif",
+  "stored_path": "C:\\GIT HUB\\agrosv\\data\\raw\\_objects\\17\\69\\1769f6f4fffeff4a501962259b4331d3eb35ca2b8576cf4f58aefebaa12de9dd",
+  "sha256": "1769f6f4fffeff4a501962259b4331d3eb35ca2b8576cf4f58aefebaa12de9dd",
+  "bytes": 14000124,
+  "format": "geotiff",
+  "format_evidence": "firma TIFF en cabecera",
+  "metadata": {
+    "format": "geotiff",
+    "bytes": 14000124,
+    "raster": {
+      "path": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\chirps3_day\\chirps-v3.0.rnl.2026.01.15.tif",
+      "driver": "GTiff",
+      "crs": "EPSG:4326",
+      "width": 7200,
+      "height": 2400,
+      "count": 1,
+      "dtype": "float32",
+      "nodata": null,
+      "nodata_declared": false,
+      "res": [
+        0.05000000074505806,
+        0.05000000074505806
+      ],
+      "bounds": [
+        -180.0,
+        -60.00000178813934,
+        180.00000536441803,
+        60.0
+      ],
+      "tiled": false,
+      "block_shape": [
+        1,
+        7200
+      ],
+      "compress": "lzw",
+      "overviews": [],
+      "pixel_area_m2": 30928036.521727286,
+      "cog_heuristic": false,
+      "cog_notes": [
+        "no está teselado: la lectura por ventana degrada",
+        "bloque (1, 7200) distinto de 256/512/1024",
+        "sin overviews: zoom-out obliga a leer resolución completa",
+        "NoData no declarado"
+      ],
+      "note": "cog_heuristic es una comprobación estructural, no una certificación de Cloud Optimized GeoTIFF"
+    }
+  },
+  "integrity": {
+    "ok": true,
+    "checks": [
+      {
+        "check": "archivo no vacío",
+        "passed": true,
+        "detail": "",
+        "severity": "error"
+      },
+      {
+        "check": "formato reconocido",
+        "passed": true,
+        "detail": "geotiff",
+        "severity": "error"
+      },
+      {
+        "check": "extensión coherente con el contenido",
+        "passed": true,
+        "detail": "extensión .tif, contenido geotiff",
+        "severity": "error"
+      }
+    ]
+  },
+  "status": "DUPLICATE",
+  "retrieved_at": "2026-11-22T04:19:52Z",
+  "license": "Uso abierto con atribución (verificar aviso CHC)",
+  "source_url": "https://data.chc.ucsb.edu/products/CHIRPS/v3.0/daily/final/rnl/2026/chirps-v3.0.rnl.2026.01.15.tif",
+  "version": null,
+  "error": null,
+  "manifest_path": null
+}

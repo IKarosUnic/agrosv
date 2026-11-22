@@ -1,0 +1,9 @@
+{
+  "dataset_id": "copdem30",
+  "queryable": true,
+  "rows": 0,
+  "endpoint": "/api/topography/elevation,/api/tiles",
+  "store": "data/validated/agrosv_data.sqlite",
+  "verified_at": "2026-11-22T04:19:52Z",
+  "query": "punto y teselas"
+}

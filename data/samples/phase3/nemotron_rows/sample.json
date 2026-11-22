@@ -1,0 +1,12 @@
+{
+  "sample_id": "nemotron_rows",
+  "file": "data/samples/phase3/nemotron_rows/nemotron_rows_sample.json",
+  "bytes": 27580,
+  "sha256": "59ea5ead123c66d27afbf25ddbd8f0032b68442700e922ef47d665d0075a1751",
+  "retrieved_at": "2026-11-22T03:05:54+00:00",
+  "source_id": "nemotron-sv",
+  "url": "https://datasets-server.huggingface.co/rows?dataset=nvidia%2FNemotron-Personas-El-Salvador&config=default&split=train&offset=0&length=3",
+  "license": "CC BY 4.0",
+  "rows": 3,
+  "checks": "Filas sinteticas; no son personas reales ni evidencia estadistica"
+}

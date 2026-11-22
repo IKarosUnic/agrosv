@@ -1,0 +1,57 @@
+{
+  "run_id": "8560918a12a983cf",
+  "name": "gbif_sv_normalizacion",
+  "created_at": "2026-11-22T04:19:53Z",
+  "seed": null,
+  "params": {
+    "version": "AGROSV-4.0",
+    "steps": [
+      {
+        "name": "parseo_y_normalizacion",
+        "tool": "agrosv.data.ingest",
+        "tool_version": "4.0",
+        "params": {
+          "units": "registro agrosv.data.units",
+          "time_basis": "local (UTC−6)"
+        },
+        "note": ""
+      },
+      {
+        "name": "exportacion_csv",
+        "tool": "csv.DictWriter",
+        "tool_version": "stdlib",
+        "params": {},
+        "note": ""
+      }
+    ],
+    "database_outputs": []
+  },
+  "identity_note": "run_id = sha256(nombre, parámetros, seed, hashes de entrada); no depende de la fecha de ejecución",
+  "inputs": [
+    {
+      "path": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\gbif_sv\\gbif_occurrence_sv_300.json",
+      "sha256": "c2bf4264b01d1f6fc1df082e10995e7933114c00b01741027b5d7e8ace1ca7b9",
+      "exists": true
+    }
+  ],
+  "outputs": [
+    {
+      "path": "C:\\GIT HUB\\agrosv\\data\\validated\\observations\\gbif_sv_sample_occurrences.csv",
+      "sha256": "4e54a062f77db258182b7ca520323ed8a0a447b21c026ab042ca5a6e217ad6d2",
+      "exists": true
+    }
+  ],
+  "environment": {
+    "python": "3.14.5",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "software": {
+      "python": "3.14.5",
+      "gdal": "3.12.2",
+      "rasterio": "1.5.2",
+      "geopandas": "1.2.0",
+      "shapely": "2.2.0",
+      "pyproj": "3.8.0"
+    }
+  },
+  "notes": "Normalización de unidades, tiempo y clase de evidencia."
+}

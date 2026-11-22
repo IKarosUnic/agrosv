@@ -1,0 +1,2893 @@
+{
+  "schema_version": 4,
+  "generated_at": "2026-11-22T04:19:54Z",
+  "count": 22,
+  "states": {
+    "DISCOVERED": 1,
+    "ACCESS_PENDING": 2,
+    "DOWNLOADED": 1,
+    "PARSED": 1,
+    "VALIDATED": 2,
+    "INTEGRATED": 7,
+    "RESTRICTED": 4,
+    "UNAVAILABLE": 3,
+    "REJECTED": 1
+  },
+  "datasets": [
+    {
+      "dataset_id": "agera5",
+      "name": "AgERA5 — agroclima diario (C3S)",
+      "description": "Reanálisis agroclimático a 0,1° con variables para modelos de cultivo; requiere token del Climate Data Store.",
+      "institution": "Copernicus Climate Change Service (C3S)",
+      "source_url": "https://cds.climate.copernicus.eu/datasets/sis-agrometeorological-indicators",
+      "publication_date": null,
+      "download_date": null,
+      "version": null,
+      "license": "CC BY 4.0 (requiere cuenta CDS)",
+      "redistribution_allowed": null,
+      "derived_use_allowed": null,
+      "geographic_coverage": "global 0,1°",
+      "temporal_coverage": "1979–",
+      "crs": null,
+      "spatial_resolution": "0,1° (~11 km)",
+      "temporal_resolution": "diaria",
+      "variables": [],
+      "units": {},
+      "format": "NetCDF/Zarr",
+      "size": null,
+      "methodology": "No evaluada: el recurso no está disponible para inspección.",
+      "limitations": [
+        "requiere token CDS no disponible en este entorno",
+        "0,1° no representa parcelas ni valles locales"
+      ],
+      "uncertainty": "No evaluada; error del reanálisis no verificado en el país",
+      "usage_restrictions": "CC BY 4.0 con registro CDS",
+      "domain": "CLIMATE",
+      "state": "RESTRICTED",
+      "evidence_level": "V0",
+      "validation_scope": null,
+      "integration_scope": null,
+      "artifacts": [],
+      "transitions": [
+        {
+          "dataset_id": "agera5",
+          "state_from": "DISCOVERED",
+          "state_to": "DISCOVERED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "alta en catálogo con evidencia de descubrimiento",
+          "evidence": [
+            {
+              "evidence_type": "manual_review",
+              "reference": "docs/data_expansion/DATA_SOURCE_REGISTRY.md#agera5",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "token CDS requerido; no descargado",
+              "passed": true,
+              "sha256": null,
+              "payload": {}
+            }
+          ]
+        },
+        {
+          "dataset_id": "agera5",
+          "state_from": "DISCOVERED",
+          "state_to": "RESTRICTED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "restringido por credenciales",
+          "evidence": [
+            {
+              "evidence_type": "license_check",
+              "reference": "research/raw/phase3/probes_20261122_r3.json#agera5_cds",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "acceso con cuenta/token CDS",
+              "passed": true,
+              "sha256": null,
+              "payload": {
+                "requires": "CDS token"
+              }
+            }
+          ]
+        }
+      ],
+      "notes": "",
+      "updated_at": "2026-11-22T04:19:52Z",
+      "CRITICAL_FIELDS": [
+        "license",
+        "geographic_coverage",
+        "temporal_coverage",
+        "spatial_resolution",
+        "temporal_resolution",
+        "methodology",
+        "uncertainty",
+        "format",
+        "institution",
+        "source_url"
+      ],
+      "missing_fields": [
+        "variables",
+        "crs"
+      ],
+      "terminal": false
+    },
+    {
+      "dataset_id": "centa_suelos",
+      "name": "CENTA — Mapa Digital de Suelos",
+      "description": "Textura, pH, materia orgánica y nutrientes con ~11.000 muestras declaradas; visor público, descarga no verificada.",
+      "institution": "CENTA (MAG)",
+      "source_url": "https://www.centa.gob.sv/mapa-digital-de-suelos",
+      "publication_date": null,
+      "download_date": null,
+      "version": null,
+      "license": "No declarada",
+      "redistribution_allowed": null,
+      "derived_use_allowed": null,
+      "geographic_coverage": "nacional; escala no verificada",
+      "temporal_coverage": "publicación 2026-06-05",
+      "crs": null,
+      "spatial_resolution": "no verificada",
+      "temporal_resolution": "estático",
+      "variables": [],
+      "units": {},
+      "format": "Visor ArcGIS / geodatabase (no verificada)",
+      "size": null,
+      "methodology": "No evaluada: el recurso no está disponible para inspección.",
+      "limitations": [
+        "portal responde 403 a clientes no navegador",
+        "Hub ArcGIS devuelve 0 ítems",
+        "sin licencia de uso ni de derivados"
+      ],
+      "uncertainty": "No evaluada: sin acceso a los datos",
+      "usage_restrictions": "Requiere solicitud formal y licencia; no se sustituye por SoilGrids sin declararlo",
+      "domain": "SOILS",
+      "state": "RESTRICTED",
+      "evidence_level": "V0",
+      "validation_scope": null,
+      "integration_scope": null,
+      "artifacts": [],
+      "transitions": [
+        {
+          "dataset_id": "centa_suelos",
+          "state_from": "DISCOVERED",
+          "state_to": "DISCOVERED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "alta en catálogo con evidencia de descubrimiento",
+          "evidence": [
+            {
+              "evidence_type": "manual_review",
+              "reference": "docs/data_expansion/DATA_SOURCE_REGISTRY.md#centa_suelos",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "acceso restringido; requiere convenio con CENTA",
+              "passed": true,
+              "sha256": null,
+              "payload": {}
+            }
+          ]
+        },
+        {
+          "dataset_id": "centa_suelos",
+          "state_from": "DISCOVERED",
+          "state_to": "RESTRICTED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "restringido: sin licencia ni acceso verificable",
+          "evidence": [
+            {
+              "evidence_type": "license_check",
+              "reference": "research/raw/phase3/probes_20261122_r3.json#centa_suelos",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "sin licencia declarada; acceso 403",
+              "passed": true,
+              "sha256": null,
+              "payload": {
+                "requires": "convenio",
+                "license": "no declarada"
+              }
+            }
+          ]
+        }
+      ],
+      "notes": "",
+      "updated_at": "2026-11-22T04:19:52Z",
+      "CRITICAL_FIELDS": [
+        "license",
+        "geographic_coverage",
+        "temporal_coverage",
+        "spatial_resolution",
+        "temporal_resolution",
+        "methodology",
+        "uncertainty",
+        "format",
+        "institution",
+        "source_url"
+      ],
+      "missing_fields": [
+        "variables"
+      ],
+      "terminal": false
+    },
+    {
+      "dataset_id": "chirps3",
+      "name": "CHIRPS v3 — precipitación (muestra de un día)",
+      "description": "Muestra del producto diario CHIRPS v3 para 2026-01-15, recortada a El Salvador; no es una serie integrada.",
+      "institution": "Climate Hazards Center, UC Santa Barbara",
+      "source_url": "https://data.chc.ucsb.edu/products/CHIRPS/v3.0/daily/final/rnl/2026/chirps-v3.0.rnl.2026.01.15.tif",
+      "publication_date": "2026-01-15 (fecha del dato)",
+      "download_date": "2026-11-22",
+      "version": "v3.0 (variante rnl)",
+      "license": "Uso abierto con atribución (verificar aviso CHC)",
+      "redistribution_allowed": true,
+      "derived_use_allowed": true,
+      "geographic_coverage": "global, recortado a El Salvador",
+      "temporal_coverage": "1 día (2026-01-15)",
+      "crs": "EPSG:4326",
+      "spatial_resolution": "0,05° (~5,5 km)",
+      "temporal_resolution": "diaria desagregada; nativa pentadal",
+      "variables": [
+        "precipitation"
+      ],
+      "units": {
+        "precipitation": "mm"
+      },
+      "format": "GeoTIFF (muestra) → GeoTIFF recortado",
+      "size": "14 MB muestra global; recorte nacional de pocos MB",
+      "methodology": "Recorte por extensión sin remuestreo; metadatos y NoData verificados; se conserva el archivo original.",
+      "limitations": [
+        "el producto diario está desagregado con ERA5: no es independiente a escala diaria",
+        "una muestra de un día no permite validar la serie",
+        "no se ha comparado con estaciones nacionales"
+      ],
+      "uncertainty": "Error del producto no evaluado en El Salvador; resolución de 0,05° no es precisión de 5 km",
+      "usage_restrictions": "Atribución a CHIRPS/CHC",
+      "domain": "CLIMATE",
+      "state": "VALIDATED",
+      "evidence_level": "V1",
+      "validation_scope": "muestra de 1 día global recortada a El Salvador; no es una serie nacional integrada",
+      "integration_scope": null,
+      "artifacts": [
+        "data/validated/chirps3/chirps3_precip_0p05deg_sv_2026-01-15_v3.0.tif",
+        "data/samples/phase3/chirps3_day/chirps-v3.0.rnl.2026.01.15.tif"
+      ],
+      "transitions": [
+        {
+          "dataset_id": "chirps3",
+          "state_from": "DISCOVERED",
+          "state_to": "DISCOVERED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "alta en catálogo",
+          "evidence": [
+            {
+              "evidence_type": "file_hash",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\chirps3_day\\chirps-v3.0.rnl.2026.01.15.tif",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "muestra CHIRPS de Fase 3",
+              "passed": true,
+              "sha256": "1769f6f4fffeff4a501962259b4331d3eb35ca2b8576cf4f58aefebaa12de9dd",
+              "payload": {}
+            }
+          ]
+        },
+        {
+          "dataset_id": "chirps3",
+          "state_from": "DISCOVERED",
+          "state_to": "DOWNLOADED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "muestra global descargada y hasheada",
+          "evidence": [
+            {
+              "evidence_type": "file_hash",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\chirps3_day\\chirps-v3.0.rnl.2026.01.15.tif",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (14000124 B)",
+              "passed": true,
+              "sha256": "1769f6f4fffeff4a501962259b4331d3eb35ca2b8576cf4f58aefebaa12de9dd",
+              "payload": {}
+            }
+          ]
+        },
+        {
+          "dataset_id": "chirps3",
+          "state_from": "DOWNLOADED",
+          "state_to": "PARSED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "cabecera y rejilla verificadas; recorte al país registrado",
+          "evidence": [
+            {
+              "evidence_type": "parse_result",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\manifests\\ingest\\chirps3.1769f6f4fffe.json",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (2550 B)",
+              "passed": true,
+              "sha256": "55cf9d59df2dfb0e85eecb77c02d4a71d5d1c5282d1f3fc04a0acd77c41ab264",
+              "payload": {
+                "parser": "agrosv.data.ingest/4.0",
+                "format": "geotiff"
+              }
+            }
+          ]
+        },
+        {
+          "dataset_id": "chirps3",
+          "state_from": "PARSED",
+          "state_to": "VALIDATED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "QC ráster de CRS, rejilla, NoData y cobertura",
+          "evidence": [
+            {
+              "evidence_type": "validation_report",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\metadata\\quality_reports\\chirps3.ce891ec912a5902a.json",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (3382 B)",
+              "passed": true,
+              "sha256": "430677e4e20d266663e3087ab5eba17264f2b69ecaa6c250fdc1d7c5069ba525",
+              "payload": {
+                "status": "PASS_WITH_WARNINGS",
+                "checks_run": 12,
+                "scope": "muestra de 1 día global recortada a El Salvador; no es una serie nacional integrada",
+                "report_id": "ce891ec912a5902a"
+              }
+            }
+          ]
+        }
+      ],
+      "notes": "",
+      "updated_at": "2026-11-22T04:19:52Z",
+      "CRITICAL_FIELDS": [
+        "license",
+        "geographic_coverage",
+        "temporal_coverage",
+        "spatial_resolution",
+        "temporal_resolution",
+        "methodology",
+        "uncertainty",
+        "format",
+        "institution",
+        "source_url"
+      ],
+      "missing_fields": [],
+      "terminal": false
+    },
+    {
+      "dataset_id": "cnr_elsalvadormaps",
+      "name": "CNR — El Salvador Maps (ortofoto, LiDAR, MDT/MDS)",
+      "description": "Plataforma nacional de ortofoto y LiDAR declarada por el CNR; sin ficha técnica ni licencia públicas.",
+      "institution": "Centro Nacional de Registros (CNR)",
+      "source_url": "https://elsalvadormaps.sv/",
+      "publication_date": null,
+      "download_date": null,
+      "version": null,
+      "license": "No localizada",
+      "redistribution_allowed": null,
+      "derived_use_allowed": null,
+      "geographic_coverage": "nacional; hasta 10 cm declarados",
+      "temporal_coverage": "2023 (proyecto)",
+      "crs": null,
+      "spatial_resolution": "hasta 10 cm (declarado, no verificado)",
+      "temporal_resolution": "estático",
+      "variables": [],
+      "units": {},
+      "format": "Visor / servicios",
+      "size": null,
+      "methodology": "No evaluada: el recurso no está disponible para inspección.",
+      "limitations": [
+        "certificado TLS inválido al sondear: no se pudo verificar contenido",
+        "sin licencia de reutilización documentada",
+        "sin ficha de resolución, fecha de vuelo ni exactitud vertical"
+      ],
+      "uncertainty": "No evaluada: acceso no verificado",
+      "usage_restrictions": "Requiere convenio/compra y autorización escrita de derivados",
+      "domain": "TERRITORY",
+      "state": "ACCESS_PENDING",
+      "evidence_level": "V0",
+      "validation_scope": null,
+      "integration_scope": null,
+      "artifacts": [],
+      "transitions": [
+        {
+          "dataset_id": "cnr_elsalvadormaps",
+          "state_from": "DISCOVERED",
+          "state_to": "DISCOVERED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "alta en catálogo con evidencia de descubrimiento",
+          "evidence": [
+            {
+              "evidence_type": "url_probe",
+              "reference": "research/raw/phase3/probes_20261122_r3.json#cnr_elsalvadormaps",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "TLS inválido; no se estableció acceso",
+              "passed": false,
+              "sha256": null,
+              "payload": {
+                "status": null,
+                "url": "https://elsalvadormaps.sv/",
+                "found_in_probe_run": true
+              }
+            }
+          ]
+        },
+        {
+          "dataset_id": "cnr_elsalvadormaps",
+          "state_from": "DISCOVERED",
+          "state_to": "ACCESS_PENDING",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "acceso pendiente de autorización institucional",
+          "evidence": [
+            {
+              "evidence_type": "url_probe",
+              "reference": "research/raw/phase3/probes_20261122_r3.json#cnr_elsalvadormaps",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "solicitud de ficha técnica y licencia pendiente",
+              "passed": false,
+              "sha256": null,
+              "payload": {
+                "status": null,
+                "url": "https://elsalvadormaps.sv/",
+                "found_in_probe_run": true
+              }
+            }
+          ]
+        }
+      ],
+      "notes": "",
+      "updated_at": "2026-11-22T04:19:52Z",
+      "CRITICAL_FIELDS": [
+        "license",
+        "geographic_coverage",
+        "temporal_coverage",
+        "spatial_resolution",
+        "temporal_resolution",
+        "methodology",
+        "uncertainty",
+        "format",
+        "institution",
+        "source_url"
+      ],
+      "missing_fields": [
+        "variables"
+      ],
+      "terminal": false
+    },
+    {
+      "dataset_id": "copdem30",
+      "name": "Copernicus DEM GLO-30 y derivados topográficos",
+      "description": "Modelo digital de superficie a 30 m con pendiente, aspecto, hillshade y clases de relieve calculados por AGROSV en EPSG:32616.",
+      "institution": "Copernicus DEM (DLR/Airbus) — ESA/UE",
+      "source_url": "https://copernicus-dem-30m.s3.amazonaws.com/",
+      "publication_date": "2011-2015",
+      "download_date": "2026-11-21",
+      "version": "GLO-30",
+      "license": "Copernicus DEM (DLR/Airbus) — uso libre con atribución",
+      "redistribution_allowed": true,
+      "derived_use_allowed": true,
+      "geographic_coverage": "El Salvador (tiles N13–N14, W089–W091)",
+      "temporal_coverage": "2011–2015 (fecha de vuelo de la misión)",
+      "crs": "EPSG:4326 (almacenamiento) / EPSG:32616 (derivados métricos)",
+      "spatial_resolution": "30 m (1 arcsec); derivados a 30 m",
+      "temporal_resolution": "estático",
+      "variables": [
+        "elevation",
+        "slope",
+        "aspect",
+        "relief_class"
+      ],
+      "units": {
+        "elevation": "m",
+        "slope": "deg",
+        "aspect": "deg",
+        "relief_class": "class"
+      },
+      "format": "GeoTIFF teselado (COG-like)",
+      "size": "91 MB el DEM; derivados < 100 MB",
+      "methodology": "Remuestreo y cálculo de pendiente/aspecto en UTM 16N con ventanas; relief por umbrales documentados.",
+      "limitations": [
+        "es un DSM: incluye vegetación y edificios, no el suelo desnudo",
+        "sin MDT nacional de referencia para validar exactitud vertical",
+        "el extremo occidental tiene ~0,15% de distorsión de escala UTM"
+      ],
+      "uncertainty": "Exactitud vertical no verificada en el país; pendiente heredada del DEM y sensible al ruido vertical",
+      "usage_restrictions": "Atribución obligatoria (DLR/Airbus, Copernicus)",
+      "domain": "TERRITORY",
+      "state": "INTEGRATED",
+      "evidence_level": "V1",
+      "validation_scope": "capa nacional completa (DEM y derivados)",
+      "integration_scope": "nacional (DEM y derivados a 30 m; consulta puntual y teselas)",
+      "artifacts": [
+        "data/processed/topography/dem30_wgs84.tif",
+        "data/processed/topography/slope_deg.tif",
+        "data/processed/topography/aspect_deg.tif",
+        "data/processed/topography/hillshade.tif",
+        "data/processed/topography/relief_class.tif"
+      ],
+      "transitions": [
+        {
+          "dataset_id": "copdem30",
+          "state_from": "DISCOVERED",
+          "state_to": "DISCOVERED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "alta en catálogo",
+          "evidence": [
+            {
+              "evidence_type": "file_hash",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\processed\\topography\\dem30_wgs84.tif.provenance.json",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "manifiesto de procedencia de Fase 1",
+              "passed": true,
+              "sha256": "1bc2b9ef1174d9cc78592ae6e2feb8e931901a11f0bdb00d4372f78137e0a40c",
+              "payload": {}
+            }
+          ]
+        },
+        {
+          "dataset_id": "copdem30",
+          "state_from": "DISCOVERED",
+          "state_to": "DOWNLOADED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "artefacto de Fase 1 presente y verificado",
+          "evidence": [
+            {
+              "evidence_type": "file_hash",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\processed\\topography\\dem30_wgs84.tif",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "hash del DEM procesado",
+              "passed": true,
+              "sha256": "1d41870a4ae4365a511554d37deead0ad181f1305e7d12a96847d03bf293db20",
+              "payload": {}
+            }
+          ]
+        },
+        {
+          "dataset_id": "copdem30",
+          "state_from": "DOWNLOADED",
+          "state_to": "PARSED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "cabecera GeoTIFF leída con rasterio",
+          "evidence": [
+            {
+              "evidence_type": "parse_result",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\processed\\topography\\dem30_wgs84.tif",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (94695736 B)",
+              "passed": true,
+              "sha256": "1d41870a4ae4365a511554d37deead0ad181f1305e7d12a96847d03bf293db20",
+              "payload": {
+                "parser": "rasterio",
+                "bands": 1
+              }
+            }
+          ]
+        },
+        {
+          "dataset_id": "copdem30",
+          "state_from": "PARSED",
+          "state_to": "VALIDATED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "QC de CRS, rejilla, NoData y cobertura",
+          "evidence": [
+            {
+              "evidence_type": "validation_report",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\metadata\\quality_reports\\copdem30.55584ee3b04fed88.json",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (1663 B)",
+              "passed": true,
+              "sha256": "d8e275271768456e64e1f959341c3e6d89e16acdb8afbc6c1b0af5ab347e84db",
+              "payload": {
+                "status": "PASS",
+                "checks_run": 3,
+                "scope": "capa nacional completa",
+                "report_id": "55584ee3b04fed88"
+              }
+            }
+          ]
+        },
+        {
+          "dataset_id": "copdem30",
+          "state_from": "VALIDATED",
+          "state_to": "INTEGRATED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "servido por la API de topografía y teselas desde la Fase 1",
+          "evidence": [
+            {
+              "evidence_type": "integration_record",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\manifests\\integration\\copdem30.json",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (245 B)",
+              "passed": true,
+              "sha256": "ccd630ef5a0ba50d0078cdcd5f0f1b7b98990bffb80c8188f11f54f3fb84e8e9",
+              "payload": {
+                "queryable": true,
+                "rows": 0,
+                "endpoint": "/api/topography/elevation,/api/tiles"
+              }
+            }
+          ]
+        }
+      ],
+      "notes": "Fecha de descarga tomada del manifiesto de Fase 1; la fecha de descarga original no se registró en esa fase.",
+      "updated_at": "2026-11-22T04:19:52Z",
+      "CRITICAL_FIELDS": [
+        "license",
+        "geographic_coverage",
+        "temporal_coverage",
+        "spatial_resolution",
+        "temporal_resolution",
+        "methodology",
+        "uncertainty",
+        "format",
+        "institution",
+        "source_url"
+      ],
+      "missing_fields": [],
+      "terminal": false
+    },
+    {
+      "dataset_id": "fao_ecocrop",
+      "name": "FAO EcoCrop — requerimientos de cultivos",
+      "description": "Base de requerimientos agroecológicos por cultivo; el servicio fue retirado (503).",
+      "institution": "FAO",
+      "source_url": "https://ecocrop.apps.fao.org/",
+      "publication_date": null,
+      "download_date": null,
+      "version": null,
+      "license": "FAO (servicio retirado)",
+      "redistribution_allowed": null,
+      "derived_use_allowed": null,
+      "geographic_coverage": "global por cultivo",
+      "temporal_coverage": "—",
+      "crs": null,
+      "spatial_resolution": "no espacial",
+      "temporal_resolution": "estático",
+      "variables": [],
+      "units": {},
+      "format": "Web",
+      "size": null,
+      "methodology": "No evaluada: el recurso no está disponible para inspección.",
+      "limitations": [
+        "servicio 503: retirado",
+        "los parámetros de cultivo deben provenir de fuentes locales o de DSSAT/FAO documentadas"
+      ],
+      "uncertainty": "No evaluada",
+      "usage_restrictions": "Servicio no disponible",
+      "domain": "AGRICULTURE",
+      "state": "UNAVAILABLE",
+      "evidence_level": "V0",
+      "validation_scope": null,
+      "integration_scope": null,
+      "artifacts": [],
+      "transitions": [
+        {
+          "dataset_id": "fao_ecocrop",
+          "state_from": "DISCOVERED",
+          "state_to": "DISCOVERED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "alta en catálogo con evidencia de descubrimiento",
+          "evidence": [
+            {
+              "evidence_type": "url_probe",
+              "reference": "research/raw/phase3/probes_20261122_r3.json#fao_ecocrop",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "HTTP 503",
+              "passed": false,
+              "sha256": null,
+              "payload": {
+                "status": 503,
+                "url": "https://ecocrop.fao.org/ecocrop/srv/en/home",
+                "found_in_probe_run": true
+              }
+            }
+          ]
+        },
+        {
+          "dataset_id": "fao_ecocrop",
+          "state_from": "DISCOVERED",
+          "state_to": "UNAVAILABLE",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "servicio retirado",
+          "evidence": [
+            {
+              "evidence_type": "url_probe",
+              "reference": "research/raw/phase3/probes_20261122_r3.json#fao_ecocrop",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "servicio retirado (503)",
+              "passed": false,
+              "sha256": null,
+              "payload": {
+                "status": 503,
+                "url": "https://ecocrop.fao.org/ecocrop/srv/en/home",
+                "found_in_probe_run": true
+              }
+            }
+          ]
+        }
+      ],
+      "notes": "",
+      "updated_at": "2026-11-22T04:19:52Z",
+      "CRITICAL_FIELDS": [
+        "license",
+        "geographic_coverage",
+        "temporal_coverage",
+        "spatial_resolution",
+        "temporal_resolution",
+        "methodology",
+        "uncertainty",
+        "format",
+        "institution",
+        "source_url"
+      ],
+      "missing_fields": [
+        "variables"
+      ],
+      "terminal": false
+    },
+    {
+      "dataset_id": "faostat",
+      "name": "FAOSTAT — producción y comercio agropecuario",
+      "description": "Estadísticas agrícolas por país; API y bulk no respondieron en la verificación de Fase 3.",
+      "institution": "FAO",
+      "source_url": "https://www.fao.org/faostat/en/#data",
+      "publication_date": null,
+      "download_date": null,
+      "version": null,
+      "license": "FAO (verificar condiciones de reutilización)",
+      "redistribution_allowed": null,
+      "derived_use_allowed": null,
+      "geographic_coverage": "global por país",
+      "temporal_coverage": "1961–",
+      "crs": null,
+      "spatial_resolution": "agregado nacional",
+      "temporal_resolution": "anual",
+      "variables": [],
+      "units": {},
+      "format": "API/CSV",
+      "size": null,
+      "methodology": "No evaluada: el recurso no está disponible para inspección.",
+      "limitations": [
+        "API devolvió 521 y el bulk 403 en la verificación",
+        "agregado nacional: no desagrega departamento"
+      ],
+      "uncertainty": "No evaluada",
+      "usage_restrictions": "Condiciones FAO por confirmar",
+      "domain": "AGRICULTURE",
+      "state": "ACCESS_PENDING",
+      "evidence_level": "V0",
+      "validation_scope": null,
+      "integration_scope": null,
+      "artifacts": [],
+      "transitions": [
+        {
+          "dataset_id": "faostat",
+          "state_from": "DISCOVERED",
+          "state_to": "DISCOVERED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "alta en catálogo con evidencia de descubrimiento",
+          "evidence": [
+            {
+              "evidence_type": "url_probe",
+              "reference": "research/raw/phase3/probes_20261122_r3.json#faostat_api",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "API 521 / bulk 403",
+              "passed": false,
+              "sha256": null,
+              "payload": {
+                "status": 521,
+                "url": "https://fenixservices.fao.org/faostat/api/v1/en/definitions/domain",
+                "found_in_probe_run": true
+              }
+            }
+          ]
+        },
+        {
+          "dataset_id": "faostat",
+          "state_from": "DISCOVERED",
+          "state_to": "ACCESS_PENDING",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "canal no disponible; se mantiene pendiente",
+          "evidence": [
+            {
+              "evidence_type": "url_probe",
+              "reference": "research/raw/phase3/probes_20261122_r3.json#faostat_api",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "reintentar con canal oficial alternativo",
+              "passed": false,
+              "sha256": null,
+              "payload": {
+                "status": 521,
+                "url": "https://fenixservices.fao.org/faostat/api/v1/en/definitions/domain",
+                "found_in_probe_run": true
+              }
+            }
+          ]
+        }
+      ],
+      "notes": "",
+      "updated_at": "2026-11-22T04:19:52Z",
+      "CRITICAL_FIELDS": [
+        "license",
+        "geographic_coverage",
+        "temporal_coverage",
+        "spatial_resolution",
+        "temporal_resolution",
+        "methodology",
+        "uncertainty",
+        "format",
+        "institution",
+        "source_url"
+      ],
+      "missing_fields": [
+        "variables"
+      ],
+      "terminal": false
+    },
+    {
+      "dataset_id": "gbif_sv",
+      "name": "GBIF — muestra de ocurrencias de especies en El Salvador",
+      "description": "300 ocurrencias georreferenciadas descargadas de GBIF para El Salvador, con taxón, fecha e incertidumbre.",
+      "institution": "GBIF (Global Biodiversity Information Facility)",
+      "source_url": "https://api.gbif.org/v1/occurrence/search?country=SV&limit=300",
+      "publication_date": null,
+      "download_date": "2026-11-22",
+      "version": null,
+      "license": "Por registro (GBIF agrega licencias de publicadores)",
+      "redistribution_allowed": true,
+      "derived_use_allowed": true,
+      "geographic_coverage": "El Salvador (300 registros, no inventario completo)",
+      "temporal_coverage": "1600–2026 según eventDate de cada registro",
+      "crs": "EPSG:4326",
+      "spatial_resolution": "punto (incertidumbre declarada por registro)",
+      "temporal_resolution": "evento (fecha de observación)",
+      "variables": [
+        "occurrence"
+      ],
+      "units": {
+        "occurrence": "count"
+      },
+      "format": "JSON",
+      "size": "2,125,141 B",
+      "methodology": "Descarga de la API de ocurrencias; normalización de coordenadas, fecha e incertidumbre; validación espacial.",
+      "limitations": [
+        "sesgo de muestreo: la densidad refleja observadores, no abundancia",
+        "taxón y fecha dependen de la calidad del publicador",
+        "coordenadas con incertidumbre de hasta kilómetros",
+        "no es un inventario nacional ni una lista roja"
+      ],
+      "uncertainty": "Incertidumbre por registro; ausente en parte de los casos",
+      "usage_restrictions": "Citar GBIF y los publicadores de cada registro",
+      "domain": "BIODIVERSITY",
+      "state": "INTEGRATED",
+      "evidence_level": "V1",
+      "validation_scope": "muestra de 300 ocurrencias en El Salvador",
+      "integration_scope": "muestra de punto / conjunto de ocurrencias",
+      "artifacts": [
+        "data/samples/phase3/gbif_sv/gbif_occurrence_sv_300.json"
+      ],
+      "transitions": [
+        {
+          "dataset_id": "gbif_sv",
+          "state_from": "DISCOVERED",
+          "state_to": "DISCOVERED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "alta en catálogo",
+          "evidence": [
+            {
+              "evidence_type": "file_hash",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\gbif_sv\\gbif_occurrence_sv_300.json",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "muestra descargada en Fase 3",
+              "passed": true,
+              "sha256": "c2bf4264b01d1f6fc1df082e10995e7933114c00b01741027b5d7e8ace1ca7b9",
+              "payload": {}
+            }
+          ]
+        },
+        {
+          "dataset_id": "gbif_sv",
+          "state_from": "DISCOVERED",
+          "state_to": "DOWNLOADED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "muestra descargada y hasheada",
+          "evidence": [
+            {
+              "evidence_type": "file_hash",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\gbif_sv\\gbif_occurrence_sv_300.json",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "sha256 c2bf4264b01d1f6f…",
+              "passed": true,
+              "sha256": "c2bf4264b01d1f6fc1df082e10995e7933114c00b01741027b5d7e8ace1ca7b9",
+              "payload": {}
+            }
+          ]
+        },
+        {
+          "dataset_id": "gbif_sv",
+          "state_from": "DOWNLOADED",
+          "state_to": "PARSED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "formato detectado y metadatos extraídos",
+          "evidence": [
+            {
+              "evidence_type": "parse_result",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\manifests\\ingest\\gbif_sv.c2bf4264b01d.json",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (1611 B)",
+              "passed": true,
+              "sha256": "2ffac089c6aa175ee78bbe84420bd8f6e562a8724f583df73e5d1ed6538c8d7b",
+              "payload": {
+                "parser": "agrosv.data.ingest/4.0",
+                "format": "json"
+              }
+            }
+          ]
+        },
+        {
+          "dataset_id": "gbif_sv",
+          "state_from": "PARSED",
+          "state_to": "VALIDATED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "motor de calidad: PASS_WITH_WARNINGS con 4 comprobaciones",
+          "evidence": [
+            {
+              "evidence_type": "validation_report",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\metadata\\quality_reports\\gbif_sv.c73ba05057daf822.json",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (2734 B)",
+              "passed": true,
+              "sha256": "156d4902b5921407a1f872ed4ed23197e0d60178a13168c242a5ff9858d0d961",
+              "payload": {
+                "status": "PASS_WITH_WARNINGS",
+                "checks_run": 4,
+                "scope": "muestra de 300 ocurrencias en El Salvador",
+                "report_id": "c73ba05057daf822"
+              }
+            }
+          ]
+        },
+        {
+          "dataset_id": "gbif_sv",
+          "state_from": "VALIDATED",
+          "state_to": "INTEGRATED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "consultable por /api/data",
+          "evidence": [
+            {
+              "evidence_type": "integration_record",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\manifests\\integration\\gbif_sv.json",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (265 B)",
+              "passed": true,
+              "sha256": "7320db2a4d9b12b39575224c0b2535e7777e11b5851f144525992deeac4f8bc1",
+              "payload": {
+                "queryable": true,
+                "rows": 300,
+                "endpoint": "/api/data/occurrences?dataset_id=gbif_sv"
+              }
+            }
+          ]
+        }
+      ],
+      "notes": "Muestra mínima de Fase 3; no es el dataset nacional completo.",
+      "updated_at": "2026-11-22T04:19:52Z",
+      "CRITICAL_FIELDS": [
+        "license",
+        "geographic_coverage",
+        "temporal_coverage",
+        "spatial_resolution",
+        "temporal_resolution",
+        "methodology",
+        "uncertainty",
+        "format",
+        "institution",
+        "source_url"
+      ],
+      "missing_fields": [],
+      "terminal": false
+    },
+    {
+      "dataset_id": "geoboundaries_adm1",
+      "name": "Límites departamentales y municipales históricos",
+      "description": "ADM0/ADM1/ADM2 de geoBoundaries con códigos ISO 3166-2:SV para departamentos y 272 municipios pre-reforma 2023.",
+      "institution": "geoBoundaries (William & Mary) — derivado de OSM",
+      "source_url": "https://www.geoboundaries.org/",
+      "publication_date": "2021",
+      "download_date": "2026-11-21",
+      "version": "gbOpen 2021",
+      "license": "CC BY-SA 2.0",
+      "redistribution_allowed": true,
+      "derived_use_allowed": true,
+      "geographic_coverage": "El Salvador",
+      "temporal_coverage": "2021 (ADM2 anterior a la reforma de 2023)",
+      "crs": "EPSG:4326",
+      "spatial_resolution": "vectorial; sin resolución de rejilla declarada",
+      "temporal_resolution": "estático",
+      "variables": [
+        "area_km2",
+        "boundary"
+      ],
+      "units": {
+        "area_km2": "km2",
+        "boundary": "geometry"
+      },
+      "format": "GeoPackage",
+      "size": "1,6 MB",
+      "methodology": "Disolución y validación geométrica; áreas calculadas en EPSG:6933, no en grados.",
+      "limitations": [
+        "ADM2 son 272 polígonos históricos, NO los 44 municipios vigentes",
+        "10 municipios sin nombre; cobertura del 97,22% del país",
+        "no incluye distritos ni límites catastrales"
+      ],
+      "uncertainty": "Los límites son administrativos aproximados derivados de OSM; no son levantamiento topográfico",
+      "usage_restrictions": "CC BY-SA 2.0: base derivada sujeta a la misma licencia",
+      "domain": "TERRITORY",
+      "state": "INTEGRATED",
+      "evidence_level": "V1",
+      "validation_scope": "ADM1 (14 departamentos) completo",
+      "integration_scope": "nacional (ADM1 completo; ADM2 histórico indexado)",
+      "artifacts": [
+        "data/processed/territory/territory.gpkg"
+      ],
+      "transitions": [
+        {
+          "dataset_id": "geoboundaries_adm1",
+          "state_from": "DISCOVERED",
+          "state_to": "DISCOVERED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "alta en catálogo",
+          "evidence": [
+            {
+              "evidence_type": "file_hash",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\processed\\territory\\territory.gpkg.provenance.json",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (1066 B)",
+              "passed": true,
+              "sha256": "ce76e9f011dd839cf69d7851ac7f9d7d1a899d57e911f57f9575fe9c84c9d38d",
+              "payload": {}
+            }
+          ]
+        },
+        {
+          "dataset_id": "geoboundaries_adm1",
+          "state_from": "DISCOVERED",
+          "state_to": "DOWNLOADED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "GeoPackage presente con manifiesto",
+          "evidence": [
+            {
+              "evidence_type": "file_hash",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\processed\\territory\\territory.gpkg",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (1613824 B)",
+              "passed": true,
+              "sha256": "22a96832d7576fd26e5a86e8995ff5bd9b63d9c56b55152216da09f9318a0359",
+              "payload": {}
+            }
+          ]
+        },
+        {
+          "dataset_id": "geoboundaries_adm1",
+          "state_from": "DOWNLOADED",
+          "state_to": "PARSED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "capas y CRS leídos con pyogrio",
+          "evidence": [
+            {
+              "evidence_type": "parse_result",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\processed\\territory\\territory.gpkg",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (1613824 B)",
+              "passed": true,
+              "sha256": "22a96832d7576fd26e5a86e8995ff5bd9b63d9c56b55152216da09f9318a0359",
+              "payload": {
+                "layers": [
+                  "adm0",
+                  "adm1",
+                  "adm2"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "dataset_id": "geoboundaries_adm1",
+          "state_from": "PARSED",
+          "state_to": "VALIDATED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "QC geométrico de ADM1 y revisión de cobertura",
+          "evidence": [
+            {
+              "evidence_type": "validation_report",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\metadata\\quality_reports\\geoboundaries_adm1.27bf3e6cc93a8c42.json",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (529 B)",
+              "passed": true,
+              "sha256": "711ff4390ba8d0fe692e8b0baff61660f8e44e5502db17f3b69415d0f791158a",
+              "payload": {
+                "status": "PASS",
+                "checks_run": 8,
+                "scope": "ADM1 completo; ADM2 indexado sin validar correspondencia 2023",
+                "report_id": "27bf3e6cc93a8c42"
+              }
+            }
+          ]
+        },
+        {
+          "dataset_id": "geoboundaries_adm1",
+          "state_from": "VALIDATED",
+          "state_to": "INTEGRATED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "índice territorial e ingreso en la base de consulta",
+          "evidence": [
+            {
+              "evidence_type": "integration_record",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\manifests\\integration\\geoboundaries_adm1.json",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (326 B)",
+              "passed": true,
+              "sha256": "ce2fc6903754c83680fb3b82fdb146d192f8b28840bbf28dd1aef62939d3e587",
+              "payload": {
+                "queryable": true,
+                "rows": 287,
+                "endpoint": "/api/territory/{territory_id},/api/data/territories"
+              }
+            }
+          ]
+        }
+      ],
+      "notes": "No se renombra la capa de Fase 1; la corrección 2023 se resolverá con la tabla de correspondencia oficial.",
+      "updated_at": "2026-11-22T04:19:52Z",
+      "CRITICAL_FIELDS": [
+        "license",
+        "geographic_coverage",
+        "temporal_coverage",
+        "spatial_resolution",
+        "temporal_resolution",
+        "methodology",
+        "uncertainty",
+        "format",
+        "institution",
+        "source_url"
+      ],
+      "missing_fields": [],
+      "terminal": false
+    },
+    {
+      "dataset_id": "hydrosheds",
+      "name": "HydroSHEDS / HydroBASINS — red hídrica global",
+      "description": "Red hídrica y cuencas anidadas globales; portal verificado, sin descarga realizada ni delimitación nacional validada.",
+      "institution": "WWF / USGS",
+      "source_url": "https://www.hydrosheds.org/products",
+      "publication_date": null,
+      "download_date": null,
+      "version": null,
+      "license": "Verificar EULA de HydroSHEDS (no es licencia abierta estándar)",
+      "redistribution_allowed": null,
+      "derived_use_allowed": null,
+      "geographic_coverage": "global",
+      "temporal_coverage": "~2000 (base SRTM)",
+      "crs": null,
+      "spatial_resolution": "15–90 arcsec según producto",
+      "temporal_resolution": "estático",
+      "variables": [],
+      "units": {},
+      "format": "Shapefile / GeoTIFF",
+      "size": null,
+      "methodology": "No evaluada: el recurso no está disponible para inspección.",
+      "limitations": [
+        "no hay delimitación oficial de cuencas de El Salvador integrada",
+        "la topología global no sustituye el PNGIRH del MARN"
+      ],
+      "uncertainty": "No evaluada: no se descargó el producto",
+      "usage_restrictions": "Licencia por verificar antes de cualquier uso derivado",
+      "domain": "HYDROLOGY",
+      "state": "DISCOVERED",
+      "evidence_level": "V0",
+      "validation_scope": null,
+      "integration_scope": null,
+      "artifacts": [],
+      "transitions": [
+        {
+          "dataset_id": "hydrosheds",
+          "state_from": "DISCOVERED",
+          "state_to": "DISCOVERED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "alta en catálogo con evidencia de descubrimiento",
+          "evidence": [
+            {
+              "evidence_type": "url_probe",
+              "reference": "research/raw/phase3/probes_20261122_r3.json#hydrosheds",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "status=200; url=https://www.hydrosheds.org/products",
+              "passed": true,
+              "sha256": null,
+              "payload": {
+                "status": 200,
+                "url": "https://www.hydrosheds.org/products",
+                "found_in_probe_run": true
+              }
+            }
+          ]
+        }
+      ],
+      "notes": "",
+      "updated_at": "2026-11-22T04:19:52Z",
+      "CRITICAL_FIELDS": [
+        "license",
+        "geographic_coverage",
+        "temporal_coverage",
+        "spatial_resolution",
+        "temporal_resolution",
+        "methodology",
+        "uncertainty",
+        "format",
+        "institution",
+        "source_url"
+      ],
+      "missing_fields": [
+        "variables",
+        "crs"
+      ],
+      "terminal": false
+    },
+    {
+      "dataset_id": "mag_anuario_2022_23",
+      "name": "MAG — Anuario de Estadísticas Agropecuarias 2022-2023",
+      "description": "Anuario oficial de producción y precios; la URL indexada responde 404.",
+      "institution": "MAG / DGEA",
+      "source_url": "https://www.mag.gob.sv/wp-content/uploads/2024/02/1-Anuario-de-Estadisticas-Agropecuarias-2022-2023-final-1.pdf",
+      "publication_date": null,
+      "download_date": null,
+      "version": null,
+      "license": "No declarada",
+      "redistribution_allowed": null,
+      "derived_use_allowed": null,
+      "geographic_coverage": "nacional / departamental / municipal",
+      "temporal_coverage": "2022-2023",
+      "crs": null,
+      "spatial_resolution": "agregado administrativo",
+      "temporal_resolution": "anual",
+      "variables": [],
+      "units": {},
+      "format": "PDF",
+      "size": null,
+      "methodology": "No evaluada: el recurso no está disponible para inspección.",
+      "limitations": [
+        "404 en la ruta documentada",
+        "los anuarios son PDF maquetados: requieren extracción revisada"
+      ],
+      "uncertainty": "No evaluada",
+      "usage_restrictions": "No redistribuir el PDF; solo agregados derivados con cita",
+      "domain": "AGRICULTURE",
+      "state": "UNAVAILABLE",
+      "evidence_level": "V0",
+      "validation_scope": null,
+      "integration_scope": null,
+      "artifacts": [],
+      "transitions": [
+        {
+          "dataset_id": "mag_anuario_2022_23",
+          "state_from": "DISCOVERED",
+          "state_to": "DISCOVERED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "alta en catálogo con evidencia de descubrimiento",
+          "evidence": [
+            {
+              "evidence_type": "url_probe",
+              "reference": "research/raw/phase3/probes_20261122_r3.json#mag_anuario_2022_23",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "HTTP 404",
+              "passed": false,
+              "sha256": null,
+              "payload": {
+                "status": 404,
+                "url": "https://www.mag.gob.sv/wp-content/uploads/2024/02/1-Anuario-de-Estad%C3%ADsticas-Agropecuarias-2022-2023-final-1.pdf",
+                "found_in_probe_run": true
+              }
+            }
+          ]
+        },
+        {
+          "dataset_id": "mag_anuario_2022_23",
+          "state_from": "DISCOVERED",
+          "state_to": "UNAVAILABLE",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "no disponible en la ruta documentada",
+          "evidence": [
+            {
+              "evidence_type": "url_probe",
+              "reference": "research/raw/phase3/probes_20261122_r3.json#mag_anuario_2022_23",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "HTTP 404 en la URL documentada",
+              "passed": false,
+              "sha256": null,
+              "payload": {
+                "status": 404,
+                "url": "https://www.mag.gob.sv/wp-content/uploads/2024/02/1-Anuario-de-Estad%C3%ADsticas-Agropecuarias-2022-2023-final-1.pdf",
+                "found_in_probe_run": true
+              }
+            }
+          ]
+        }
+      ],
+      "notes": "",
+      "updated_at": "2026-11-22T04:19:52Z",
+      "CRITICAL_FIELDS": [
+        "license",
+        "geographic_coverage",
+        "temporal_coverage",
+        "spatial_resolution",
+        "temporal_resolution",
+        "methodology",
+        "uncertainty",
+        "format",
+        "institution",
+        "source_url"
+      ],
+      "missing_fields": [
+        "variables"
+      ],
+      "terminal": false
+    },
+    {
+      "dataset_id": "marn_geoportal",
+      "name": "MARN — geoportal de servicios REST",
+      "description": "Geoportal ambiental del MARN; no respondió en la verificación (HTTP 522).",
+      "institution": "Ministerio de Medio Ambiente y Recursos Naturales (MARN)",
+      "source_url": "https://geoportal.marn.gob.sv/",
+      "publication_date": null,
+      "download_date": null,
+      "version": null,
+      "license": "No declarada",
+      "redistribution_allowed": null,
+      "derived_use_allowed": null,
+      "geographic_coverage": "nacional",
+      "temporal_coverage": "no verificable",
+      "crs": null,
+      "spatial_resolution": "no verificable",
+      "temporal_resolution": "no verificable",
+      "variables": [],
+      "units": {},
+      "format": "REST",
+      "size": null,
+      "methodology": "No evaluada: el recurso no está disponible para inspección.",
+      "limitations": [
+        "HTTP 522 al sondear; sin servicios disponibles",
+        "no se pudo verificar ninguna capa ambiental"
+      ],
+      "uncertainty": "No evaluada",
+      "usage_restrictions": "Desconocidas hasta recuperar el servicio",
+      "domain": "HYDROLOGY",
+      "state": "UNAVAILABLE",
+      "evidence_level": "V0",
+      "validation_scope": null,
+      "integration_scope": null,
+      "artifacts": [],
+      "transitions": [
+        {
+          "dataset_id": "marn_geoportal",
+          "state_from": "DISCOVERED",
+          "state_to": "DISCOVERED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "alta en catálogo con evidencia de descubrimiento",
+          "evidence": [
+            {
+              "evidence_type": "url_probe",
+              "reference": "research/raw/phase3/probes_20261122_r3.json#marn_geoportal",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "HTTP 522",
+              "passed": false,
+              "sha256": null,
+              "payload": {
+                "status": 522,
+                "url": "https://geoportal.marn.gob.sv/",
+                "found_in_probe_run": true
+              }
+            }
+          ]
+        },
+        {
+          "dataset_id": "marn_geoportal",
+          "state_from": "DISCOVERED",
+          "state_to": "UNAVAILABLE",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "no disponible: el servicio no respondió",
+          "evidence": [
+            {
+              "evidence_type": "url_probe",
+              "reference": "research/raw/phase3/probes_20261122_r3.json#marn_geoportal",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "HTTP 522 en la verificación",
+              "passed": false,
+              "sha256": null,
+              "payload": {
+                "status": 522,
+                "url": "https://geoportal.marn.gob.sv/",
+                "found_in_probe_run": true
+              }
+            }
+          ]
+        }
+      ],
+      "notes": "",
+      "updated_at": "2026-11-22T04:19:52Z",
+      "CRITICAL_FIELDS": [
+        "license",
+        "geographic_coverage",
+        "temporal_coverage",
+        "spatial_resolution",
+        "temporal_resolution",
+        "methodology",
+        "uncertainty",
+        "format",
+        "institution",
+        "source_url"
+      ],
+      "missing_fields": [
+        "variables"
+      ],
+      "terminal": false
+    },
+    {
+      "dataset_id": "nasa_power_point",
+      "name": "NASA POWER — serie diaria de punto",
+      "description": "Precipitación corregida y temperaturas máxima/mínima diarias para 13,70 N, 89,20 W (2019–2025).",
+      "institution": "NASA POWER (NASA LaRC)",
+      "source_url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=PRECTOTCORR,T2M_MAX,T2M_MIN&community=AG&longitude=-89.20&latitude=13.70&start=20190101&end=20251231&format=JSON",
+      "publication_date": null,
+      "download_date": "2026-11-22",
+      "version": null,
+      "license": "NASA POWER: datos abiertos, uso comercial permitido con cita",
+      "redistribution_allowed": true,
+      "derived_use_allowed": true,
+      "geographic_coverage": "1 punto (celda POWER de 0,5° × 0,625°)",
+      "temporal_coverage": "2019-01-01 a 2025-12-31 (2.557 días)",
+      "crs": "EPSG:4326 (coordenada del punto)",
+      "spatial_resolution": "punto; soporte de celda 0,5° × 0,625°",
+      "temporal_resolution": "diaria",
+      "variables": [
+        "precipitation",
+        "temperature"
+      ],
+      "units": {
+        "precipitation": "mm",
+        "temperature": "degC"
+      },
+      "format": "JSON",
+      "size": "128,012 B",
+      "methodology": "Descarga de la API diaria; normalización de unidades, conversión de centinela -999 a ausencia y período diario local (LST) expresado en UTC−6.",
+      "limitations": [
+        "es reanálisis MERRA-2, no una estación meteorológica",
+        "un punto no representa el país ni un departamento",
+        "el día está en hora solar local (LST), no en UTC civil",
+        "la precipitación diaria es desagregada, no medida a esa escala"
+      ],
+      "uncertainty": "Error de representación espacial no cuantificado; sin estaciones de referencia disponibles para validar",
+      "usage_restrictions": "Citar NASA POWER Project",
+      "domain": "CLIMATE",
+      "state": "INTEGRATED",
+      "evidence_level": "V1",
+      "validation_scope": "muestra de punto: 13,70 N, 89,20 W, 2019–2025",
+      "integration_scope": "muestra de punto / conjunto de ocurrencias",
+      "artifacts": [
+        "data/samples/phase3/nasa_power_point/power_daily_13.70N_89.20W.json"
+      ],
+      "transitions": [
+        {
+          "dataset_id": "nasa_power_point",
+          "state_from": "DISCOVERED",
+          "state_to": "DISCOVERED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "alta en catálogo",
+          "evidence": [
+            {
+              "evidence_type": "file_hash",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\nasa_power_point\\power_daily_13.70N_89.20W.json",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "muestra descargada en Fase 3",
+              "passed": true,
+              "sha256": "f0ff69a77369bf695f220e82cfd3425e9352e34a734814755916243a7135dfe9",
+              "payload": {}
+            }
+          ]
+        },
+        {
+          "dataset_id": "nasa_power_point",
+          "state_from": "DISCOVERED",
+          "state_to": "DOWNLOADED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "muestra descargada y hasheada",
+          "evidence": [
+            {
+              "evidence_type": "file_hash",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\nasa_power_point\\power_daily_13.70N_89.20W.json",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "sha256 f0ff69a77369bf69…",
+              "passed": true,
+              "sha256": "f0ff69a77369bf695f220e82cfd3425e9352e34a734814755916243a7135dfe9",
+              "payload": {}
+            }
+          ]
+        },
+        {
+          "dataset_id": "nasa_power_point",
+          "state_from": "DOWNLOADED",
+          "state_to": "PARSED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "formato detectado y metadatos extraídos",
+          "evidence": [
+            {
+              "evidence_type": "parse_result",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\manifests\\ingest\\nasa_power_point.f0ff69a77369.json",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (1807 B)",
+              "passed": true,
+              "sha256": "4ea3572d2b70ee9db64b8a41e9b08c6972a3d90a606894169baf5464bc2d7eaa",
+              "payload": {
+                "parser": "agrosv.data.ingest/4.0",
+                "format": "geojson"
+              }
+            }
+          ]
+        },
+        {
+          "dataset_id": "nasa_power_point",
+          "state_from": "PARSED",
+          "state_to": "VALIDATED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "motor de calidad: PASS_WITH_WARNINGS con 4 comprobaciones",
+          "evidence": [
+            {
+              "evidence_type": "validation_report",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\metadata\\quality_reports\\nasa_power_point.b77372c6936c09e8.json",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (2510 B)",
+              "passed": true,
+              "sha256": "86704bed828bc182193e5a484855e146d5978e9cd95e9bfcab2b1a6f7ff057b0",
+              "payload": {
+                "status": "PASS_WITH_WARNINGS",
+                "checks_run": 4,
+                "scope": "muestra de punto: 13,70 N, 89,20 W, 2019–2025",
+                "report_id": "b77372c6936c09e8"
+              }
+            }
+          ]
+        },
+        {
+          "dataset_id": "nasa_power_point",
+          "state_from": "VALIDATED",
+          "state_to": "INTEGRATED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "consultable por /api/data",
+          "evidence": [
+            {
+              "evidence_type": "integration_record",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\manifests\\integration\\nasa_power_point.json",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (371 B)",
+              "passed": true,
+              "sha256": "a39edd656141e52c6f097eaaef4d50551da6a6e24a8f8dc0d5afd87449c02c2a",
+              "payload": {
+                "queryable": true,
+                "rows": 7671,
+                "endpoint": "/api/data/observations?dataset_id=nasa_power_point"
+              }
+            }
+          ]
+        }
+      ],
+      "notes": "Muestra mínima de Fase 3; no es el dataset nacional completo.",
+      "updated_at": "2026-11-22T04:19:52Z",
+      "CRITICAL_FIELDS": [
+        "license",
+        "geographic_coverage",
+        "temporal_coverage",
+        "spatial_resolution",
+        "temporal_resolution",
+        "methodology",
+        "uncertainty",
+        "format",
+        "institution",
+        "source_url"
+      ],
+      "missing_fields": [],
+      "terminal": false
+    },
+    {
+      "dataset_id": "nemotron_sv",
+      "name": "Nemotron Personas SV — muestra de filas sintéticas",
+      "description": "Tres filas de ejemplo del dataset de personas sintéticas de El Salvador; no representan productores.",
+      "institution": "NVIDIA (Nemotron Personas)",
+      "source_url": "https://huggingface.co/datasets/nvidia/Nemotron-Personas-El-Salvador",
+      "publication_date": null,
+      "download_date": "2026-11-21",
+      "version": null,
+      "license": "CC BY 4.0",
+      "redistribution_allowed": null,
+      "derived_use_allowed": null,
+      "geographic_coverage": "El Salvador (44 municipios declarados por el proveedor)",
+      "temporal_coverage": "2026-06-05 (publicación)",
+      "crs": null,
+      "spatial_resolution": "no espacial",
+      "temporal_resolution": "no temporal",
+      "variables": [
+        "persona_uuid",
+        "professional_persona"
+      ],
+      "units": {
+        "persona_uuid": "id",
+        "professional_persona": "text"
+      },
+      "format": "JSON (filas de muestra)",
+      "size": null,
+      "methodology": "Inspección de estructura y tres filas; sin validación científica por ser sintético.",
+      "limitations": [
+        "datos sintéticos: no son personas ni explotaciones reales",
+        "no sirven como evidencia socioeconómica ni para inferencia",
+        "no se validan como observación; permanecen PARSED"
+      ],
+      "uncertainty": "No aplica: la generación sintética no tiene error de medición, pero tampoco validez empírica",
+      "usage_restrictions": "CC BY 4.0; uso ilustrativo, nunca como dato observado",
+      "domain": "ECONOMY",
+      "state": "PARSED",
+      "evidence_level": "V0",
+      "validation_scope": null,
+      "integration_scope": null,
+      "artifacts": [
+        "data/samples/phase3/nemotron_rows/nemotron_rows_sample.json"
+      ],
+      "transitions": [
+        {
+          "dataset_id": "nemotron_sv",
+          "state_from": "DISCOVERED",
+          "state_to": "DISCOVERED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "alta en catálogo con evidencia de descubrimiento",
+          "evidence": [
+            {
+              "evidence_type": "file_hash",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\nemotron_rows\\nemotron_rows_sample.json",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (27580 B)",
+              "passed": true,
+              "sha256": "59ea5ead123c66d27afbf25ddbd8f0032b68442700e922ef47d665d0075a1751",
+              "payload": {}
+            }
+          ]
+        },
+        {
+          "dataset_id": "nemotron_sv",
+          "state_from": "DISCOVERED",
+          "state_to": "DOWNLOADED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "muestra de filas descargada",
+          "evidence": [
+            {
+              "evidence_type": "file_hash",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\nemotron_rows\\nemotron_rows_sample.json",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (27580 B)",
+              "passed": true,
+              "sha256": "59ea5ead123c66d27afbf25ddbd8f0032b68442700e922ef47d665d0075a1751",
+              "payload": {}
+            }
+          ]
+        },
+        {
+          "dataset_id": "nemotron_sv",
+          "state_from": "DOWNLOADED",
+          "state_to": "PARSED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "estructura parseada; no se promueve a VALIDATED",
+          "evidence": [
+            {
+              "evidence_type": "parse_result",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\nemotron_rows\\nemotron_rows_sample.json",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (27580 B)",
+              "passed": true,
+              "sha256": "59ea5ead123c66d27afbf25ddbd8f0032b68442700e922ef47d665d0075a1751",
+              "payload": {
+                "rows": 3,
+                "synthetic": true
+              }
+            }
+          ]
+        }
+      ],
+      "notes": "",
+      "updated_at": "2026-11-22T04:19:52Z",
+      "CRITICAL_FIELDS": [
+        "license",
+        "geographic_coverage",
+        "temporal_coverage",
+        "spatial_resolution",
+        "temporal_resolution",
+        "methodology",
+        "uncertainty",
+        "format",
+        "institution",
+        "source_url"
+      ],
+      "missing_fields": [],
+      "terminal": false
+    },
+    {
+      "dataset_id": "open_meteo_point",
+      "name": "Open-Meteo — serie diaria de punto",
+      "description": "Precipitación, temperatura, ET₀ FAO-56 y humedad relativa diarias para 13,67 N, 89,17 W (2019–2025).",
+      "institution": "Open-Meteo (agregador ERA5/IFS)",
+      "source_url": "https://archive-api.open-meteo.com/v1/archive?latitude=13.70&longitude=-89.20&start_date=2019-01-01&end_date=2025-12-31&daily=precipitation_sum,temperature_2m_max,temperature_2m_min,et0_fao_evapotranspiration,relative_humidity_2m_mean&timezone=America%2FEl_Salvador",
+      "publication_date": null,
+      "download_date": "2026-11-22",
+      "version": null,
+      "license": "CC BY 4.0; nivel gratuito solo uso no comercial",
+      "redistribution_allowed": false,
+      "derived_use_allowed": false,
+      "geographic_coverage": "1 punto (celda ~9 km)",
+      "temporal_coverage": "2019-01-01 a 2025-12-31 (2.557 días)",
+      "crs": "EPSG:4326",
+      "spatial_resolution": "punto; soporte de celda 0,1° (~9 km)",
+      "temporal_resolution": "diaria",
+      "variables": [
+        "precipitation",
+        "temperature",
+        "et0",
+        "relative_humidity"
+      ],
+      "units": {
+        "precipitation": "mm",
+        "temperature": "degC",
+        "et0": "mm",
+        "relative_humidity": "%"
+      },
+      "format": "JSON",
+      "size": "92,997 B",
+      "methodology": "Descarga con zona America/El_Salvador (UTC−6); períodos diarios locales convertidos a UTC; unidades verificadas contra daily_units.",
+      "limitations": [
+        "agregador de reanálisis: no es medición local",
+        "una celda de ~9 km no representa un municipio ni una parcela",
+        "ET₀ calculada por el proveedor, no derivada por AGROSV",
+        "el nivel gratuito es solo para uso no comercial"
+      ],
+      "uncertainty": "No cuantificada para El Salvador; intercomparación con NASA POWER registrada en el informe de calidad",
+      "usage_restrictions": "CC BY 4.0; uso comercial requiere plan de pago",
+      "domain": "CLIMATE",
+      "state": "INTEGRATED",
+      "evidence_level": "V1",
+      "validation_scope": "muestra de punto: 13,67 N, 89,17 W, 2019–2025",
+      "integration_scope": "muestra de punto / conjunto de ocurrencias",
+      "artifacts": [
+        "data/samples/phase3/open_meteo_point/openmeteo_daily_13.70N_89.20W.json"
+      ],
+      "transitions": [
+        {
+          "dataset_id": "open_meteo_point",
+          "state_from": "DISCOVERED",
+          "state_to": "DISCOVERED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "alta en catálogo",
+          "evidence": [
+            {
+              "evidence_type": "file_hash",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\open_meteo_point\\openmeteo_daily_13.70N_89.20W.json",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "muestra descargada en Fase 3",
+              "passed": true,
+              "sha256": "9a6d9b1b1064a6024cd8a4992d257833610b2d7445fac6374cac0e55a4882f54",
+              "payload": {}
+            }
+          ]
+        },
+        {
+          "dataset_id": "open_meteo_point",
+          "state_from": "DISCOVERED",
+          "state_to": "DOWNLOADED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "muestra descargada y hasheada",
+          "evidence": [
+            {
+              "evidence_type": "file_hash",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\open_meteo_point\\openmeteo_daily_13.70N_89.20W.json",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "sha256 9a6d9b1b1064a602…",
+              "passed": true,
+              "sha256": "9a6d9b1b1064a6024cd8a4992d257833610b2d7445fac6374cac0e55a4882f54",
+              "payload": {}
+            }
+          ]
+        },
+        {
+          "dataset_id": "open_meteo_point",
+          "state_from": "DOWNLOADED",
+          "state_to": "PARSED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "formato detectado y metadatos extraídos",
+          "evidence": [
+            {
+              "evidence_type": "parse_result",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\manifests\\ingest\\open_meteo_point.9a6d9b1b1064.json",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (1949 B)",
+              "passed": true,
+              "sha256": "75253ab69d63c5510f3b5cad26bd24d60bced8ec3234e1a58eec2b3c9f46497c",
+              "payload": {
+                "parser": "agrosv.data.ingest/4.0",
+                "format": "json"
+              }
+            }
+          ]
+        },
+        {
+          "dataset_id": "open_meteo_point",
+          "state_from": "PARSED",
+          "state_to": "VALIDATED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "motor de calidad: PASS_WITH_WARNINGS con 7 comprobaciones",
+          "evidence": [
+            {
+              "evidence_type": "validation_report",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\metadata\\quality_reports\\open_meteo_point.a01b9eaf8169e2da.json",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (2763 B)",
+              "passed": true,
+              "sha256": "17dbe2c42abb4e75122373fec4ef1c75d563b62e4b6c1282eb4c52f2a50fcf88",
+              "payload": {
+                "status": "PASS_WITH_WARNINGS",
+                "checks_run": 7,
+                "scope": "muestra de punto: 13,67 N, 89,17 W, 2019–2025",
+                "report_id": "b2e8deefe42dc44e"
+              }
+            }
+          ]
+        },
+        {
+          "dataset_id": "open_meteo_point",
+          "state_from": "VALIDATED",
+          "state_to": "INTEGRATED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "consultable por /api/data",
+          "evidence": [
+            {
+              "evidence_type": "integration_record",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\manifests\\integration\\open_meteo_point.json",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (368 B)",
+              "passed": true,
+              "sha256": "088099d7f202bcec33da8dab2f7db372d313416cf6d10905c87719907e83b940",
+              "payload": {
+                "queryable": true,
+                "rows": 12785,
+                "endpoint": "/api/data/observations?dataset_id=open_meteo_point"
+              }
+            }
+          ]
+        }
+      ],
+      "notes": "Muestra mínima de Fase 3; no es el dataset nacional completo.",
+      "updated_at": "2026-11-22T04:19:52Z",
+      "CRITICAL_FIELDS": [
+        "license",
+        "geographic_coverage",
+        "temporal_coverage",
+        "spatial_resolution",
+        "temporal_resolution",
+        "methodology",
+        "uncertainty",
+        "format",
+        "institution",
+        "source_url"
+      ],
+      "missing_fields": [],
+      "terminal": false
+    },
+    {
+      "dataset_id": "osm_sv",
+      "name": "OpenStreetMap — infraestructura de El Salvador",
+      "description": "Vialidad, hidrografía, asentamientos e infraestructura del extracto Geofabrik de El Salvador.",
+      "institution": "OpenStreetMap contributors (extracto Geofabrik)",
+      "source_url": "https://download.geofabrik.de/central-america/el-salvador.html",
+      "publication_date": null,
+      "download_date": "2026-11-21",
+      "version": "extracto diario",
+      "license": "ODbL 1.0",
+      "redistribution_allowed": true,
+      "derived_use_allowed": true,
+      "geographic_coverage": "El Salvador",
+      "temporal_coverage": "instantánea del extracto (no serie histórica)",
+      "crs": "EPSG:4326",
+      "spatial_resolution": "vectorial; precisión variable por elemento",
+      "temporal_resolution": "instantánea",
+      "variables": [
+        "area_km2",
+        "length_km"
+      ],
+      "units": {
+        "area_km2": "km2",
+        "length_km": "km"
+      },
+      "format": "GeoPackage",
+      "size": "51 MB",
+      "methodology": "Extracción por capas temáticas desde el extracto OSM; longitudes calculadas en CRS métrico.",
+      "limitations": [
+        "cobertura agrícola insuficiente: no hay parcelas ni cultivos",
+        "precisión posicional heterogénea según colaborador",
+        "la fecha de cada elemento es la del extracto, no la del terreno"
+      ],
+      "uncertainty": "Precisión posicional no medida; sin control de calidad sistemático de OSM en el país",
+      "usage_restrictions": "ODbL 1.0: atribución y share-alike sobre bases derivadas; excluido de paquetes cerrados",
+      "domain": "TERRITORY",
+      "state": "INTEGRATED",
+      "evidence_level": "V1",
+      "validation_scope": "capa de vialidad (extracto Geofabrik)",
+      "integration_scope": "nacional (capas temáticas por bbox)",
+      "artifacts": [
+        "data/processed/infrastructure/infrastructure.gpkg"
+      ],
+      "transitions": [
+        {
+          "dataset_id": "osm_sv",
+          "state_from": "DISCOVERED",
+          "state_to": "DISCOVERED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "alta en catálogo",
+          "evidence": [
+            {
+              "evidence_type": "file_hash",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\processed\\infrastructure\\infrastructure.gpkg.provenance.json",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (1344 B)",
+              "passed": true,
+              "sha256": "9621e3e46af4bd49dc49f49b32dd9b7e04e9503cc0a0adcc418c47eb3fc372f8",
+              "payload": {}
+            }
+          ]
+        },
+        {
+          "dataset_id": "osm_sv",
+          "state_from": "DISCOVERED",
+          "state_to": "DOWNLOADED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "extracto procesado con manifiesto",
+          "evidence": [
+            {
+              "evidence_type": "file_hash",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\processed\\infrastructure\\infrastructure.gpkg",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (52998144 B)",
+              "passed": true,
+              "sha256": "44bdc4caaac7eca665bc58d85ebbeb92ba169a5da51c1903f2caa274339cbae1",
+              "payload": {}
+            }
+          ]
+        },
+        {
+          "dataset_id": "osm_sv",
+          "state_from": "DOWNLOADED",
+          "state_to": "PARSED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "capas y CRS verificados con pyogrio",
+          "evidence": [
+            {
+              "evidence_type": "parse_result",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\processed\\infrastructure\\infrastructure.gpkg",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (52998144 B)",
+              "passed": true,
+              "sha256": "44bdc4caaac7eca665bc58d85ebbeb92ba169a5da51c1903f2caa274339cbae1",
+              "payload": {
+                "layers": 6
+              }
+            }
+          ]
+        },
+        {
+          "dataset_id": "osm_sv",
+          "state_from": "PARSED",
+          "state_to": "VALIDATED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "QC de CRS, cobertura y licencia",
+          "evidence": [
+            {
+              "evidence_type": "validation_report",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\metadata\\quality_reports\\osm_sv.7d1cc8f640f5ef0c.json",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (1446 B)",
+              "passed": true,
+              "sha256": "601f0103d4a2253d7fa627aa58517e5e86988ed42e85a4eec152d0aecc5df04e",
+              "payload": {
+                "status": "PASS_WITH_WARNINGS",
+                "checks_run": 4,
+                "scope": "capa de vialidad; cobertura nacional",
+                "report_id": "7d1cc8f640f5ef0c"
+              }
+            }
+          ]
+        },
+        {
+          "dataset_id": "osm_sv",
+          "state_from": "VALIDATED",
+          "state_to": "INTEGRATED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "servido por la API de infraestructura",
+          "evidence": [
+            {
+              "evidence_type": "integration_record",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\manifests\\integration\\osm_sv.json",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (232 B)",
+              "passed": true,
+              "sha256": "e492951329b3b5b88511031c4142ff9d47832a2b0086f5c5693712e375dbae7c",
+              "payload": {
+                "queryable": true,
+                "rows": 0,
+                "endpoint": "/api/infrastructure/{layer}"
+              }
+            }
+          ]
+        }
+      ],
+      "notes": "",
+      "updated_at": "2026-11-22T04:19:52Z",
+      "CRITICAL_FIELDS": [
+        "license",
+        "geographic_coverage",
+        "temporal_coverage",
+        "spatial_resolution",
+        "temporal_resolution",
+        "methodology",
+        "uncertainty",
+        "format",
+        "institution",
+        "source_url"
+      ],
+      "missing_fields": [],
+      "terminal": false
+    },
+    {
+      "dataset_id": "protectedplanet",
+      "name": "Protected Planet — áreas protegidas",
+      "description": "Base mundial de áreas protegidas; API requiere token.",
+      "institution": "UNEP-WCMC",
+      "source_url": "https://www.protectedplanet.net/",
+      "publication_date": null,
+      "download_date": null,
+      "version": null,
+      "license": "No comercial; API con token",
+      "redistribution_allowed": null,
+      "derived_use_allowed": null,
+      "geographic_coverage": "global",
+      "temporal_coverage": "actualización continua",
+      "crs": null,
+      "spatial_resolution": "vectorial",
+      "temporal_resolution": "estático",
+      "variables": [],
+      "units": {},
+      "format": "Web/API",
+      "size": null,
+      "methodology": "No evaluada: el recurso no está disponible para inspección.",
+      "limitations": [
+        "API devolvió 401 sin token",
+        "los límites de áreas protegidas de El Salvador no están verificados"
+      ],
+      "uncertainty": "No evaluada",
+      "usage_restrictions": "Token y uso no comercial",
+      "domain": "BIODIVERSITY",
+      "state": "RESTRICTED",
+      "evidence_level": "V0",
+      "validation_scope": null,
+      "integration_scope": null,
+      "artifacts": [],
+      "transitions": [
+        {
+          "dataset_id": "protectedplanet",
+          "state_from": "DISCOVERED",
+          "state_to": "DISCOVERED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "alta en catálogo con evidencia de descubrimiento",
+          "evidence": [
+            {
+              "evidence_type": "manual_review",
+              "reference": "docs/data_expansion/DATA_SOURCE_REGISTRY.md#protectedplanet",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "API 401 sin token",
+              "passed": true,
+              "sha256": null,
+              "payload": {}
+            }
+          ]
+        },
+        {
+          "dataset_id": "protectedplanet",
+          "state_from": "DISCOVERED",
+          "state_to": "RESTRICTED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "restringido por token y licencia",
+          "evidence": [
+            {
+              "evidence_type": "license_check",
+              "reference": "research/raw/phase3/probes_20261122_r3.json#protectedplanet_sv",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "token requerido; uso no comercial",
+              "passed": true,
+              "sha256": null,
+              "payload": {
+                "requires": "API token"
+              }
+            }
+          ]
+        }
+      ],
+      "notes": "",
+      "updated_at": "2026-11-22T04:19:52Z",
+      "CRITICAL_FIELDS": [
+        "license",
+        "geographic_coverage",
+        "temporal_coverage",
+        "spatial_resolution",
+        "temporal_resolution",
+        "methodology",
+        "uncertainty",
+        "format",
+        "institution",
+        "source_url"
+      ],
+      "missing_fields": [
+        "variables"
+      ],
+      "terminal": false
+    },
+    {
+      "dataset_id": "sentinel2_c1_l2a",
+      "name": "Sentinel-2 Collection-1 L2A — metadatos STAC",
+      "description": "Resultado de búsqueda STAC (2 ítems, 36 coincidencias) sobre El Salvador. No se descargaron escenas.",
+      "institution": "Copernicus/ESA (vía STAC Earth Search)",
+      "source_url": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-c1-l2a",
+      "publication_date": null,
+      "download_date": "2026-11-21",
+      "version": null,
+      "license": "Copernicus (atribución)",
+      "redistribution_allowed": null,
+      "derived_use_allowed": null,
+      "geographic_coverage": "Global; consulta sobre El Salvador",
+      "temporal_coverage": "2015–actualidad (escenas)",
+      "crs": "EPSG:32616 (UTM 16N en las escenas de la zona)",
+      "spatial_resolution": "10 / 20 / 60 m",
+      "temporal_resolution": "5 días (revisita)",
+      "variables": [
+        "metadata"
+      ],
+      "units": {
+        "metadata": "count"
+      },
+      "format": "JSON (STAC ItemCollection)",
+      "size": null,
+      "methodology": "Búsqueda STAC con filtro de cobertura; sin descarga de COG (decisión registrada en Fase 3).",
+      "limitations": [
+        "solo se descargaron metadatos STAC, no imágenes",
+        "sin escenas archivadas no hay índice espectral ni serie NDVI",
+        "las nubes de la época lluviosa limitan la observación óptica"
+      ],
+      "uncertainty": "No aplica: no se procesó ninguna observación",
+      "usage_restrictions": "Atribución Copernicus; sin datos archivados",
+      "domain": "TERRITORY",
+      "state": "DOWNLOADED",
+      "evidence_level": "V0",
+      "validation_scope": null,
+      "integration_scope": null,
+      "artifacts": [
+        "data/samples/phase3/sentinel2_stac/s2_stac_search.json"
+      ],
+      "transitions": [
+        {
+          "dataset_id": "sentinel2_c1_l2a",
+          "state_from": "DISCOVERED",
+          "state_to": "DISCOVERED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "alta en catálogo con evidencia de descubrimiento",
+          "evidence": [
+            {
+              "evidence_type": "file_hash",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\sentinel2_stac\\s2_stac_search.json",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (42425 B)",
+              "passed": true,
+              "sha256": "049c3afc7efa5f16d0f49ba96a21a697d2d1a367fd613d89100d04dc048d8f3e",
+              "payload": {}
+            }
+          ]
+        },
+        {
+          "dataset_id": "sentinel2_c1_l2a",
+          "state_from": "DISCOVERED",
+          "state_to": "DOWNLOADED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "metadatos STAC descargados; no se descargaron escenas",
+          "evidence": [
+            {
+              "evidence_type": "file_hash",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\sentinel2_stac\\s2_stac_search.json",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (42425 B)",
+              "passed": true,
+              "sha256": "049c3afc7efa5f16d0f49ba96a21a697d2d1a367fd613d89100d04dc048d8f3e",
+              "payload": {}
+            }
+          ]
+        }
+      ],
+      "notes": "",
+      "updated_at": "2026-11-22T04:19:52Z",
+      "CRITICAL_FIELDS": [
+        "license",
+        "geographic_coverage",
+        "temporal_coverage",
+        "spatial_resolution",
+        "temporal_resolution",
+        "methodology",
+        "uncertainty",
+        "format",
+        "institution",
+        "source_url"
+      ],
+      "missing_fields": [],
+      "terminal": false
+    },
+    {
+      "dataset_id": "soilgrids_2",
+      "name": "SoilGrids 2.0 — propiedades del suelo 0–30 cm",
+      "description": "pH, carbono orgánico, nitrógeno y textura predichos a 250 m para El Salvador, recortados de SoilGrids 2.0.",
+      "institution": "ISRIC — World Soil Information",
+      "source_url": "https://soilgrids.org/",
+      "publication_date": "2017-2022 (datos de entrenamiento)",
+      "download_date": "2026-11-21",
+      "version": "SoilGrids 2.0",
+      "license": "CC BY 4.0",
+      "redistribution_allowed": true,
+      "derived_use_allowed": true,
+      "geographic_coverage": "El Salvador (recorte nacional)",
+      "temporal_coverage": "2017–2022 (modelo, no serie temporal)",
+      "crs": "EPSG:32616 (rejilla UTM 16N de Fase 1; la consulta reproyecta desde EPSG:4326)",
+      "spatial_resolution": "250 m (rejilla UTM 16N)",
+      "temporal_resolution": "estático (modelo)",
+      "variables": [
+        "ph",
+        "soil_organic_carbon",
+        "soil_nitrogen",
+        "clay",
+        "sand",
+        "silt"
+      ],
+      "units": {
+        "ph": "",
+        "soil_organic_carbon": "g kg-1",
+        "soil_nitrogen": "g kg-1",
+        "clay": "%",
+        "sand": "%",
+        "silt": "%"
+      },
+      "format": "GeoTIFF (6 archivos)",
+      "size": "< 1 MB por propiedad recortada",
+      "methodology": "Predicción con aprendizaje automático y covariables; recorte y escalado de unidades documentados.",
+      "limitations": [
+        "es predicción global, no medición de laboratorio en El Salvador",
+        "error mayor en relieve complejo; 250 m no representa parcelas",
+        "las fracciones texturales no suman 100 exactamente"
+      ],
+      "uncertainty": "Incertidumbre por propiedad publicada por ISRIC no integrada aún; error local no validado",
+      "usage_restrictions": "Atribución CC BY 4.0; no presentar como análisis de laboratorio",
+      "domain": "SOILS",
+      "state": "INTEGRATED",
+      "evidence_level": "V1",
+      "validation_scope": "6 propiedades 0–30 cm; predicción global a 250 m",
+      "integration_scope": "nacional (6 propiedades 0–30 cm; consulta puntual)",
+      "artifacts": [
+        "data/processed/soils/rasters/phh2o_0-30cm.tif",
+        "data/processed/soils/rasters/soc_0-30cm.tif",
+        "data/processed/soils/rasters/nitrogen_0-30cm.tif",
+        "data/processed/soils/rasters/clay_0-30cm.tif",
+        "data/processed/soils/rasters/sand_0-30cm.tif",
+        "data/processed/soils/rasters/silt_0-30cm.tif"
+      ],
+      "transitions": [
+        {
+          "dataset_id": "soilgrids_2",
+          "state_from": "DISCOVERED",
+          "state_to": "DISCOVERED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "alta en catálogo",
+          "evidence": [
+            {
+              "evidence_type": "file_hash",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\processed\\soils\\rasters\\phh2o_0-30cm.tif.provenance.json",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (1430 B)",
+              "passed": true,
+              "sha256": "94e8208d5593201a38f9e311c8081cd39f7e3d9d135984a4d5bbb00c8c8beb73",
+              "payload": {}
+            }
+          ]
+        },
+        {
+          "dataset_id": "soilgrids_2",
+          "state_from": "DISCOVERED",
+          "state_to": "DOWNLOADED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "seis propiedades recortadas y verificadas",
+          "evidence": [
+            {
+              "evidence_type": "file_hash",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\processed\\soils\\rasters\\phh2o_0-30cm.tif",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (145997 B)",
+              "passed": true,
+              "sha256": "261120d4ac064763a6347b586902b249e1dab4a1f26f8ef9e6c3682e2e43cd7b",
+              "payload": {}
+            },
+            {
+              "evidence_type": "file_hash",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\processed\\soils\\rasters\\soc_0-30cm.tif",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (491151 B)",
+              "passed": true,
+              "sha256": "b1b539dc26fd15205f33b35678130e8011a14333bf7ecd53675f8ea08dc0d3a2",
+              "payload": {}
+            },
+            {
+              "evidence_type": "file_hash",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\processed\\soils\\rasters\\nitrogen_0-30cm.tif",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (461913 B)",
+              "passed": true,
+              "sha256": "79c99fea9656b046d3169f0066213cc2b68c1444534c91678221c2d678a4946c",
+              "payload": {}
+            },
+            {
+              "evidence_type": "file_hash",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\processed\\soils\\rasters\\clay_0-30cm.tif",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (399400 B)",
+              "passed": true,
+              "sha256": "bfebd14cfe9782c3421caa4f12d48a81dd241104050986d508cebce92911f7c3",
+              "payload": {}
+            },
+            {
+              "evidence_type": "file_hash",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\processed\\soils\\rasters\\sand_0-30cm.tif",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (362724 B)",
+              "passed": true,
+              "sha256": "73d04880aad074dfaeb173a77e5a04738e60b70de9df7dbe4306a073aae8eaf1",
+              "payload": {}
+            },
+            {
+              "evidence_type": "file_hash",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\processed\\soils\\rasters\\silt_0-30cm.tif",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (390134 B)",
+              "passed": true,
+              "sha256": "9c66f8d75251ece94cca7072b77f914fffde4fde637a4c15686024ea710439ef",
+              "payload": {}
+            }
+          ]
+        },
+        {
+          "dataset_id": "soilgrids_2",
+          "state_from": "DOWNLOADED",
+          "state_to": "PARSED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "cabeceras GeoTIFF leídas",
+          "evidence": [
+            {
+              "evidence_type": "parse_result",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\processed\\soils\\rasters\\phh2o_0-30cm.tif",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (145997 B)",
+              "passed": true,
+              "sha256": "261120d4ac064763a6347b586902b249e1dab4a1f26f8ef9e6c3682e2e43cd7b",
+              "payload": {
+                "parser": "rasterio",
+                "properties": 6
+              }
+            }
+          ]
+        },
+        {
+          "dataset_id": "soilgrids_2",
+          "state_from": "PARSED",
+          "state_to": "VALIDATED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "QC de rejilla, NoData y rango de pH",
+          "evidence": [
+            {
+              "evidence_type": "validation_report",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\metadata\\quality_reports\\soilgrids_2.4f99765f26b64d19.json",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (1281 B)",
+              "passed": true,
+              "sha256": "a3e89048d845897130de89672a0c70aa7c3f75cada5278f97f440da446a87843",
+              "payload": {
+                "status": "PASS_WITH_WARNINGS",
+                "checks_run": 10,
+                "scope": "capa nacional de 6 propiedades 0–30 cm",
+                "report_id": "4f99765f26b64d19"
+              }
+            }
+          ]
+        },
+        {
+          "dataset_id": "soilgrids_2",
+          "state_from": "VALIDATED",
+          "state_to": "INTEGRATED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "consulta puntual servida desde Fase 1",
+          "evidence": [
+            {
+              "evidence_type": "integration_record",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\manifests\\integration\\soilgrids_2.json",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (237 B)",
+              "passed": true,
+              "sha256": "48e47a0f1a18036c65902becdc30d65442ec63a2d1eda525248d3f255a703ce3",
+              "payload": {
+                "queryable": true,
+                "rows": 0,
+                "endpoint": "/api/soils/point,/api/soils/summary"
+              }
+            }
+          ]
+        }
+      ],
+      "notes": "",
+      "updated_at": "2026-11-22T04:19:52Z",
+      "CRITICAL_FIELDS": [
+        "license",
+        "geographic_coverage",
+        "temporal_coverage",
+        "spatial_resolution",
+        "temporal_resolution",
+        "methodology",
+        "uncertainty",
+        "format",
+        "institution",
+        "source_url"
+      ],
+      "missing_fields": [],
+      "terminal": false
+    },
+    {
+      "dataset_id": "soilgrids_rest",
+      "name": "SoilGrids 2.0 — API REST (rechazada)",
+      "description": "Consulta REST de pH en un punto: HTTP 200 con `mean: null`. No es una fuente utilizable para ingesta.",
+      "institution": "ISRIC — World Soil Information",
+      "source_url": "https://rest.isric.org/soilgrids/v2.0/properties/query",
+      "publication_date": null,
+      "download_date": "2026-11-21",
+      "version": null,
+      "license": "CC BY 4.0",
+      "redistribution_allowed": null,
+      "derived_use_allowed": null,
+      "geographic_coverage": "punto 13,70 N / 89,20 W",
+      "temporal_coverage": "consulta 2026-11-22",
+      "crs": null,
+      "spatial_resolution": "250 m (declarado por el proveedor)",
+      "temporal_resolution": "estático",
+      "variables": [
+        "ph"
+      ],
+      "units": {
+        "ph": ""
+      },
+      "format": "JSON",
+      "size": null,
+      "methodology": "No evaluada: el recurso no está disponible para inspección.",
+      "limitations": [
+        "la respuesta no contiene valor (`mean: null`): defecto del canal",
+        "el WebDAV/COG de ISRIC sí funciona y es la vía usada"
+      ],
+      "uncertainty": "No aplica: no hay valor que interpretar",
+      "usage_restrictions": "CC BY 4.0",
+      "domain": "SOILS",
+      "state": "REJECTED",
+      "evidence_level": "V0",
+      "validation_scope": null,
+      "integration_scope": null,
+      "artifacts": [
+        "data/samples/phase3/soilgrids_rest_point/soilgrids_phh2o_point.json"
+      ],
+      "transitions": [
+        {
+          "dataset_id": "soilgrids_rest",
+          "state_from": "DISCOVERED",
+          "state_to": "DISCOVERED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "alta en catálogo con evidencia de descubrimiento",
+          "evidence": [
+            {
+              "evidence_type": "file_hash",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\soilgrids_rest_point\\soilgrids_phh2o_point.json",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (357 B)",
+              "passed": true,
+              "sha256": "0c456e2042b33ba5f2ce431349143cd95469d468dd70b3e7cef06d51276add75",
+              "payload": {}
+            }
+          ]
+        },
+        {
+          "dataset_id": "soilgrids_rest",
+          "state_from": "DISCOVERED",
+          "state_to": "DOWNLOADED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "respuesta JSON descargada",
+          "evidence": [
+            {
+              "evidence_type": "file_hash",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\soilgrids_rest_point\\soilgrids_phh2o_point.json",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (357 B)",
+              "passed": true,
+              "sha256": "0c456e2042b33ba5f2ce431349143cd95469d468dd70b3e7cef06d51276add75",
+              "payload": {}
+            }
+          ]
+        },
+        {
+          "dataset_id": "soilgrids_rest",
+          "state_from": "DOWNLOADED",
+          "state_to": "PARSED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "JSON parseado; el campo mean es null",
+          "evidence": [
+            {
+              "evidence_type": "parse_result",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\soilgrids_rest_point\\soilgrids_phh2o_point.json",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (357 B)",
+              "passed": true,
+              "sha256": "0c456e2042b33ba5f2ce431349143cd95469d468dd70b3e7cef06d51276add75",
+              "payload": {
+                "mean": null
+              }
+            }
+          ]
+        },
+        {
+          "dataset_id": "soilgrids_rest",
+          "state_from": "PARSED",
+          "state_to": "REJECTED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "rechazada: el canal devuelve null; se usa WebDAV",
+          "evidence": [
+            {
+              "evidence_type": "validation_report",
+              "reference": "data/samples/phase3/soilgrids_rest_point/soilgrids_phh2o_point.json",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "mean=null: no hay dato que validar",
+              "passed": false,
+              "sha256": null,
+              "payload": {
+                "status": "FAIL",
+                "reason": "null_payload"
+              }
+            }
+          ]
+        }
+      ],
+      "notes": "",
+      "updated_at": "2026-11-22T04:19:52Z",
+      "CRITICAL_FIELDS": [
+        "license",
+        "geographic_coverage",
+        "temporal_coverage",
+        "spatial_resolution",
+        "temporal_resolution",
+        "methodology",
+        "uncertainty",
+        "format",
+        "institution",
+        "source_url"
+      ],
+      "missing_fields": [],
+      "terminal": true
+    },
+    {
+      "dataset_id": "worldbank_agri_share",
+      "name": "Banco Mundial — superficie agrícola (% del territorio)",
+      "description": "Indicador AG.LND.AGRI.ZS para El Salvador, 1960–2024, como contexto macro; no representa uso agrícola actual.",
+      "institution": "World Bank Open Data",
+      "source_url": "https://api.worldbank.org/v2/country/SLV/indicator/AG.LND.AGRI.ZS?format=json&per_page=70&date=1960:2024",
+      "publication_date": "2026-11-11 (última actualización del indicador)",
+      "download_date": "2026-11-22",
+      "version": "AG.LND.AGRI.ZS",
+      "license": "CC BY 4.0",
+      "redistribution_allowed": true,
+      "derived_use_allowed": true,
+      "geographic_coverage": "El Salvador (agregado nacional)",
+      "temporal_coverage": "1960–2024 (anual, con vacíos)",
+      "crs": null,
+      "spatial_resolution": "agregado nacional (no espacial)",
+      "temporal_resolution": "anual",
+      "variables": [
+        "agricultural_land_share"
+      ],
+      "units": {
+        "agricultural_land_share": "%"
+      },
+      "format": "JSON",
+      "size": "14,9 kB",
+      "methodology": "Serie anual del indicador; años sin dato excluidos, no rellenados.",
+      "limitations": [
+        "agregado nacional: no sirve para departamento ni municipio",
+        "la definición de «tierra agrícola» incluye pastos y cultivos",
+        "no es medición de campo de AGROSV"
+      ],
+      "uncertainty": "Metadatos del indicador no verificados contra la fuente primaria de El Salvador",
+      "usage_restrictions": "Atribución CC BY 4.0",
+      "domain": "AGRICULTURE",
+      "state": "VALIDATED",
+      "evidence_level": "V1",
+      "validation_scope": "indicador nacional anual (superficie agrícola, % del territorio)",
+      "integration_scope": null,
+      "artifacts": [
+        "data/samples/phase3/worldbank_slv/wb_agri_land_share_slv.json"
+      ],
+      "transitions": [
+        {
+          "dataset_id": "worldbank_agri_share",
+          "state_from": "DISCOVERED",
+          "state_to": "DISCOVERED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "alta en catálogo",
+          "evidence": [
+            {
+              "evidence_type": "file_hash",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\worldbank_slv\\wb_agri_land_share_slv.json",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (14891 B)",
+              "passed": true,
+              "sha256": "dbe04d5b44be078c19800ebf3419bc42fe0a1ea9eeb235a6a56e93c9e9267a74",
+              "payload": {}
+            }
+          ]
+        },
+        {
+          "dataset_id": "worldbank_agri_share",
+          "state_from": "DISCOVERED",
+          "state_to": "DOWNLOADED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "serie descargada y hasheada",
+          "evidence": [
+            {
+              "evidence_type": "file_hash",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\worldbank_slv\\wb_agri_land_share_slv.json",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (14891 B)",
+              "passed": true,
+              "sha256": "dbe04d5b44be078c19800ebf3419bc42fe0a1ea9eeb235a6a56e93c9e9267a74",
+              "payload": {}
+            }
+          ]
+        },
+        {
+          "dataset_id": "worldbank_agri_share",
+          "state_from": "DOWNLOADED",
+          "state_to": "PARSED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "JSON parseado; 65 registros anuales",
+          "evidence": [
+            {
+              "evidence_type": "parse_result",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\manifests\\ingest\\worldbank_agri_share.dbe04d5b44be.json",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (1520 B)",
+              "passed": true,
+              "sha256": "57edaa95a452db2dd309b9b4212b11d7588e45acb2b0894c752c55f662db4505",
+              "payload": {
+                "parser": "agrosv.data.ingest/4.0",
+                "format": "json"
+              }
+            }
+          ]
+        },
+        {
+          "dataset_id": "worldbank_agri_share",
+          "state_from": "PARSED",
+          "state_to": "VALIDATED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "QC numérico, temporal y ausencia-vs-cero",
+          "evidence": [
+            {
+              "evidence_type": "validation_report",
+              "reference": "C:\\GIT HUB\\agrosv\\data\\metadata\\quality_reports\\worldbank_agri_share.3e342c0ba7307d01.json",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "archivo existente (1313 B)",
+              "passed": true,
+              "sha256": "c6152fbb9dbd6e13a1bab1010bd128bd763dbb3b7e0402428d2d696828a83e9a",
+              "payload": {
+                "status": "PASS_WITH_WARNINGS",
+                "checks_run": 3,
+                "scope": "indicador nacional anual (superficie agrícola, % del territorio)",
+                "report_id": "3e342c0ba7307d01"
+              }
+            }
+          ]
+        }
+      ],
+      "notes": "",
+      "updated_at": "2026-11-22T04:19:52Z",
+      "CRITICAL_FIELDS": [
+        "license",
+        "geographic_coverage",
+        "temporal_coverage",
+        "spatial_resolution",
+        "temporal_resolution",
+        "methodology",
+        "uncertainty",
+        "format",
+        "institution",
+        "source_url"
+      ],
+      "missing_fields": [],
+      "terminal": false
+    },
+    {
+      "dataset_id": "worldclim_21",
+      "name": "WorldClim 2.1 — bioclimáticas y escenarios",
+      "description": "19 variables bioclimáticas y proyecciones; licencia no comercial sin redistribución.",
+      "institution": "WorldClim (Fick & Hijmans)",
+      "source_url": "https://www.worldclim.org/data/worldclim21.html",
+      "publication_date": null,
+      "download_date": null,
+      "version": null,
+      "license": "No comercial, sin redistribución",
+      "redistribution_allowed": null,
+      "derived_use_allowed": null,
+      "geographic_coverage": "global 30 arcsec",
+      "temporal_coverage": "1970–2000 y escenarios SSP",
+      "crs": null,
+      "spatial_resolution": "30 arcsec (~1 km)",
+      "temporal_resolution": "normal climática / escenario",
+      "variables": [],
+      "units": {},
+      "format": "GeoTIFF",
+      "size": null,
+      "methodology": "No evaluada: el recurso no está disponible para inspección.",
+      "limitations": [
+        "licencia impide redistribución y uso comercial",
+        "interpolación de estaciones, no observación en rejilla"
+      ],
+      "uncertainty": "No evaluada; interpolación en relieve complejo es incierta",
+      "usage_restrictions": "No comercial, sin redistribución: solo uso interno derivado",
+      "domain": "CLIMATE",
+      "state": "RESTRICTED",
+      "evidence_level": "V0",
+      "validation_scope": null,
+      "integration_scope": null,
+      "artifacts": [],
+      "transitions": [
+        {
+          "dataset_id": "worldclim_21",
+          "state_from": "DISCOVERED",
+          "state_to": "DISCOVERED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "alta en catálogo con evidencia de descubrimiento",
+          "evidence": [
+            {
+              "evidence_type": "manual_review",
+              "reference": "docs/data_expansion/DATA_SOURCE_REGISTRY.md#worldclim_21",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "licencia no comercial",
+              "passed": true,
+              "sha256": null,
+              "payload": {}
+            }
+          ]
+        },
+        {
+          "dataset_id": "worldclim_21",
+          "state_from": "DISCOVERED",
+          "state_to": "RESTRICTED",
+          "at": "2026-11-22T04:19:52Z",
+          "actor": "agrosv.pipeline",
+          "note": "restringido por licencia",
+          "evidence": [
+            {
+              "evidence_type": "license_check",
+              "reference": "docs/data_expansion/DATA_LICENSE_AND_ACCESS_REPORT.md",
+              "captured_at": "2026-11-22T04:19:52Z",
+              "note": "licencia no comercial, sin redistribución",
+              "passed": true,
+              "sha256": null,
+              "payload": {
+                "commercial": false,
+                "redistribution": false
+              }
+            }
+          ]
+        }
+      ],
+      "notes": "",
+      "updated_at": "2026-11-22T04:19:52Z",
+      "CRITICAL_FIELDS": [
+        "license",
+        "geographic_coverage",
+        "temporal_coverage",
+        "spatial_resolution",
+        "temporal_resolution",
+        "methodology",
+        "uncertainty",
+        "format",
+        "institution",
+        "source_url"
+      ],
+      "missing_fields": [
+        "variables",
+        "crs"
+      ],
+      "terminal": false
+    }
+  ]
+}

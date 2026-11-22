@@ -1,0 +1,56 @@
+{
+  "run_id": "2ff213aed7a590ff",
+  "name": "open_meteo_point_normalizacion",
+  "created_at": "2026-11-22T04:12:05Z",
+  "seed": null,
+  "params": {
+    "version": "AGROSV-4.0",
+    "steps": [
+      {
+        "name": "parseo_y_normalizacion",
+        "tool": "agrosv.data.ingest",
+        "tool_version": "4.0",
+        "params": {
+          "units": "registro agrosv.data.units",
+          "time_basis": "local (UTC−6)"
+        },
+        "note": ""
+      },
+      {
+        "name": "exportacion_csv",
+        "tool": "csv.DictWriter",
+        "tool_version": "stdlib",
+        "params": {},
+        "note": ""
+      }
+    ]
+  },
+  "identity_note": "run_id = sha256(nombre, parámetros, seed, hashes de entrada); no depende de la fecha de ejecución",
+  "inputs": [
+    {
+      "path": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\open_meteo_point\\openmeteo_daily_13.70N_89.20W.json",
+      "sha256": "9a6d9b1b1064a6024cd8a4992d257833610b2d7445fac6374cac0e55a4882f54",
+      "exists": true
+    }
+  ],
+  "outputs": [
+    {
+      "path": "C:\\GIT HUB\\agrosv\\data\\validated\\observations\\open_meteo_point_daily.csv",
+      "sha256": "ce6b36fc6b37e7f8b923face8b5f8c10c0418a12b0e991d74d5b2ad16a286f88",
+      "exists": true
+    }
+  ],
+  "environment": {
+    "python": "3.14.5",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "software": {
+      "python": "3.14.5",
+      "gdal": "3.12.2",
+      "rasterio": "1.5.2",
+      "geopandas": "1.2.0",
+      "shapely": "2.2.0",
+      "pyproj": "3.8.0"
+    }
+  },
+  "notes": "Normalización de unidades, tiempo y clase de evidencia."
+}

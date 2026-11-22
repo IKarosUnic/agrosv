@@ -1,0 +1,60 @@
+{
+  "report_id": "d63b36bad73d4691",
+  "dataset_id": "soilgrids_2",
+  "artifact": "data/processed/soils/rasters/phh2o_0-30cm.tif",
+  "scope": "6 propiedades 0–30 cm; predicción global a 250 m",
+  "status": "FAIL",
+  "checks_run": 10,
+  "errors": 2,
+  "warnings": 1,
+  "findings": [
+    {
+      "code": "raster_crs_distinto",
+      "severity": "error",
+      "message": "CRS EPSG:32616 distinto del esperado EPSG:4326",
+      "count": 0,
+      "examples": [],
+      "detail": {}
+    },
+    {
+      "code": "raster_CRS_esperado",
+      "severity": "error",
+      "message": "esperado EPSG:4326, leído EPSG:32616",
+      "count": 0,
+      "examples": [],
+      "detail": {
+        "check": "CRS esperado"
+      }
+    },
+    {
+      "code": "ventana_de_cobertura",
+      "severity": "info",
+      "message": "estadísticas de la ventana solicitada (no del archivo completo)",
+      "count": 0,
+      "examples": [],
+      "detail": {
+        "cells": 319148,
+        "min": 56.0,
+        "max": 68.0,
+        "mean": 61.24198804316492,
+        "median": 61.0,
+        "p10": 59.0,
+        "p90": 63.0,
+        "masked_cells": 413024
+      }
+    },
+    {
+      "code": "prediccion_no_medicion",
+      "severity": "warning",
+      "message": "SoilGrids es una predicción de modelo global: no es análisis de laboratorio y no se mezcla con CENTA",
+      "count": 0,
+      "examples": [],
+      "detail": {}
+    }
+  ],
+  "parameters": {},
+  "inputs": [],
+  "validator_version": "agrosv.data.quality/4.0",
+  "generated_at": "2026-11-22T04:10:21Z",
+  "note": "PASS no significa «dato correcto»: significa que las comprobaciones ejecutadas no encontraron defectos"
+}

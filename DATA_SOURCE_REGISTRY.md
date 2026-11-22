@@ -2,6 +2,14 @@
 
 **Versión:** 1.0 · **Fecha:** 2026-11-21 · **Método:** sondeo HTTP directo desde el entorno de trabajo, más lectura de documentación oficial.
 
+> **Ampliación Fase 3 (2026-11-22):** este registro se complementa con
+> [`docs/data_expansion/DATA_SOURCE_REGISTRY.md`](docs/data_expansion/DATA_SOURCE_REGISTRY.md),
+> que añade 103 sondas nuevas, fuentes internacionales de relieve, hidrología y
+> cobertura, y corrige afirmaciones que ya no se sostienen (SoilGrids
+> `wv0033`/`wv1500`, ruta de Geofabrik, estado de los portales nacionales).
+> Las filas de este archivo no se eliminan: las correcciones están señaladas en
+> la sección §5 del registro de Fase 3.
+
 ---
 
 ## 1. Definición de estados

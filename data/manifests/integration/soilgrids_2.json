@@ -1,0 +1,9 @@
+{
+  "dataset_id": "soilgrids_2",
+  "queryable": true,
+  "rows": 0,
+  "endpoint": "/api/soils/point,/api/soils/summary",
+  "store": "data/validated/agrosv_data.sqlite",
+  "verified_at": "2026-11-22T04:19:52Z",
+  "query": "punto"
+}

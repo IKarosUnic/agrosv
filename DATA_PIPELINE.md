@@ -399,3 +399,19 @@ reporte → validación automática → triage humano → nivel de evidencia →
   reinicia desde cero.
 - **P-13** Los derivados declaran la versión del código que los generó.
 - **P-14** Ningún flujo escribe en `data/raw/` después de la descarga.
+
+### 12.6 Ejecución implementada (2026-11-22)
+
+Las reglas P-11 y P-12 ya tienen implementación ejecutable:
+
+- `agrosv.science.reproducibility` construye el manifiesto de corrida con hashes
+  de entrada y salida, parámetros, semilla y versión de librerías; `run_id` es un
+  hash del contenido, de modo que reproducir la misma entrada da el mismo id.
+- `agrosv.science.orchestrator` ejecuta el grafo por lotes con dependencias
+  explícitas, reintentos declarados y estado en JSON para reanudar sin repetir
+  trabajo. Detecta ciclos y dependencias inexistentes antes de ejecutar.
+- `agrosv.science.registry` indexa los sidecars existentes y verifica que el hash
+  del artefacto siga correspondiendo a su manifiesto.
+
+Las reglas P-13 y P-14 no se comprueban automáticamente: son convención de los
+scripts. Ver `PHASE_2_IMPLEMENTATION_REPORT.md` §15.

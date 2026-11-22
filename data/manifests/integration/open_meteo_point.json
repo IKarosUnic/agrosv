@@ -1,0 +1,15 @@
+{
+  "dataset_id": "open_meteo_point",
+  "queryable": true,
+  "rows": 12785,
+  "endpoint": "/api/data/observations?dataset_id=open_meteo_point",
+  "store": "data/validated/agrosv_data.sqlite",
+  "verified_at": "2026-11-22T04:19:52Z",
+  "variables": [
+    "precipitation",
+    "temperature",
+    "et0",
+    "relative_humidity"
+  ],
+  "frequency": "daily"
+}

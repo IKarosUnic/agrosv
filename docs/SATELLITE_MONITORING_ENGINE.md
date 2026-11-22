@@ -1,6 +1,6 @@
 # MODULE A — Satellite Monitoring Engine
 
-**Versión:** 1.0 · **Fecha:** 2026-11-21 · **Estado:** diseñado, **no implementado**.
+**Versión:** 2.0 · **Fecha:** 2026-11-22 · **Estado:** **aritmética de índices y máscaras implementada** (`backend/agrosv/science/indices.py`); **adquisición, compuestos y detección de candidatos no implementados**.
 
 Motor de observación de la vegetación y de cambios territoriales. No sustituye
 al motor de cultivos ni diagnostica plagas: produce series, índices, anomalías
@@ -134,3 +134,29 @@ municipales. Habilita: Module C (forzantes), Module G (urbano), Module L
 
 **Prioridad:** alta, pero **después** de clima histórico (Fase 1.5), porque el
 motor necesita una línea base climática para interpretar anomalías.
+
+---
+
+## 9. Implementado en este ciclo (2026-11-22)
+
+`backend/agrosv/science/indices.py` implementa el cálculo declarado por fórmula:
+
+| Índice | Bandas | Resolución declarada | Prueba |
+|---|---|---|---|
+| NDVI | NIR, R | 10 m (Sentinel-2 B08/B04) | valor analítico (0,5/0,1 → 0,667) |
+| EVI | NIR, R, B | 10 m | fórmula publicada verificada |
+| NDWI | G, NIR | 10 m | agua → positivo |
+| NDMI | NIR, SWIR1 | **20 m** (B11 nativa) | valor analítico |
+| NBR | NIR, SWIR2 | **20 m** (B12 nativa) | valor analítico (0,333) |
+
+Reglas aplicadas en código, no en prosa:
+
+- denominador nulo → `NaN`, nunca `0` (un cero es un índice válido);
+- salida recortada a [−1, 1];
+- `change_mask` exige un umbral positivo y devuelve «cambio detectado», no
+  «deforestación»;
+- `series_anomaly` usa mediana/MAD contra una línea base declarada.
+
+`GET /api/v1/indices` publica estas fichas y declara explícitamente lo que **no**
+existe: adquisición STAC, enmascarado de nubes y compuestos. No se sirve ninguna
+serie satelital porque no hay escenas archivadas; publicarlas sería inventarlas.

@@ -1,0 +1,11 @@
+{
+  "sample_id": "soilgrids_rest_point",
+  "file": "data/samples/phase3/soilgrids_rest_point/soilgrids_phh2o_point.json",
+  "bytes": 357,
+  "sha256": "0c456e2042b33ba5f2ce431349143cd95469d468dd70b3e7cef06d51276add75",
+  "retrieved_at": "2026-11-22T03:05:48+00:00",
+  "source_id": "soilgrids_rest",
+  "url": "https://rest.isric.org/soilgrids/v2.0/properties/query?lon=-89.20&lat=13.70&property=phh2o&depth=0-5cm&value=mean",
+  "license": "CC BY 4.0",
+  "checks": "HTTP 200 pero mean=null: API no utilizable para ingestión (documentado)"
+}

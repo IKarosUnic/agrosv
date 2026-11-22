@@ -1,0 +1,65 @@
+{
+  "run_id": "6df26b0b135159ee",
+  "name": "chirps3_recorte_sv",
+  "created_at": "2026-11-22T04:19:53Z",
+  "seed": null,
+  "params": {
+    "version": "AGROSV-4.0",
+    "steps": [
+      {
+        "name": "recorte_por_extension",
+        "tool": "agrosv.data.raster.clip_to_file",
+        "tool_version": "4.0",
+        "params": {
+          "bounds": [
+            -90.1790975,
+            12.976046,
+            -87.6351394,
+            14.4510488
+          ],
+          "resampling": "none",
+          "crs": "EPSG:4326"
+        },
+        "note": ""
+      },
+      {
+        "name": "perfil_y_qc",
+        "tool": "agrosv.data.quality.check_raster",
+        "tool_version": "4.0",
+        "params": {
+          "expected_crs": "EPSG:4326"
+        },
+        "note": ""
+      }
+    ],
+    "database_outputs": []
+  },
+  "identity_note": "run_id = sha256(nombre, parámetros, seed, hashes de entrada); no depende de la fecha de ejecución",
+  "inputs": [
+    {
+      "path": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\chirps3_day\\chirps-v3.0.rnl.2026.01.15.tif",
+      "sha256": "1769f6f4fffeff4a501962259b4331d3eb35ca2b8576cf4f58aefebaa12de9dd",
+      "exists": true
+    }
+  ],
+  "outputs": [
+    {
+      "path": "C:\\GIT HUB\\agrosv\\data\\validated\\chirps3\\chirps3_precip_0p05deg_sv_2026-01-15_v3.0.tif",
+      "sha256": "26ff9d9a09f60941bfabce13aa56fb8917f04023fffa39bc9a07bb0ca150532e",
+      "exists": true
+    }
+  ],
+  "environment": {
+    "python": "3.14.5",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "software": {
+      "python": "3.14.5",
+      "gdal": "3.12.2",
+      "rasterio": "1.5.2",
+      "geopandas": "1.2.0",
+      "shapely": "2.2.0",
+      "pyproj": "3.8.0"
+    }
+  },
+  "notes": "Recorte sin remuestreo; resolución nativa conservada."
+}

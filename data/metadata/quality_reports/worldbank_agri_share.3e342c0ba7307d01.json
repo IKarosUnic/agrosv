@@ -1,0 +1,40 @@
+{
+  "report_id": "3e342c0ba7307d01",
+  "dataset_id": "worldbank_agri_share",
+  "artifact": "data/samples/phase3/worldbank_slv/wb_agri_land_share_slv.json",
+  "scope": "indicador nacional anual (superficie agrícola, % del territorio)",
+  "status": "PASS_WITH_WARNINGS",
+  "checks_run": 3,
+  "errors": 0,
+  "warnings": 1,
+  "findings": [
+    {
+      "code": "variable_sin_registro",
+      "severity": "warning",
+      "message": "'agricultural_land_share' no está en el registro de unidades: no se comprueba dominio",
+      "count": 0,
+      "examples": [],
+      "detail": {}
+    },
+    {
+      "code": "ausencia_vs_cero",
+      "severity": "info",
+      "message": "los años sin dato se excluyeron, no se rellenaron",
+      "count": 0,
+      "examples": [],
+      "detail": {
+        "n": 64,
+        "zeros": 0,
+        "missing": 0,
+        "sentinels": 0,
+        "distinct": true,
+        "note": "cero es un valor observado; ausencia es falta de dato. La media debe calcularse sobre valores válidos"
+      }
+    }
+  ],
+  "parameters": {},
+  "inputs": [],
+  "validator_version": "agrosv.data.quality/4.0",
+  "generated_at": "2026-11-22T04:19:48Z",
+  "note": "PASS no significa «dato correcto»: significa que las comprobaciones ejecutadas no encontraron defectos"
+}

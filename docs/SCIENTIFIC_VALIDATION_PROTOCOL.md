@@ -154,3 +154,30 @@ Un módulo sin fila en `validation_run` aparece como `unvalidated` en la API.
 
 Requiere: Data Provenance Engine, Dataset Versioning, Uncertainty Engine y
 acceso a datos de validación. Es transversal a todos los módulos.
+
+---
+
+## 10. Implementación del protocolo (2026-11-22)
+
+Los niveles V0–V4 y las métricas de §2–§3 ya no son solo normas: están en
+`backend/agrosv/science/validation.py` y se aplican en las respuestas.
+
+| Elemento | Implementación | Prueba |
+|---|---|---|
+| Métricas continuas | bias, MAE, RMSE, r, r², NSE, PBIAS, KGE (Gupta et al., 2009) | valores analíticos (perfecto → 0/1; sesgo conocido → 1) |
+| Niveles V0–V4 | `evidence_level()` deduce el nivel de n, escala y fuente | V2 exige ≥10 pares y fuente; V4 exige independencia |
+| Incertidumbre | cuantiles P10/P50/P90, Monte Carlo con semilla obligatoria, cobertura empírica | misma semilla → mismos cuantiles |
+| Ausencia de validación | `report()` emite advertencia explícita | nivel V1 sin fuente declarada |
+
+Estado real declarado por `GET /api/v1/validation/policy`:
+
+| Capa | Nivel | Motivo |
+|---|---|---|
+| Territorio | V1 | integridad geométrica; sin referencia catastral |
+| Topografía | V1 | rangos físicos; sin MDT de referencia |
+| Suelos | V0 en El Salvador | SoilGrids es predicción global, no medición nacional |
+| Hidrología | V0 | sin aforos: no calibrado |
+| Índices satelitales | V0 | sin escenas procesadas ni verdad de campo |
+
+Ningún módulo puede declararse V2 o superior sin métricas registradas. La
+función no acepta un nivel como parámetro de entrada: lo deduce.

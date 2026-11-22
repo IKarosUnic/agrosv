@@ -1,0 +1,16 @@
+{
+  "report_id": "27bf3e6cc93a8c42",
+  "dataset_id": "geoboundaries_adm1",
+  "artifact": "data/processed/territory/territory.gpkg",
+  "scope": "ADM1 (14 departamentos) completo",
+  "status": "PASS",
+  "checks_run": 8,
+  "errors": 0,
+  "warnings": 0,
+  "findings": [],
+  "parameters": {},
+  "inputs": [],
+  "validator_version": "agrosv.data.quality/4.0",
+  "generated_at": "2026-11-22T04:19:51Z",
+  "note": "PASS no significa «dato correcto»: significa que las comprobaciones ejecutadas no encontraron defectos"
+}

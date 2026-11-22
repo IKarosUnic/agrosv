@@ -1,0 +1,246 @@
+{
+  "schema_version": 4,
+  "generated_at": "2026-11-22T04:19:54Z",
+  "count": 5,
+  "derivations": [
+    {
+      "run_id": "6df26b0b135159ee",
+      "dataset_id": "chirps3",
+      "name": "chirps3_recorte_sv",
+      "version": "AGROSV-4.0",
+      "seed": null,
+      "steps": [
+        {
+          "name": "recorte_por_extension",
+          "tool": "agrosv.data.raster.clip_to_file",
+          "tool_version": "4.0",
+          "params": {
+            "bounds": [
+              -90.1790975,
+              12.976046,
+              -87.6351394,
+              14.4510488
+            ],
+            "resampling": "none",
+            "crs": "EPSG:4326"
+          },
+          "note": ""
+        },
+        {
+          "name": "perfil_y_qc",
+          "tool": "agrosv.data.quality.check_raster",
+          "tool_version": "4.0",
+          "params": {
+            "expected_crs": "EPSG:4326"
+          },
+          "note": ""
+        }
+      ],
+      "inputs": [
+        {
+          "path": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\chirps3_day\\chirps-v3.0.rnl.2026.01.15.tif",
+          "sha256": "1769f6f4fffeff4a501962259b4331d3eb35ca2b8576cf4f58aefebaa12de9dd",
+          "digest": "sha256"
+        }
+      ],
+      "outputs": [
+        {
+          "path": "C:\\GIT HUB\\agrosv\\data\\validated\\chirps3\\chirps3_precip_0p05deg_sv_2026-01-15_v3.0.tif",
+          "sha256": "26ff9d9a09f60941bfabce13aa56fb8917f04023fffa39bc9a07bb0ca150532e",
+          "digest": "sha256",
+          "bytes": 3577
+        }
+      ],
+      "validation_state": "VALIDATED",
+      "manifest_path": "C:\\GIT HUB\\agrosv\\data\\manifests\\derivations\\6df26b0b135159ee.json",
+      "created_at": "2026-11-22T04:19:53Z",
+      "notes": "Recorte sin remuestreo; resolución nativa conservada."
+    },
+    {
+      "run_id": "17acb18fcbe37faa",
+      "dataset_id": "nasa_power_point",
+      "name": "nasa_power_point_normalizacion",
+      "version": "AGROSV-4.0",
+      "seed": null,
+      "steps": [
+        {
+          "name": "parseo_y_normalizacion",
+          "tool": "agrosv.data.ingest",
+          "tool_version": "4.0",
+          "params": {
+            "units": "registro agrosv.data.units",
+            "time_basis": "local (UTC−6)"
+          },
+          "note": ""
+        },
+        {
+          "name": "exportacion_csv",
+          "tool": "csv.DictWriter",
+          "tool_version": "stdlib",
+          "params": {},
+          "note": ""
+        }
+      ],
+      "inputs": [
+        {
+          "path": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\nasa_power_point\\power_daily_13.70N_89.20W.json",
+          "sha256": "f0ff69a77369bf695f220e82cfd3425e9352e34a734814755916243a7135dfe9",
+          "digest": "sha256"
+        }
+      ],
+      "outputs": [
+        {
+          "path": "C:\\GIT HUB\\agrosv\\data\\validated\\observations\\nasa_power_point_daily.csv",
+          "sha256": "1e6870a94d0fd302d2828b8b38baece3ad03b5dcfc61106411249b6f3ed0d21e",
+          "digest": "sha256",
+          "bytes": 1500637
+        }
+      ],
+      "validation_state": "VALIDATED",
+      "manifest_path": "C:\\GIT HUB\\agrosv\\data\\manifests\\derivations\\17acb18fcbe37faa.json",
+      "created_at": "2026-11-22T04:19:53Z",
+      "notes": "Normalización de unidades, tiempo y clase de evidencia."
+    },
+    {
+      "run_id": "c2bbe50c42515384",
+      "dataset_id": "open_meteo_point",
+      "name": "open_meteo_point_normalizacion",
+      "version": "AGROSV-4.0",
+      "seed": null,
+      "steps": [
+        {
+          "name": "parseo_y_normalizacion",
+          "tool": "agrosv.data.ingest",
+          "tool_version": "4.0",
+          "params": {
+            "units": "registro agrosv.data.units",
+            "time_basis": "local (UTC−6)"
+          },
+          "note": ""
+        },
+        {
+          "name": "exportacion_csv",
+          "tool": "csv.DictWriter",
+          "tool_version": "stdlib",
+          "params": {},
+          "note": ""
+        }
+      ],
+      "inputs": [
+        {
+          "path": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\open_meteo_point\\openmeteo_daily_13.70N_89.20W.json",
+          "sha256": "9a6d9b1b1064a6024cd8a4992d257833610b2d7445fac6374cac0e55a4882f54",
+          "digest": "sha256"
+        }
+      ],
+      "outputs": [
+        {
+          "path": "C:\\GIT HUB\\agrosv\\data\\validated\\observations\\open_meteo_point_daily.csv",
+          "sha256": "ce6b36fc6b37e7f8b923face8b5f8c10c0418a12b0e991d74d5b2ad16a286f88",
+          "digest": "sha256",
+          "bytes": 2462736
+        }
+      ],
+      "validation_state": "VALIDATED",
+      "manifest_path": "C:\\GIT HUB\\agrosv\\data\\manifests\\derivations\\c2bbe50c42515384.json",
+      "created_at": "2026-11-22T04:19:53Z",
+      "notes": "Normalización de unidades, tiempo y clase de evidencia."
+    },
+    {
+      "run_id": "8560918a12a983cf",
+      "dataset_id": "gbif_sv",
+      "name": "gbif_sv_normalizacion",
+      "version": "AGROSV-4.0",
+      "seed": null,
+      "steps": [
+        {
+          "name": "parseo_y_normalizacion",
+          "tool": "agrosv.data.ingest",
+          "tool_version": "4.0",
+          "params": {
+            "units": "registro agrosv.data.units",
+            "time_basis": "local (UTC−6)"
+          },
+          "note": ""
+        },
+        {
+          "name": "exportacion_csv",
+          "tool": "csv.DictWriter",
+          "tool_version": "stdlib",
+          "params": {},
+          "note": ""
+        }
+      ],
+      "inputs": [
+        {
+          "path": "C:\\GIT HUB\\agrosv\\data\\samples\\phase3\\gbif_sv\\gbif_occurrence_sv_300.json",
+          "sha256": "c2bf4264b01d1f6fc1df082e10995e7933114c00b01741027b5d7e8ace1ca7b9",
+          "digest": "sha256"
+        }
+      ],
+      "outputs": [
+        {
+          "path": "C:\\GIT HUB\\agrosv\\data\\validated\\observations\\gbif_sv_sample_occurrences.csv",
+          "sha256": "4e54a062f77db258182b7ca520323ed8a0a447b21c026ab042ca5a6e217ad6d2",
+          "digest": "sha256",
+          "bytes": 36312
+        }
+      ],
+      "validation_state": "VALIDATED",
+      "manifest_path": "C:\\GIT HUB\\agrosv\\data\\manifests\\derivations\\8560918a12a983cf.json",
+      "created_at": "2026-11-22T04:19:53Z",
+      "notes": "Normalización de unidades, tiempo y clase de evidencia."
+    },
+    {
+      "run_id": "5dfe200ca3244520",
+      "dataset_id": "agrosv_data_store",
+      "name": "carga_base_consulta",
+      "version": "AGROSV-4.0",
+      "seed": null,
+      "steps": [
+        {
+          "name": "carga_sqlite",
+          "tool": "agrosv.data.store.DataStore",
+          "tool_version": "4.0",
+          "params": {
+            "tables": [
+              "observations",
+              "occurrences"
+            ]
+          },
+          "note": ""
+        }
+      ],
+      "inputs": [
+        {
+          "path": "C:\\GIT HUB\\agrosv\\data\\validated\\observations\\nasa_power_point_daily.csv",
+          "sha256": "1e6870a94d0fd302d2828b8b38baece3ad03b5dcfc61106411249b6f3ed0d21e",
+          "digest": "sha256"
+        },
+        {
+          "path": "C:\\GIT HUB\\agrosv\\data\\validated\\observations\\open_meteo_point_daily.csv",
+          "sha256": "ce6b36fc6b37e7f8b923face8b5f8c10c0418a12b0e991d74d5b2ad16a286f88",
+          "digest": "sha256"
+        },
+        {
+          "path": "C:\\GIT HUB\\agrosv\\data\\validated\\observations\\gbif_sv_sample_occurrences.csv",
+          "sha256": "4e54a062f77db258182b7ca520323ed8a0a447b21c026ab042ca5a6e217ad6d2",
+          "digest": "sha256"
+        }
+      ],
+      "outputs": [
+        {
+          "path": "C:\\GIT HUB\\agrosv\\data\\validated\\agrosv_data.sqlite",
+          "sha256": "257880bde87a777017e780908d6c9795421ab0530b5fb69eb303de035643f477",
+          "digest": "sqlite-logical",
+          "bytes": 9494528
+        }
+      ],
+      "validation_state": "VALIDATED",
+      "manifest_path": "C:\\GIT HUB\\agrosv\\data\\manifests\\derivations\\5dfe200ca3244520.json",
+      "created_at": "2026-11-22T04:19:54Z",
+      "notes": "La base conserva la clase de evidencia por fila."
+    }
+  ],
+  "note": "nodo = sha256 de archivo; arista = derivación registrada con pasos y parámetros"
+}

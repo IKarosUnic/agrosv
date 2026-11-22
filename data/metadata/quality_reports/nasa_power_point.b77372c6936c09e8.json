@@ -1,0 +1,91 @@
+{
+  "report_id": "b77372c6936c09e8",
+  "dataset_id": "nasa_power_point",
+  "artifact": "data/samples/phase3/nasa_power_point/power_daily_13.70N_89.20W.json",
+  "scope": "muestra de punto: 13,70 N, 89,20 W, 2019–2025",
+  "status": "PASS_WITH_WARNINGS",
+  "checks_run": 4,
+  "errors": 0,
+  "warnings": 1,
+  "findings": [
+    {
+      "code": "valores_extremos",
+      "severity": "warning",
+      "message": "249 valores con |z robusto| > 6 respecto a la propia serie; revisar, no eliminar automáticamente",
+      "count": 249,
+      "examples": [
+        117.95,
+        91.04,
+        87.36,
+        83.99,
+        82.01
+      ],
+      "detail": {}
+    },
+    {
+      "code": "distribucion",
+      "severity": "info",
+      "message": "resumen distribucional (no es un criterio de aprobación)",
+      "count": 2557,
+      "examples": [],
+      "detail": {
+        "mean": 6.074971,
+        "sd": 10.89809,
+        "p01": 0.0,
+        "p50": 1.75,
+        "p99": 52.434,
+        "skew": 3.5701,
+        "n": 2557
+      }
+    },
+    {
+      "code": "distribucion",
+      "severity": "info",
+      "message": "resumen distribucional (no es un criterio de aprobación)",
+      "count": 2557,
+      "examples": [],
+      "detail": {
+        "mean": 29.865327,
+        "sd": 1.612503,
+        "p01": 26.498,
+        "p50": 29.82,
+        "p99": 33.9388,
+        "skew": 0.2913,
+        "n": 2557
+      }
+    },
+    {
+      "code": "distribucion",
+      "severity": "info",
+      "message": "resumen distribucional (no es un criterio de aprobación)",
+      "count": 2557,
+      "examples": [],
+      "detail": {
+        "mean": 24.707646,
+        "sd": 1.395389,
+        "p01": 20.53,
+        "p50": 24.9,
+        "p99": 27.1944,
+        "skew": -0.7602,
+        "n": 2557
+      }
+    },
+    {
+      "code": "clase_de_evidencia",
+      "severity": "info",
+      "message": "NASA POWER es reanálisis, no una estación: no se presenta como medición de campo",
+      "count": 0,
+      "examples": [],
+      "detail": {
+        "evidence_class": "reanalysis"
+      }
+    }
+  ],
+  "parameters": {
+    "comparison": "intercomparación con Open-Meteo para temperatura (ver informe de Open-Meteo)"
+  },
+  "inputs": [],
+  "validator_version": "agrosv.data.quality/4.0",
+  "generated_at": "2026-11-22T04:19:48Z",
+  "note": "PASS no significa «dato correcto»: significa que las comprobaciones ejecutadas no encontraron defectos"
+}

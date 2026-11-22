@@ -1,0 +1,91 @@
+{
+  "report_id": "87eff2e7e5e1cfa8",
+  "dataset_id": "gbif_sv",
+  "artifact": "data/samples/phase3/gbif_sv/gbif_occurrence_sv_300.json",
+  "scope": "muestra de 300 ocurrencias en El Salvador",
+  "status": "FAIL",
+  "checks_run": 3,
+  "errors": 1,
+  "warnings": 4,
+  "findings": [
+    {
+      "code": "fuera_de_cobertura",
+      "severity": "error",
+      "message": "coordenadas fuera de la cobertura declarada",
+      "count": 1,
+      "examples": [
+        161
+      ],
+      "detail": {}
+    },
+    {
+      "code": "duplicados_espaciales",
+      "severity": "warning",
+      "message": "misma coordenada redondeada a 1e-6 en varios registros",
+      "count": 18,
+      "examples": [
+        [
+          -89.218587,
+          13.459069
+        ],
+        [
+          -88.993292,
+          13.929506
+        ],
+        [
+          -89.020886,
+          13.9561
+        ],
+        [
+          -89.422377,
+          13.496174
+        ],
+        [
+          -89.40974,
+          13.496144
+        ]
+      ],
+      "detail": {}
+    },
+    {
+      "code": "incertidumbre_coordenada",
+      "severity": "warning",
+      "message": "12 registros con incertidumbre > 2000.0 m",
+      "count": 12,
+      "examples": [],
+      "detail": {
+        "median_m": 124.0,
+        "max_m": 91770.0
+      }
+    },
+    {
+      "code": "incertidumbre_no_declarada",
+      "severity": "warning",
+      "message": "69 ocurrencias sin incertidumbre de coordenada declarada",
+      "count": 69,
+      "examples": [],
+      "detail": {}
+    },
+    {
+      "code": "sesgo_de_muestreo",
+      "severity": "warning",
+      "message": "GBIF agrega observaciones voluntarias: la densidad refleja esfuerzo de muestreo, no abundancia",
+      "count": 0,
+      "examples": [],
+      "detail": {}
+    },
+    {
+      "code": "clase_de_evidencia",
+      "severity": "info",
+      "message": "ocurrencias de biodiversidad agregadas; el taxón y la fecha conservan la fuente original",
+      "count": 0,
+      "examples": [],
+      "detail": {}
+    }
+  ],
+  "parameters": {},
+  "inputs": [],
+  "validator_version": "agrosv.data.quality/4.0",
+  "generated_at": "2026-11-22T04:10:19Z",
+  "note": "PASS no significa «dato correcto»: significa que las comprobaciones ejecutadas no encontraron defectos"
+}

@@ -1,0 +1,155 @@
+{
+  "report_id": "b2e8deefe42dc44e",
+  "dataset_id": "open_meteo_point",
+  "artifact": "data/samples/phase3/open_meteo_point/openmeteo_daily_13.70N_89.20W.json",
+  "scope": "muestra de punto: 13,67 N, 89,17 W, 2019–2025",
+  "status": "PASS_WITH_WARNINGS",
+  "checks_run": 7,
+  "errors": 0,
+  "warnings": 2,
+  "findings": [
+    {
+      "code": "valores_extremos",
+      "severity": "warning",
+      "message": "210 valores con |z robusto| > 6 respecto a la propia serie; revisar, no eliminar automáticamente",
+      "count": 210,
+      "examples": [
+        177.6,
+        136.4,
+        115.1,
+        103.9,
+        98.8
+      ],
+      "detail": {}
+    },
+    {
+      "code": "distribucion",
+      "severity": "info",
+      "message": "resumen distribucional (no es un criterio de aprobación)",
+      "count": 2557,
+      "examples": [],
+      "detail": {
+        "mean": 4.836566,
+        "sd": 9.085752,
+        "p01": 0.0,
+        "p50": 1.5,
+        "p99": 35.764,
+        "skew": 7.0731,
+        "n": 2557
+      }
+    },
+    {
+      "code": "distribucion",
+      "severity": "info",
+      "message": "resumen distribucional (no es un criterio de aprobación)",
+      "count": 5114,
+      "examples": [],
+      "detail": {
+        "mean": 24.955377,
+        "sd": 4.843032,
+        "p01": 17.6,
+        "p50": 22.6,
+        "p99": 34.1,
+        "skew": 0.2462,
+        "n": 5114
+      }
+    },
+    {
+      "code": "distribucion",
+      "severity": "info",
+      "message": "resumen distribucional (no es un criterio de aprobación)",
+      "count": 2557,
+      "examples": [],
+      "detail": {
+        "mean": 4.429018,
+        "sd": 1.012382,
+        "p01": 1.486,
+        "p50": 4.48,
+        "p99": 6.8144,
+        "skew": -0.3154,
+        "n": 2557
+      }
+    },
+    {
+      "code": "distribucion",
+      "severity": "info",
+      "message": "resumen distribucional (no es un criterio de aprobación)",
+      "count": 2557,
+      "examples": [],
+      "detail": {
+        "mean": 75.351975,
+        "sd": 12.537038,
+        "p01": 50.0,
+        "p50": 77.0,
+        "p99": 97.0,
+        "skew": -0.2478,
+        "n": 2557
+      }
+    },
+    {
+      "code": "licencia_no_comercial",
+      "severity": "warning",
+      "message": "el nivel gratuito de Open-Meteo es solo para uso no comercial: el uso comercial exige plan de pago",
+      "count": 0,
+      "examples": [],
+      "detail": {}
+    },
+    {
+      "code": "intercomparacion_temperatura_max",
+      "severity": "info",
+      "message": "temperatura máxima: intercomparison con 2557 días comunes; NO incrementa nivel de validación: intercomparación entre fuentes modeladas",
+      "count": 0,
+      "examples": [],
+      "detail": {
+        "metrics": {
+          "n": 2557,
+          "bias": -0.4322409073132578,
+          "mae": 1.2259131795072349,
+          "rmse": 1.5191601996375137,
+          "r": 0.7964528957615694,
+          "r2": 0.6343372151669894,
+          "nse": 0.1120757014467727,
+          "pbias_pct": -1.4473001208396867,
+          "kge": 0.48985339648601334,
+          "sd_ratio": 1.4675560561783239,
+          "beta": 0.985526998791603,
+          "n_params": 1,
+          "caveat": ""
+        },
+        "evidence_use": "NO incrementa nivel de validación: intercomparación entre fuentes modeladas",
+        "paired_values": 2557
+      }
+    },
+    {
+      "code": "intercomparacion_temperatura_min",
+      "severity": "info",
+      "message": "temperatura mínima: intercomparison con 2557 días comunes; NO incrementa nivel de validación: intercomparación entre fuentes modeladas",
+      "count": 0,
+      "examples": [],
+      "detail": {
+        "metrics": {
+          "n": 2557,
+          "bias": -4.229976535001955,
+          "mae": 4.229976535001955,
+          "rmse": 4.311764177758234,
+          "r": 0.8007991383493656,
+          "r2": 0.6412792599810864,
+          "nse": -8.551888153818197,
+          "pbias_pct": -17.120111685419403,
+          "kge": 0.6613447314547669,
+          "sd_ratio": 0.7862324037208506,
+          "beta": 0.8287988831458061,
+          "n_params": 1,
+          "caveat": ""
+        },
+        "evidence_use": "NO incrementa nivel de validación: intercomparación entre fuentes modeladas",
+        "paired_values": 2557
+      }
+    }
+  ],
+  "parameters": {},
+  "inputs": [],
+  "validator_version": "agrosv.data.quality/4.0",
+  "generated_at": "2026-11-22T04:19:48Z",
+  "note": "PASS no significa «dato correcto»: significa que las comprobaciones ejecutadas no encontraron defectos"
+}

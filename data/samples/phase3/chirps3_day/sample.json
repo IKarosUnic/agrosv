@@ -1,0 +1,33 @@
+{
+  "sample_id": "chirps3_day",
+  "file": "data/samples/phase3/chirps3_day/chirps-v3.0.rnl.2026.01.15.tif",
+  "bytes": 14000124,
+  "sha256": "1769f6f4fffeff4a501962259b4331d3eb35ca2b8576cf4f58aefebaa12de9dd",
+  "retrieved_at": "2026-11-22T03:05:52+00:00",
+  "source_id": "chirps3",
+  "url": "https://data.chc.ucsb.edu/products/CHIRPS/v3.0/daily/final/rnl/2026/chirps-v3.0.rnl.2026.01.15.tif",
+  "license": "CHIRPS: uso abierto con atribucion (verificar aviso oficial)",
+  "product_variant": "rnl (desagregacion con ERA5)",
+  "native_resolution": "0.05 deg",
+  "effective_resolution": "pentadal (el diario es desagregado)",
+  "raster": {
+    "crs": "EPSG:4326",
+    "size": [
+      7200,
+      2400
+    ],
+    "bounds": [
+      -180.0,
+      -60.0,
+      180.0,
+      60.0
+    ],
+    "dtype": "float32",
+    "nodata": null,
+    "transform_res": [
+      0.05,
+      0.05
+    ]
+  },
+  "checks": "GeoTIFF abierto con rasterio: 7200x2400 px, EPSG:4326"
+}

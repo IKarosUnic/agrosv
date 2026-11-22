@@ -1,4 +1,4 @@
-# AGROSV — Fundación geoespacial (Fase 1)
+# AGROSV — Fundación geoespacial e infraestructura científica
 
 Plataforma geoespacial de El Salvador que servirá de base a los módulos
 agrícolas, climáticos y edafológicos de AGROSV. Esta fase entrega **territorio,
@@ -15,7 +15,7 @@ y limitaciones documentadas para cada capa.
 | 4 · Suelos | pH, C orgánico, N total, arcilla, arena, limo (0–30 cm) | `data/processed/soils/rasters/*.tif` |
 | 5 · Backend | FastAPI con consultas puntuales, GeoJSON y teselas | `backend/agrosv/api.py` |
 | 6 · Interfaz | React + TypeScript + MapLibre GL | `frontend/` (compila a `frontend/dist`) |
-| 7 · Calidad | 80 pruebas de integridad, cobertura, CRS, endpoints y rendimiento | `tests/` |
+| 7 · Calidad | 161 pruebas de integridad, cobertura, CRS, endpoints, ciencia y rendimiento | `tests/` |
 
 Documentación obligatoria: [`docs/DATA_PROVENANCE.md`](docs/DATA_PROVENANCE.md)
 (fuentes, licencias, transformaciones), [`docs/LIMITATIONS.md`](docs/LIMITATIONS.md)
@@ -107,3 +107,33 @@ pasan en falso.
 geoBoundaries **CC BY-SA 2.0** · Copernicus DEM GLO-30 **DLR/Airbus, uso libre
 con atribución** · OpenStreetMap **ODbL 1.0** · SoilGrids 2.0 **CC BY 4.0**.
 Detalle y texto de atribución en [`docs/DATA_PROVENANCE.md`](docs/DATA_PROVENANCE.md).
+
+## Fase 2 — infraestructura científica (implementada en parte)
+
+`backend/agrosv/science/` contiene los motores transversales que hacen
+publicable un resultado: contrato con etiqueta/resolución/incertidumbre,
+versionado por hash, QC geoespacial, validación V0–V4, reproducibilidad y
+orquestación por lotes. Además hay dos motores ejecutables:
+
+- **hidrología** — priority-flood, D8, acumulación, cuenca y factor LS sobre el
+  DEM de Fase 1 (sin calibrar: no hay aforos);
+- **índices espectrales** — NDVI, EVI, NDWI, NDMI, NBR y máscara de cambio
+  (aritmética verificada; la adquisición satelital no está implementada).
+
+API científica versionada, en un router aparte que no toca los 13 endpoints de
+Fase 1:
+
+| Endpoint | Devuelve |
+|---|---|
+| `GET /api/v1/meta` | versión, datasets versionados, licencias, fichas de índices |
+| `GET /api/v1/sources` | catálogo con `sha256` y licencia (`?verify=true` recalcula) |
+| `GET /api/v1/provenance/{id}` | manifiesto completo del artefacto |
+| `GET /api/v1/qc` | QC vectorial (con `?include_rasters=true`, también ráster) |
+| `GET /api/v1/hydro/watershed?lat=&lon=&size_m=` | cuenca aguas arriba y su área |
+| `GET /api/v1/hydro/aoi?lat=&lon=&size_m=` | pendiente, LS y red de drenaje |
+| `GET /api/v1/indices` | fórmulas, resolución nativa y lo que falta |
+| `GET /api/v1/offline/{dept}.zip` | paquete territorial con manifiesto y atribución |
+| `GET /api/v1/validation/policy` | niveles V0–V4 y estado real por capa |
+
+Estado honesto de la fase y resultados de pruebas en
+[`docs/PHASE_2_IMPLEMENTATION_REPORT.md`](docs/PHASE_2_IMPLEMENTATION_REPORT.md).
