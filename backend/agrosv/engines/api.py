@@ -146,6 +146,36 @@ def territory_search(q: str = Query(..., min_length=1),
     return JSONResponse(content=payload, headers=_headers("territorial"))
 
 
+@router.get("/territory/profile",
+            summary="Perfil por identificador oficial (país, departamento, municipio histórico)")
+def territory_profile(q: str = Query(..., min_length=1), level: str | None = None,
+                      radius_cells: int = Query(2, ge=1, le=10),
+                      size_m: float = Query(6000, ge=1000, le=30000)):
+    from .territorial import TerritorialEngine
+
+    try:
+        payload = TerritorialEngine().profile_by_territory(
+            q, level=level, radius_cells=radius_cells, size_m=size_m)
+    except Exception as exc:  # noqa: BLE001
+        raise _wrap_error(exc) from None
+    if payload.get("resolved") is False:
+        raise HTTPException(404 if not payload.get("ambiguous") else 409, payload)
+    return JSONResponse(content=payload, headers=_headers("territorial"))
+
+
+@router.get("/territory/intersect",
+            summary="Intersección y contención de un rectángulo con los límites")
+def territory_intersect(west: float, south: float, east: float, north: float,
+                        level: str | None = None):
+    from .territorial import territories_in_bbox
+
+    try:
+        payload = territories_in_bbox(west, south, east, north, level=level)
+    except Exception as exc:  # noqa: BLE001
+        raise _wrap_error(exc) from None
+    return JSONResponse(content=payload, headers=_headers("territorial"))
+
+
 @router.get("/territorial", summary="Perfil territorial por coordenadas")
 def territorial(lat: float, lon: float, radius_cells: int = Query(2, ge=1, le=10)):
     lon, lat = _coord(lat, lon)
@@ -188,6 +218,21 @@ def soil(lat: float, lon: float):
 
     try:
         payload = SoilEngine().sample(lon, lat)
+    except Exception as exc:  # noqa: BLE001
+        raise _wrap_error(exc) from None
+    return JSONResponse(content=payload, headers=_headers("soil"))
+
+
+@router.get("/soil/profile", summary="Consulta de suelo por intervalo de profundidad")
+def soil_profile(lat: float, lon: float,
+                 top_cm: float = Query(0, ge=0),
+                 bottom_cm: float = Query(30, gt=0)):
+    lon, lat = _coord(lat, lon)
+    from .soil import SoilEngine
+
+    try:
+        payload = SoilEngine().profile_at_depth(lon, lat, top_cm=top_cm,
+                                                bottom_cm=bottom_cm)
     except Exception as exc:  # noqa: BLE001
         raise _wrap_error(exc) from None
     return JSONResponse(content=payload, headers=_headers("soil"))

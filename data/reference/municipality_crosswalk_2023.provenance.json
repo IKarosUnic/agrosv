@@ -1,0 +1,83 @@
+{
+  "dataset_id": "municipality_crosswalk_2023",
+  "name": "Correspondencia municipio → distrito (reestructuración 2023)",
+  "legal_instrument": "Decreto Legislativo N.° 762, Ley Especial para la Reestructuración Municipal",
+  "published": "2023-06-14",
+  "effective_date": "2024-05-01",
+  "effective_note": "la ley rigió las elecciones del 2024-03-03; los nuevos concejos asumieron el 2024-05-01",
+  "source": "https://www.asamblea.gob.sv/node/12806",
+  "retrieved": "2026-11-22",
+  "license": "Información pública oficial; se atribuye a la Asamblea Legislativa de El Salvador",
+  "counts": {
+    "departments": 14,
+    "municipalities": 44,
+    "districts": 262
+  },
+  "fields": {
+    "department": "departamento",
+    "municipality": "municipio nuevo",
+    "district": "distrito (antiguo municipio)",
+    "municipality_id": "identificador AGROSV, no código oficial",
+    "district_id": "identificador AGROSV, no código oficial",
+    "official_code": "vacío: la fuente no publica códigos"
+  },
+  "transformations": [
+    "transcripción de la distribución publicada por la Asamblea",
+    "normalización de tildes y mayúsculas",
+    "identificadores AGROSV derivados del nombre (no oficiales)",
+    "verificación de 14 departamentos, 44 municipios y 262 distritos"
+  ],
+  "corrections": [
+    {
+      "source": "llopango",
+      "normalized": "Ilopango"
+    },
+    {
+      "source": "llobasco",
+      "normalized": "Ilobasco"
+    },
+    {
+      "source": "lntipucá",
+      "normalized": "Intipucá"
+    },
+    {
+      "source": "lzalco",
+      "normalized": "Izalco"
+    },
+    {
+      "source": "lshuatán",
+      "normalized": "Santa Isabel Ishuatán"
+    },
+    {
+      "source": "lstepeque",
+      "normalized": "San Cayetano Istepeque"
+    },
+    {
+      "source": "San Francisco Menendez",
+      "normalized": "San Francisco Menéndez"
+    },
+    {
+      "source": "Mercedes Umana",
+      "normalized": "Mercedes Umaña"
+    },
+    {
+      "source": "Bolivar",
+      "normalized": "Bolívar"
+    },
+    {
+      "source": "Huizucar",
+      "normalized": "Huizúcar"
+    },
+    {
+      "source": "Chiltuipán",
+      "normalized": "Chiltiupán"
+    }
+  ],
+  "validation_status": "conteos, unicidad y pertenencia verificados; sin validación catastral ni geográfica",
+  "notes": [
+    "la fuente es una página legislativa, no un archivo catastral",
+    "no se incluyen códigos históricos porque no fueron publicados",
+    "los distritos conservan el nombre del municipio histórico"
+  ],
+  "sha256": "fc1d5c6a1de0d43d7d0abedb757722ef98241b58127fc43727d089d831765c0f"
+}

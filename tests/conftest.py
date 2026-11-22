@@ -18,9 +18,20 @@ from agrosv import config as C  # noqa: E402
 
 
 def require(path: Path) -> Path:
-    if not path.exists():
-        pytest.skip(f"artefacto no generado: {path.relative_to(ROOT)}")
-    return path
+    """Devuelve la ruta existente o salta la prueba declarándolo.
+
+    Acepta rutas relativas (algunas pruebas de Fase 4 las usan) y las resuelve
+    contra la raíz del proyecto antes de informar del salto.
+    """
+    candidate = Path(path)
+    resolved = candidate if candidate.is_absolute() else ROOT / candidate
+    if not resolved.exists():
+        try:
+            label = resolved.relative_to(ROOT).as_posix()
+        except ValueError:
+            label = str(resolved)
+        pytest.skip(f"artefacto no generado: {label}")
+    return resolved
 
 
 def load_stats(name: str) -> dict:

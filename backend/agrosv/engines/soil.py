@@ -39,10 +39,19 @@ from . import governance as G
 ENGINE = "soil"
 ENGINE_VERSION = G.ENGINE_VERSION
 
-#: Intervalos de profundidad normalizados por AGROSV (cm).
-DEPTH_INTERVALS: tuple[tuple[int, int], ...] = (
+#: Intervalo integrado que sí existe en el repositorio (cm).
+INTEGRATED_INTERVAL: tuple[int, int] = (0, 30)
+
+#: Intervalos nativos de SoilGrids 2.0 (cm). Se listan para declarar cuáles
+#: existen como capa independiente y cuáles no.
+STANDARD_SOILGRIDS_INTERVALS: tuple[tuple[int, int], ...] = (
     (0, 5), (5, 15), (15, 30), (30, 60), (60, 100), (100, 200),
 )
+
+#: Perfil normalizado: primero el intervalo integrado disponible y después los
+#: intervalos estándar, que se declaran ausentes uno por uno.
+DEPTH_INTERVALS: tuple[tuple[int, int], ...] = (
+    INTEGRATED_INTERVAL,) + STANDARD_SOILGRIDS_INTERVALS
 
 #: Factor de Van Bemmelen: materia orgánica = carbono orgánico × 1,724.
 #: Es una convención empírica; el rango publicado habitual es 1,7–2,0.
@@ -125,8 +134,8 @@ def usda_texture_class(sand: float, silt: float, clay: float) -> str:
         return "arcilla franca"
     if 20 <= c < 35 and si < 28 and s > 45:
         return "franco arcillo-arenoso"
-    if 20 <= c < 35 and si >= 28:
-        return "franco arcilloso" if si < 40 else "franco arcillo-limoso"
+    # El franco arcilloso exige arcilla ≥ 27 %; con 20–27 % y limo ≥ 28 % la
+    # clase USDA es franca y la resuelven las reglas siguientes.
     if si >= 80 and c < 12:
         return "limo"
     if si >= 50 and c < 12:
@@ -150,23 +159,28 @@ def profile_model() -> dict[str, Any]:
     """Modelo de perfil con intervalos estandarizados y su disponibilidad real."""
     intervals = []
     for top, bottom in DEPTH_INTERVALS:
-        available = top == 0 and bottom == 30
+        integrated = (top, bottom) == INTEGRATED_INTERVAL
         intervals.append({
             "top_cm": top,
             "bottom_cm": bottom,
             "midpoint_cm": round((top + bottom) / 2, 1),
-            "status": "available" if available else "not_available",
-            "source": "soilgrids_2" if available else None,
-            "reason": None if available else (
+            "role": "integrated" if integrated else "standard",
+            "status": "available" if integrated else "not_available",
+            "source": "soilgrids_2" if integrated else None,
+            "reason": None if integrated else (
                 "SoilGrids se descargó agregado a 0–30 cm; no hay capa para "
                 "este intervalo y no se interpola entre profundidades"),
         })
     return {
-        "standard_intervals_cm": [list(iv) for iv in DEPTH_INTERVALS],
+        "intervals_cm": [list(iv) for iv in DEPTH_INTERVALS],
+        "standard_intervals_cm": [list(iv)
+                                  for iv in STANDARD_SOILGRIDS_INTERVALS],
+        "integrated_interval_cm": list(INTEGRATED_INTERVAL),
         "intervals": intervals,
-        "available_intervals": [iv for iv, s in zip(DEPTH_INTERVALS, intervals)
-                                if s["status"] == "available"],
+        "available_intervals": [list(INTEGRATED_INTERVAL)],
         "depth_weighting": "media 0–30 cm con pesos 5/30, 10/30 y 15/30",
+        "note": ("0–30 cm es una agregación ponderada de 0–5, 5–15 y 15–30 cm; "
+                 "se lista como intervalo integrado y no se desagrega"),
         "rule": ("no se inventa una propiedad a una profundidad que no se "
                  "descargó ni se mide"),
     }
@@ -407,6 +421,47 @@ class SoilEngine:
             "limitations": sample["limitations"],
         }
 
+    def profile_at_depth(self, lon: float, lat: float, *, top_cm: float,
+                         bottom_cm: float) -> dict[str, Any]:
+        """Consulta por intervalo de profundidad, con ausencia declarada.
+
+        Solo el intervalo integrado 0–30 cm tiene capa. Cualquier otro se
+        declara ausente: no se interpola entre profundidades ni se reparte la
+        media ponderada de 0–30 cm entre subintervalos.
+        """
+        try:
+            top, bottom = float(top_cm), float(bottom_cm)
+        except (TypeError, ValueError):
+            raise ValueError("top_cm y bottom_cm deben ser numéricos") from None
+        if not (math.isfinite(top) and math.isfinite(bottom)):
+            raise ValueError("top_cm y bottom_cm deben ser finitos")
+        if top < 0 or bottom <= top:
+            raise ValueError("se requiere 0 ≤ top_cm < bottom_cm")
+        query = {"lon": lon, "lat": lat, "top_cm": top, "bottom_cm": bottom}
+        if (top, bottom) != (float(INTEGRATED_INTERVAL[0]),
+                             float(INTEGRATED_INTERVAL[1])):
+            return {
+                "query": query,
+                "available": False,
+                "reason": (
+                    "no hay capa para este intervalo: SoilGrids se descargó "
+                    "agregado a 0–30 cm y no se interpola ni se desagrega una "
+                    "media ponderada"),
+                "nearest_available_interval_cm": list(INTEGRATED_INTERVAL),
+                "profile": profile_model(),
+            }
+        sample = self.sample(lon, lat)
+        return {
+            "query": query,
+            "available": True,
+            "interval_cm": list(INTEGRATED_INTERVAL),
+            "properties": sample["result"]["properties"],
+            "derived": sample["result"]["derived"],
+            "limitations_found": sample["result"]["limitations_found"],
+            "sources": sample["sources"],
+            "limitations": sample["limitations"],
+        }
+
     def texture(self, lon: float, lat: float) -> dict[str, Any]:
         sample = self.sample(lon, lat)
         return {
@@ -422,5 +477,5 @@ class SoilEngine:
 __all__ = [
     "SoilEngine", "usda_texture_class", "profile_model", "organic_matter",
     "evaluate_limitations", "LIMITATION_RULES", "DEPTH_INTERVALS",
-    "VAN_BEMMELEN",
+    "STANDARD_SOILGRIDS_INTERVALS", "INTEGRATED_INTERVAL", "VAN_BEMMELEN",
 ]

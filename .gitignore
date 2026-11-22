@@ -49,3 +49,8 @@ data/validated/*.sqlite
 data/validated/*.sqlite-wal
 data/validated/*.sqlite-shm
 data/validated/**/*.tif
+
+# Datos externos licenciados: no versionar
+data/external/*
+!data/external/.gitkeep
+!data/external/README.md

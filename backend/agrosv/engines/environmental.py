@@ -116,9 +116,13 @@ INTERACTION_RULES: tuple[dict[str, Any], ...] = (
         "domains": ("soil",),
         "implication": "menor reservorio de agua y nutrientes",
     },
+    # Las dos reglas siguientes declaran una AUSENCIA: por eso se ejecutan
+    # también cuando el insumo es None (allow_missing). Sin ese indicador el
+    # filtro general las descartaría y la ausencia nunca se publicaría.
     {
         "code": "sin_dato_de_profundidad",
         "requires": ("soil_depth_cm",),
+        "allow_missing": True,
         "test": lambda v: v.get("soil_depth_cm") is None,
         "rule": ("profundidad efectiva no disponible en el repositorio: no se "
                  "asume un valor"),
@@ -129,6 +133,7 @@ INTERACTION_RULES: tuple[dict[str, Any], ...] = (
     {
         "code": "cobertura_hidrica_incompleta",
         "requires": ("nearest_waterway_km",),
+        "allow_missing": True,
         "test": lambda v: v.get("nearest_waterway_km") is None,
         "rule": "no hay cauce mapeado en el radio de búsqueda declarado",
         "domains": ("hydrology",),
@@ -141,7 +146,8 @@ INTERACTION_RULES: tuple[dict[str, Any], ...] = (
 def apply_interaction_rules(values: dict[str, Any]) -> list[dict[str, Any]]:
     findings = []
     for rule in INTERACTION_RULES:
-        if any(values.get(key) is None for key in rule["requires"]):
+        if not rule.get("allow_missing") and any(
+                values.get(key) is None for key in rule["requires"]):
             continue
         try:
             matched = bool(rule["test"](values))
@@ -155,6 +161,7 @@ def apply_interaction_rules(values: dict[str, Any]) -> list[dict[str, Any]]:
                 "implication": rule["implication"],
                 "inputs": {key: values.get(key) for key in rule["requires"]},
                 "evidence_class": "derived_from_rule",
+                "declares_absence": bool(rule.get("allow_missing")),
                 "validated": False,
             })
     return findings

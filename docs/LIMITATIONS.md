@@ -95,3 +95,24 @@ más precisa de lo que es. La API lo publica en `/api/limitations`.
 5. **Rendimiento medido en este entorno** (8 vCPU, sin GPU): elevación puntual
    <80 ms, suelo puntual <200 ms, tesela <1,5 s, GeoJSON de departamentos
    ~90 KB. No se ha probado en dispositivos de gama baja reales.
+
+## Monitorización agrícola (Fase 7)
+
+1. **No hay escenas satelitales integradas.** Los adaptadores leen GeoTIFF/COG
+   locales y se probaron con un ráster sintético de 4×4 píxeles.
+2. **No hay series de estaciones SNET/MARN, aforos ni puntos GNSS.** La sequía
+   hidrológica no se evalúa y el estrés hídrico depende de TAW/Dr aportados.
+3. **Los índices espectrales no diagnostican plagas, enfermedades ni nutrición.**
+   Describen verdor, agua, suelo o fuego a la resolución del píxel.
+4. **La resolución de 10 m no sostiene análisis parcelario.** El motor de escala
+   lo declara y rechaza esa afirmación.
+5. **El catálogo fitosanitario es bibliográfico.** La presencia nacional
+   documentada no prueba presencia municipal o actual; las ventanas térmicas de
+   literatura no están calibradas para El Salvador.
+6. **Los riesgos son estimaciones.** Las clases (negligible…very_high) son
+   operativas, no oficiales; no se calculan tasas de erosión ni predicciones de
+   inundación.
+7. **Las alertas, verificaciones y observaciones de campo viven en memoria.**
+   No hay persistencia, autenticación ni control de acceso por roles.
+8. **La validación científica está pendiente.** No hay verdad de campo para
+   medir falsos positivos, exactitud de índices o calibración de umbrales.

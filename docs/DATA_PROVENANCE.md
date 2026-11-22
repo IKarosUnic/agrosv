@@ -98,7 +98,52 @@ fuente, licencia, resolución, transformación, versiones de software y
 Ninguna de estas fuentes se presenta como integrada ni se usa para completar
 huecos de SoilGrids.
 
-## 5 · Software
+## 5 · Correspondencia municipal 2023 (Fase 7)
+
+- **Origen**: Asamblea Legislativa de El Salvador, distribución de los 262
+distritos entre los 44 municipios del Decreto Legislativo N.° 762,
+<https://www.asamblea.gob.sv/node/12806>, vigente desde el 1 de mayo de 2024.
+- **Licencia**: información pública oficial; atribución a la Asamblea.
+- **Transformación** (`scripts/12_build_municipality_crosswalk.py`): una fila
+por distrito; nombres normalizados; identificadores AGROSV `SV-MUN-*` y
+`SV-DIS-*`; `official_code` vacío porque la fuente no publica códigos. Se
+corrigieron errores de OCR en 11 nombres (ver
+`docs/phase7/DATA_ACCESS_AND_ONBOARDING.md`). No se alteró ningún conteo.
+- **Verificación**: 14 departamentos, 44 municipios, 262 distritos; SHA-256 en
+`data/reference/municipality_crosswalk_2023.provenance.json`; validado por
+`tests/test_phase7_onboarding.py`.
+- **Uso**: agregar datos históricos por distrito a los 44 municipios vigentes.
+No sustituye el límite ADM2 de Fase 1, que sigue publicándose como histórico y
+con `official=false`.
+
+### Fuentes externas de Fase 7 no integradas
+
+Series SNET/MARN, muestras del Laboratorio de Suelos CENTA, cuencas oficiales,
+aforos y puntos GNSS del CNR están registrados con su URL, formato, licencia y
+requisitos en `backend/agrosv/onboarding/registry.py`. **Ninguna se descargó ni
+se usó para completar datos.** El DEM sigue sin exactitud vertical declarada
+hasta que existan puntos de control con altura ortométrica.
+
+## 6 · Monitorización agrícola (Fase 7)
+
+**No se integró ningún dato satelital, meteorológico, fitosanitario o de campo
+nuevo.** El módulo `backend/agrosv/monitoring/` implementa adaptadores para
+GeoTIFF/COG y STAC locales, y sus pruebas usan un ráster sintético de 4×4
+píxeles declarado como fixture. Ningún resultado de fixture se publica como
+observación de El Salvador.
+
+El catálogo de plagas y enfermedades es **conocimiento bibliográfico**, no un
+registro de incidencia: cita CABI Compendium, FAO, OIRSA, IICA/PROMECAFE, CENTA
+E IPPC, y declara el ámbito de presencia (`national_confirmed`,
+`regional_confirmed`, `international_record`, `unconfirmed_national`). Las
+ventanas térmicas se marcan `literature_uncalibrated`.
+
+Los almacenes de alertas, verificaciones, notificaciones y observaciones de
+campo son en memoria del proceso; no contienen datos personales ni se
+redistribuyen. Las coordenadas de una observación no se publican sin
+consentimiento explícito.
+
+## 7 · Software
 
 Versiones registradas en cada manifiesto (`software`): Python 3.12.3, GDAL
 3.12.2, rasterio 1.5.2, geopandas 1.2.0, shapely 2.2.0, pyproj 3.8.0, pyogrio

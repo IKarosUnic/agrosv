@@ -1,0 +1,94 @@
+{
+  "generated_at": "2026-11-22T06:10:44.598989+00:00",
+  "environment": {
+    "python": "3.12.3",
+    "numpy": "2.5.5",
+    "platform": "Linux-6.1.102-x86_64-with-glibc2.39",
+    "processor": "x86_64"
+  },
+  "notes": [
+    "tiempo de pared en un proceso local; no es un SLA",
+    "memoria pico de tracemalloc, no RSS del proceso",
+    "la primera corrida incluye importaciones perezosas",
+    "no se mide precisión científica, solo costo de ejecución"
+  ],
+  "results": {
+    "population_100": {
+      "median_s": 0.0508,
+      "min_s": 0.0494,
+      "max_s": 0.0754,
+      "peak_memory_mb": 1.08,
+      "repeats": 3
+    },
+    "population_1000": {
+      "median_s": 0.508,
+      "min_s": 0.4971,
+      "max_s": 0.5371,
+      "peak_memory_mb": 2.32,
+      "repeats": 3
+    },
+    "population_5000": {
+      "median_s": 2.575,
+      "min_s": 2.4654,
+      "max_s": 2.6906,
+      "peak_memory_mb": 11.49,
+      "repeats": 3
+    },
+    "multiagent_100_steps10": {
+      "median_s": 0.009,
+      "min_s": 0.009,
+      "max_s": 0.0093,
+      "peak_memory_mb": 0.12,
+      "repeats": 3
+    },
+    "multiagent_1000_steps10": {
+      "median_s": 0.113,
+      "min_s": 0.1124,
+      "max_s": 0.1172,
+      "peak_memory_mb": 1.07,
+      "repeats": 3
+    },
+    "suitability_coffee": {
+      "median_s": 0.133,
+      "min_s": 0.1318,
+      "max_s": 0.6752,
+      "peak_memory_mb": 12.21,
+      "repeats": 3
+    },
+    "phenology_maize": {
+      "median_s": 0.0284,
+      "min_s": 0.028,
+      "max_s": 0.0307,
+      "peak_memory_mb": 2.53,
+      "repeats": 3
+    },
+    "water_balance_maize": {
+      "median_s": 0.0257,
+      "min_s": 0.0252,
+      "max_s": 0.0257,
+      "peak_memory_mb": 2.1,
+      "repeats": 3
+    },
+    "scenario_drought_10": {
+      "median_s": 1.8994,
+      "min_s": 0.5037,
+      "max_s": 3.2951,
+      "peak_memory_mb": 2.37,
+      "repeats": 2
+    },
+    "scenario_drought_25": {
+      "median_s": 1.6387,
+      "min_s": 1.1753,
+      "max_s": 2.1021,
+      "peak_memory_mb": 2.35,
+      "repeats": 2
+    },
+    "scenario_drought_50": {
+      "median_s": 3.2067,
+      "min_s": 3.1646,
+      "max_s": 3.2487,
+      "peak_memory_mb": 2.54,
+      "repeats": 2
+    }
+  }
+}

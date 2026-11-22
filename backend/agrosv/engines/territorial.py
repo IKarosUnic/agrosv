@@ -87,6 +87,91 @@ def _stats() -> dict[str, Any]:
     return out
 
 
+@lru_cache(maxsize=1)
+def _territory_index():
+    """Índice territorial con geometrías (una sola lectura por proceso)."""
+    return T.TerritorialIndex.from_geopackage(C.TERRITORY_GPKG)
+
+
+def territories_in_bbox(west: float, south: float, east: float, north: float,
+                        *, level: str | None = None) -> dict[str, Any]:
+    """Intersección espacial exacta entre un rectángulo y los límites cargados.
+
+    Devuelve qué unidades intersectan el rectángulo, si alguna lo contiene por
+    completo y el área de intersección en EPSG:6933. No ajusta límites ni
+    completa departamentos que el rectángulo solo toca en parte.
+    """
+    from shapely.geometry import box
+
+    try:
+        west, south, east, north = (float(west), float(south), float(east),
+                                    float(north))
+    except (TypeError, ValueError):
+        raise CoverageError("extensión no numérica") from None
+    if not all(math.isfinite(v) for v in (west, south, east, north)):
+        raise CoverageError("extensión no finita")
+    if not (west < east and south < north):
+        raise CoverageError("se requiere oeste < este y sur < norte")
+    if not (-180 <= west <= 180 and -180 <= east <= 180
+            and -90 <= south <= 90 and -90 <= north <= 90):
+        raise CoverageError("extensión fuera de rango geográfico",
+                            bbox=C.SV_BOUNDS)
+    layers = _admin_layers()
+    if layers is None:
+        raise G.SourceUnavailableError("geoboundaries_adm1",
+                                       [str(C.TERRITORY_GPKG)])
+    target = box(west, south, east, north)
+    levels = {"country": "adm0", "department": "adm1",
+              "municipality_historic": "adm2"}
+    out: list[dict[str, Any]] = []
+    for level_name, layer in levels.items():
+        if level and level != level_name:
+            continue
+        gdf = layers.get(layer)
+        if gdf is None or len(gdf) == 0:
+            continue
+        try:
+            positions = list(gdf.sindex.query(target, predicate="intersects"))
+        except Exception as exc:  # noqa: BLE001 — índice espacial no disponible
+            raise CoverageError(
+                f"no se pudo consultar el índice espacial: {exc}") from None
+        for pos in positions:
+            row = gdf.iloc[int(pos)]
+            geom = row.geometry
+            if geom is None or geom.is_empty:
+                continue
+            code = None
+            for key in ("adm0_code", "adm1_code", "adm2_code"):
+                if key in row and row[key] is not None:
+                    code = str(row[key])
+                    break
+            out.append({
+                "level": level_name,
+                "name": str(row.get("name")),
+                "source_code": code,
+                "official": (None if row.get("official") is None
+                             else bool(row.get("official"))),
+                "area_km2": (round(float(row["area_km2"]), 3)
+                             if row.get("area_km2") is not None else None),
+                "intersects": True,
+                "contains_query_bbox": bool(geom.contains(target)),
+            })
+    out.sort(key=lambda e: (e["level"], e["name"] or ""))
+    return {
+        "query": {"west": west, "south": south, "east": east,
+                  "north": north, "level": level, "crs": C.CRS_STORAGE},
+        "count": len(out),
+        "territories": out,
+        "method": ("intersección geométrica exacta con el índice espacial de "
+                   "cada capa; contains_query_bbox indica contención completa"),
+        "limitations": [
+            "un rectángulo no es una parcela ni una cuenca",
+            "ADM2 es histórico (pre-2023) y oficial=false",
+            "la exactitud posicional de los límites no está verificada",
+        ],
+    }
+
+
 @dataclass
 class Location:
     lon: float
@@ -263,8 +348,8 @@ class TerritorialEngine:
             "source": ["copdem30", "osm_sv"],
         }
 
-    def profile(self, lon: float, lat: float, *, radius_cells: int = 2
-                ) -> dict[str, Any]:
+    def profile(self, lon: float, lat: float, *, radius_cells: int = 2,
+                size_m: float = 6000.0) -> dict[str, Any]:
         """Perfil territorial: identificación + terreno + hidrografía asociada."""
         lon, lat = validate_coordinate(lon, lat)
         location = locate(lon, lat)
@@ -276,7 +361,7 @@ class TerritorialEngine:
         terrain_result = TM.terrain_metrics(lon, lat, radius_cells=radius_cells)
         hydro: dict[str, Any]
         try:
-            hydro = self.watershed_association(lon, lat)
+            hydro = self.watershed_association(lon, lat, size_m=size_m)
         except Exception as exc:  # noqa: BLE001 — se declara el fallo parcial
             hydro = {"available": False, "reason": str(exc)}
         dept = (location.department or {}).get("source_code")
@@ -310,11 +395,63 @@ class TerritorialEngine:
                        "agrosv.engines.terrain.terrain_metrics",
                        radius_cells=radius_cells),
                 G.step("cuenca local y agua superficial",
-                       "agrosv.engines.hydrology"),
+                       "agrosv.engines.hydrology", size_m=size_m),
             ],
-            query={"lon": lon, "lat": lat, "radius_cells": radius_cells},
+            query={"lon": lon, "lat": lat, "radius_cells": radius_cells,
+                   "size_m": size_m},
             coverage=coverage(),
         )
+
+    def profile_by_territory(self, query: str, *, level: str | None = None,
+                             radius_cells: int = 2,
+                             size_m: float = 6000.0) -> dict[str, Any]:
+        """Perfil por identificador oficial, evaluado en un punto interior.
+
+        Un perfil areal exigiría agregar cada celda del polígono; aquí se
+        evalúa un punto interior representativo y se declara que no es un
+        promedio del territorio.
+        """
+        from shapely.geometry import shape
+
+        try:
+            entry = _territory_index().resolve(query, level=level)
+        except T.AmbiguousTerritoryError as exc:
+            return {"resolved": False, "ambiguous": True, "query": query,
+                    "candidates": exc.candidates,
+                    "note": "se devuelven los candidatos; no se elige uno"}
+        except T.TerritoryError as exc:
+            return {"resolved": False, "ambiguous": False, "query": query,
+                    "error": str(exc)}
+        except FileNotFoundError:
+            raise G.SourceUnavailableError("geoboundaries_adm1",
+                                           [str(C.TERRITORY_GPKG)]) from None
+        if not entry.geometry:
+            raise G.SourceUnavailableError(
+                "geoboundaries_adm1", ["geometría del territorio en el índice"],
+                "el índice se construyó sin geometrías")
+
+        point = shape(entry.geometry).representative_point()
+        profile = self.profile(point.x, point.y, radius_cells=radius_cells,
+                               size_m=size_m)
+        profile["result"]["territory_selection"] = {
+            "territory_id": entry.territory_id,
+            "level": entry.level,
+            "name": entry.name,
+            "source_code": entry.source_code,
+            "official": entry.official,
+            "area_km2": entry.area_km2,
+            "evaluation_point": {"lon": round(point.x, 6),
+                                 "lat": round(point.y, 6)},
+            "point_rule": (
+                "punto interior representativo (representative_point): el perfil "
+                "describe ese punto, no un promedio areal del territorio"),
+        }
+        profile["query"].update({"territory_query": query,
+                                 "territory_level": level})
+        profile["limitations"].append(
+            "el perfil por identificador se evalúa en un punto interior; no es "
+            "un agregado areal del departamento o municipio")
+        return profile
 
     def resolve_territory(self, query: str, *, level: str | None = None
                           ) -> dict[str, Any]:
@@ -344,5 +481,5 @@ class TerritorialEngine:
 
 __all__ = [
     "TerritorialEngine", "locate", "coverage", "validate_coordinate",
-    "CoverageError", "Location", "department_statistics",
+    "CoverageError", "Location", "department_statistics", "territories_in_bbox",
 ]

@@ -62,6 +62,32 @@ from .engines.api import router as engines_router  # noqa: E402
 
 app.include_router(engines_router)
 
+# Inteligencia agrícola y socio-agrícola (Fase 6). Prefijos nuevos; los
+# contratos de Fase 1–5 no cambian.
+from .agriculture.api import router as agriculture_router  # noqa: E402
+
+app.include_router(agriculture_router)
+
+from .social.api import router as social_router  # noqa: E402
+
+app.include_router(social_router)
+
+from .socio.api import router as socio_router  # noqa: E402
+
+app.include_router(socio_router)
+
+# Incorporación controlada de datos externos (Fase 7). No adquiere datos:
+# valida archivos aportados y publica lo que falta.
+from .onboarding.api import router as onboarding_router  # noqa: E402
+
+app.include_router(onboarding_router)
+
+# Monitorización agrícola, sanidad, riesgos y alertas (Fase 7). Prefijo nuevo:
+# `/api/monitoring`; los contratos anteriores no cambian.
+from .monitoring.api import router as monitoring_router  # noqa: E402
+
+app.include_router(monitoring_router)
+
 # Rango de zoom servido para hillshade. El DEM nativo es de 30 m; más allá de
 # z13 no hay información nueva, solo interpolación.
 HILLSHADE_MINZOOM, HILLSHADE_MAXZOOM = 7, 14

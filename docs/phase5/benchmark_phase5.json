@@ -1,0 +1,112 @@
+{
+  "ok": true,
+  "generated_at": "2026-11-22T05:34:47Z",
+  "engine_version": "5.0.0",
+  "point": {
+    "lon": -89.2,
+    "lat": 13.7
+  },
+  "repeats": 5,
+  "python": "3.12.3",
+  "environment": "local, sin red, artefactos de Fase 1/4",
+  "measurements": [
+    {
+      "label": "territorial.profile",
+      "repeats": 5,
+      "min_s": 0.1412,
+      "median_s": 0.1433,
+      "max_s": 0.4956,
+      "rss_mb_after": 190.8,
+      "result_ok": true
+    },
+    {
+      "label": "terrain.terrain_metrics",
+      "repeats": 5,
+      "min_s": 0.019,
+      "median_s": 0.0193,
+      "max_s": 0.0201,
+      "rss_mb_after": 190.8,
+      "result_ok": true
+    },
+    {
+      "label": "soil.sample",
+      "repeats": 5,
+      "min_s": 0.0184,
+      "median_s": 0.0185,
+      "max_s": 0.0186,
+      "rss_mb_after": 190.8,
+      "result_ok": true
+    },
+    {
+      "label": "hydrology.watershed (3 km)",
+      "repeats": 5,
+      "min_s": 0.0314,
+      "median_s": 0.0317,
+      "max_s": 0.0319,
+      "rss_mb_after": 190.8,
+      "result_ok": true
+    },
+    {
+      "label": "hydrology.profile (3 km, sin caché)",
+      "repeats": 5,
+      "min_s": 0.0365,
+      "median_s": 0.0368,
+      "max_s": 0.0671,
+      "rss_mb_after": 191.6,
+      "result_ok": true
+    },
+    {
+      "label": "climate.profile",
+      "repeats": 5,
+      "min_s": 0.0117,
+      "median_s": 0.0117,
+      "max_s": 0.0264,
+      "rss_mb_after": 193.3,
+      "result_ok": true
+    },
+    {
+      "label": "environmental.profile (3 km, sin caché)",
+      "repeats": 5,
+      "min_s": 0.0919,
+      "median_s": 0.0921,
+      "max_s": 0.0936,
+      "rss_mb_after": 193.5,
+      "result_ok": true
+    },
+    {
+      "label": "territorial.territories_in_bbox (nacional)",
+      "repeats": 5,
+      "min_s": 0.0163,
+      "median_s": 0.0166,
+      "max_s": 0.0176,
+      "rss_mb_after": 193.5,
+      "result_ok": true
+    },
+    {
+      "label": "governance.availability_report",
+      "repeats": 5,
+      "min_s": 0.1206,
+      "median_s": 0.1212,
+      "max_s": 0.19,
+      "rss_mb_after": 194.4,
+      "result_ok": true
+    }
+  ],
+  "memory": {
+    "rss_before_profile_mb": 194.4,
+    "rss_after_profile_mb": 195.4,
+    "tracemalloc_peak_mb": 4.0,
+    "note": "tracemalloc mide asignaciones Python; las reservas de rasterio/GDAL no las contabiliza, por eso se informa también el RSS del proceso"
+  },
+  "cache": {
+    "first_call_s": 0.1822,
+    "second_call_s": 0.0014,
+    "second_call_hit": true,
+    "new_files": 1
+  },
+  "notes": [
+    "tiempos de una sola máquina; no son un SLA",
+    "la ventana hidrológica se lee por bloques: no se carga el DEM nacional",
+    "el perfil ambiental incluye clima de reanálisis desde SQLite"
+  ]
+}

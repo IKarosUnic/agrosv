@@ -85,6 +85,12 @@ def dem_window_metric(lon: float, lat: float, size_m: float,
             f"tamaño de ventana fuera de rango: {size_m} m (5–60.000 m)")
     if res_m <= 0:
         raise WindowError("res_m debe ser positivo")
+    if size_m < 2 * res_m:
+        # Una ventana menor que dos celdas no se puede remuestrear: devolver
+        # una cuenca de 10 m desde un DEM de 30 m sería una invención.
+        raise WindowError(
+            f"tamaño de ventana {size_m} m menor que dos celdas de {res_m} m: "
+            "no hay resolución suficiente")
     src_path = C.DEM_WGS84
     if not src_path.exists():
         raise G.SourceUnavailableError("copdem30", [str(src_path)])
@@ -350,6 +356,8 @@ def water_balance(lon: float, lat: float) -> dict[str, Any]:
         })
     p_mean = sum(r["precipitation_mm"] for r in rows) / len(rows)
     e_mean = sum(r["et0_mm"] for r in rows) / len(rows)
+    # Mayor ω en Budyko–Fu ⇒ mayor fracción evaporada ⇒ menor escorrentía.
+    # Por eso ω=3,0 acota por abajo y ω=1,5 por arriba.
     q_low = _budyko_runoff(p_mean, e_mean, omega=3.0)
     q_high = _budyko_runoff(p_mean, e_mean, omega=1.5)
     q_mid = _budyko_runoff(p_mean, e_mean, omega=2.0)
@@ -365,8 +373,11 @@ def water_balance(lon: float, lat: float) -> dict[str, Any]:
             "aridity_index_p_over_et0": round(p_mean / e_mean, 3) if e_mean else None,
             "budyko_runoff_mm": round(q_mid, 1) if q_mid is not None else None,
             "budyko_runoff_range_mm_omega_1.5_3.0": (
-                [round(q_high, 1), round(q_low, 1)]
+                [round(q_low, 1), round(q_high, 1)]
                 if q_high is not None and q_low is not None else None),
+            "budyko_range_note": (
+                "[cota inferior con ω=3,0; cota superior con ω=1,5]: mayor ω "
+                "implica más evaporación y menos escorrentía"),
         },
         "method": (
             "P y ET0 anuales de reanálisis; déficit = P − ET0. Escorrentía "

@@ -66,8 +66,9 @@ def test_cobertura_declara_niveles_ausentes():
 def test_pendiente_en_porcentaje_es_tangente():
     assert TM.slope_pct(45.0) == pytest.approx(100.0, abs=0.01)
     assert TM.slope_pct(0.0) == pytest.approx(0.0)
+    # slope_pct devuelve dos decimales por diseño; se tolera ese redondeo.
     assert TM.slope_pct(30.0) == pytest.approx(math.tan(math.radians(30)) * 100,
-                                               abs=1e-9)
+                                               abs=0.01)
     assert TM.slope_pct(None) is None
 
 
@@ -96,8 +97,9 @@ def _plane(slope_m: float = 1.0) -> np.ndarray:
 def test_tri_de_un_plano_es_conocido():
     plane = _plane()
     value = TM.tri_riley(plane, 1, 1, 30.0)
-    # Σ(z0−z)² sobre 8 vecinos de un plano con pendiente 1 m: 6·1² + 2·2² = 14
-    assert value == pytest.approx(math.sqrt(14.0))
+    # Plano de 1 m/celda, z0=99: vecinos 100,99,98 / 100,98 / 100,99,98.
+    # Σ(z0−z)² = 1+0+1+1+1+1+0+1 = 6 → TRI = √6.
+    assert value == pytest.approx(math.sqrt(6.0))
 
 
 def test_tri_no_inventa_valor_con_nodata():
@@ -108,9 +110,9 @@ def test_tri_no_inventa_valor_con_nodata():
 
 def test_tpi_centro_de_plano_es_positivo_aguas_arriba():
     plane = _plane()
-    # z0 = 99; vecinos = 100,100,100, 99, 98, 98, 98, 98 → media 99,125
-    assert TM.tpi(plane, 1, 1) == pytest.approx(-0.125, abs=1e-9)
-    assert TM.tpi_position(-0.125) == "plano_local"
+    # z0 = 99; vecinos 100,99,98,100,98,100,99,98 → media 99,0 → TPI 0,0.
+    assert TM.tpi(plane, 1, 1) == pytest.approx(0.0, abs=1e-9)
+    assert TM.tpi_position(0.0) == "plano_local"
     assert TM.tpi_position(5.0) == "cresta"
     assert TM.tpi_position(-5.0) == "valle"
     assert TM.tpi_position(1.0) == "ladera"

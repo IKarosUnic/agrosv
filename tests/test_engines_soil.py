@@ -58,11 +58,14 @@ def test_materia_organica_usa_factor_declarado():
 # --- modelo de perfil --------------------------------------------------------
 def test_modelo_de_perfil_declara_intervalos_ausentes():
     model = S.profile_model()
-    assert [0, 30] in model["standard_intervals_cm"]
+    assert model["integrated_interval_cm"] == [0, 30]
+    assert [0, 30] in model["intervals_cm"]
     available = [iv for iv in model["intervals"] if iv["status"] == "available"]
     assert len(available) == 1
     assert available[0]["top_cm"] == 0 and available[0]["bottom_cm"] == 30
+    assert available[0]["role"] == "integrated"
     missing = [iv for iv in model["intervals"] if iv["status"] != "available"]
+    assert len(missing) == len(S.STANDARD_SOILGRIDS_INTERVALS)
     assert missing and all(iv["reason"] for iv in missing)
 
 
