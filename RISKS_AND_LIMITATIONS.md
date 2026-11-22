@@ -152,3 +152,109 @@ Indicadores de que algo va mal antes de que sea evidente:
 | Se cita a los agentes como "agricultores" sin "sintéticos" | Riesgo C1 materializándose |
 | Se activa un test con `skip` sin justificación | Erosión de la garantía de calidad |
 | Se ejecuta DSSAT con coeficientes por defecto | Se está produciendo rigor aparente sin validez |
+
+---
+
+## 10. Riesgos de la ampliación (2026-11-21)
+
+Se añaden a §1–§9. Ninguno reemplaza los existentes.
+
+### 10.1 Institucionales y de acceso
+
+| Riesgo | Probabilidad | Impacto | Mitigación |
+|---|---|---|---|
+| CNR no autoriza reutilización de ortofoto/LiDAR | Alta | Alto (sin L2/L3 urbano) | Convenio con licencia escrita antes de invertir; piloto en un departamento |
+| CENTA no entrega la geodatabase de suelos | Media | Alto (sin suelo medido) | Solicitud formal; mantener SoilGrids etiquetado como predicción |
+| MARN sin servicios estables (geoportal 522) | Alta | Medio | Copia local con hash; PDF como referencia; vectorización declarada |
+| CAP 2025 nunca publica municipios ni microdatos | Alta | Medio | Diseñar el sistema para nivel departamental; no prometer más |
+| Cambio de autoridades o de prioridades | Media | Alto | Artefactos reproducibles; nada depende de un servidor ajeno |
+
+### 10.2 Científicos
+
+| Riesgo | Impacto | Mitigación |
+|---|---|---|
+| Presentar 250 m (SoilGrids) como suelo de parcela | Decisiones de fertilización erróneas | Etiqueta «predicción» + advertencia en API/UI |
+| Mezclar AgERA5 (0,1°) y CHIRPS (0,05°) sin declarar | Falsa precisión | `GRID_DATA_SPECIFICATION.md` §4 |
+| Confundir susceptibilidad con probabilidad | Mala evaluación de riesgo | `hazard_layer.layer_type` obligatorio |
+| NDVI → «cultivo» | Sobreestimar superficie agrícola | Niveles L0–L3 y matriz de confusión |
+| Microdatos CPV + catastro | Reidentificación | Prohibición explícita; publicación agregada por distrito |
+| CAP preliminar usado como definitivo | Cifras que cambian | Campo `delivery` y aviso visible |
+
+### 10.3 Legales y contractuales
+
+| Riesgo | Impacto | Mitigación |
+|---|---|---|
+| Google Weather: prohibición de almacenar/derivar | Uso indebido del servicio | Solo consulta en vivo; no alimenta índices ni capas |
+| Licencias no declaradas (MAG, MARN, CNR, CENTA) | Redistribución no autorizada | No se redistribuyen originales; solo agregados con cita |
+| ODbL contaminando derivados | Obligación de liberar la base | Aislamiento por almacén y por licencia |
+| Datos personales en microdatos | Sanción legal | Agregación, supresión y no publicación de microdatos |
+
+### 10.4 Técnicos
+
+| Riesgo | Impacto | Mitigación |
+|---|---|---|
+| Volumen de LiDAR/ortofoto nacional | Almacenamiento y proceso fuera de alcance | Procesar por departamento piloto; no descargar todo |
+| Zarr y COG duplicando la misma variable | Deriva y desorden | Zarr = análisis; COG = servicio; una sola fuente de verdad por variable |
+| Series climáticas con huecos | Índices sesgados | `quality` por celda; no rellenar para publicar |
+| Dependencia de `cdsapi` | Descargas fallidas | Reintentos, caché y registro de versión del dataset |
+
+### 10.5 Limitaciones permanentes nuevas
+
+1. **Sin estaciones de superficie verificadas**, el clima de AGROSV es
+   consistente entre productos satelitales, no validado localmente.
+2. **El catastro no es público masivo**: la inteligencia territorial a escala de
+   parcela será siempre parcial.
+3. **La agricultura urbana no es detectable de forma exhaustiva** con 10 m;
+   requiere ortofoto y campo.
+4. **El CAP 2025 no permitirá mapas municipales**: su nivel es departamental.
+5. **Ningún mapa de amenaza del país está disponible hoy como capa GIS oficial**
+   verificada en este entorno.
+
+---
+
+## 11. Riesgos de la Fase 2 (2026-11-21)
+
+### 11.1 Riesgos científicos nuevos
+
+| Riesgo | Impacto | Mitigación |
+|---|---|---|
+| Confundir contraste entre productos con validación | alto | etiqueta `consistency`, no `validated` |
+| Presentar rendimiento potencial como esperado | alto | etiqueta obligatoria y rango p10–p90 |
+| Umbrales agronómicos no calibrados para SV | medio | publicarlos como supuestos |
+| Un «gemelo digital» que es un visor | alto | criterio de admisión de 4 puntos (Module H) |
+| Escenarios climáticos leídos como pronóstico | alto | separación explícita en API y UI |
+
+### 11.2 Riesgos de licencia nuevos
+
+1. **AquaCrop no es BSD-3**: su `LICENSE` dice «All rights reserved» y exige
+   solicitud para uso no comercial. Corregido en `DATA_SOURCE_REGISTRY.md` §8.1.
+2. **DSSAT** es BSD-3 pero requiere registro.
+3. **APSIM Next Gen**: uso general no comercial por 3 años.
+4. **WorldClim 2.1 y GAEZ v4**: no comercial y sin redistribución.
+5. **MODIS Terra** cesa el 2026-12-01; el pipeline debe migrar a VJ113A1/VJ213A1.
+6. **PDF del MAG**: sin licencia declarada; solo agregados derivados con cita.
+
+### 11.3 Riesgos de arquitectura
+
+| Riesgo | Consecuencia | Mitigación |
+|---|---|---|
+| Auth no definido | bloquea D, L, H | aislar; no bloquear P1–P3 |
+| Crecimiento de la API sin versión | rompe clientes | `/api/v1` con deprecación |
+| Datos privados en caché pública | fuga | nunca cachear respuestas autenticadas |
+| Orquestador artesanal | fallos silenciosos | manifiesto + hashes + reintentos |
+| Sobrecarga de módulos | nada termina | P1 primero, un módulo por ciclo |
+
+### 11.4 Riesgo de los agentes sintéticos
+
+El mayor riesgo de la Fase 2 no es técnico: es que un perfil sintético se cite
+como si describiera a un productor real. Mitigación: etiqueta visible, nota
+metodológica y prohibición de publicar distribuciones como si fueran censales.
+
+### 11.5 Limitaciones permanentes añadidas
+
+1. Sin estaciones, sin microdatos y sin aforos, clima, rendimiento e hidrología
+   quedan sin validación local.
+2. La parcela declarada no tiene validez catastral.
+3. La resolución de una alerta es la de su fuente, nunca la de la parcela.
+4. La proximidad a un río no implica agua disponible legalmente.
+5. Un LLM no calcula variables científicas en AGROSV.

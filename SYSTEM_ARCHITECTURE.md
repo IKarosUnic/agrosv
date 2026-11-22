@@ -284,3 +284,142 @@ Todo local. Sin Kubernetes, sin colas, sin object storage.
 Sin autenticación de usuarios (no hay producto multi-usuario en Fase 1). Sin microservicios (un monolito modular es correcto a esta escala). Sin Kubernetes. Sin streaming/tiempo real. Sin vector database (no hay búsqueda semántica en el camino crítico). Sin orquestador con servidor. Sin GPU.
 
 Cada una de estas se incorpora **cuando un requisito medido lo exija**, no antes.
+
+---
+
+## 11. Ampliación arquitectónica (Fase 2+) — nuevos módulos
+
+Esta sección **extiende** la arquitectura de §2 sin retirar componentes. Los
+módulos de Fase 1 (territorio, topografía, OSM, suelos, API, UI) siguen vigentes
+tal como se implementaron; lo que sigue son módulos que se apoyan en ellos.
+
+### 11.1 Módulos
+
+| Módulo | Responsabilidad | Depende de | Documento |
+|---|---|---|---|
+| **A. National Agricultural Data Hub** | Catálogo y series del MAG/BCR: anuarios, precios, costos, censos agregados | Registro de fuentes, almacén tabular | `NATIONAL_DATA_INTEGRATION.md` |
+| **B. Cadastral and Territorial Intelligence** | Parcela, tenencia, límites administrativos vigentes e históricos | CNR (compra/convenio) | `NATIONAL_DATA_INTEGRATION.md` |
+| **C. Urban and Periurban Agriculture** | Detección multiescala con niveles de confianza | Sentinel-2, ortofoto, censos | `URBAN_AGRICULTURE.md` |
+| **D. Geomorphology and Natural Hazards** | Unidades de relieve, cuencas, amenazas separadas de observaciones | DEM, MARN/SNET | `GEOMORPHOLOGY_MODULE.md` |
+| **E. Weather and Climate Grid Engine** | Series históricas, índices y pronóstico puntual | CHIRPS, AgERA5, ERA5, Google (opcional) | `WEATHER_CLIMATE_ENGINE.md` |
+| **F. Census and Demographic Intelligence** | Población, hogares, productores y su geografía | CPV 2024, CAP 2025 | `CENSUS_DATA_MODEL.md` |
+| **G. Soil and Terrain Intelligence** | Suelo medido (CENTA) vs predicho (SoilGrids) vs terreno | CENTA, SoilGrids, DEM | `DATA_PROVENANCE.md`, `LIMITATIONS.md` |
+| **H. Agricultural Population Simulation** | Perfiles sintéticos por contexto y nivel de recursos | Nemotron + censos agregados | `SCIENTIFIC_VALIDATION.md` §7 |
+
+### 11.2 Cambios en la vista de componentes
+
+```
+┌──────────────────────────── NUEVAS CAPAS DE SERVICIO ────────────────────────┐
+│  Hub agrícola   │  Inteligencia territorial  │  Clima (grillas)  │  Censos  │
+│  (tabular)      │  (cadastro + límites)      │  (Zarr/COG)       │  (SQL)   │
+└────────┬────────┴─────────────┬──────────────┴─────────┬─────────┴────┬─────┘
+         │                      │                        │              │
+         └──────────┬───────────┴────────────┬───────────┴──────────────┘
+                    ▼                        ▼
+        ┌───────────────────────┐   ┌────────────────────────────┐
+        │  API  (FastAPI)       │   │  Motor de simulación       │
+        │  /territory /topo     │   │  + agentes (Nemotron)      │
+        │  /infra /soils        │   │                            │
+        │  /census /climate     │   └────────────────────────────┘
+        │  /hazards /agri       │
+        └───────────┬───────────┘
+                    ▼
+        ┌───────────────────────────────────────────────────────┐
+        │  ALMACENES:  GeoPackage (vectorial, por licencia)     │
+        │              COG (ráster servible)                    │
+        │              Zarr (cubos climáticos)                  │
+        │              SQLite/Parquet (tablas censales)         │
+        └───────────────────────────────────────────────────────┘
+```
+
+### 11.3 Reglas de arquitectura que no cambian
+
+1. Un productor por artefacto; nadie escribe fuera de su dominio.
+2. Manifiesto obligatorio por capa, con `provenance_id`.
+3. Aislamiento por licencia: ODbL (OSM) nunca comparte archivo derivado con
+   datos de licencia incompatible.
+4. Sin servicios de terceros obligatorios: Google Weather es opcional.
+5. Ninguna capa publica más resolución que su insumo más grueso.
+
+### 11.4 Lo que sí cambia
+
+- Se añade **Zarr** como almacén de cubos climáticos (no reemplaza COG: lo
+  complementa; ver `GRID_DATA_SPECIFICATION.md`).
+- Se añade **almacén tabular** para censos y series (Parquet/SQLite); no se
+  fuerza a PostGIS.
+- Se añade una **dimensión temporal** explícita en el modelo de datos (series),
+  que Fase 1 no necesitaba.
+- La API crece con `/census`, `/climate`, `/hazards`, `/agri`; los endpoints de
+  Fase 1 se mantienen estables.
+- PostGIS sigue **fuera** hasta que exista escritura concurrente o consultas
+  espaciales entre muchas capas (ADR-001 D-1).
+
+---
+
+## 12. Arquitectura de Fase 2 (2026-11-21)
+
+La arquitectura se amplía sin sustituir la existente. Los 13 endpoints de Fase 1
+y su modelo de datos permanecen; lo nuevo se añade como capas y servicios.
+
+### 12.1 Las nueve capas
+
+| # | Capa | Qué hace | Implementación actual |
+|---|---|---|---|
+| 1 | Ingestión | descarga, hash, manifiesto | `download_data.sh`, scripts 01–04 |
+| 2 | Almacenamiento | COG, GeoPackage, Parquet, Zarr | COG + GeoPackage + JSON |
+| 3 | Normalización | CRS, unidades, nulos | scripts + `conftest` |
+| 4 | Procesamiento geoespacial | índices, cambios, cuencas | parcial (relieve) |
+| 5 | Modelado científico | clima, cultivo, hidrología | no implementado |
+| 6 | Simulación | escenarios, lotes | no implementado |
+| 7 | Validación | métricas, niveles V0–V4 | protocolo definido |
+| 8 | API | REST versionada, exportación | FastAPI, 13 endpoints |
+| 9 | Visualización | mapa, series, procedencia | React + MapLibre |
+
+### 12.2 Módulos A–M
+
+Los módulos se documentan individualmente en `docs/`. Todos comparten la misma
+interfaz: entrada geoespacial + parámetros, salida con `provenance_id`,
+`label` (observado/estimado/predicho/simulado), `resolution`, `confidence` y
+`limitations`.
+
+| Módulo | Documento | Depende de |
+|---|---|---|
+| A Satélite | `SATELLITE_MONITORING_ENGINE.md` | DEM, CDSE |
+| B Fitosanitario | `CROP_HEALTH_AND_PEST_SURVEILLANCE.md` | catálogo, clima, A |
+| C Simulación | `CROP_SIMULATION_ENGINE.md` | suelo, clima |
+| D Parcelas | `FARM_AND_PARCEL_MANAGEMENT.md` | auth |
+| E Economía | `AGRICULTURAL_ECONOMIC_INTELLIGENCE.md` | precios MAG |
+| F Alertas | `AGROCLIMATIC_EARLY_WARNING.md` | clima, B, J |
+| G Urbano | `URBAN_AGRICULTURE_ENGINE.md` | DEM, ortofoto |
+| H Gemelo digital | `AGRICULTURAL_DIGITAL_TWIN.md` | A, C, D, E |
+| I Clima futuro | `CLIMATE_CHANGE_SCENARIOS.md` | CMIP6, WorldClim |
+| J Hidrología | `HYDROLOGICAL_SIMULATION.md` | DEM, CHIRPS |
+| K Biodiversidad | `BIODIVERSITY_AND_ECOSYSTEM_SERVICES.md` | A, J, MARN |
+| L Comunidad | `COMMUNITY_DATA_CONTRIBUTION.md` | auth, D |
+| M Experimentos | `SCIENTIFIC_EXPERIMENT_PLATFORM.md` | C, E |
+
+Grafo completo en `docs/MODULE_DEPENDENCY_GRAPH.md`.
+
+### 12.3 Servicios transversales
+
+Provenance, QC geoespacial, versionado de datasets, incertidumbre, validación,
+reproducibilidad y orquestador. **Ninguno se implementa completo en Fase 2**: se
+define su contrato. El único que debe existir antes del primer módulo nuevo es
+el **Provenance Engine**, porque sin él ninguna salida es trazable.
+
+### 12.4 Decisiones que se mantienen
+
+- **PostGIS sigue fuera** (ADR-001 D-1): no hay escritura concurrente todavía.
+- **No se introduce Dask** hasta que un proceso nacional no quepa en memoria con
+  ventanas; hoy cabe.
+- **No se añade Redis, Celery ni cola distribuida**: el orquestador puede ser un
+  proceso por lotes con manifiesto.
+- **COG sigue siendo el formato raster**; Zarr solo para cubos climáticos.
+- **El frontend no calcula ciencia**: consume API.
+
+### 12.5 Frontera con la IA
+
+Los agentes (perfiles sintéticos Nemotron) **no** calculan rendimiento,
+precipitación, suelo ni parámetros. Consumen salidas de los motores mediante
+interfaces estructuradas y producen decisiones declaradas como escenario
+experimental. Esta frontera es arquitectónica, no una recomendación.

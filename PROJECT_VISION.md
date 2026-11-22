@@ -151,3 +151,48 @@ Detalle en `IMPLEMENTATION_ROADMAP.md` §4.
 4. **Autorización institucional.** Si AGROSV va a publicar cifras sobre agricultores salvadoreños, conviene un acuerdo con MAG/CENTA/BCR antes de la primera publicación, no después.
 
 Ninguna de estas cuatro se resuelve con código. Se resuelven con gestión institucional y deben iniciarse en paralelo a la Fase 1 técnica.
+
+---
+
+## 10. Ampliación de visión (Fase 2, 2026-11-21)
+
+La Fase 1 respondió «¿qué hay en el territorio?». La Fase 2 amplía la pregunta a
+«¿qué se puede producir, dónde, cuándo, con qué recursos, con qué riesgo y con
+qué consecuencias?».
+
+Eso convierte a AGROSV en **infraestructura científica abierta de inteligencia
+agrícola**, no en una aplicación de recomendaciones. La diferencia es
+verificable:
+
+| Una app agrícola | AGROSV |
+|---|---|
+| Recomienda un cultivo | Documenta el método, los datos, la incertidumbre y la licencia |
+| Usa un LLM para responder | Usa modelos agronómicos, hidrológicos y económicos; el LLM no calcula |
+| Publica un mapa | Publica el mapa con resolución real, fuente y clase de modelo |
+| Promete precisión | Declara qué no puede validar y por qué |
+| Oculta limitaciones | Las convierte en campo obligatorio de cada respuesta |
+
+### 10.1 Los tres niveles de ambición
+
+1. **Territorial** (Fase 1, hecho): límites, relieve, hidrografía, vías, suelos.
+2. **Científico** (Fase 2, diseñado): observación satelital, simulación de
+   cultivos, hidrología, economía, fitosanidad, clima futuro, biodiversidad.
+3. **Social** (Fase 2/3, condicionado): parcelas, contribución comunitaria,
+   perfiles sintéticos de productores, experimentos reproducibles.
+
+El nivel 3 no se construye sin autenticación, consentimiento y gobernanza de
+datos. El nivel 2 no se construye sin clima y suelo. El nivel 1 ya existe.
+
+### 10.2 Lo que AGROSV sigue sin ser
+
+- No es un chatbot agrícola ni un asesor personal.
+- No es un catastro ni un sistema de trámites.
+- No es un sustituto de MAG, CENTA, MARN o BCR.
+- No es un producto comercial: sus fuentes incluyen material no comercial.
+- No emite diagnósticos fitosanitarios ni alertas oficiales.
+
+### 10.3 Criterio de éxito de la Fase 2
+
+Que otra persona pueda reconstruir un resultado de AGROSV con los mismos datos,
+versiones y parámetros, y obtener lo mismo. Si no se puede reproducir, no es
+ciencia: es una captura de pantalla.

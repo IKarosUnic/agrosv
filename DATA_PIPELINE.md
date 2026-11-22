@@ -270,3 +270,132 @@ Cada fila de `provenance` en la base de datos apunta a uno de estos manifiestos.
 | PDF censal sin tabla extraíble | Extracción manual con doble verificación | OCR sin revisión humana |
 | Divergencia MAG vs BCR | Publicar ambas con procedencia | Elegir la que "se vea mejor" |
 | Dato sintético faltante (ingreso) | Dejar nulo y declararlo | Inventar con el LLM |
+
+---
+
+## 11. Ampliación del pipeline (2026-11-21)
+
+Cuatro flujos nuevos. Todos respetan §3 (adquisición inmutable), §4 (puerta de
+calidad), §5 (normalización) y §7 (aislamiento de licencias).
+
+### 11.1 Datos tabulares institucionales (MAG, BCR)
+
+```
+descarga (PDF/XLSX/CSV)  →  data/raw/<institucion>/<año>/
+      →  extracción de tablas (pdfplumber / openpyxl)
+      →  revisión humana con referencia de página/hoja
+      →  normalización a (geografía, indicador, valor, unidad, periodo)
+      →  validación de cuadre vertical y horizontal
+      →  Parquet + manifiesto
+```
+
+Reglas: una tabla extraída sin `table_ref` no entra; una cifra sin unidad no se
+publica; las diferencias de cuadre se documentan, no se corrigen a mano.
+
+### 11.2 Censos
+
+- **CPV 2024**: microdatos anonimizados → agregación a distrito/área; el
+  microdato no se copia al almacén de publicación.
+- **CAP 2025**: solo agregados publicados (PDF/PPT) → tabla departamental.
+- Contrato completo en `CENSUS_DATA_MODEL.md`; regla de supresión < 10 unidades.
+
+### 11.3 Grillas climáticas
+
+```
+cdsapi (AgERA5/ERA5) · HTTP (CHIRPS v3)
+      →  data/raw/climate/<source>/
+      →  validación de rango, fechas y cobertura
+      →  Zarr (time,y,x) por grid_id  +  COG mensual para el mapa
+      →  derivados (SPI, SPEI, ET0, anomalías) en derived/
+```
+
+Nunca se remuestrea una fuente a la resolución de otra sin declararlo; el
+detalle está en `GRID_DATA_SPECIFICATION.md`.
+
+### 11.4 Imágenes (Sentinel-2, ortofoto)
+
+```
+STAC CDSE / archivo CNR
+      →  data/raw/imagery/<source>/<fecha>/
+      →  máscara de nubes + compuesto mensual
+      →  segmentación y reglas espaciales
+      →  candidatos con nivel de confianza L1/L2
+      →  validación de campo → L3
+```
+
+**Prohibido**: publicar «cultivo» a partir de NDVI sin pasar por
+`URBAN_AGRICULTURE.md` §3 y §6.
+
+### 11.5 Puertas de calidad añadidas
+
+| Flujo | Puerta |
+|---|---|
+| Tabular | cuadre vertical/horizontal; unidad declarada; `table_ref` |
+| Censal | supresión < 10; geografía existente en `dim_geography` |
+| Clima | rango físico; cobertura; `quality` (preliminar/final) |
+| Imágenes | matriz de confusión publicada antes de L3 |
+
+### 11.6 Modos de fallo nuevos
+
+| Fallo | Tratamiento |
+|---|---|
+| Servicio institucional caído (MARN 522) | Se marca `UNAVAILABLE`, se conserva la última copia con hash y fecha |
+| PDF sin tabla legible | No se adivina: se documenta y se solicita el dato |
+| Cambio de versión de CHIRPS | Se registra el corte v2→v3; no se concatenan series sin aviso |
+| Licencia desconocida | La fuente entra como `RESTRICTED` y no se redistribuye |
+
+---
+
+## 12. Pipeline de Fase 2 (2026-11-21)
+
+Se añaden cuatro flujos nuevos al pipeline existente. Los flujos 1–4 de §2 no
+cambian.
+
+### 12.1 Flujo PDF institucional (precios, costos, anuarios)
+
+```
+descarga → hash → extracción de tablas → revisión humana → CSV normalizado
+        → validación de unidades → registro de procedencia (página)
+```
+
+- Idempotente por `hash` del PDF; un PDF nuevo crea versión, no sobrescribe.
+- Toda fila conserva `source_id`, `page_ref` y `extracted_by`.
+- Sin revisión humana, la fila queda `pending_review` y no entra a la API.
+
+### 12.2 Flujo satelital
+
+```
+búsqueda STAC → descarga por escena → máscara de nubes (SCL) → índice
+→ mosaico por fecha → COG → teselas → serie temporal
+```
+
+- Procesamiento por ventanas; nunca se carga una escena nacional completa.
+- Se archiva el índice y la máscara, no la reflectancia (salvo piloto).
+- Cada compuesto declara `sensor`, `date`, `cloud_pct` y `processing_version`.
+
+### 12.3 Flujo climático en rejilla
+
+```
+pedido CDS / descarga CHIRPS → NetCDF/Zarr → recorte al bbox → agregación
+→ tabla por celda y día → índices (SPI, balance) → API
+```
+
+- La agregación a tabla evita raster en cada consulta.
+- Se guarda la versión del producto (CHIRPS v2 vs v3 no se concatenan).
+
+### 12.4 Flujo comunitario
+
+```
+reporte → validación automática → triage humano → nivel de evidencia → agregado
+```
+
+- Nunca entra directo a una capa «confirmada».
+- Las fotos se procesan (EXIF eliminado) antes de publicarse.
+
+### 12.5 Reglas nuevas
+
+- **P-11** Todo lote produce un manifiesto con hashes de entrada y salida.
+- **P-12** Un proceso que falla a la mitad se reanuda por manifiesto, no se
+  reinicia desde cero.
+- **P-13** Los derivados declaran la versión del código que los generó.
+- **P-14** Ningún flujo escribe en `data/raw/` después de la descarga.

@@ -22,3 +22,13 @@ Thumbs.db
 .env
 .env.*
 !.env.example
+
+AGROSV_FULL_BACKUP. tar.gz
+agrosv_fase0.tar.gz
+
+AGROSV_FULL_BACKUP. tar.gz
+agrosv_fase0.tar.gz
+
+# Respaldos locales
+AGROSV_FULL_BACKUP*
+agrosv_fase0*

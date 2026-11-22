@@ -288,3 +288,127 @@ Un resultado puede publicarse cuando:
 | Advertencia de resolución efectiva | Presente en la respuesta |
 
 Si la validación de rendimiento no alcanza el umbral, el resultado **puede** publicarse con la etiqueta **"NO VALIDADO — uso exploratorio"** y sin comparaciones entre departamentos. No se publica como si estuviera validado.
+
+---
+
+## 11. Validación de la ampliación (2026-11-21)
+
+Se añaden cuatro dominios de validación. Las reglas de §1–§10 siguen vigentes:
+nada se publica sin fuente, incertidumbre y clase de modelo.
+
+### 11.1 Datos censales y tabulares
+
+| Prueba | Criterio | Si falla |
+|---|---|---|
+| Cuadre vertical | ∑ departamentos = nacional (± redondeo documentado) | No se publica la serie |
+| Cuadre horizontal | ∑ categorías = total de tabla | Se revisa la extracción |
+| Geografía | todo código existe en `dim_geography` | Se bloquea la carga |
+| Confidencialidad | ninguna celda < 10 unidades | Se agrupa o se suprime |
+| Unidades | manzanas ≠ hectáreas ≠ quintales, declaradas | Se bloquea |
+| Preliminar vs final | campo `delivery`/`quality` presente | Se marca o no entra |
+
+Contraste obligatorio: superficie de un cultivo (CAP 2025) vs anuario MAG del
+mismo año. Una diferencia > 20 % se documenta; no se promedia para «cuadrar».
+
+### 11.2 Amenazas naturales
+
+| Prueba | Criterio |
+|---|---|
+| Metadatos completos | `layer_type`, `method`, `scale`, año, `confidence` |
+| Coherencia física | clase alta de deslizamiento concentra pendiente > 25° (asociación, no prueba) |
+| Observación vs amenaza | una observación nunca se rotula como predicción ni al revés |
+| Vectorización | conserva referencia de página/figura del PDF original |
+| Escala | no se permite zoom mayor que 2× la escala nominal sin aviso |
+
+Una capa de amenaza **no se valida** contra un evento: se valida su coherencia
+interna y se declara que no ha sido evaluada con inventario de eventos.
+
+### 11.3 Clima y grillas
+
+| Prueba | Criterio |
+|---|---|
+| Rango físico | precipitación ≥ 0; HR 0–100 %; T −5…45 °C |
+| Cobertura | declarada = medida; si < 80 % → `partial: true` |
+| Resolución | `native_resolution` presente en toda respuesta |
+| Contraste CHIRPS vs AgERA5 | correlación mensual; diferencias > 30 % se investigan |
+| Índices | línea base declarada (1991–2020) y unidad |
+| Estaciones | **bloqueada**: sin datos MARN/SNET no hay validación local |
+
+### 11.4 Agricultura multiescala
+
+Se adopta el protocolo CEOS/WGCV: muestreo probabilístico, etiquetas
+independientes del mapa, matriz de confusión, exactitud global y por clase,
+estimación de área con intervalos.
+
+| Nivel | Validación mínima |
+|---|---|
+| L0 vegetación | ninguna (no se publica como agricultura) |
+| L1 candidato | revisión por dos analistas; κ ≥ 0,6 |
+| L2 probable | contraste con ortofoto/cartografía; κ ≥ 0,7 |
+| L3 verificado | campo ≥ 30 sitios/municipio; exactitud global ≥ 0,85 |
+
+Sin matriz de confusión no hay L3, y sin L3 no hay cifras de superficie
+publicadas como «superficie agrícola AGROSV».
+
+### 11.5 Agentes sintéticos ampliados
+
+Los perfiles Nemotron se estratifican por contexto (rural, periurbano, urbano),
+tipo de productor y nivel de recursos. Se validan solo por:
+
+1. **Plausibilidad frente a agregados censales** (distribución por sexo, edad,
+   ocupación), nunca individuo a individuo.
+2. **Consistencia interna** de dotaciones y decisiones.
+3. **Contraste cualitativo con agricultores reales** (entrevistas), registrado
+   como evidencia, no como calibración estadística.
+
+Prohibido: presentar un perfil sintético como «agricultor típico» del país sin
+intervalo y sin advertir que es sintético.
+
+---
+
+## 12. Validación de Fase 2 (2026-11-21)
+
+El protocolo detallado está en `docs/SCIENTIFIC_VALIDATION_PROTOCOL.md`. Aquí se
+resume lo que cambia respecto de §1–§11.
+
+### 12.1 Niveles de madurez
+
+| Nivel | Significado |
+|---|---|
+| V0 | implementado, corre |
+| V1 | verificado con pruebas |
+| V2 | contrastado con fuente independiente |
+| V3 | validado en datos no vistos |
+| V4 | operativo con revalidación |
+
+**Estado real hoy:** Fase 1 en V1 (80 pruebas); todos los módulos de Fase 2 en
+V0 o por debajo. Ninguno es V2.
+
+### 12.2 Qué se puede contrastar y qué no
+
+| Variable | Contraste posible | Validación real |
+|---|---|---|
+| Precipitación | CHIRPS vs IMERG vs ERA5 | **no** (sin estaciones) |
+| Temperatura | AgERA5 vs ERA5 | **no** (sin estaciones) |
+| NDVI | MODIS vs Sentinel-2 | sí (productos distintos) |
+| Cobertura | fotointerpretación propia | pendiente |
+| Rendimiento | censos agregados | **no** (microdatos cerrados) |
+| Plagas | reportes OIRSA/ISC | parcial, cualitativa |
+| Caudal | aforos MARN | **no** disponibles |
+
+Llamar «validación» al contraste entre productos satelitales es incorrecto: es
+**consistencia**. Se etiqueta así en la API.
+
+### 12.3 Reglas nuevas
+
+- **V-11** Ningún módulo se declara V2+ sin fila en `validation_run`.
+- **V-12** Los umbrales de validación son propuestos y se justifican por escrito.
+- **V-13** Un resultado sin observación independiente se etiqueta `unvalidated`.
+- **V-14** La validación se repite cuando cambia el modelo o la fuente.
+- **V-15** Los agentes sintéticos no se validan estadísticamente contra personas.
+
+### 12.4 Deuda de validación reconocida
+
+Sin estaciones de superficie, sin microdatos censales y sin aforos, AGROSV no
+puede validar clima, rendimiento ni hidrología contra observación. Es la
+limitación científica más importante del proyecto y no se resuelve con código.

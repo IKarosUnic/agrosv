@@ -20,12 +20,15 @@ Los 14 departamentos se completan cuando el piloto pasa validación, no antes.
 ## 1. Mapa de fases
 
 ```
-FASE 0  Investigación y arquitectura      ← ESTA ENTREGA (completa, pendiente revisión)
-FASE 1  Cimientos + PAUP                  6-12 semanas
-FASE 2  Agentes y economía                4-6 semanas
-FASE 3  Escenarios y validación plena     6-8 semanas
-FASE 4  Cobertura nacional                4 semanas
-FASE 5  Extensión (café, caña, SAR)       por decidir
+FASE 0   Investigación y arquitectura       ← completada
+FASE 1   Cimientos + PAUP                  6-12 semanas  ← fundación implementada
+FASE 1.5 Censos + hub MAG + clima         4-6 semanas   (§12, bloques 1–3)
+FASE 2   Agentes y economía                4-6 semanas
+FASE 2.5 Geomorfología + amenazas         4-6 semanas   (§12, bloques 4–5, en paralelo)
+FASE 3   Escenarios y validación plena     6-8 semanas
+FASE 3.5 Agricultura multiescala L1/L2     6-8 semanas   (§12, bloques 6–7, en paralelo)
+FASE 4   Cobertura nacional                4 semanas
+FASE 5   Extensión (café, caña, SAR)       por decidir
 ```
 
 ---
@@ -279,3 +282,113 @@ Bloqueadas a la espera de terceros: ERA5 vía CDS (token propio), CDSE/Sentinel 
 La causa más probable de retraso **no es técnica**. Es la dependencia de permisos institucionales para datos del BCR y CENTA (ver `RISKS_AND_LIMITATIONS.md` §6).
 
 Mitigación: Fase 1 se construye **enteramente con datos abiertos** (DEM, SoilGrids, CHIRPS, ERA5, Nemotron). Los datos nacionales entran como validación y mejora, no como requisito de arranque. Así el proyecto produce valor mientras la gestión institucional avanza, en lugar de esperar.
+
+---
+
+## 12. Roadmap ampliado y orden de implementación (2026-11-21)
+
+Esta sección **añade** fases al mapa de §1. No elimina ni reordena lo aprobado:
+Fase 1 (fundación geoespacial) ya está implementada y verificada; lo que sigue
+se encadena después.
+
+### 12.1 Orden propuesto
+
+| Orden | Bloque | Por qué en este lugar | Depende de | Coste |
+|---|---|---|---|---|
+| 1 | **CPV 2024 + CAP 2025 (agregados)** | Datos públicos hoy, sin licencia pendiente; dan denominadores y estructura productiva | Nada | $0 |
+| 2 | **Clima histórico: CHIRPS v3 + AgERA5** | Base de todo análisis agrícola; CHIRPS ya verificado; AgERA5 solo requiere cuenta CDS | Nada | $0 |
+| 3 | **Hub agrícola MAG** (anuarios, precios, costos) | Series de contraste para validar clima y censos; extracción por cultivo piloto | 1 | Bajo (parseo) |
+| 4 | **Geomorfología derivada del DEM** (unidades de relieve, cuencas validadas) | No depende de terceros; mejora la lectura territorial | Fase 1 | $0 |
+| 5 | **Amenazas: un piloto vectorizado** (deslizamientos 1:50.000 o erosión 2015) | Aporta riesgo con costo bajo, declarando método y escala | 4 | Bajo |
+| 6 | **Agricultura multiescala L1/L2** en Ahuachapán | Requiere clima (2), censos (1) y DEM (4) para contexto | 1, 2, 4 | Bajo (Sentinel-2) |
+| 7 | **Agentes ampliados** (rural/urbano/periurbano, recursos) | Necesita censos (1) y contexto territorial (4–6) | 1, 6 | $0 |
+| 8 | **CENTA MDS** | Suelo medido: el mayor salto de calidad; requiere convenio | Acuerdo institucional | Convenio |
+| 9 | **CNR ortofoto/LiDAR piloto** | Habilita L3 urbano y DTM fino; requiere compra y licencia | Acuerdo + presupuesto | Alto |
+| 10 | **Catastro** | Solo por parcela; no masivo | Convenio | Por trámite |
+| 11 | **Google Weather** | Complemento de pronóstico puntual, opcional | Clave + facturación | Por llamada |
+
+### 12.2 Fases resultantes
+
+```
+FASE 1    Fundación geoespacial (territorio, topo, OSM, suelos, API, UI)  ✅ IMPLEMENTADA
+FASE 1.5  Censos + hub agrícola + clima histórico (bloques 1–3)            4-6 semanas
+FASE 2    Geomorfología + amenazas piloto (bloques 4–5)                    4-6 semanas
+FASE 2.5  Agricultura multiescala L1/L2 + agentes ampliados (6–7)          6-8 semanas
+FASE 3    Suelo medido y ortofoto/LiDAR piloto (8–9)                       según convenio
+FASE 4    Cobertura nacional y validación de campo (L3)                    6-8 semanas
+FASE 5    Extensión (café, caña, SAR, catastro)                            por decidir
+```
+
+Los números de fase originales (2, 3, 4, 5) se conservan como **hitos de
+producto**; las fases 1.5/2.5 son bloques de datos que se ejecutan en paralelo
+con ellos y no los sustituyen.
+
+### 12.3 Criterios de aceptación por bloque
+
+| Bloque | Criterio de cierre |
+|---|---|
+| 1 Censos | tablas cargadas, cuadre verificado, supresión < 10 probada |
+| 2 Clima | 10 años de CHIRPS y AgERA5 para SV, validación de rango y cobertura |
+| 3 MAG | ≥ 1 cultivo con serie de precios y costos, trazada a página del PDF |
+| 4 Geomorfología | unidades de relieve publicadas con test de sensibilidad |
+| 5 Amenazas | 1 capa con metadatos completos y PDF de referencia |
+| 6 Agricultura | L2 con κ ≥ 0,7 en el piloto; sin cifras L3 |
+| 7 Agentes | perfiles estratificados y contraste con agregados censales |
+| 8 CENTA | convenio firmado y datos con licencia |
+| 9 CNR | licencia de derivados por escrito + piloto de 1 departamento |
+
+### 12.4 Lo que se puede empezar mañana sin ningún acuerdo
+
+1. Descargar y normalizar CPV 2024 (microdatos anonimizados + tabulados).
+2. Ingerir CHIRPS v3 diario para El Salvador y calcular SPI-3.
+3. Crear la cuenta CDS y descargar AgERA5 para el bbox nacional.
+4. Extraer un cultivo piloto (maíz) de los anuarios MAG.
+5. Derivar unidades de relieve del DEM ya publicado.
+6. Vectorizar el mapa de erosión 2015 con referencia de página.
+
+Nada de esto requiere compra, convenio ni clave de API de pago.
+
+---
+
+## 13. Fase 2 — Expansión científica (2026-11-21)
+
+El mapa de fases de §1 se mantiene. Esta sección añade la Fase 2 ampliada y su
+orden de ejecución. Detalle completo en `docs/PHASE_2_IMPLEMENTATION_ROADMAP.md`.
+
+### 13.1 Las 7 etapas
+
+| Etapa | Contenido | Estado |
+|---|---|---|
+| 1 Auditoría | inventario, pruebas, endpoints | **cerrada** |
+| 2 Diseño | 13 módulos + grafo + infraestructura | **cerrada (docs)** |
+| 3 Registro de datos | fuentes, licencias, accesibilidad | **cerrada (docs)** |
+| 4 Priorización | P1–P4 justificada | **cerrada (docs)** |
+| 5 Implementación selectiva | primer conjunto ejecutable | **no iniciada** |
+| 6 Validación | pruebas y métricas | **parcial** (protocolo) |
+| 7 Documentación | 18 docs nuevos + 7 actualizados | **cerrada** |
+
+### 13.2 Primer conjunto recomendado (Etapa 5)
+
+1. Provenance Engine mínimo.
+2. CHIRPS + SPI-3 por celda.
+3. NDVI/NDMI nacional (COG, serie).
+4. Detección de cambios simple.
+5. Presupuesto de maíz con precios MAG.
+6. Simulación AquaCrop/DSSAT en un punto.
+
+Ninguno requiere autenticación, PostGIS ni servicios de pago.
+
+### 13.3 Orden por prioridad
+
+| Prioridad | Módulos | Motivo |
+|---|---|---|
+| P1 | clima, censos, relieve | datos verificados, coste bajo |
+| P2 | A, E, C (maíz) | valor alto, datos disponibles |
+| P3 | B, F, J | requieren calibración |
+| P4 | D, L, H, G, K, I, M | auth, datos oficiales o licencias |
+
+### 13.4 Regla de avance
+
+Una etapa no se cierra por documentos. Se cierra cuando su entregable se ejecuta
+y su prueba pasa. Las etapas 2, 3, 4 y 7 son documentales **por definición**; la
+5 y la 6 exigen código.

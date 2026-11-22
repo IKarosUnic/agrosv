@@ -41,7 +41,7 @@
 | `mag-costos` | Informe anual de costos de producción (MAG) | Nacional | Cultivo | PDF | HTTP | No declarada | $0 | **VERIFIED** |
 | `centa-suelos` | Mapeo Digital de Suelos (CENTA) | Nacional | ~1:50.000 declarado | ArcGIS Hub | Portal web | No declarada | $0 | **PENDING_VALIDATION** |
 | `wb-soils-sv` | Soil in El Salvador (Banco Mundial) | Nacional | Clasificación | Shapefile/Feature Service | Data Catalog | CC BY 4.0 | $0 | **DOCUMENTED** |
-| `aquacrop` | FAO AquaCrop 7.3 | Modelo | — | Python + Fortran | GitHub / FAO | BSD-3-Clause | $0 | **VERIFIED** |
+| `aquacrop` | FAO AquaCrop 7.3 | Modelo | — | Python + Fortran | GitHub / FAO | **Licencia propia FAO: «All rights reserved», uso no comercial previa solicitud** (ver §8.1) | $0 | **VERIFIED** |
 | `dssat` | DSSAT CSM 4.8.6 | Modelo | — | Fortran + ejecutables | GitHub | BSD-3-Clause | $0 | **DOCUMENTED** |
 
 ---
@@ -305,7 +305,7 @@ Alternativa documentada: *Soil in El Salvador* del Banco Mundial (10 MB, shapefi
 
 ### 3.13 Modelos agronómicos — **VERIFIED**
 
-**AquaCrop 7.3** — licencia **BSD-3-Clause**, © 2026 KU Leuven, respaldado por FAO. Repositorios: `un-fao/fao-AquaCrop` y `KUL-RSDA/AquaCrop`. **Desde 7.3 existe implementación oficial en Python** (antes solo Fortran/Pascal). Novedades relevantes: *"automatic estimation of soil hydraulic properties from soil texture"* — elimina la dependencia de una pedotransferencia externa, y *"frequency analysis of simulation results"* — útil para P10/P50/P90.
+**AquaCrop 7.3** — licencia **propietaria de FAO**: el archivo `LICENSE` del repositorio dice «All rights reserved» y exige solicitud previa para uso no comercial. **No es BSD-3-Clause** (corrección de esta revisión, ver §8.1). © FAO / KU Leuven. Repositorios: `un-fao/fao-AquaCrop` y `KUL-RSDA/AquaCrop`. **Desde 7.3 existe implementación oficial en Python** (antes solo Fortran/Pascal). Novedades relevantes: *"automatic estimation of soil hydraulic properties from soil texture"* — elimina la dependencia de una pedotransferencia externa, y *"frequency analysis of simulation results"* — útil para P10/P50/P90.
 
 **Consecuencia arquitectónica:** `AquaCrop-OSPy` (pip `aquacrop`), que era la opción estándar en Python, está basado en AquaCrop-OS v6. **Usar el código oficial 7.3 de FAO, no el fork de la Universidad de Manchester.** Se evita divergencia de modelo y se gana el cálculo de propiedades hidráulicas.
 
@@ -365,3 +365,143 @@ sha256: <hash del archivo o del resultado>
 ```
 
 El campo `effective_resolution` es obligatorio y distinto de `native_resolution`. Es el mecanismo que impide que AGROSV publique precisión falsa.
+
+---
+
+## 7. Ampliación 2026-11-21 — fuentes nacionales, censales y climáticas
+
+Este bloque **añade** fuentes al registro; no modifica los estados de §2. La
+evidencia ampliada y las condiciones de acceso están en
+[`docs/NATIONAL_DATA_INTEGRATION.md`](docs/NATIONAL_DATA_INTEGRATION.md).
+Sondas ejecutadas el 2026-11-21 desde este entorno.
+
+| ID | Fuente | Cobertura | Resolución | Formato | Acceso | Licencia | Coste | Estado |
+|---|---|---|---|---|---|---|---|---|
+| `cnr-igcn` | Catálogo de servicios del IGCN (CNR) | Nacional | 1:1.000–1:500.000 | Productos digitales/impresos | Compra | No declarada | $3,50–$299,45 | **RESTRICTED** |
+| `cnr-elsalvadormaps` | *El Salvador Maps* (CNR) | Nacional (20.742,5 km²) | hasta 10 cm (declarado) | Visor/plataforma | Consulta; sin descarga masiva documentada | No declarada | Desconocido | **DOCUMENTED** |
+| `cnr-ortho` | Ortofoto y fotografía aérea | Nacional | hasta 10 cm (declarado) | Imagen | Compra, «desde $29» | No declarada | Pago | **RESTRICTED** |
+| `cnr-lidar` | LiDAR / MDT / MDS / 3D | Nacional | no publicada | Nube de puntos/raster | Sin ficha pública | No declarada | Desconocido | **DOCUMENTED** |
+| `mag-anuarios` | Anuarios de Estadísticas Agropecuarias 2018-19…2022-23 | Nacional/dept./mun. | — | PDF | HTTP directo | No declarada | $0 | **VERIFIED** |
+| `mag-precios` | Precios diarios/semanales/mensuales | Nacional/plazas | — | PDF | HTTP directo | No declarada | $0 | **VERIFIED** |
+| `mag-costos` | Costos de producción 2019-20…2022-23 | Por cultivo | — | PDF | HTTP directo | No declarada | $0 | **VERIFIED** |
+| `mag-mapas` | Mapas temáticos (granos, frutales, hortalizas, suelos) | Nacional | no declarada | PDF (no GIS) | HTTP directo | No declarada | $0 | **DOCUMENTED** |
+| `mag-censo-2007` | IV Censo Agropecuario 2007-08 | Nacional/dept./mun. | — | PDF | HTTP directo | No declarada | $0 | **VERIFIED** |
+| `centa-mds` | Mapa Digital de Suelos (CENTA) | Nacional | no publicada | Visor ArcGIS | Consulta; descarga no verificada | No declarada | $0 | **PENDING_VALIDATION** |
+| `bcr-cpv2024` | VII Censo de Población y VI de Vivienda 2024 | Nacional→distrito | — | CSV/SPSS + XLSX/PDF | Descarga pública | No declarada (datos abiertos) | $0 | **VERIFIED** |
+| `bcr-cap2025` | V Censo Agropecuario y I de Pesca 2025 | Nacional/dept. | — | PDF/PPT + dashboards | Portal web | No declarada; sin microdatos | $0 | **VERIFIED** (agregados) |
+| `marn-snet` | Atlas hidrológico, amenazas, geología (SNET/MARN) | Nacional | 1:50.000 (deslizamientos) | PDF/visor | HTTP directo | No declarada | $0 | **DOCUMENTED** |
+| `marn-geoportal` | Geoportal MARN (REST) | Nacional | — | Servicios REST | — | No declarada | $0 | **UNAVAILABLE** (HTTP 522) |
+| `subcuencas-rmgir` | Subcuencas El Salvador (FeatureServer regional) | Nacional | — | GeoJSON/REST | REST público | No declarada | $0 | **VERIFIED** (tercero) |
+| `agera5` | AgERA5 (C3S) | Global | 0,1° diario | NetCDF/Zarr | CDS con cuenta y API key | CC BY 4.0 | $0 | **RESTRICTED** |
+| `chirps3-v3` | CHIRPS v3 | Global 60N–60S | 0,05° | GeoTIFF/NetCDF/BIL/COG | HTTP directo | CC BY 4.0 / dominio público | $0 | **VERIFIED** |
+| `s2-stac-cdse` | Sentinel-2 L2A vía STAC CDSE | Global | 10/20/60 m | COG | STAC público | Copernicus (atribución) | $0 | **VERIFIED** |
+
+### 7.1 Evidencia de las sondas nuevas
+
+```
+https://www.cnr.gob.sv/                                         → 200
+https://www.cnr.gob.sv/servicios/.../detalle-de-servicios-.../  → 200
+https://elsalvadormaps.sv/                                     → 000 (sin respuesta)
+https://geoportal.bcr.gob.sv/                                  → 200
+https://poblacion.bcr.gob.sv/pages/teg-base-de-datos-y-tabulados → 200
+https://agropecuario.bcr.gob.sv/pages/documentacion-cap-ter    → 200
+https://agropecuario.bcr.gob.sv/pages/preguntasrespuestas-cap  → 200
+https://www.mag.gob.sv/servicios/estadisticas-agropecuarias    → 200
+https://www.mag.gob.sv/mapas-tematicos-.../                    → 200
+https://www.centa.gob.sv/mapa-digital-de-suelos                → 403 (bloqueo a cliente no navegador)
+https://geoportal.marn.gob.sv/                                 → 522
+https://www.snet.gob.sv/Hidrologia/atlas.htm                   → 200
+https://www.snet.gob.sv/ver/geologia/amenaza+deslizamientos    → 200
+https://cds.climate.copernicus.eu/datasets/sis-agrometeorological-indicators → 200
+https://data.chc.ucsb.edu/products/CHIRPS/v3.0/                → 200
+https://rmgir.proyectomesoamerica.org/.../Sub_Cuencas_El_Salvador/FeatureServer?f=json → 200
+https://stac.dataspace.copernicus.eu/v1/                       → 200
+https://developers.google.com/maps/documentation/weather       → 200
+```
+
+### 7.2 Reglas nuevas que se suman a §6
+
+- **R-7** Ninguna fuente nacional entra sin licencia escrita o, en su defecto,
+  sin autorización institucional documentada.
+- **R-8** Los PDF institucionales no se tratan como datos: se extraen tablas con
+  referencia de página y revisión humana.
+- **R-9** Toda fuente nueva declara `layer_type` (observación, amenaza,
+  susceptibilidad, predicción o administrativo).
+- **R-10** `VERIFIED` caduca: el sondeo se repite antes de cada fase y el
+  resultado se registra con fecha.
+
+---
+
+## 8. Ampliación Fase 2 (2026-11-21) — observación, modelos y escenarios
+
+Tabla de fuentes incorporadas en el diseño de Fase 2. Estados según §1.
+
+### 8.1 Corrección de registro: AquaCrop
+
+La revisión de esta fase **corrige** el registro de Fase 0. El archivo `LICENSE`
+del repositorio oficial de FAO AquaCrop 7.3 declara «All rights reserved» y
+exige solicitud previa para uso no comercial. **No es BSD-3-Clause.** Consecuencia:
+
+- AquaCrop puede usarse para análisis interno y resultados propios con cita.
+- No se redistribuye el código ni se ofrece como servicio sin autorización.
+- El modelo alternativo con licencia permisiva es DSSAT (BSD-3, con registro).
+
+### 8.2 Observación satelital
+
+| id | Fuente | Variables | Resolución | Acceso | Licencia | Estado |
+|---|---|---|---|---|---|---|
+| `s2_l2a` | Sentinel-2 L2A (ESA/Copernicus) | 13 bandas, SCL | 10/20/60 m, 5 d | CDSE (cuota 12 TB/30 d) | Copernicus abierta | **VERIFIED** |
+| `s1_grd` | Sentinel-1 IW GRD | VV/VH | 10 m spacing, 6–12 d | CDSE | Copernicus abierta | **VERIFIED** |
+| `landsat_c2` | Landsat 8/9 Collection 2 | 7 bandas + QA | 30 m, 16 d | USGS (login) | Dominio público | **VERIFIED** |
+| `mod13q1` | MODIS MOD13Q1 | NDVI/EVI 16 d | 250 m | Earthdata (login) | Abierta | **VERIFIED** (Terra cesa 2026-12-01) |
+| `vj113a1` | VIIRS VJ113A1 (Suomi NPP) | NDVI/EVI | 250 m | Earthdata | Abierta | **PENDING_VALIDATION** |
+| `gpm_imerg` | GPM IMERG Early/Final | precipitación | 0,1°, 30 min | Earthdata | Abierta | **RESTRICTED** (login) |
+| `smap` | SMAP L4 | humedad del suelo | 9 km, 3 h | Earthdata | Abierta | **DOCUMENTED** |
+
+MODIS Terra (MOD13Q1) cesa el **2026-12-01**: el pipeline debe migrar a
+VJ113A1/VJ213A1 sin concatenar series sin aviso (P-13).
+
+### 8.3 Clima y escenarios
+
+| id | Fuente | Variables | Resolución | Acceso | Licencia | Estado |
+|---|---|---|---|---|---|---|
+| `chirps_v3` | CHIRPS v3 (UCSB/CHC) | precipitación diaria | 0,05° | descarga directa | CC BY 4.0 | **VERIFIED** |
+| `agera5` | AgERA5 (Copernicus C3S) | T, precip, ET₀, radiación | 0,1° diaria | CDS (cuenta) | CC BY 4.0 | **RESTRICTED** |
+| `era5` | ERA5 | reanálisis horario | 0,25° | CDS | CC BY 4.0 | **RESTRICTED** |
+| `noaa_cpc` | NOAA CPC | precipitación/temperatura diaria | 0,5° | descarga directa | Abierta, sin registro | **VERIFIED** |
+| `cmip6` | CMIP6 (ESGF) | GCM, SSP126/245/370/585 | ~100–200 km | ESGF/Metagrid | Términos CMIP6 | **DOCUMENTED** |
+| `worldclim_21` | WorldClim 2.1 | 19 bioclimáticas + futuro | 30″ (~1 km) | descarga directa | **No comercial, sin redistribución** | **DOCUMENTED** |
+| `gaez_v4` | GAEZ v4 (FAO/IIASA) | aptitud y rendimiento potencial | 5′; 30″ selectivo | REST/WCS + TIFF | **No comercial, atribución** | **DOCUMENTED** |
+
+### 8.4 Modelos de simulación
+
+| id | Modelo | Uso | Licencia | Requisito | Estado |
+|---|---|---|---|---|---|
+| `aquacrop` | AquaCrop 7.3 (FAO) | balance hídrico, biomasa | **Propietaria FAO, no comercial** | solicitud | **VERIFIED** |
+| `dssat` | DSSAT 4.8.6 | fenología, N, rendimiento | BSD-3 | registro | **VERIFIED** |
+| `apsim` | APSIM Next Gen | evaluación comparativa | Uso general 3 años no comercial | registro | **DOCUMENTED** |
+| `swatplus` | SWAT+ 62.0.1 | hidrología de cuenca | LGPL-2.1 | QGIS + TauDEM | **DOCUMENTED** |
+
+### 8.5 Fitosanidad y economía
+
+| id | Fuente | Contenido | Acceso | Estado |
+|---|---|---|---|---|
+| `ippc_sv` | IPPC — El Salvador | reportes de plagas | portal público | **VERIFIED** (0 pest reports) |
+| `oirsa_uris` | OIRSA URIS | alertas regionales | portal | **DOCUMENTED** |
+| `isc_boletines` | ISC (café) | boletines roya/broca | PDF | **DOCUMENTED** |
+| `mag_precios` | MAG — informes de precios | mayorista/consumidor | PDF | **VERIFIED** |
+| `mag_costos` | MAG — costos de producción | por cultivo, 2019-20…2022-23 | PDF | **VERIFIED** |
+| `mag_insumos` | MAG — guía de insumos | semillas, fertilizantes | PDF | **VERIFIED** |
+| `bcr_cap` | BCR — CAP 2025 | producción y destino | PDF/PPT | **VERIFIED** (agregados) |
+
+Ninguna de las fuentes MAG/BCR declara licencia de reutilización: se usan con
+atribución y **no** se redistribuyen sus PDF (§6, R-7).
+
+### 8.6 Restricciones que condicionan el producto
+
+1. Licencias no comerciales (AquaCrop, WorldClim, GAEZ) impiden ofrecer AGROSV
+   como servicio comercial sin autorización.
+2. La cuota CDSE (12 TB/30 d) obliga a archivar índices, no reflectancia.
+3. Los servicios con login (Earthdata, CDS, USGS) requieren cuentas: la
+   reproducibilidad pública exige archivar la versión usada.
+4. `VERIFIED` caduca (R-10): todo sondeo se repite antes de cada fase.
