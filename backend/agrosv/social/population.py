@@ -420,6 +420,118 @@ class AgriculturalPopulationEngine:
             query={"size": size, "seed": seed},
         )
 
+    def generate_from_nemotron(
+        self,
+        size: int = 20,
+        *,
+        seed: int = 42,
+        department: str | None = None,
+        municipality: str | None = None,
+        area: str | None = None,
+        archetype: str | None = None,
+        live: bool = False,
+        offset: int = 0,
+        scenario_id: str | None = None,
+    ) -> dict[str, Any]:
+        """Genera una población agrícola anclada a filas reales de Nemotron SV."""
+        from .nemotron import NemotronDatasetClient
+
+        if not isinstance(size, (int, np.integer)) or size <= 0:
+            raise PopulationError("size debe ser un entero > 0")
+        if size > 500:
+            raise PopulationError("size > 500: use <= 500 para lotes Nemotron")
+
+        client = NemotronDatasetClient()
+        queried = client.query_profiles(
+            department=department,
+            municipality=municipality,
+            area=area,
+            archetype=archetype,
+            agricultural_only=True,
+            limit=int(size),
+            live=live,
+            offset=offset,
+        )
+        profiles = queried["profiles"]
+        if not profiles:
+            raise PopulationError(
+                "no se encontraron filas agrícolas de Nemotron con los filtros dados"
+            )
+        # Si hay menos filas que size tras filtrar, muestrea determinísticamente
+        if len(profiles) < int(size):
+            rng = np.random.default_rng(seed)
+            indices = rng.choice(len(profiles), size=int(size), replace=True)
+            selected = [profiles[int(i)] for i in indices]
+        else:
+            selected = profiles[: int(size)]
+
+        agents = client.build_agents_from_rows(
+            selected, seed=seed, scenario_id=scenario_id
+        )
+        counts: dict[str, int] = {}
+        depts: dict[str, int] = {}
+        for agent in agents:
+            counts[agent["archetype"]] = counts.get(agent["archetype"], 0) + 1
+            d = str(agent["state"]["payload"].get("department") or "Desconocido")
+            depts[d] = depts.get(d, 0) + 1
+        areas = [a["state"]["payload"]["area_ha"] for a in agents]
+
+        result = {
+            "size": len(agents),
+            "seed": seed,
+            "population_source": "nemotron_dataset",
+            "nemotron_backed": True,
+            "retrieval_mode": queried["retrieval_mode"],
+            "unique_nemotron_uuids": len({a["nemotron_uuid"] for a in agents if a.get("nemotron_uuid")}),
+            "counts": counts,
+            "department_counts": depts,
+            "area_ha": {
+                "min": round(min(areas), 3),
+                "max": round(max(areas), 3),
+                "mean": round(float(np.mean(areas)), 3),
+                "note": "media de dotaciones sintéticas ancladas a Nemotron",
+            },
+            "agents": agents,
+            "reproducible": True,
+            "representativeness": {
+                "representative": False,
+                "reason": (
+                    "las personas provienen de nvidia/Nemotron-Personas-El-Salvador "
+                    "(sintéticas); sus dotaciones agrícolas son rangos AGROSV sin "
+                    "calibración contra el CAP 2025"
+                ),
+            },
+        }
+        return SG.synthetic_envelope(
+            ENGINE,
+            result=result,
+            assumptions=[
+                "perfiles demográficos, ocupación, departamento y municipio provienen de filas reales de Nemotron-Personas-El-Salvador",
+                "variables productivas (área, capital, riego, crédito) son rangos sintéticos de AGROSV",
+                "capas SOURCE_PROFILE y SYNTHETIC_AGRICULTURAL_STATE permanecen separadas",
+            ],
+            limitations=[
+                "Nemotron es un dataset sintético (no sustituye censos agropecuarios)",
+                "no contiene superficie ni tenencia observada",
+            ],
+            sources=["nemotron_personas_sv", "agrosv_scenario", "crop_parameters_catalog"],
+            scenario_id=scenario_id,
+            processing=[
+                SG.AG.step("consulta agrícola Nemotron", queried["retrieval_mode"]),
+                SG.AG.step("mapeo de ocupación a arquetipo", "map_occupation_to_archetype"),
+                SG.AG.step("dotación agrícola por capa", "build_agents_from_rows"),
+            ],
+            query={
+                "size": size,
+                "seed": seed,
+                "department": department,
+                "municipality": municipality,
+                "area": area,
+                "archetype": archetype,
+                "live": live,
+            },
+        )
+
 
 __all__ = ["AgriculturalPopulationEngine", "ARCHETYPES", "DEPARTMENTS",
            "PopulationError", "BOUNDS_BASIS"]

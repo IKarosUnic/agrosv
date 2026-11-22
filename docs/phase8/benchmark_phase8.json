@@ -1,0 +1,93 @@
+{
+  "benchmark_date": "2026-11-22T17:31:47.599966+00:00",
+  "offline_execution_verified": true,
+  "timings_ms": {
+    "production_statistics": {
+      "runs": 20,
+      "mean_ms": 1.018,
+      "p95_ms": 1.409,
+      "min_ms": 0.858,
+      "max_ms": 1.409
+    },
+    "cost_aggregation": {
+      "runs": 50,
+      "mean_ms": 0.137,
+      "p95_ms": 0.2,
+      "min_ms": 0.125,
+      "max_ms": 0.268
+    },
+    "wfp_price_query": {
+      "runs": 20,
+      "mean_ms": 10.927,
+      "p95_ms": 193.838,
+      "min_ms": 1.082,
+      "max_ms": 193.838
+    },
+    "wfp_price_history": {
+      "runs": 10,
+      "mean_ms": 26.174,
+      "p95_ms": 30.46,
+      "min_ms": 24.388,
+      "max_ms": 30.46
+    },
+    "profitability_and_breakeven": {
+      "runs": 50,
+      "mean_ms": 0.088,
+      "p95_ms": 0.095,
+      "min_ms": 0.08,
+      "max_ms": 0.188
+    },
+    "osm_logistics": {
+      "runs": 5,
+      "mean_ms": 33.875,
+      "p95_ms": 77.57,
+      "min_ms": 21.819,
+      "max_ms": 77.57
+    },
+    "nemotron_household_econ": {
+      "runs": 10,
+      "mean_ms": 34.762,
+      "p95_ms": 41.924,
+      "min_ms": 31.674,
+      "max_ms": 41.924
+    },
+    "all_15_scenarios": {
+      "runs": 5,
+      "mean_ms": 3.403,
+      "p95_ms": 4.414,
+      "min_ms": 2.48,
+      "max_ms": 4.414
+    },
+    "integrated_phase5_6_7_8": {
+      "runs": 3,
+      "mean_ms": 335.685,
+      "p95_ms": 489.875,
+      "min_ms": 257.249,
+      "max_ms": 489.875
+    },
+    "api_get_prices": {
+      "runs": 15,
+      "mean_ms": 34.832,
+      "p95_ms": 373.606,
+      "min_ms": 9.304,
+      "max_ms": 373.606
+    },
+    "api_post_scenario": {
+      "runs": 15,
+      "mean_ms": 9.421,
+      "p95_ms": 13.127,
+      "min_ms": 6.715,
+      "max_ms": 13.127
+    }
+  },
+  "memory": {
+    "current_mb": 15.5,
+    "peak_mb": 24.06
+  },
+  "storage": {
+    "economics_data_dir_bytes": 1058229,
+    "economics_data_dir_mb": 1.009,
+    "nemotron_agricultural_corpus_bytes": 3214323,
+    "nemotron_agricultural_corpus_mb": 3.065
+  }
+}

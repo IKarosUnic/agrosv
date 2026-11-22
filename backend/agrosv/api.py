@@ -88,6 +88,12 @@ from .monitoring.api import router as monitoring_router  # noqa: E402
 
 app.include_router(monitoring_router)
 
+# Economía agrícola, producción, mercados y cadena de valor (Fase 8). Prefijo nuevo:
+# `/api/economics`; los contratos de Fase 1–7 no cambian.
+from .economics.api import router as economics_router  # noqa: E402
+
+app.include_router(economics_router)
+
 # Rango de zoom servido para hillshade. El DEM nativo es de 30 m; más allá de
 # z13 no hay información nueva, solo interpolación.
 HILLSHADE_MINZOOM, HILLSHADE_MAXZOOM = 7, 14

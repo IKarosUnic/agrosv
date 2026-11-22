@@ -1,0 +1,58 @@
+{
+  "generated_at": "2026-11-22T17:24:08.995640+00:00",
+  "sources": {
+    "wfp_food_prices_slv": {
+      "file": "data/standardized/economics/wfp_food_prices_slv.csv",
+      "sha256": "dd97b1fd6beecbdc23dbcd13b403ba43d1a9ee90b69086d1dff62dce310bb10a",
+      "bytes": 1042431,
+      "url": "https://data.humdata.org/dataset/0ff64070-c95b-4962-9d99-09d989d43f75/resource/843fb265-6f80-4d86-ae41-ef89b6daff15/download/wfp_food_prices_slv.csv",
+      "license": "Creative Commons Attribution for Intergovernmental Organisations (CC BY-IGO)",
+      "rows": 7864,
+      "date_min": "2005-01-15",
+      "date_max": "2026-10-15",
+      "commodities": [
+        "Beans (red)",
+        "Beans (silk red)",
+        "Maize (white)",
+        "Rice",
+        "Sorghum",
+        "Wheat flour"
+      ],
+      "price_types": [
+        "Retail",
+        "Wholesale"
+      ],
+      "markets_count": 14,
+      "markets": [
+        "Ahuachapan",
+        "Chalatenango",
+        "Cojutepeque",
+        "La Union",
+        "National Average",
+        "San Francisco Gotera",
+        "San Miguel",
+        "San Salvador",
+        "San Vicente",
+        "Santa Ana",
+        "Sensuntepeque",
+        "Sonsonate",
+        "Usulutan",
+        "Zacatecoluca"
+      ]
+    },
+    "wfp_markets_slv": {
+      "file": "data/standardized/economics/wfp_markets_slv.csv",
+      "sha256": "49c417ade9f6b9a66836043f6422ca8a69de367808bafffec2dc9cca9c1787fa",
+      "bytes": 4121,
+      "url": "https://data.humdata.org/dataset/0ff64070-c95b-4962-9d99-09d989d43f75/resource/4eb074d8-034c-4edd-92ce-3eab812702e2/download/wfp_markets_slv.csv",
+      "license": "CC BY-IGO",
+      "rows": 71
+    },
+    "osm_markets_slv": {
+      "file": "data/standardized/economics/osm_markets_slv.json",
+      "sha256": "0a8438992d0f624374355bac372e32355fb96d66b08dc7879f7565c776c7793d",
+      "count": 39,
+      "license": "OpenStreetMap ODbL 1.0"
+    }
+  }
+}

@@ -1,6 +1,6 @@
 # Plan de integración Nemotron ↔ AGROSV
 
-**Fase 6 · Estado: capa de extensión propia implementada; sin acoplamiento a Saltbor**
+**Fase 6 · Estado: capa propia + consumo agrícola real de Nemotron + adaptador HTTP/JSON Saltbor (E7) implementados sin acoplamiento de paquetes**
 
 ## Principio
 
@@ -66,7 +66,7 @@ Cada registro sintético lleva:
 | E4 decisión | hecho | MAUT con restricciones duras |
 | E5 adopción y resiliencia | hecho | índices de escenario |
 | E6 multiagente | hecho | difusión reproducible |
-| E7 adaptador Saltbor | **no hecho** | requiere acuerdo de formato y pruebas conjuntas |
+| E7 adaptador Saltbor | **hecho (HTTP/JSON)** | `agrosv.social.saltbor_adapter` + `/api/social/saltbor/{contract,export,import}` |
 | E8 calibración empírica | **no hecho** | requiere microdatos del CAP o encuestas |
 
 ## Reglas de integración

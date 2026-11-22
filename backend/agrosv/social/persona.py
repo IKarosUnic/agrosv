@@ -131,6 +131,33 @@ class AgriculturalPersonaEngine:
                      "algunas filas declaran ocupación agrícola"),
         }
 
+    def nemotron_agricultural_profiles(
+        self,
+        *,
+        department: str | None = None,
+        municipality: str | None = None,
+        area: str | None = None,
+        archetype: str | None = None,
+        occupation_query: str | None = None,
+        limit: int = 20,
+        live: bool = False,
+        offset: int = 0,
+    ) -> dict[str, Any]:
+        """Obtiene perfiles reales con ocupación agrícola desde Nemotron SV."""
+        from .nemotron import NemotronDatasetClient
+
+        return NemotronDatasetClient().query_profiles(
+            department=department,
+            municipality=municipality,
+            area=area,
+            archetype=archetype,
+            occupation_query=occupation_query,
+            agricultural_only=True,
+            limit=limit,
+            live=live,
+            offset=offset,
+        )
+
     def synthetic_source_profile(self, agent: dict[str, Any], *,
                                  seed: int = 42) -> dict[str, Any]:
         state = agent.get("state", {}).get("payload", {})
@@ -180,9 +207,29 @@ class AgriculturalPersonaEngine:
     def compose(self, agent: dict[str, Any], *,
                 source_profile: dict[str, Any] | None = None,
                 seed: int = 42,
-                allow_role_extension: bool = False) -> dict[str, Any]:
+                allow_role_extension: bool = False,
+                use_nemotron_corpus: bool = False) -> dict[str, Any]:
         if "state" not in agent:
             raise PersonaError("el agente no tiene capa SYNTHETIC_AGRICULTURAL_STATE")
+        if source_profile is None and "source_profile" in agent:
+            source_profile = agent["source_profile"]
+        if source_profile is None and use_nemotron_corpus:
+            state_payload = agent["state"].get("payload", {})
+            matches = self.nemotron_agricultural_profiles(
+                department=state_payload.get("department"),
+                archetype=agent.get("archetype"),
+                limit=5,
+            )
+            if not matches["profiles"]:
+                matches = self.nemotron_agricultural_profiles(limit=5)
+            if matches["profiles"]:
+                idx = int(agent.get("index", 0)) % len(matches["profiles"])
+                picked = matches["profiles"][idx]
+                source_profile = {
+                    "profile": picked["profile"],
+                    "record": matches["records"][idx],
+                    "provenance": picked["provenance"],
+                }
         origin = source_profile or self.synthetic_source_profile(agent, seed=seed)
         profile = origin["profile"]
         if not profile.get("origin"):

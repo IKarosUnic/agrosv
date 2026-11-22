@@ -13,6 +13,7 @@ from fastapi.responses import JSONResponse
 
 from ..engines import governance as G5
 from . import governance as SG
+from . import saltbor_adapter
 from .adoption import AdoptionError, TechnologyAdoptionEngine
 from .behavior import BehaviorError, FarmerBehaviorEngine
 from .economy import AgriculturalEconomyEngine, EconomyError
@@ -243,8 +244,20 @@ def run_resilience(payload: dict[str, Any] = Body(...)) -> JSONResponse:
 @router.post("/multiagent", summary="Difusión multiagente reproducible")
 def run_multiagent(payload: dict[str, Any] = Body(default={})) -> JSONResponse:
     try:
-        generated = population.generate(int(payload.get("size", 50)),
-                                        seed=int(payload.get("seed", 42)))
+        src_mode = str(payload.get("population_source", "synthetic")).lower()
+        if src_mode == "nemotron":
+            generated = population.generate_from_nemotron(
+                int(payload.get("size", 50)),
+                seed=int(payload.get("seed", 42)),
+                department=payload.get("department"),
+                municipality=payload.get("municipality"),
+                area=payload.get("area"),
+            )
+        else:
+            generated = population.generate(
+                int(payload.get("size", 50)),
+                seed=int(payload.get("seed", 42)),
+            )
         result = multiagent.run(
             generated["result"]["agents"],
             steps=int(payload.get("steps", 10)),
@@ -256,6 +269,128 @@ def run_multiagent(payload: dict[str, Any] = Body(default={})) -> JSONResponse:
         raise _error(exc) from None
     return JSONResponse(content=result,
                         headers=_headers("multiagent"))
+
+
+@router.get("/nemotron/agricultural", summary="Perfiles agrícolas reales de Nemotron SV")
+def nemotron_agricultural(
+    department: str | None = Query(None),
+    municipality: str | None = Query(None),
+    area: str | None = Query(None),
+    archetype: str | None = Query(None),
+    occupation: str | None = Query(None),
+    limit: int = Query(20, ge=1, le=200),
+    live: bool = Query(False),
+    offset: int = Query(0, ge=0),
+) -> JSONResponse:
+    try:
+        payload = persona.nemotron_agricultural_profiles(
+            department=department,
+            municipality=municipality,
+            area=area,
+            archetype=archetype,
+            occupation_query=occupation,
+            limit=limit,
+            live=live,
+            offset=offset,
+        )
+    except Exception as exc:
+        raise _error(exc) from None
+    return JSONResponse(content=payload, headers=_headers("nemotron"))
+
+
+@router.post("/nemotron/population", summary="Población agrícola anclada a Nemotron SV")
+def generate_nemotron_population(payload: dict[str, Any] = Body(default={})) -> JSONResponse:
+    try:
+        result = population.generate_from_nemotron(
+            int(payload.get("size", 20)),
+            seed=int(payload.get("seed", 42)),
+            department=payload.get("department"),
+            municipality=payload.get("municipality"),
+            area=payload.get("area"),
+            archetype=payload.get("archetype"),
+            live=bool(payload.get("live", False)),
+            offset=int(payload.get("offset", 0)),
+        )
+    except Exception as exc:
+        raise _error(exc) from None
+    return JSONResponse(content=result, headers=_headers("nemotron_population"))
+
+
+@router.get("/saltbor/contract", summary="Contrato de interoperabilidad E7 con IKarosUnic/sv-people")
+def saltbor_contract() -> JSONResponse:
+    return JSONResponse(content={
+        "contract_version": saltbor_adapter.CONTRACT_VERSION,
+        "target_repo": saltbor_adapter.TARGET_REPO,
+        "coupling": "http_json_only",
+        "exports_to_sv_people": [
+            "saltbor.population.factory.PopulationFactory.create_from_profiles",
+            "saltbor.domain.agriculture.FarmPlot",
+        ],
+        "imports_from_sv_people": ["profiles", "humans", "farm_plots"],
+        "manzana_to_ha": saltbor_adapter.MANZANA_TO_HA,
+        "nemotron_dataset": SG.NEMOTRON,
+    }, headers=_headers("saltbor_adapter"))
+
+
+@router.post("/saltbor/export", summary="Exportar población/parcelas AGROSV+Nemotron hacia sv-people")
+def saltbor_export(payload: dict[str, Any] = Body(default={})) -> JSONResponse:
+    try:
+        size = int(payload.get("size", 10))
+        seed = int(payload.get("seed", 42))
+        src_mode = str(payload.get("population_source", "nemotron")).lower()
+        if src_mode == "nemotron":
+            generated = population.generate_from_nemotron(
+                size=size,
+                seed=seed,
+                department=payload.get("department"),
+                municipality=payload.get("municipality"),
+                area=payload.get("area"),
+                archetype=payload.get("archetype"),
+                live=bool(payload.get("live", False)),
+                scenario_id=payload.get("scenario_id"),
+            )
+        else:
+            generated = population.generate(
+                size=size, seed=seed, scenario_id=payload.get("scenario_id")
+            )
+        bundle = saltbor_adapter.to_saltbor_bundle(
+            generated["result"]["agents"],
+            scenario_id=payload.get("scenario_id"),
+            soil_moisture_level=float(payload.get("soil_moisture_level", 0.75)),
+            current_growth_stage=str(payload.get("current_growth_stage", "vegetative")),
+        )
+    except Exception as exc:
+        raise _error(exc) from None
+    return JSONResponse(content=bundle, headers=_headers("saltbor_adapter"))
+
+
+@router.post("/saltbor/import", summary="Importar perfiles/parcelas desde sv-people hacia AGROSV")
+def saltbor_import(payload: dict[str, Any] = Body(...)) -> JSONResponse:
+    try:
+        imported = saltbor_adapter.from_saltbor_payload(payload)
+        if payload.get("evaluate_suitability") and payload.get("lat") is not None and payload.get("lon") is not None:
+            from ..agriculture.suitability import CropSuitabilityEngine
+
+            suit_engine = CropSuitabilityEngine()
+            lat = float(payload["lat"])
+            lon = float(payload["lon"])
+            evaluations = []
+            for agent in imported["agents"]:
+                crop_id = agent["state"]["payload"]["primary_crop"]
+                ev = suit_engine.evaluate(
+                    crop_id, lon, lat,
+                    irrigation_available=bool(agent["state"]["payload"].get("irrigated")),
+                )
+                evaluations.append({
+                    "agent_id": agent["agent_id"],
+                    "crop_id": crop_id,
+                    "suitability_class": ev["result"]["class"],
+                    "limiting_factors": ev["result"].get("limiting_factors", []),
+                })
+            imported["agronomic_evaluations"] = evaluations
+    except Exception as exc:
+        raise _error(exc) from None
+    return JSONResponse(content=imported, headers=_headers("saltbor_adapter"))
 
 
 @router.get("/separation", summary="Verificar separación de capas")

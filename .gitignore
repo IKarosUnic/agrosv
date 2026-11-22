@@ -49,6 +49,7 @@ data/validated/*.sqlite
 data/validated/*.sqlite-wal
 data/validated/*.sqlite-shm
 data/validated/**/*.tif
+data/derived/cache/
 
 # Datos externos licenciados: no versionar
 data/external/*

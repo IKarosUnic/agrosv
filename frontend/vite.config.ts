@@ -5,7 +5,18 @@ import react from "@vitejs/plugin-react";
 // En producción FastAPI sirve `dist/` desde el mismo origen.
 export default defineConfig({
   plugins: [react()],
-  build: { sourcemap: false, chunkSizeWarningLimit: 900 },
+  build: {
+    sourcemap: false,
+    chunkSizeWarningLimit: 900,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          "vendor-react": ["react", "react-dom"],
+          "vendor-maplibre": ["maplibre-gl"],
+        },
+      },
+    },
+  },
   server: {
     port: 5173,
     host: true,

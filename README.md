@@ -42,27 +42,66 @@ Los datos crudos pesan ~420 MB y **no se versionan**; se regeneran con
 `bash scripts/download_data.sh all`. Las capas procesadas sí se versionan
 (suman ~150 MB) porque son el entregable verificable.
 
-## Puesta en marcha
+## Puesta en marcha y ejecución
 
-```bash
-python3 -m venv .venv
-.venv/bin/pip install -r requirements.txt
+### Opción 1: Modo Producción Unificado (Recomendado)
+FastAPI sirve la interfaz compilada de React, la PWA, los mapas raster/vectoriales y todos los endpoints de las Fases 1 a 8 en un solo puerto (`8000`).
 
-bash scripts/download_data.sh all          # ~420 MB, requiere red
-.venv/bin/python scripts/01_territory.py
-.venv/bin/python scripts/02_topography.py  # ~3 min, 8 hilos de GDAL
-.venv/bin/python scripts/03_infrastructure.py
-.venv/bin/python scripts/04_soils.py       # descarga selectiva (~70 MB)
+```powershell
+# En Windows (PowerShell):
+# 1. Compilar frontend (si se realizaron cambios)
+cd frontend
+npm run build
+cd ..
 
-cd frontend && npm install && npm run build && cd ..
-.venv/bin/uvicorn agrosv.api:app --app-dir backend --host 0.0.0.0 --port 8000
+# 2. Iniciar el servidor unificado
+$env:PYTHONPATH="backend"
+.\.venv\Scripts\python.exe -m uvicorn agrosv.api:app --host 0.0.0.0 --port 8000 --reload
 ```
 
-Abre `http://localhost:8000` para el mapa y `/docs` para Swagger.
-En desarrollo, `cd frontend && npm run dev` sirve Vite en 5173 con proxy a 8000.
+```bash
+# En Linux / macOS:
+cd frontend && npm run build && cd ..
+export PYTHONPATH="backend"
+.venv/bin/python -m uvicorn agrosv.api:app --host 0.0.0.0 --port 8000 --reload
+```
 
-Cada script imprime sus comprobaciones y **termina con código ≠ 0 si alguna
-falla**; no hay capas "aproximadas" que se publiquen en silencio.
+- **Plataforma Web / PWA:** [http://localhost:8000](http://localhost:8000)
+- **Documentación OpenAPI / Swagger:** [http://localhost:8000/docs](http://localhost:8000/docs)
+
+---
+
+### Opción 2: Modo Desarrollo (con Hot-Reload en Frontend)
+Recomendado al desarrollar componentes visuales en React:
+
+1. **Terminal 1 — Backend FastAPI:**
+   ```powershell
+   # Windows PowerShell
+   $env:PYTHONPATH="backend"
+   .\.venv\Scripts\python.exe -m uvicorn agrosv.api:app --host 0.0.0.0 --port 8000 --reload
+   ```
+2. **Terminal 2 — Frontend Vite:**
+   ```powershell
+   cd frontend
+   npm run dev
+   ```
+
+- **Aplicación Vite en desarrollo:** [http://localhost:5173](http://localhost:5173)  
+*(Vite redirige automáticamente las peticiones `/api` y teselas al backend en el puerto `8000`)*.
+
+---
+
+### Verificación y Tests
+
+```powershell
+# Tests unitarios del frontend (Vitest / Testing Library):
+cd frontend
+npm test
+
+# Tests del backend y ciencia (Pytest):
+$env:PYTHONPATH="backend"
+.\.venv\Scripts\python.exe -m pytest tests -q
+```
 
 ## API
 

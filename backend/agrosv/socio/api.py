@@ -85,9 +85,18 @@ def integrate(payload: dict[str, Any] = Body(...)) -> JSONResponse:
     try:
         agent = None
         if payload.get("include_human"):
-            generated = population.generate(
-                int(payload.get("size", 1)),
-                seed=int(payload.get("seed", 42)))
+            if str(payload.get("population_source", "synthetic")).lower() == "nemotron":
+                generated = population.generate_from_nemotron(
+                    int(payload.get("size", 1)),
+                    seed=int(payload.get("seed", 42)),
+                    department=payload.get("department"),
+                    municipality=payload.get("municipality"),
+                    area=payload.get("area"),
+                )
+            else:
+                generated = population.generate(
+                    int(payload.get("size", 1)),
+                    seed=int(payload.get("seed", 42)))
             agent = generated["result"]["agents"][0]
         result = integration.profile(
             lon=lon, lat=lat, crop_id=payload["crop_id"],
@@ -112,8 +121,17 @@ def run_decision(payload: dict[str, Any] = Body(...)) -> JSONResponse:
             raise HTTPException(400, f"falta '{field}'")
     lat, lon = _coord(float(payload["lat"]), float(payload["lon"]))
     try:
-        generated = population.generate(
-            int(payload.get("size", 1)), seed=int(payload.get("seed", 42)))
+        if str(payload.get("population_source", "synthetic")).lower() == "nemotron":
+            generated = population.generate_from_nemotron(
+                int(payload.get("size", 1)),
+                seed=int(payload.get("seed", 42)),
+                department=payload.get("department"),
+                municipality=payload.get("municipality"),
+                area=payload.get("area"),
+            )
+        else:
+            generated = population.generate(
+                int(payload.get("size", 1)), seed=int(payload.get("seed", 42)))
         agent = generated["result"]["agents"][int(payload.get("index", 0))]
         result = decision.decide(
             agent=agent, lon=lon, lat=lat,
@@ -137,7 +155,11 @@ def run_scenario(payload: dict[str, Any] = Body(...)) -> JSONResponse:
             size=int(payload.get("size", 60)),
             seed=int(payload.get("seed", 42)),
             costs=payload.get("costs"), prices=payload.get("prices"),
-            yield_t_ha=payload.get("yield_t_ha"))
+            yield_t_ha=payload.get("yield_t_ha"),
+            population_source=payload.get("population_source", "synthetic"),
+            department=payload.get("department"),
+            municipality=payload.get("municipality"),
+            area=payload.get("area"))
     except Exception as exc:
         raise _error(exc) from None
     return JSONResponse(content=result, headers=_headers("scenario"))

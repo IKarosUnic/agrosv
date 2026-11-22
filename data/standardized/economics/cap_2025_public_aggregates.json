@@ -1,0 +1,65 @@
+{
+  "dataset_id": "cap_2025_public_aggregates",
+  "name": "V Censo Agropecuario y I Censo de Pesca 2025 — Agregados públicos preliminares",
+  "institution": "Banco Central de Reserva de El Salvador (BCR)",
+  "source_url": "https://www.bcr.gob.sv/",
+  "reference_period": "2024-05 / 2025-04",
+  "publication_year": 2026,
+  "status": "preliminary",
+  "evidence_class": "official_statistic",
+  "license": "Datos públicos agregados; microdatos restringidos (art. 25 LEC)",
+  "spatial_coverage": "national_and_departmental_shares",
+  "municipal_breakdown_available": false,
+  "limitations": [
+    "Cifras preliminares de entregas públicas 1 y 2; requieren re-verificación contra PDF oficial final.",
+    "No existen tabulados municipales ni microdatos públicos.",
+    "Prohibido desagregar totales nacionales a nivel municipal o parcelario."
+  ],
+  "crops": {
+    "maize": {
+      "crop_name_es": "Maíz",
+      "harvested_area_mz": 293458.0,
+      "harvested_area_ha": 205420.6,
+      "area_conversion_note": "1 manzana = 0.70 ha",
+      "production_qq": 10870000.0,
+      "production_t": 500020.0,
+      "implied_yield_t_ha": 2.434,
+      "hybrid_seed_share": 0.75,
+      "creole_seed_share": 0.197,
+      "destination_autoconsumption_share": 0.495,
+      "destination_sale_share": 0.478,
+      "departmental_production_shares": {
+        "Ahuachapán": 0.123,
+        "Santa Ana": 0.106,
+        "La Libertad": 0.087,
+        "Usulután": 0.082,
+        "Sonsonate": 0.080
+      }
+    },
+    "beans": {
+      "crop_name_es": "Frijol",
+      "cultivated_area_mz": 81722.0,
+      "cultivated_area_ha": 57205.4,
+      "area_conversion_note": "1 manzana = 0.70 ha",
+      "production_qq": 991156.0,
+      "production_t": 45593.2,
+      "relay_cropping_share": 0.552,
+      "departmental_production_shares": {
+        "Santa Ana": 0.211
+      }
+    },
+    "rice": {
+      "crop_name_es": "Arroz granza",
+      "planted_area_mz": 825.0,
+      "planted_area_ha": 577.5,
+      "area_conversion_note": "1 manzana = 0.70 ha",
+      "production_change_vs_2007_pct": -79.8
+    }
+  },
+  "livestock": {
+    "cattle_head": 589725,
+    "dairy_cow_share": 0.229,
+    "dairy_oriented_share": 0.63,
+    "poultry_birds": 29451142
+  }
+}

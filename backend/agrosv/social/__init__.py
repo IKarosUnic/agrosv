@@ -14,8 +14,9 @@ permite inferir distribuciones poblacionales.
 from __future__ import annotations
 
 __all__ = [
-    "governance", "population", "persona", "household", "behavior",
-    "economy", "adoption", "resilience", "multiagent", "api",
+    "governance", "nemotron", "saltbor_adapter", "population", "persona",
+    "household", "behavior", "economy", "adoption", "resilience",
+    "multiagent", "api",
 ]
 
 _ENGINES = {

@@ -1,0 +1,140 @@
+/* AGROSV Design System Tokens — Light & Dark modes, WCAG 2.2 AA contrast */
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+
+  /* Surfaces */
+  --bg-canvas: #f4f6f2;
+  --bg-surface: #ffffff;
+  --bg-subtle: #eef2ec;
+  --bg-hover: #e4ebe1;
+  --bg-elevated: #ffffff;
+
+  /* Typography */
+  --ink-primary: #162119;
+  --ink-secondary: #394a3f;
+  --ink-muted: #526358;
+  --ink-inverse: #ffffff;
+
+  /* Borders & Focus */
+  --border-subtle: #d5ded2;
+  --border-strong: #9fb09c;
+  --focus-ring: #1769aa;
+
+  /* Brand & Domain */
+  --accent-primary: #1f5c37;
+  --accent-primary-hover: #174629;
+  --accent-primary-ink: #ffffff;
+  --accent-soft: #e3f0e7;
+
+  --domain-vegetation: #256e35;
+  --domain-soil: #7a4e2b;
+  --domain-water: #175c85;
+  --domain-climate: #3f588a;
+  --domain-market: #7a5813;
+
+  /* Semantic Status (always paired with icons + labels) */
+  --status-ok: #1b6639;
+  --status-ok-bg: #e1f2e7;
+  --status-ok-border: #a3d6b4;
+
+  --status-warn: #854b00;
+  --status-warn-bg: #fef3d6;
+  --status-warn-border: #ebc36b;
+
+  --status-crit: #a6221c;
+  --status-crit-bg: #fde8e7;
+  --status-crit-border: #eb9d99;
+
+  --status-info: #165780;
+  --status-info-bg: #e3f1fa;
+  --status-info-border: #9bc8e6;
+
+  --status-unavailable: #4d5952;
+  --status-unavailable-bg: #ebefec;
+  --status-unavailable-border: #c5cec8;
+
+  --status-synthetic: #5e3187;
+  --status-synthetic-bg: #f3ebfa;
+  --status-synthetic-border: #ccaee8;
+
+  /* Map */
+  --map-bg: #e8ede5;
+
+  /* Typography scale */
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Spacing & Radii */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 999px;
+
+  /* Shadows (restrained) */
+  --shadow-sm: 0 1px 2px rgba(16, 26, 20, 0.06);
+  --shadow-md: 0 4px 14px rgba(16, 26, 20, 0.09);
+
+  /* Layout */
+  --sidebar-width: 260px;
+  --topbar-height: 58px;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg-canvas: #0d1410;
+  --bg-surface: #141e19;
+  --bg-subtle: #1b2721;
+  --bg-hover: #23332b;
+  --bg-elevated: #19251f;
+
+  --ink-primary: #eaf1ec;
+  --ink-secondary: #c0cdc4;
+  --ink-muted: #93a699;
+  --ink-inverse: #0c140f;
+
+  --border-subtle: #28382f;
+  --border-strong: #41594b;
+  --focus-ring: #6bc2ff;
+
+  --accent-primary: #4fb075;
+  --accent-primary-hover: #64c48a;
+  --accent-primary-ink: #07140c;
+  --accent-soft: #173423;
+
+  --domain-vegetation: #69c77b;
+  --domain-soil: #d69c6d;
+  --domain-water: #63b5e3;
+  --domain-climate: #92b2f2;
+  --domain-market: #e6ba5c;
+
+  --status-ok: #70db95;
+  --status-ok-bg: #122e1d;
+  --status-ok-border: #255c3b;
+
+  --status-warn: #f4be54;
+  --status-warn-bg: #32240b;
+  --status-warn-border: #6b4b12;
+
+  --status-crit: #f7827b;
+  --status-crit-bg: #391716;
+  --status-crit-border: #782c2a;
+
+  --status-info: #73c5f5;
+  --status-info-bg: #122b3b;
+  --status-info-border: #255778;
+
+  --status-unavailable: #a2b0a7;
+  --status-unavailable-bg: #1c2420;
+  --status-unavailable-border: #334039;
+
+  --status-synthetic: #cb9ff2;
+  --status-synthetic-bg: #291a3b;
+  --status-synthetic-border: #593880;
+
+  --map-bg: #111915;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.4);
+}

@@ -127,15 +127,24 @@ class AgriculturalScenarioEngine:
             agent_id=agent["agent_id"],
             parent_ids=[agent["state"].get("record_id")],
             validation_status="not_validated")
-        return {"agent_id": agent["agent_id"],
-                "archetype": agent["archetype"], "index": agent["index"],
-                "seed": agent["seed"], "state": record}
+        out = {"agent_id": agent["agent_id"],
+               "archetype": agent["archetype"], "index": agent["index"],
+               "seed": agent["seed"], "state": record}
+        if "source_profile" in agent:
+            out["source_profile"] = agent["source_profile"]
+        if "nemotron_uuid" in agent:
+            out["nemotron_uuid"] = agent["nemotron_uuid"]
+        return out
 
     def run(self, scenario_id: str, *, lon: float, lat: float,
             size: int = 60, seed: int = 42,
             costs: Mapping[str, Mapping[str, Any]] | None = None,
             prices: Mapping[str, Mapping[str, Any]] | None = None,
-            yield_t_ha: float | None = None) -> dict[str, Any]:
+            yield_t_ha: float | None = None,
+            population_source: str = "synthetic",
+            department: str | None = None,
+            municipality: str | None = None,
+            area: str | None = None) -> dict[str, Any]:
         spec = SCENARIOS.get(scenario_id)
         if spec is None:
             raise ScenarioError(
@@ -144,8 +153,24 @@ class AgriculturalScenarioEngine:
         if size > 500:
             raise ScenarioError(
                 "size > 500 en un escenario: use lotes para no bloquear la API")
-        population = self.population.generate(size, seed=seed,
-                                             scenario_id=scenario_id)
+        src_mode = str(population_source or "synthetic").strip().lower()
+        if src_mode not in {"synthetic", "nemotron"}:
+            raise ScenarioError(
+                f"population_source inválido: {population_source!r}; use 'synthetic' o 'nemotron'"
+            )
+        if src_mode == "nemotron":
+            population = self.population.generate_from_nemotron(
+                size=size,
+                seed=seed,
+                department=department,
+                municipality=municipality,
+                area=area,
+                scenario_id=scenario_id,
+            )
+        else:
+            population = self.population.generate(
+                size, seed=seed, scenario_id=scenario_id
+            )
         agents = [self._apply_overrides(a, spec["overrides"], scenario_id)
                   for a in population["result"]["agents"]]
 
@@ -222,6 +247,8 @@ class AgriculturalScenarioEngine:
             "shock": shock,
             "population": {
                 "size": size, "seed": seed,
+                "population_source": src_mode,
+                "nemotron_backed": src_mode == "nemotron",
                 "archetypes": population["result"]["counts"],
                 "representative": False,
             },

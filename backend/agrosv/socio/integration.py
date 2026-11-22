@@ -80,12 +80,17 @@ class SocioAgriculturalIntegrationEngine:
 
         human = None
         if agent is not None:
-            persona = self.persona.compose(agent, seed=seed)
+            persona = self.persona.compose(
+                agent, source_profile=agent.get("source_profile"), seed=seed
+            )
             household = self.household.compose(
                 agent, profile=persona.get("source_profile"), seed=seed)
+            src_profile = persona.get("source_profile") or {}
             human = {
                 "agent_id": agent["agent_id"],
                 "archetype": agent["archetype"],
+                "nemotron_backed": bool(src_profile.get("from_nemotron_dataset")),
+                "nemotron_uuid": src_profile.get("uuid"),
                 "persona": persona.get("persona"),
                 "persona_attachable": persona.get("attachable", True),
                 "reason": persona.get("reason"),

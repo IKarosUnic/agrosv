@@ -1,0 +1,353 @@
+[
+  {
+    "osm_id": 429649092,
+    "name": "Mercado Municipal de Santa Ana Edificio 1",
+    "named": true,
+    "category": "mercado",
+    "facility": "mercado",
+    "lon": -89.559378,
+    "lat": 13.993843
+  },
+  {
+    "osm_id": 1892622100,
+    "name": "Mercado Municipal No. 2",
+    "named": true,
+    "category": "mercado",
+    "facility": "mercado",
+    "lon": -89.186319,
+    "lat": 13.722822
+  },
+  {
+    "osm_id": 1973151863,
+    "name": "Mercado OSM 1973151863",
+    "named": false,
+    "category": "mercado",
+    "facility": "mercado",
+    "lon": -88.359803,
+    "lat": 13.721205
+  },
+  {
+    "osm_id": 2072443001,
+    "name": "Mercado Municipal Monserrat",
+    "named": true,
+    "category": "mercado",
+    "facility": "mercado",
+    "lon": -89.214833,
+    "lat": 13.683307
+  },
+  {
+    "osm_id": 3969311178,
+    "name": "Mercado Municipal",
+    "named": true,
+    "category": "mercado",
+    "facility": "mercado",
+    "lon": -88.208584,
+    "lat": 13.665927
+  },
+  {
+    "osm_id": 3969495946,
+    "name": "Mercado Municipal",
+    "named": true,
+    "category": "mercado",
+    "facility": "mercado",
+    "lon": -87.841503,
+    "lat": 13.58688
+  },
+  {
+    "osm_id": 3971484818,
+    "name": "Mercado OSM 3971484818",
+    "named": false,
+    "category": "mercado",
+    "facility": "mercado",
+    "lon": -88.055191,
+    "lat": 13.198103
+  },
+  {
+    "osm_id": 3971511077,
+    "name": "Mercado OSM 3971511077",
+    "named": false,
+    "category": "mercado",
+    "facility": "mercado",
+    "lon": -88.35144,
+    "lat": 13.555167
+  },
+  {
+    "osm_id": 3971704864,
+    "name": "Mercado OSM 3971704864",
+    "named": false,
+    "category": "mercado",
+    "facility": "mercado",
+    "lon": -88.234027,
+    "lat": 13.915349
+  },
+  {
+    "osm_id": 3971789063,
+    "name": "Mercado OSM 3971789063",
+    "named": false,
+    "category": "mercado",
+    "facility": "mercado",
+    "lon": -88.104621,
+    "lat": 13.697277
+  },
+  {
+    "osm_id": 3971941885,
+    "name": "Mercado OSM 3971941885",
+    "named": false,
+    "category": "mercado",
+    "facility": "mercado",
+    "lon": -88.159448,
+    "lat": 13.906232
+  },
+  {
+    "osm_id": 3972809668,
+    "name": "Mercado Municipal",
+    "named": true,
+    "category": "mercado",
+    "facility": "mercado",
+    "lon": -88.346823,
+    "lat": 13.510365
+  },
+  {
+    "osm_id": 3974111616,
+    "name": "Mercado OSM 3974111616",
+    "named": false,
+    "category": "mercado",
+    "facility": "mercado",
+    "lon": -88.548772,
+    "lat": 13.273798
+  },
+  {
+    "osm_id": 3974901630,
+    "name": "Mercado Municipal de Estanzuelas",
+    "named": true,
+    "category": "mercado",
+    "facility": "mercado",
+    "lon": -88.492997,
+    "lat": 13.642819
+  },
+  {
+    "osm_id": 3976923009,
+    "name": "Mercado OSM 3976923009",
+    "named": false,
+    "category": "mercado",
+    "facility": "mercado",
+    "lon": -88.372522,
+    "lat": 13.341826
+  },
+  {
+    "osm_id": 3977032590,
+    "name": "Mercado OSM 3977032590",
+    "named": false,
+    "category": "mercado",
+    "facility": "mercado",
+    "lon": -88.255621,
+    "lat": 13.532096
+  },
+  {
+    "osm_id": 4015172400,
+    "name": "Mercado Municipal Anita Alvarado",
+    "named": true,
+    "category": "mercado",
+    "facility": "mercado",
+    "lon": -89.554037,
+    "lat": 13.989959
+  },
+  {
+    "osm_id": 4028249189,
+    "name": "Mercado Municipal y Correos",
+    "named": true,
+    "category": "mercado",
+    "facility": "mercado",
+    "lon": -88.05423,
+    "lat": 13.601872
+  },
+  {
+    "osm_id": 4028255988,
+    "name": "Mercado Municipal y Correos",
+    "named": true,
+    "category": "mercado",
+    "facility": "mercado",
+    "lon": -88.054316,
+    "lat": 13.602071
+  },
+  {
+    "osm_id": 4090299998,
+    "name": "Mercado de Tecoluca",
+    "named": true,
+    "category": "mercado",
+    "facility": "mercado",
+    "lon": -88.782113,
+    "lat": 13.537556
+  },
+  {
+    "osm_id": 4218419177,
+    "name": "Mercado Municipal de Chalchuapa",
+    "named": true,
+    "category": "mercado",
+    "facility": "mercado",
+    "lon": -89.677283,
+    "lat": 13.985349
+  },
+  {
+    "osm_id": 4881800794,
+    "name": "Mercado OSM 4881800794",
+    "named": false,
+    "category": "mercado",
+    "facility": "mercado",
+    "lon": -89.748023,
+    "lat": 13.84319
+  },
+  {
+    "osm_id": 4881801082,
+    "name": "Mercado OSM 4881801082",
+    "named": false,
+    "category": "mercado",
+    "facility": "mercado",
+    "lon": -89.747476,
+    "lat": 13.843085
+  },
+  {
+    "osm_id": 4881801700,
+    "name": "Mercado OSM 4881801700",
+    "named": false,
+    "category": "mercado",
+    "facility": "mercado",
+    "lon": -89.747785,
+    "lat": 13.842906
+  },
+  {
+    "osm_id": 5371468021,
+    "name": "Mercado Municipal",
+    "named": true,
+    "category": "mercado",
+    "facility": "mercado",
+    "lon": -88.138629,
+    "lat": 13.219826
+  },
+  {
+    "osm_id": 5749821433,
+    "name": "Mercado Municipal",
+    "named": true,
+    "category": "mercado",
+    "facility": "mercado",
+    "lon": -89.048165,
+    "lat": 13.765432
+  },
+  {
+    "osm_id": 6236401833,
+    "name": "Mercado Municipal de San Marcos",
+    "named": true,
+    "category": "mercado",
+    "facility": "mercado",
+    "lon": -89.187978,
+    "lat": 13.663154
+  },
+  {
+    "osm_id": 7105942197,
+    "name": "Mercado Municipal",
+    "named": true,
+    "category": "mercado",
+    "facility": "mercado",
+    "lon": -88.706593,
+    "lat": 13.432601
+  },
+  {
+    "osm_id": 10253807094,
+    "name": "Mega Plaza",
+    "named": true,
+    "category": "mercado",
+    "facility": "mercado",
+    "lon": -89.730767,
+    "lat": 13.71602
+  },
+  {
+    "osm_id": 10900643662,
+    "name": "Mercado Municipal de Santa Ana, Edificio 2",
+    "named": true,
+    "category": "mercado",
+    "facility": "mercado",
+    "lon": -89.560191,
+    "lat": 13.994009
+  },
+  {
+    "osm_id": 11163698971,
+    "name": "Bitcoin Farmers Market",
+    "named": true,
+    "category": "mercado",
+    "facility": "mercado",
+    "lon": -89.346237,
+    "lat": 13.486191
+  },
+  {
+    "osm_id": 11283513729,
+    "name": "Mercado Municipal Santiago Texacuangos",
+    "named": true,
+    "category": "mercado",
+    "facility": "mercado",
+    "lon": -89.115443,
+    "lat": 13.64249
+  },
+  {
+    "osm_id": 11308724986,
+    "name": "Mercado Municipal",
+    "named": true,
+    "category": "mercado",
+    "facility": "mercado",
+    "lon": -89.095829,
+    "lat": 13.83732
+  },
+  {
+    "osm_id": 11323000857,
+    "name": "MERCADO MUNICIPAL DE EL TRIUNFO",
+    "named": true,
+    "category": "mercado",
+    "facility": "mercado",
+    "lon": -88.431511,
+    "lat": 13.558371
+  },
+  {
+    "osm_id": 12441101880,
+    "name": "Feria Bitcoin de Emprendedores",
+    "named": true,
+    "category": "mercado",
+    "facility": "mercado",
+    "lon": -89.556032,
+    "lat": 13.993547
+  },
+  {
+    "osm_id": 12800400509,
+    "name": "Agromercado de Soyapango",
+    "named": true,
+    "category": "mercado",
+    "facility": "mercado",
+    "lon": -89.141207,
+    "lat": 13.715716
+  },
+  {
+    "osm_id": 13706304902,
+    "name": "Mercado municipal Zacamil",
+    "named": true,
+    "category": "mercado",
+    "facility": "mercado",
+    "lon": -89.20305,
+    "lat": 13.727449
+  },
+  {
+    "osm_id": 14354825402,
+    "name": "Mercado de Comasagua",
+    "named": true,
+    "category": "mercado",
+    "facility": "mercado",
+    "lon": -89.378339,
+    "lat": 13.63758
+  },
+  {
+    "osm_id": 14356503002,
+    "name": "Pollos Amilgar",
+    "named": true,
+    "category": "mercado",
+    "facility": "mercado",
+    "lon": -87.893303,
+    "lat": 13.62626
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "name": "AGROSV — Inteligencia Agrícola de El Salvador",
+  "short_name": "AGROSV",
+  "description": "Plataforma científica y geoespacial agrícola para El Salvador.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f4f6f2",
+  "theme_color": "#1f5c37",
+  "lang": "es-SV"
+}
